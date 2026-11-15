@@ -1,26 +1,37 @@
 # Solleva Motion-System (Baukasten für Reels)
 
-Status: **Entwurf v0.1, Grundgerüst.** Die Bausteine (U01–U08, X01–X07, C01, E01) sind Platzhalter auf Basis des bisherigen Solleva-Steckbriefs. Sie werden nach der Analyse der Referenz-Clips des Nutzers überarbeitet oder ersetzt. Vorher nichts davon als «fertigen Solleva-Stil» behandeln.
+Status: **v0.2: Bausteine aus 7 Referenzen gebaut, wartet auf Freigabe des Nutzers** (Katalog-Video). Was der Nutzer im Katalog verwirft, wird entfernt; Freigegebenes gilt als Solleva-Stil.
 
 ## Regeln
-- Es gilt der Skill `reel-produktion` (Ablauf, Freigaben, Stiltest) und `motion-design` (Kurven, Timing).
+- Es gilt der Skill `reel-produktion` (Ablauf, Freigaben, Stiltest, Stil-DNA, Story-Bauplan, Sound-Regeln) und `motion-design` (Kurven, Timing). Kopie des Skills: `skill/reel-produktion/SKILL.md`.
 - **Keine Higgsfield-Generierung und kein Reel ohne ausdrückliche Freigabe des Nutzers.**
 - Fester Kern (immer gleich): Farben, Schriften, Endkarte, Stimme, Signatur-Sounds → `src/brand/solleva.ts`.
-- Abwechslung (pro Reel wechselnd): Format, Stimmung (S1–S4), Übergangs-Set, Hintergrundwelt, Tempo, Hook-Typ.
+- Abwechslung (pro Reel wechselnd): Format, Stimmung (S1–S4), Übergangs-Set, Welten, Tempo, Hook-Typ.
 - Vor jedem Reel `LOGBUCH.md` lesen: was in den letzten 3 Reels vorkam, nicht wiederholen. Pro Reel mindestens ein neues Element.
 - Neue Bausteine bekommen eine feste Nummer und kommen in den Katalog (`src/katalog/Katalog.tsx`).
+- Jede Szene in `<Kamera>`; Sounds mit `<Ton nr=… bei=… />` (Hit-Zeiten aus `sounds/sounds.json`).
 
 ## Struktur
-- `src/brand/solleva.ts`: Farben, Stimmungen S1–S4, Schriften, Formen, Safe Zones
-- `src/lib/bewegung.ts`: Kurven Land/Heavy/Whip, Helfer
+- `src/brand/solleva.ts`: Farben, Stimmungen S1–S4, Schriften (Barlow, Instrument Serif, JetBrains Mono, Allura, Caveat; Nutzer will Schriften evtl. noch überarbeiten)
+- `src/lib/bewegung.ts`: Kurven Land/Heavy/Whip, Helfer · `src/lib/kamera.tsx`: Kamera (nie Stillstand) + Ton (Hit auf Frame)
+- `src/welten/Welten.tsx`: W01 Raster, W02 Wellen, W03 Strahlen, W04 Rauten, W05 Lichtkanal, W06 Filz, W07 Nacht
+- `src/transitions/Uebergaenge.tsx`: U01–U10, U12, U14–U17 (U09 Lupe, U15 Bild-im-Bild, U16 Licht-Bloom …)
+- `src/text/Texteffekte.tsx` (X01–X07) und `Texteffekte2.tsx` (X08–X20)
+- `src/bausteine/Bausteine.tsx`: B01 Landen, B06 Eigenschaften-Karten, B07 Kalender-Lauf, E02 Kranz, U13 Stakkato, P01 Schweben, WebKarte
 - `src/components/`: Hintergrund, Karte, Label, Cursor (C01), Endkarte (E01)
-- `src/transitions/Uebergaenge.tsx`: Übergänge U01–U08
-- `src/text/Texteffekte.tsx`: Texteffekte X01–X07
-- `src/katalog/Katalog.tsx`: Katalog-Video aller Bausteine
-- `sounds/`: Sound-Kit (folgt, nach Referenzen)
-- `public/fonts/`: Schriften lokal (vorläufig Barlow, Instrument Serif, JetBrains Mono; Nutzer will Schriften evtl. noch überarbeiten)
+- `src/katalog/Katalog.tsx`: Katalog-Video aller Bausteine mit Ton
+- `sounds/`: Sound-Kit (Mixkit + selbst erzeugt), `sounds.json`, `hoerprobe.html`; `public/sounds` ist ein Symlink darauf
+- `docs/referenzen/`: Analysen der Referenzen + Sound-Analyse
+- `tools/hoerprobe.py`: baut die Hörprobe-Seiten neu
 
 ## Befehle
 - `npm install`
 - `npx remotion still Katalog out/bild.png --frame=N` (Standbild)
-- `npm run katalog` (Katalog-Video, nur auf Wunsch)
+- `npm run katalog` (Katalog-Video mit Ton)
+- `python3 tools/hoerprobe.py` (Hörprobe neu bauen)
+
+## Offen
+- Ratsche: Nutzer findet `ratsche-01` am nächsten, aber zu kurz → 2–3 ähnliche, längere Varianten suchen/erzeugen.
+- Musik (basslastiger Beat ohne Gesang) noch nicht gewählt.
+- Tiefere Stimme bei Higgsfield testen (kostet Credits, nur mit Freigabe).
+- Collage-Foto-Objekte (Hände, Geräte) via Higgsfield erst nach Freigabe.

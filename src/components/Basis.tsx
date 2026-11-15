@@ -11,6 +11,8 @@ const fontFiles: [string, string, string, string][] = [
   [schrift.serif, "instrument-serif-latin-400-italic.woff2", "400", "italic"],
   [schrift.serif, "instrument-serif-latin-400-normal.woff2", "400", "normal"],
   [schrift.mono, "jetbrains-mono-latin-500-normal.woff2", "500", "normal"],
+  [schrift.hand, "allura-latin-400-normal.woff2", "400", "normal"],
+  [schrift.notiz, "caveat-latin-600-normal.woff2", "600", "normal"],
 ];
 
 let geladen: Promise<void> | null = null;

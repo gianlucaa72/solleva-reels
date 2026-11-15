@@ -93,6 +93,8 @@ export const schrift = {
   text: "Barlow", // 800 für Headlines, 500/700 für Fliesstext
   serif: "Instrument Serif", // kursiv für Schlüsselwörter
   mono: "JetBrains Mono", // Labels, Zähler, Katalog-Nummern
+  hand: "Allura", // Unterschrift, elegante Handschrift (X14)
+  notiz: "Caveat", // Handnotiz, Kringel-Beschriftung (X17)
 };
 
 export const form = {
