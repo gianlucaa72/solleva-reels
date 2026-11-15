@@ -35,6 +35,8 @@ Erst Bausteine aus dem Baukasten nehmen; Neues nur ergänzen und mit Nummer in K
 5. **Wörtliche Bilder**: jedes Bild illustriert das gesprochene Wort, nicht das Thema allgemein.
 6. **Zahlen werden inszeniert** (aufbauen, zählen, überkleben, Kacheln), nie nur geschrieben.
 7. Hauptlook hell = Ref. 05 «2-D Motion Reel» (Lavendel, Raster, schmale kursive Serif, Licht-Bloom). Dunkel = Nacht/Violett mit Leuchten.
+8. **Bildsprache statt Folien (wichtig für den Nutzer)**: Jede Szene braucht ein **Bild zur Veranschaulichung**, nicht nur Text auf Fläche. Reihenfolge: (a) 3D-Emojis aus `assets/emoji/` (`<Emoji name="brain" />`, 74 Stück, MIT), (b) bereits generierte Objekte/Figuren aus `assets/` wiederverwenden, (c) neue Objekte mit Higgsfield **nur nach Freigabe**, freigestellt, danach in `assets/` ablegen. Typische Motive: Cartoon-/Ausschnitt-Figuren (wie das Buffett-Männchen), Objekte, die vom Himmel fallen (PC, Handy), Gehirn, griechische Statuen/Denker, Hände, Geld, Lupe, Uhr. Im Freigabe-Paket pro Szene das Bild nennen.
+9. **Hintergründe aufwerten**: Der Nutzer findet die Code-Hintergründe noch zu schlicht. Pro Reel prüfen, ob 1–3 Hintergründe als Foto/Textur mit Higgsfield erstellt werden sollen (Himmel, Marmor, Filz, Papier, Vorhang … in Solleva-Farben getönt); nach Freigabe generieren und in `assets/hintergrund/` für spätere Reels speichern.
 
 ## Story-Bauplan (Vorlage, aus Ref. 01/03)
 1. **Hook** mit konkreter Zahl oder Szene (0–2 s) · 2. **Vergleich**, der sie fühlbar macht · 3. **Twist** («Aber …») · 4. **Spannung über Zeit** · 5. **Rätsel** («Warum?») · 6. **Beweis/Muster** · 7. **offene Schleife oder CTA**. Zahlen nur, wenn echt (eigene Projekte mit Erlaubnis).

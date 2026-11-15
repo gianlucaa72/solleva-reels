@@ -30,6 +30,12 @@ Status: **v0.2: Bausteine aus 7 Referenzen gebaut, wartet auf Freigabe des Nutze
 - `npm run katalog` (Katalog-Video mit Ton)
 - `python3 tools/hoerprobe.py` (Hörprobe neu bauen)
 
+## Bildsprache (Wunsch des Nutzers, gilt immer)
+- **Nicht nur Folien mit Text**: jede Szene bekommt ein Bild zur Veranschaulichung (Emoji, Figur, Objekt).
+- `assets/emoji/`: 74 Microsoft Fluent 3D Emojis (MIT), Komponente `src/bausteine/Emoji.tsx`. Übersicht: `assets/README.md`.
+- Figuren/Objekte/Foto-Hintergründe mit Higgsfield **nur nach Freigabe**, danach in `assets/` speichern und wiederverwenden.
+- Hintergründe: Nutzer findet sie noch zu schlicht → pro Reel 1–3 Foto/Textur-Hintergründe vorschlagen.
+
 ## Offen
 - Ratsche: Nutzer findet `ratsche-01` am nächsten, aber zu kurz → 2–3 ähnliche, längere Varianten suchen/erzeugen.
 - Musik (basslastiger Beat ohne Gesang) noch nicht gewählt.
