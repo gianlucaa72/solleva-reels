@@ -610,5 +610,32 @@
   "dauer": 1.3,
   "einsatz": 0.01,
   "hit": 0.01
+ },
+ {
+  "datei": "ratsche-18-knopf-lang-ausrollen.mp3",
+  "kategorie": "ratsche",
+  "titel": "Aus ratsche-01: lang, rollt aus (3 s)",
+  "quelle": "aus Mixkit «Watch clock knob spin» zusammengesetzt (Mixkit-Lizenz)",
+  "dauer": 3.0,
+  "einsatz": 0.03,
+  "hit": 0.03
+ },
+ {
+  "datei": "ratsche-19-knopf-lang-gleichmaessig.mp3",
+  "kategorie": "ratsche",
+  "titel": "Aus ratsche-01: lang, gleichmässig (3,5 s)",
+  "quelle": "aus Mixkit «Watch clock knob spin» zusammengesetzt (Mixkit-Lizenz)",
+  "dauer": 3.5,
+  "einsatz": 0.03,
+  "hit": 0.03
+ },
+ {
+  "datei": "ratsche-20-knopf-auf-und-aus.mp3",
+  "kategorie": "ratsche",
+  "titel": "Aus ratsche-01: zieht auf, dann aus (3 s)",
+  "quelle": "aus Mixkit «Watch clock knob spin» zusammengesetzt (Mixkit-Lizenz)",
+  "dauer": 3.0,
+  "einsatz": 0.03,
+  "hit": 0.03
  }
 ]
