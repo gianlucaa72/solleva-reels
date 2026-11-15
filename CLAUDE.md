@@ -38,7 +38,7 @@ Status: **v0.2: Bausteine aus 7 Referenzen gebaut, wartet auf Freigabe des Nutze
 - Hintergründe: Nutzer findet sie noch zu schlicht → pro Reel 1–3 Foto/Textur-Hintergründe vorschlagen.
 
 ## Offen
-- Ratsche: Nutzer findet `ratsche-01` am nächsten, aber zu kurz → 2–3 ähnliche, längere Varianten suchen/erzeugen.
+- Ratsche erledigt: Favoriten ratsche-18 (rollt aus) und ratsche-19 (gleichmässig).
 - Musik (basslastiger Beat ohne Gesang) noch nicht gewählt.
 - Tiefere Stimme bei Higgsfield testen (kostet Credits, nur mit Freigabe).
 - Collage-Foto-Objekte (Hände, Geräte) via Higgsfield erst nach Freigabe.

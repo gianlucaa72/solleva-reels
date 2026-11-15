@@ -20,3 +20,7 @@ Auswahl abgeleitet aus der Sound-Analyse der Referenzen (`docs/referenzen/sound-
 | tippen / schreiben | Tippen, Handschrift, Kringel |
 
 Status: **wird vom Nutzer angehört**; Favoriten und Ergänzungen folgen.
+
+## Favoriten des Nutzers
+- **ratsche-18** (Knopf, lang, rollt aus): Favorit für «etwas rollt aus / Linie zeichnet sich»
+- **ratsche-19** (Knopf, lang, gleichmässig): für Zähler, Kalender, längere Drehbewegungen
