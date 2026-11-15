@@ -457,5 +457,158 @@
   "dauer": 1.87,
   "einsatz": 0.007,
   "hit": 1.578
+ },
+ {
+  "datei": "ratsche-01-watch-clock-knob-spin.mp3",
+  "kategorie": "ratsche",
+  "titel": "Watch clock knob spin",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1064/1064-preview.mp3",
+  "dauer": 1.99,
+  "einsatz": 0.109,
+  "hit": 0.396
+ },
+ {
+  "datei": "ratsche-02-winding-up-toy.mp3",
+  "kategorie": "ratsche",
+  "titel": "Winding up toy",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2817/2817-preview.mp3",
+  "dauer": 3.2,
+  "einsatz": 0.055,
+  "hit": 0.331
+ },
+ {
+  "datei": "ratsche-03-bike-wheel-spinning.mp3",
+  "kategorie": "ratsche",
+  "titel": "Bike wheel spinning",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1613/1613-preview.mp3",
+  "dauer": 14.95,
+  "einsatz": 0.102,
+  "hit": 1.085
+ },
+ {
+  "datei": "ratsche-04-fast-bike-wheel-spin.mp3",
+  "kategorie": "ratsche",
+  "titel": "Fast bike wheel spin",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1614/1614-preview.mp3",
+  "dauer": 3.36,
+  "einsatz": 0.215,
+  "hit": 0.867
+ },
+ {
+  "datei": "ratsche-05-revolver-chamber-spin.mp3",
+  "kategorie": "ratsche",
+  "titel": "Revolver chamber spin",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1674/1674-preview.mp3",
+  "dauer": 0.17,
+  "einsatz": 0.005,
+  "hit": 0.015
+ },
+ {
+  "datei": "ratsche-06-lighter-wheel-spin.mp3",
+  "kategorie": "ratsche",
+  "titel": "Lighter wheel spin",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2641/2641-preview.mp3",
+  "dauer": 0.37,
+  "einsatz": 0.108,
+  "hit": 0.138
+ },
+ {
+  "datei": "ratsche-07-ticking-counter.mp3",
+  "kategorie": "ratsche",
+  "titel": "Ticking counter",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1053/1053-preview.mp3",
+  "dauer": 6.53,
+  "einsatz": 0.064,
+  "hit": 0.454
+ },
+ {
+  "datei": "ratsche-08-slot-machine-wheel.mp3",
+  "kategorie": "ratsche",
+  "titel": "Slot machine wheel",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1932/1932-preview.mp3",
+  "dauer": 6.11,
+  "einsatz": 0.096,
+  "hit": 3.745
+ },
+ {
+  "datei": "ratsche-09-arcade-slot-machine-wheel.mp3",
+  "kategorie": "ratsche",
+  "titel": "Arcade slot machine wheel",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1933/1933-preview.mp3",
+  "dauer": 3.54,
+  "einsatz": 0.101,
+  "hit": 0.351
+ },
+ {
+  "datei": "ratsche-10-slot-machine-random-wheel.mp3",
+  "kategorie": "ratsche",
+  "titel": "Slot machine random wheel",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1930/1930-preview.mp3",
+  "dauer": 5.11,
+  "einsatz": 0.102,
+  "hit": 2.672
+ },
+ {
+  "datei": "ratsche-11-gear-metallic-lock-sound.mp3",
+  "kategorie": "ratsche",
+  "titel": "Gear metallic lock sound",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2858/2858-preview.mp3",
+  "dauer": 1.1,
+  "einsatz": 0.035,
+  "hit": 0.229
+ },
+ {
+  "datei": "ratsche-12-gear-fast-lock-tap.mp3",
+  "kategorie": "ratsche",
+  "titel": "Gear fast lock tap",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2857/2857-preview.mp3",
+  "dauer": 1.14,
+  "einsatz": 0.009,
+  "hit": 0.1
+ },
+ {
+  "datei": "ratsche-13-eigen-ausrollen.mp3",
+  "kategorie": "ratsche",
+  "titel": "Eigen: Ratsche rollt aus (schnell → langsam)",
+  "quelle": "selbst erzeugt (Code), frei",
+  "dauer": 2.2,
+  "einsatz": 0.02,
+  "hit": 0.02
+ },
+ {
+  "datei": "ratsche-14-eigen-aufziehen.mp3",
+  "kategorie": "ratsche",
+  "titel": "Eigen: Ratsche zieht auf (langsam → schnell)",
+  "quelle": "selbst erzeugt (Code), frei",
+  "dauer": 2.2,
+  "einsatz": 0.02,
+  "hit": 0.02
+ },
+ {
+  "datei": "ratsche-15-eigen-konstant.mp3",
+  "kategorie": "ratsche",
+  "titel": "Eigen: Ratsche gleichmässig",
+  "quelle": "selbst erzeugt (Code), frei",
+  "dauer": 1.3,
+  "einsatz": 0.02,
+  "hit": 0.02
+ },
+ {
+  "datei": "ratsche-16-eigen-zahnrad-ticken.mp3",
+  "kategorie": "ratsche",
+  "titel": "Eigen: Zahnrad-Ticken hell, ~20 Klicks/s (wie Referenz)",
+  "quelle": "selbst erzeugt (Code), frei",
+  "dauer": 1.5,
+  "einsatz": 0.01,
+  "hit": 0.01
+ },
+ {
+  "datei": "ratsche-17-eigen-zahnrad-ausrollen.mp3",
+  "kategorie": "ratsche",
+  "titel": "Eigen: Zahnrad rollt aus, hell (wie Referenz)",
+  "quelle": "selbst erzeugt (Code), frei",
+  "dauer": 1.3,
+  "einsatz": 0.01,
+  "hit": 0.01
  }
 ]
