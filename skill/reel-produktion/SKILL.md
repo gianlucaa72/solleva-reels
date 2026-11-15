@@ -27,6 +27,23 @@ Jede Reel-Sitzung beginnt mit: Repo anhängen (`add_repo`), klonen, `npm install
 - **Katalog** `src/katalog/Katalog.tsx` (alle Bausteine mit Nummer und Ton)
 Erst Bausteine aus dem Baukasten nehmen; Neues nur ergänzen und mit Nummer in Katalog + Bibliothek aufnehmen.
 
+## Content-Strategie (Vorgabe des Nutzers, gilt für jedes Reel)
+**Ausgangslage:** Bisherige Reels 100–250 Aufrufe, weil sie wie Werbung wirkten («Ich mache Websites»). Ziel: **zuerst Reichweite durch Unterhaltung/Neugier, dann Vertrauen, erst dann Verkauf.**
+1. **Themen breit**: Websites, Social Media, Marketing, Psychologie des Klickens, digitaler Erfolg von Firmen. Website ist **ein** Thema unter vielen, nicht jedes Mal das Hauptthema.
+2. **Formate wechseln** (Content-Säulen):
+   - **Fallgeschichte**: wie bekannte Firmen Social Media/Traffic geknackt haben (Story wie Buffett-Reel)
+   - **Vergleich**: A gegen B, früher gegen heute, Mythos gegen Wahrheit
+   - **Tipp/Hack**: sofort umsetzbar, bildlich erklärt
+   - **Hinter den Kulissen**: z. B. wie ein Reel mit Claude entsteht, der ganze Ablauf
+   - **Psychologie/Wissen**: warum Menschen klicken, scrollen, vertrauen, kaufen
+   - **Lokal/KMU**: Alltagsszenen von Schweizer KMU (Kunde sucht, findet nicht …)
+3. **Die Story trägt alles**: Hook in Sekunde 1, Spannung, Twist, Auflösung (Story-Bauplan). Erst die Story, dann Bilder und Effekte.
+4. **Bildlich denken**: Ideen so entwickeln, dass jeder Satz ein starkes Bild hat (Gehirn, griechische Statue, fallender PC, Cartoon-Figur …), nicht Listen auf Folien.
+5. **Nichts von der Stange**: jedes Reel anders in Format, Stimmung, Erzählweise (Logbuch prüfen).
+6. **Solleva dezent als Absender**: weicher CTA am Ende («Folge für mehr», «Schreib ‹Analyse›»), kein Verkaufsgespräch.
+7. **Erzähler**: Ich-Form (Gianluca) **oder neutraler Erzähler** (wie Buffett-/Batman-Reels), je nach Thema.
+8. **Fakten**: Fallgeschichten und Zahlen vorher recherchieren, Quellen im Freigabe-Paket nennen; nichts Unbelegtes behaupten. Keine Markenlogos/Marken-Assets nachbauen; Firmen nur im Text/Ton nennen.
+
 ## Stil-DNA aus den Referenzen (gilt für jedes Reel)
 1. **Nichts steht still**: jede Szene in `<Kamera>` (Push 2–5 %, Drift, ±0,6° Rotation), Objekte driften/pendeln.
 2. **Alle 0,3–0,6 s ein Ereignis** (Wort, Zahl, Objekt, Zoom). Gleiche Szene max. 2,5 s.
@@ -116,7 +133,7 @@ Regeln:
 - **Ein Humor- oder Bruch-Moment** pro Video (Wort durchgestrichen, Cursor dreht ab, Fenster friert ein).
 - **Ein Signature-Moment:** die eine Stelle, über die man redet (meist aus der Lieblings-Referenz des Nutzers). Im Skript markieren.
 - **Letzter Satz = CTA**, das Bild endet auf dem grossen CTA.
-- Ich-Form, wenn der Nutzer allein arbeitet (Solleva: «ich», nie «wir»). Du-Form zum Zuschauer. Schweizer Schreibung «ss». Keine erfundenen Zahlen, Bewertungen, Rankings oder Kundennamen. Fremdwörter und Markennamen vorher prüfen (z. B. «Solleva» = it. «heb an!/hebt an», von «sollevare» = anheben).
+- Erzähler: Ich-Form als Gianluca (Solleva: «ich», nie «wir») oder neutraler Erzähler (siehe Content-Strategie). Du-Form zum Zuschauer. Schweizer Schreibung «ss». Keine erfundenen Zahlen, Bewertungen, Rankings oder Kundennamen. Fremdwörter und Markennamen vorher prüfen (z. B. «Solleva» = it. «heb an!/hebt an», von «sollevare» = anheben).
 
 **c) Storyboard als Standbilder**
 - Pro Moment ein gerendertes Schlüsselbild (Remotion `still`, ohne Credits) im Steckbrief-Stil, als Kontaktbogen in einem Bild. Higgsfield-Szenen dabei als Platzhalter mit Beschreibung und Prompt-Entwurf darstellen, noch **nicht** generieren.
