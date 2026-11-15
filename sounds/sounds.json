@@ -1,0 +1,461 @@
+[
+ {
+  "datei": "swish-01-fast-small-sweep-transition.mp3",
+  "kategorie": "swish",
+  "titel": "Fast small sweep transition",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/166/166-preview.mp3",
+  "dauer": 0.78,
+  "einsatz": 0.128,
+  "hit": 0.336
+ },
+ {
+  "datei": "swish-02-quick-swoosh-accent.mp3",
+  "kategorie": "swish",
+  "titel": "Quick swoosh accent",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1464/1464-preview.mp3",
+  "dauer": 1.1,
+  "einsatz": 0.01,
+  "hit": 0.106
+ },
+ {
+  "datei": "swish-03-short-wind-swoosh.mp3",
+  "kategorie": "swish",
+  "titel": "Short wind swoosh",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1461/1461-preview.mp3",
+  "dauer": 1.39,
+  "einsatz": 0.045,
+  "hit": 0.164
+ },
+ {
+  "datei": "swish-04-fast-whoosh-transition.mp3",
+  "kategorie": "swish",
+  "titel": "Fast whoosh transition",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1490/1490-preview.mp3",
+  "dauer": 1.76,
+  "einsatz": 0.299,
+  "hit": 0.725
+ },
+ {
+  "datei": "swish-05-arrow-whoosh.mp3",
+  "kategorie": "swish",
+  "titel": "Arrow whoosh",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1491/1491-preview.mp3",
+  "dauer": 1.1,
+  "einsatz": 0.188,
+  "hit": 0.296
+ },
+ {
+  "datei": "swish-06-short-transition-sweep.mp3",
+  "kategorie": "swish",
+  "titel": "Short transition sweep",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/175/175-preview.mp3",
+  "dauer": 0.61,
+  "einsatz": 0.224,
+  "hit": 0.457
+ },
+ {
+  "datei": "whoosh-01-air-woosh.mp3",
+  "kategorie": "whoosh",
+  "titel": "Air woosh",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1489/1489-preview.mp3",
+  "dauer": 2.32,
+  "einsatz": 0.302,
+  "hit": 0.719
+ },
+ {
+  "datei": "whoosh-02-cinematic-whoosh-fast-transition.mp3",
+  "kategorie": "whoosh",
+  "titel": "Cinematic whoosh fast transition",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1492/1492-preview.mp3",
+  "dauer": 1.33,
+  "einsatz": 0.353,
+  "hit": 1.081
+ },
+ {
+  "datei": "whoosh-03-air-zoom-vacuum.mp3",
+  "kategorie": "whoosh",
+  "titel": "Air zoom vacuum",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2608/2608-preview.mp3",
+  "dauer": 1.27,
+  "einsatz": 0.256,
+  "hit": 0.453
+ },
+ {
+  "datei": "whoosh-04-vacuum-swoosh-transition.mp3",
+  "kategorie": "whoosh",
+  "titel": "Vacuum swoosh transition",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1465/1465-preview.mp3",
+  "dauer": 2.26,
+  "einsatz": 0.291,
+  "hit": 1.568
+ },
+ {
+  "datei": "whoosh-05-cinematic-tunnel-reverb-woosh.mp3",
+  "kategorie": "whoosh",
+  "titel": "Cinematic tunnel reverb woosh",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1486/1486-preview.mp3",
+  "dauer": 6.75,
+  "einsatz": 0.239,
+  "hit": 0.618
+ },
+ {
+  "datei": "papier-01-paper-slide.mp3",
+  "kategorie": "papier",
+  "titel": "Paper slide",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1530/1530-preview.mp3",
+  "dauer": 1.09,
+  "einsatz": 0.042,
+  "hit": 0.361
+ },
+ {
+  "datei": "papier-02-paper-quick-movement.mp3",
+  "kategorie": "papier",
+  "titel": "Paper quick movement",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2380/2380-preview.mp3",
+  "dauer": 0.9,
+  "einsatz": 0.116,
+  "hit": 0.424
+ },
+ {
+  "datei": "papier-03-page-turn-single.mp3",
+  "kategorie": "papier",
+  "titel": "Page turn single",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1104/1104-preview.mp3",
+  "dauer": 0.45,
+  "einsatz": 0.055,
+  "hit": 0.142
+ },
+ {
+  "datei": "papier-04-paper-quick-slice.mp3",
+  "kategorie": "papier",
+  "titel": "Paper quick slice",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2384/2384-preview.mp3",
+  "dauer": 0.35,
+  "einsatz": 0.022,
+  "hit": 0.105
+ },
+ {
+  "datei": "papier-05-newspaper-falling-to-the-floor.mp3",
+  "kategorie": "papier",
+  "titel": "Newspaper falling to the floor",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/386/386-preview.mp3",
+  "dauer": 0.61,
+  "einsatz": 0.028,
+  "hit": 0.201
+ },
+ {
+  "datei": "klick-01-select-click.mp3",
+  "kategorie": "klick",
+  "titel": "Select click",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1109/1109-preview.mp3",
+  "dauer": 1.1,
+  "einsatz": 0.0,
+  "hit": 0.068
+ },
+ {
+  "datei": "klick-02-modern-click-box-check.mp3",
+  "kategorie": "klick",
+  "titel": "Modern click box check",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1120/1120-preview.mp3",
+  "dauer": 0.24,
+  "einsatz": 0.095,
+  "hit": 0.105
+ },
+ {
+  "datei": "klick-03-clear-mouse-clicks.mp3",
+  "kategorie": "klick",
+  "titel": "Clear mouse clicks",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2997/2997-preview.mp3",
+  "dauer": 1.05,
+  "einsatz": 0.0,
+  "hit": 0.005
+ },
+ {
+  "datei": "klick-04-typewriter-soft-click.mp3",
+  "kategorie": "klick",
+  "titel": "Typewriter soft click",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1125/1125-preview.mp3",
+  "dauer": 0.22,
+  "einsatz": 0.1,
+  "hit": 0.112
+ },
+ {
+  "datei": "klick-05-camera-shutter-click.mp3",
+  "kategorie": "klick",
+  "titel": "Camera shutter click",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1133/1133-preview.mp3",
+  "dauer": 0.35,
+  "einsatz": 0.139,
+  "hit": 0.194
+ },
+ {
+  "datei": "schlag-01-short-bass-hit.mp3",
+  "kategorie": "schlag",
+  "titel": "Short bass hit",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2299/2299-preview.mp3",
+  "dauer": 1.1,
+  "einsatz": 0.057,
+  "hit": 0.085
+ },
+ {
+  "datei": "schlag-02-drum-deep-impact.mp3",
+  "kategorie": "schlag",
+  "titel": "Drum deep impact",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/563/563-preview.mp3",
+  "dauer": 5.5,
+  "einsatz": 0.153,
+  "hit": 0.169
+ },
+ {
+  "datei": "schlag-03-quick-zoom-impact.mp3",
+  "kategorie": "schlag",
+  "titel": "Quick zoom impact",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/772/772-preview.mp3",
+  "dauer": 1.22,
+  "einsatz": 0.09,
+  "hit": 0.517
+ },
+ {
+  "datei": "schlag-04-cinematic-whoosh-deep-impact.mp3",
+  "kategorie": "schlag",
+  "titel": "Cinematic whoosh deep impact",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1143/1143-preview.mp3",
+  "dauer": 4.06,
+  "einsatz": 0.268,
+  "hit": 0.632
+ },
+ {
+  "datei": "schlag-05-movie-whoosh-impact-presentation.mp3",
+  "kategorie": "schlag",
+  "titel": "Movie whoosh impact presentation",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2903/2903-preview.mp3",
+  "dauer": 3.53,
+  "einsatz": 0.045,
+  "hit": 0.942
+ },
+ {
+  "datei": "schlag-06-knocking-sub-bass.mp3",
+  "kategorie": "schlag",
+  "titel": "Knocking sub bass",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2300/2300-preview.mp3",
+  "dauer": 3.0,
+  "einsatz": 0.797,
+  "hit": 2.144
+ },
+ {
+  "datei": "schlag-07-wood-hard-hit.mp3",
+  "kategorie": "schlag",
+  "titel": "Wood hard hit",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2182/2182-preview.mp3",
+  "dauer": 0.42,
+  "einsatz": 0.05,
+  "hit": 0.06
+ },
+ {
+  "datei": "glitzer-01-magic-sparkle-whoosh.mp3",
+  "kategorie": "glitzer",
+  "titel": "Magic sparkle whoosh",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2350/2350-preview.mp3",
+  "dauer": 3.5,
+  "einsatz": 0.136,
+  "hit": 0.454
+ },
+ {
+  "datei": "glitzer-02-fairy-sparkle-whoosh.mp3",
+  "kategorie": "glitzer",
+  "titel": "Fairy sparkle whoosh",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/869/869-preview.mp3",
+  "dauer": 4.55,
+  "einsatz": 0.925,
+  "hit": 1.477
+ },
+ {
+  "datei": "glitzer-03-magic-glitter-shot.mp3",
+  "kategorie": "glitzer",
+  "titel": "Magic glitter shot",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2353/2353-preview.mp3",
+  "dauer": 4.8,
+  "einsatz": 0.84,
+  "hit": 1.027
+ },
+ {
+  "datei": "glitzer-04-sparkle-hybrid-transition.mp3",
+  "kategorie": "glitzer",
+  "titel": "Sparkle hybrid transition",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/3060/3060-preview.mp3",
+  "dauer": 1.25,
+  "einsatz": 0.082,
+  "hit": 0.249
+ },
+ {
+  "datei": "glitzer-05-magical-light-sweep.mp3",
+  "kategorie": "glitzer",
+  "titel": "Magical light sweep",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2586/2586-preview.mp3",
+  "dauer": 4.75,
+  "einsatz": 0.543,
+  "hit": 1.603
+ },
+ {
+  "datei": "downlifter-01-tape-rewind-cinematic-transition.mp3",
+  "kategorie": "downlifter",
+  "titel": "Tape rewind cinematic transition",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1088/1088-preview.mp3",
+  "dauer": 4.39,
+  "einsatz": 0.228,
+  "hit": 1.361
+ },
+ {
+  "datei": "downlifter-02-glitch-sci-fi-rewind-transition.mp3",
+  "kategorie": "downlifter",
+  "titel": "Glitch sci fi rewind transition",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1093/1093-preview.mp3",
+  "dauer": 3.7,
+  "einsatz": 0.045,
+  "hit": 0.365
+ },
+ {
+  "datei": "downlifter-03-reverse-cinematic-impact-trailer.mp3",
+  "kategorie": "downlifter",
+  "titel": "Reverse cinematic impact trailer",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/784/784-preview.mp3",
+  "dauer": 10.08,
+  "einsatz": 0.106,
+  "hit": 0.432
+ },
+ {
+  "datei": "riser-01-cinematic-trailer-riser.mp3",
+  "kategorie": "riser",
+  "titel": "Cinematic trailer riser",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/790/790-preview.mp3",
+  "dauer": 2.58,
+  "einsatz": 1.08,
+  "hit": 2.537
+ },
+ {
+  "datei": "riser-02-short-space-stutter-intro-riser.mp3",
+  "kategorie": "riser",
+  "titel": "Short space stutter intro riser",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1144/1144-preview.mp3",
+  "dauer": 6.54,
+  "einsatz": 0.778,
+  "hit": 6.247
+ },
+ {
+  "datei": "riser-03-cinematic-drama-riser.mp3",
+  "kategorie": "riser",
+  "titel": "Cinematic drama riser",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/632/632-preview.mp3",
+  "dauer": 31.0,
+  "einsatz": 1.475,
+  "hit": 25.95
+ },
+ {
+  "datei": "riser-04-cinematic-suspense-swell.mp3",
+  "kategorie": "riser",
+  "titel": "Cinematic suspense swell",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/786/786-preview.mp3",
+  "dauer": 11.27,
+  "einsatz": 0.381,
+  "hit": 3.86
+ },
+ {
+  "datei": "pop-01-hard-pop-click.mp3",
+  "kategorie": "pop",
+  "titel": "Hard pop click",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2364/2364-preview.mp3",
+  "dauer": 1.17,
+  "einsatz": 0.0,
+  "hit": 0.047
+ },
+ {
+  "datei": "pop-02-explainer-video-pops-whoosh-light-pop.mp3",
+  "kategorie": "pop",
+  "titel": "Explainer video pops whoosh light pop",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/3005/3005-preview.mp3",
+  "dauer": 0.18,
+  "einsatz": 0.01,
+  "hit": 0.034
+ },
+ {
+  "datei": "pop-03-bubble-pop-up-alert-notification.mp3",
+  "kategorie": "pop",
+  "titel": "Bubble pop up alert notification",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2357/2357-preview.mp3",
+  "dauer": 0.38,
+  "einsatz": 0.009,
+  "hit": 0.242
+ },
+ {
+  "datei": "pop-04-message-pop-alert.mp3",
+  "kategorie": "pop",
+  "titel": "Message pop alert",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2354/2354-preview.mp3",
+  "dauer": 1.06,
+  "einsatz": 0.049,
+  "hit": 0.058
+ },
+ {
+  "datei": "pop-05-long-pop.mp3",
+  "kategorie": "pop",
+  "titel": "Long pop",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2358/2358-preview.mp3",
+  "dauer": 0.48,
+  "einsatz": 0.027,
+  "hit": 0.037
+ },
+ {
+  "datei": "glitch-01-intro-text-glitch.mp3",
+  "kategorie": "glitch",
+  "titel": "Intro text glitch",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2950/2950-preview.mp3",
+  "dauer": 4.59,
+  "einsatz": 0.117,
+  "hit": 1.327
+ },
+ {
+  "datei": "glitch-02-virtual-quick-glitch.mp3",
+  "kategorie": "glitch",
+  "titel": "Virtual quick glitch",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2946/2946-preview.mp3",
+  "dauer": 2.04,
+  "einsatz": 0.357,
+  "hit": 1.326
+ },
+ {
+  "datei": "glitch-03-glitch-short.mp3",
+  "kategorie": "glitch",
+  "titel": "Glitch short",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/1031/1031-preview.mp3",
+  "dauer": 0.83,
+  "einsatz": 0.096,
+  "hit": 0.114
+ },
+ {
+  "datei": "tippen-01-typing-on-a-laptop-keyboard.mp3",
+  "kategorie": "tippen",
+  "titel": "Typing on a laptop keyboard",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2531/2531-preview.mp3",
+  "dauer": 19.63,
+  "einsatz": 0.001,
+  "hit": 3.192
+ },
+ {
+  "datei": "schreiben-01-writing-scribble-on-paper.mp3",
+  "kategorie": "schreiben",
+  "titel": "Writing scribble on paper",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2369/2369-preview.mp3",
+  "dauer": 1.19,
+  "einsatz": 0.024,
+  "hit": 0.147
+ },
+ {
+  "datei": "schreiben-02-writing-pencil.mp3",
+  "kategorie": "schreiben",
+  "titel": "Writing pencil",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/3194/3194-preview.mp3",
+  "dauer": 1.87,
+  "einsatz": 0.007,
+  "hit": 1.578
+ }
+]
