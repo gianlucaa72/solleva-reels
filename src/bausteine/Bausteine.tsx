@@ -154,8 +154,8 @@ export const Kranz: React.FC<{ s: Stimmung; start: number; anzahl?: number; zent
 /** U13: Stakkato, harte Schnitte im Takt, jede Karte eigene Farbe. */
 export const Stakkato: React.FC<{ start: number; teile: { text: string; bg: string; farbe: string }[]; takt?: number }> = ({ start, teile, takt = 7 }) => {
   const f = useCurrentFrame();
-  const i = Math.floor((f - start) / takt);
-  if (f < start || i >= teile.length) return null;
+  const i = Math.min(teile.length - 1, Math.floor((f - start) / takt));
+  if (f < start) return null;
   const t = teile[i];
   const k = f - start - i * takt;
   const sc = tw(k, 0, 4, 1.25, 1, kurve.whip);

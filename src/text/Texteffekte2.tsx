@@ -193,9 +193,11 @@ export const Ueberkleben: React.FC<{ s: Stimmung; start: number; basis: string; 
         <span
           style={{
             position: "absolute",
-            right: -30,
-            top: -18,
-            padding: "6px 22px",
+            left: "calc(24px + 0.5em)",
+            right: -14,
+            top: -10,
+            textAlign: "center",
+            padding: "4px 0 10px",
             background: s.akzent,
             color: farben.weiss,
             borderRadius: 16,
@@ -249,8 +251,8 @@ export const Kringel: React.FC<{ s: Stimmung; start: number; x: number; y: numbe
       />
       {notiz && (
         <>
-          <path d={`M ${x + w * 0.75} ${y + h * 1.25} q 60 120 170 110`} fill="none" stroke={c} strokeWidth={7} strokeLinecap="round" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - pf} />
-          <text x={x + w * 0.75 + 190} y={y + h * 1.25 + 130} fill={c} fontFamily={schrift.notiz} fontWeight={600} fontSize={64} opacity={op}>
+          <path d={`M ${x + w * 0.35} ${y + h * 1.25} q -30 120 -170 130`} fill="none" stroke={c} strokeWidth={7} strokeLinecap="round" pathLength={1} strokeDasharray={1} strokeDashoffset={1 - pf} />
+          <text x={x + w * 0.35 - 190} y={y + h * 1.25 + 230} fill={c} fontFamily={schrift.notiz} fontWeight={600} fontSize={64} opacity={op}>
             {notiz}
           </text>
         </>

@@ -68,7 +68,6 @@ const Wand: React.FC<{ s: Stimmung }> = ({ s }) => (
     {Array.from({ length: 20 }, (_, i) => {
       const x = (i % 4) * 320 - 160;
       const y = Math.floor(i / 4) * 420 + 60;
-      if (i === 9) return null;
       return <div key={i} style={{ position: "absolute", left: x, top: y, transform: `rotate(${(i % 3) - 1}deg)` }}><WebKarte s={s} w={280} h={360} titel={["Bäckerei", "Coach", "Garage", "Praxis", "Studio"][i % 5]} akzent={[farben.violett, farben.tinte, farben.lavendelAkzent][i % 3]} /></div>;
     })}
   </AbsoluteFill>
@@ -96,11 +95,11 @@ const tonUebergang: Record<UebergangsTyp, React.ReactNode> = {
 const UebergangDemo: React.FC<{ typ: UebergangsTyp; sa: Stimmung; sb: Stimmung }> = ({ typ, sa, sb }) => {
   const k = uebergangsKatalog[typ];
   let b: React.ReactNode = <SzeneLoesung s={sb} />;
-  if (typ === "U09") b = <AbsoluteFill style={{ transform: "scale(2.1)", transformOrigin: "540px 1210px" }}><SzeneProblem s={sa} /></AbsoluteFill>;
+  if (typ === "U09") b = <AbsoluteFill style={{ transform: "scale(2.2)", transformOrigin: "330px 760px" }}><SzeneProblem s={sa} /></AbsoluteFill>;
   if (typ === "U15") b = <Wand s={sb} />;
   return (
     <AbsoluteFill>
-      <Uebergang typ={typ} start={28} s={sb} a={<SzeneProblem s={sa} />} b={b} punkt={{ x: 540, y: 1150 }} karte={{ x: 160, y: 1000, w: 760, h: 420 }} />
+      <Uebergang typ={typ} start={28} s={sb} a={<SzeneProblem s={sa} />} b={b} punkt={typ === "U09" ? { x: 540, y: 820 } : { x: 540, y: 1150 }} karte={{ x: 160, y: 1000, w: 760, h: 420 }} />
       {tonUebergang[typ]}
       <Schild nr={typ} name={k.name} wann={`${k.wann} · ${k.dauer} Frames`} />
     </AbsoluteFill>
@@ -209,7 +208,7 @@ const teile: Teil[] = [
   // --- Bausteine ---
   { dauer: 60, el: <AbsoluteFill><Strahlen /><Kamera dauer={60}><Landen start={8}><WebKarte s={S1} titel="Neu!" w={460} h={340} /></Landen></Kamera><Ton nr="swish-02" bei={18} vol={0.4} /><Ton nr="schlag-02" bei={20} vol={0.7} max={1} /><Schild {...B("B01")} /></AbsoluteFill> },
   { dauer: 85, el: <AbsoluteFill><Nacht /><Kamera dauer={85}><EigenschaftenKarten s={S2} start={8} woerter={["Schnell", "Mobil", "Gefunden"]} /></Kamera><Ton nr="papier-04" bei={12} vol={0.7} /><Ton nr="papier-04" bei={27} vol={0.7} /><Ton nr="papier-04" bei={42} vol={0.7} /><Schild {...B("B06")} /></AbsoluteFill> },
-  { dauer: 85, el: <AbsoluteFill><Nacht /><Kamera dauer={85} push={0.02}><FokusZiehen s={S2} start={0} text="Nicht morgen." y={420} size={90} /><KalenderLauf s={S2} start={8} dauer={50} /></Kamera><Ton nr="ratsche-13" bei={8} vol={0.55} /><Ton nr="pop-04" bei={58} vol={0.6} /><Schild {...B("B07")} /></AbsoluteFill> },
+  { dauer: 85, el: <AbsoluteFill><Nacht /><Kamera dauer={85} push={0.02}><FokusZiehen s={S2} start={0} text="Nicht morgen." y={300} size={90} /><KalenderLauf s={S2} start={8} dauer={50} /></Kamera><Ton nr="ratsche-13" bei={8} vol={0.55} /><Ton nr="pop-04" bei={58} vol={0.6} /><Schild {...B("B07")} /></AbsoluteFill> },
   { dauer: 80, el: <AbsoluteFill><Kranz s={S1} start={16}><Wellen /><div style={{ position: "absolute", left: 330, top: 700 }}><WebKarte s={S1} titel="Deine Website" /></div></Kranz><Ton nr="whoosh-03" bei={18} vol={0.6} /><Ton nr="glitzer-04" bei={22} vol={0.5} /><Ton nr="schlag-01" bei={22} vol={0.5} /><Schild {...B("E02")} /></AbsoluteFill> },
   { dauer: 50, el: <AbsoluteFill><Hintergrund s={S3} /><Stakkato start={4} teile={[{ text: "1", bg: "#E8562F", farbe: farben.tinte }, { text: "2", bg: "#2A2A33", farbe: farben.papier }, { text: "3", bg: farben.nacht, farbe: "#E8562F" }]} /><Ton nr="downlifter-02" bei={5} vol={0.5} max={1} /><Ton nr="klick-02" bei={11} vol={0.6} /><Ton nr="klick-02" bei={18} vol={0.6} /><Schild {...B("U13")} /></AbsoluteFill> },
   { dauer: 60, el: <AbsoluteFill><Filz /><Schweben objekt={() => <Muenze />} /><Kamera dauer={60}><FokusZiehen s={S2} start={4} text="Er verkauft." farbe={farben.papier} /></Kamera><Schild {...B("P01")} /></AbsoluteFill> },

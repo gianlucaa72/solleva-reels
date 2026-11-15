@@ -60,7 +60,7 @@ export const Uebergang: React.FC<Props> = ({ typ, a, b, start, dauer, s, punkt, 
     const ring = 90;
     return (
       <>
-        <Ebene style={{ filter: "brightness(.55) blur(2px)" }}>{a}</Ebene>
+        <Ebene style={{ filter: `brightness(${1 - 0.45 * p}) blur(${2 * p}px)` }}>{a}</Ebene>
         <Ebene style={{ clipPath: `circle(${r}px at ${cx}px ${c.y}px)` }}>{b}</Ebene>
         <div
           style={{
@@ -81,8 +81,8 @@ export const Uebergang: React.FC<Props> = ({ typ, a, b, start, dauer, s, punkt, 
     );
   }
   if (frame < start) return <Ebene>{a}</Ebene>;
-  if (frame >= start + d) return <Ebene>{b}</Ebene>;
-  const t = (frame - start) / d;
+  if (frame >= start + d && typ !== "U15") return <Ebene>{b}</Ebene>;
+  const t = Math.min(1, (frame - start) / d);
 
   switch (typ) {
     case "U01": {
