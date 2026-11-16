@@ -1,6 +1,6 @@
 # Reel 01 «Unsichtbar bei Google» (v1, 16.11.2026)
 
-21,9 s · 1080×1920 · 30 fps · −14,2 LUFS · Peak −1,3 dBFS · ohne Musik, ohne CTA (Wunsch des Nutzers)
+23,8 s (v3: Pause 0,40 s nach jedem Satz, Schluss 2,5 s) · 1080×1920 · 30 fps · −14,2 LUFS · Peak −1,3 dBFS · ohne Musik, ohne CTA (Wunsch des Nutzers)
 Stimme: Andre (ElevenLabs via Higgsfield). Satz 7 neu als «Solleva heisst: anheben.» (alte Fassung `satz7-heb-an.mp3`).
 
 ## Referenzen → Umsetzung

@@ -1,6 +1,6 @@
 {
  "fps": 30,
- "gesamt": 655,
+ "gesamt": 713,
  "saetze": [
   {
    "satz": 1,
@@ -45,24 +45,24 @@
    "datei": "r01/a/stimme/satz2.mp3",
    "von": 0.1,
    "bis": 2.31,
-   "start": 81,
+   "start": 87,
    "dauer": 66,
    "woerter": [
     [
      "Und",
-     81
+     87
     ],
     [
      "finden",
-     91
+     96
     ],
     [
      "deine",
-     113
+     118
     ],
     [
      "Konkurrenz",
-     125
+     130
     ]
    ]
   },
@@ -73,28 +73,28 @@
    "datei": "r01/a/stimme/satz3.mp3",
    "von": 0.05,
    "bis": 2.34,
-   "start": 154,
+   "start": 165,
    "dauer": 69,
    "woerter": [
     [
      "Du",
-     154
+     165
     ],
     [
      "Irgendwo",
-     175
-    ],
-    [
-     "auf",
      186
     ],
     [
+     "auf",
+     197
+    ],
+    [
      "Seite",
-     199
+     210
     ],
     [
      "zwei",
-     210
+     221
     ]
    ]
   },
@@ -105,20 +105,20 @@
    "datei": "r01/a/stimme/satz4.mp3",
    "von": 0.08,
    "bis": 1.44,
-   "start": 230,
+   "start": 246,
    "dauer": 41,
    "woerter": [
     [
      "Da",
-     230
+     246
     ],
     [
      "klickt",
-     235
+     251
     ],
     [
      "niemand",
-     242
+     259
     ]
    ]
   },
@@ -129,28 +129,28 @@
    "datei": "r01/a/stimme/satz5.mp3",
    "von": 0.1,
    "bis": 1.99,
-   "start": 277,
+   "start": 298,
    "dauer": 57,
    "woerter": [
     [
      "Dabei",
-     277
+     298
     ],
     [
      "machst",
-     285
+     307
     ],
     [
      "du",
-     295
+     316
     ],
     [
      "gute",
-     304
+     326
     ],
     [
      "Arbeit",
-     318
+     340
     ]
    ]
   },
@@ -161,24 +161,24 @@
    "datei": "r01/a/stimme/satz6.mp3",
    "von": 0.04,
    "bis": 1.48,
-   "start": 340,
+   "start": 367,
    "dauer": 43,
    "woerter": [
     [
      "Nur",
-     340
+     367
     ],
     [
      "sieht",
-     358
+     385
     ],
     [
      "sie",
-     365
+     392
     ],
     [
      "keiner",
-     371
+     398
     ]
    ]
   },
@@ -189,20 +189,20 @@
    "datei": "r01/a/stimme/satz7.mp3",
    "von": 0.02,
    "bis": 2.15,
-   "start": 390,
+   "start": 422,
    "dauer": 64,
    "woerter": [
     [
      "Solleva",
-     390
+     422
     ],
     [
      "heisst",
-     415
+     447
     ],
     [
      "anheben",
-     436
+     469
     ]
    ]
   },
@@ -213,36 +213,36 @@
    "datei": "r01/a/stimme/satz8.mp3",
    "von": 0.09,
    "bis": 2.47,
-   "start": 460,
+   "start": 498,
    "dauer": 71,
    "woerter": [
     [
      "Genau",
-     460
+     498
     ],
     [
      "das",
-     472
+     510
     ],
     [
      "mache",
-     480
+     518
     ],
     [
      "ich",
-     488
+     526
     ],
     [
      "mit",
-     492
+     530
     ],
     [
      "deiner",
-     503
+     541
     ],
     [
      "Website",
-     512
+     550
     ]
    ]
   },
@@ -253,28 +253,28 @@
    "datei": "r01/a/stimme/satz9.mp3",
    "von": 0.03,
    "bis": 1.91,
-   "start": 538,
+   "start": 582,
    "dauer": 56,
    "woerter": [
     [
      "Sichtbar",
-     538
+     582
     ],
     [
      "sein",
-     548
+     592
     ],
     [
      "ist",
-     554
+     597
     ],
     [
      "kein",
-     565
+     608
     ],
     [
      "Zufall",
-     571
+     614
     ]
    ]
   }

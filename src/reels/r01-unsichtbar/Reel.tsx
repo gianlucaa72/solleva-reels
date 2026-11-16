@@ -10,26 +10,27 @@ import { satz, Stimme, Szene1, Szene2, Szene3, Szene4, Szene5, Szene6, Szene7, S
 export const REEL_DAUER = T.gesamt;
 
 // Fenster, in denen eine Szene gezeichnet wird (Überlappung = Übergang). Reihenfolge = Ebenen (später oben).
+const st = (n: number) => satz(n).start;
 const fenster: { n: number; von: number; bis: number; C: React.FC<{ v: V }>; z: number }[] = [
-  { n: 1, von: 0, bis: 88, C: Szene1, z: 1 },
-  { n: 2, von: 64, bis: 152, C: Szene2, z: 2 },
-  { n: 3, von: 152, bis: 229, C: Szene3, z: 3 },
-  { n: 4, von: 228, bis: 280, C: Szene4, z: 4 },
-  { n: 5, von: 277, bis: 342, C: Szene5, z: 5 },
-  { n: 6, von: 340, bis: 390, C: Szene6, z: 6 },
-  { n: 7, von: 389, bis: 462, C: Szene7, z: 7 },
-  { n: 9, von: 528, bis: T.gesamt, C: Szene9, z: 8 },
-  { n: 8, von: 460, bis: 548, C: Szene8, z: 9 },
+  { n: 1, von: 0, bis: st(2) + 7, C: Szene1, z: 1 },
+  { n: 2, von: st(2) - 17, bis: st(3) - 2, C: Szene2, z: 2 },
+  { n: 3, von: st(3) - 2, bis: st(4) - 1, C: Szene3, z: 3 },
+  { n: 4, von: st(4) - 2, bis: st(5) + 3, C: Szene4, z: 4 },
+  { n: 5, von: st(5), bis: st(6) + 2, C: Szene5, z: 5 },
+  { n: 6, von: st(6), bis: st(7), C: Szene6, z: 6 },
+  { n: 7, von: st(7) - 1, bis: st(8) + 2, C: Szene7, z: 7 },
+  { n: 9, von: st(9) - 10, bis: T.gesamt, C: Szene9, z: 8 },
+  { n: 8, von: st(8), bis: st(9) + 10, C: Szene8, z: 9 },
 ];
 
 const LABELS = ["01 Gesucht", "02 Gefunden", "03 Seite zwei", "04 Niemand", "05 Aber", "06 Unsichtbar", "07 Anheben", "08 Genau das", "09 Sichtbar"];
-const dunkelBei = (F: number) => F >= 152 && F < 277;
+const dunkelBei = (F: number) => F >= st(3) - 2 && F < st(5);
 
 // Licht-Bloom (U16) an den Nähten 4→5, 5→6 und Ausklang nach 7→8
 const bloom = (F: number) => {
   let b = 0;
-  for (const p of [277, 340]) b = Math.max(b, tw(F, p - 9, 9, 0, 1, kurve.heavy) - tw(F, p, 10, 0, 1, kurve.land));
-  if (F >= 460) b = Math.max(b, 1 - tw(F, 460, 10, 0, 1, kurve.land));
+  for (const p of [st(5), st(6)]) b = Math.max(b, tw(F, p - 9, 9, 0, 1, kurve.heavy) - tw(F, p, 10, 0, 1, kurve.land));
+  if (F >= st(8)) b = Math.max(b, 1 - tw(F, st(8), 10, 0, 1, kurve.land));
   return Math.max(0, b);
 };
 

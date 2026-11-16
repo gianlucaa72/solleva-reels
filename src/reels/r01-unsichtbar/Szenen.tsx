@@ -121,7 +121,7 @@ const Lupe: React.FC<{ farbe?: string }> = ({ farbe = farben.grau }) => (
 const BRANCHEN = ["Coiffeur", "Elektriker", "Physio", "Garage", "Schreiner", "Malerei", "Treuhand", "Gärtner", "Bäckerei", "Sanitär"];
 export const Szene1: React.FC<{ v: V }> = ({ v }) => {
   const F = useCurrentFrame();
-  const raus = tw(F, 79, 7, 0, 1, kurve.whip); // Whip nach links (Telefon kommt von rechts)
+  const raus = tw(F, satz(2).start - 2, 7, 0, 1, kurve.whip); // Whip nach links (Telefon kommt von rechts)
   const pilleRein = tw(F, 2, 10, 0, 1, kurve.land);
   const takt = 7;
   const START = 8;
@@ -196,17 +196,17 @@ export const Szene2: React.FC<{ v: V }> = ({ v }) => {
   const s = satz(2);
   const ende = satz(3).start;
   // Telefon: guckt rechts rein (66–78), wartet, Whip ins Bild (80–87)
-  const peek = tw(F, 64, 12, 0, 1, kurve.land);
-  const whip = tw(F, 80, 7, 0, 1, kurve.whip);
+  const peek = tw(F, s.start - 17, 12, 0, 1, kurve.land);
+  const whip = tw(F, s.start - 1, 7, 0, 1, kurve.whip);
   const tx = 1180 - peek * 150 - whip * (1030 - 470);
   const trot = 14 - whip * 10;
   const tBlur = Math.sin(whip * Math.PI) * 10;
   // Liste scrollt
-  const scroll = tw(F, 92, 40, 0, -300, kurve.heavy);
+  const scroll = tw(F, s.start + 11, 40, 0, -300, kurve.heavy);
   // Tauchgang in den Bildschirm (Übergang zu Satz 3)
   const tauch = tw(F, ende - 9, 9, 0, 1, kurve.whip);
   const tauchS = 1 + tauch * 6;
-  const statue = tw(F, 94, 14, 0, 1, kurve.land);
+  const statue = tw(F, s.start + 13, 14, 0, 1, kurve.land);
   return (
     <AbsoluteFill style={{ transform: `scale(${tauchS})`, transformOrigin: "720px 1290px" }}>
       <Kamera dauer={90} seed={2} rucke={[w(2, "Konkurrenz")]}>
@@ -238,9 +238,9 @@ export const Szene2: React.FC<{ v: V }> = ({ v }) => {
         </Bild>
       </Kamera>
       <AbsoluteFill style={{ background: farben.nacht, opacity: tw(F, ende - 4, 4, 0, 1, kurve.fade) }} />
-      <Ton nr="swish-05" bei={80} vor={2} vol={0.45} />
-      <Ton nr="klick-02" bei={87} vol={0.25} />
-      <Ton nr="papier-01" bei={96} vol={0.25} />
+      <Ton nr="swish-05" bei={s.start - 1} vor={2} vol={0.45} />
+      <Ton nr="klick-02" bei={s.start + 6} vol={0.25} />
+      <Ton nr="papier-01" bei={s.start + 15} vol={0.25} />
       <Ton nr="schlag-01" bei={w(2, "Konkurrenz")} vol={0.5} />
       <Ton nr="whoosh-03" bei={ende} vor={1} vol={0.45} />
     </AbsoluteFill>
@@ -255,7 +255,7 @@ export const Szene3: React.FC<{ v: V }> = ({ v }) => {
   const s = satz(3);
   const zwei = w(3, "zwei");
   const raus = tw(F, satz(4).start - 6, 6, 0, 1, kurve.whip);
-  const pille = tw(F, 166, 10, 0, 1, kurve.land);
+  const pille = tw(F, s.start + 12, 10, 0, 1, kurve.land);
   const aktiv = tw(F, zwei - 2, 7, 0, 1, kurve.heavy); // 1 → 2
   const zweiP = F >= zwei ? overshoot(F, zwei, 10, 1.06) : 0;
   const slots = ["‹", "1", "2", "3", "›"];
@@ -275,7 +275,7 @@ export const Szene3: React.FC<{ v: V }> = ({ v }) => {
         </Titel>
         <Bild v={v}>
           {[0, 1, 2, 3, 4, 5].map((k) => {
-            const y = 1900 + k * 260 - (F - 150) * 14;
+            const y = 1900 + k * 260 - (F - s.start + 4) * 14;
             return (
               <div key={k} style={{ position: "absolute", left: 0, top: 0, opacity: 0.13, filter: "blur(5px)", transform: `translateY(${y}px) rotate(${k % 2 ? 2 : -2}deg)` }}>
                 <Ergebnis y={0} x={k % 2 ? 300 : 120} w={620} titel={`Mitbewerber ${"HIJKLM"[k]}`} />
@@ -338,7 +338,7 @@ export const Szene3: React.FC<{ v: V }> = ({ v }) => {
         </Bild>
       </Kamera>
       <Ton nr="pop-02" bei={w(3, "Du") + 3} vol={0.35} />
-      <Ton nr="swish-06" bei={166} vor={2} vol={0.2} />
+      <Ton nr="swish-06" bei={s.start + 12} vor={2} vol={0.2} />
       <Ton nr="schlag-01" bei={w(3, "Seite")} vol={0.35} />
       <Ton nr="klick-01" bei={zwei} vol={0.4} />
       <Ton nr="glitch-03" bei={zwei + 2} vol={0.18} />
