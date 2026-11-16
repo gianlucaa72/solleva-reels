@@ -13,6 +13,10 @@ const fontFiles: [string, string, string, string][] = [
   [schrift.mono, "jetbrains-mono-latin-500-normal.woff2", "500", "normal"],
   [schrift.hand, "allura-latin-400-normal.woff2", "400", "normal"],
   [schrift.notiz, "caveat-latin-600-normal.woff2", "600", "normal"],
+  [schrift.titel, "barlow-condensed-latin-800-normal.woff2", "800", "normal"],
+  [schrift.titel, "barlow-condensed-latin-900-normal.woff2", "900", "normal"],
+  [schrift.titel, "barlow-condensed-latin-800-italic.woff2", "800", "italic"],
+  [schrift.titel, "barlow-condensed-latin-900-italic.woff2", "900", "italic"],
 ];
 
 let geladen: Promise<void> | null = null;

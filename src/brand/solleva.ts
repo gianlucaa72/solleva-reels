@@ -95,6 +95,7 @@ export const schrift = {
   mono: "JetBrains Mono", // Labels, Zähler, Katalog-Nummern
   hand: "Allura", // Unterschrift, elegante Handschrift (X14)
   notiz: "Caveat", // Handnotiz, Kringel-Beschriftung (X17)
+  titel: "Barlow Condensed", // 800/900 Versalien für Hook-Titel (T01)
 };
 
 export const form = {
