@@ -1,99 +1,282 @@
 {
  "fps": 30,
- "gesamt": 657,
+ "gesamt": 655,
  "saetze": [
   {
    "satz": 1,
+   "text": "Deine Kunden suchen dich. Jeden Tag.",
+   "schluessel": "suchen",
    "datei": "r01/a/stimme/satz1.mp3",
    "von": 0.03,
    "bis": 2.52,
-   "start_s": 0.0,
    "start": 0,
-   "dauer": 75
+   "dauer": 75,
+   "woerter": [
+    [
+     "Deine",
+     0
+    ],
+    [
+     "Kunden",
+     11
+    ],
+    [
+     "suchen",
+     20
+    ],
+    [
+     "dich",
+     30
+    ],
+    [
+     "Jeden",
+     51
+    ],
+    [
+     "Tag",
+     64
+    ]
+   ]
   },
   {
    "satz": 2,
+   "text": "Und finden: deine Konkurrenz.",
+   "schluessel": "Konkurrenz",
    "datei": "r01/a/stimme/satz2.mp3",
    "von": 0.1,
    "bis": 2.31,
-   "start_s": 2.71,
    "start": 81,
-   "dauer": 66
+   "dauer": 66,
+   "woerter": [
+    [
+     "Und",
+     81
+    ],
+    [
+     "finden",
+     91
+    ],
+    [
+     "deine",
+     113
+    ],
+    [
+     "Konkurrenz",
+     125
+    ]
+   ]
   },
   {
    "satz": 3,
+   "text": "Du? Irgendwo auf Seite zwei.",
+   "schluessel": "zwei",
    "datei": "r01/a/stimme/satz3.mp3",
    "von": 0.05,
    "bis": 2.34,
-   "start_s": 5.14,
    "start": 154,
-   "dauer": 69
+   "dauer": 69,
+   "woerter": [
+    [
+     "Du",
+     154
+    ],
+    [
+     "Irgendwo",
+     175
+    ],
+    [
+     "auf",
+     186
+    ],
+    [
+     "Seite",
+     199
+    ],
+    [
+     "zwei",
+     210
+    ]
+   ]
   },
   {
    "satz": 4,
+   "text": "Da klickt niemand.",
+   "schluessel": "niemand",
    "datei": "r01/a/stimme/satz4.mp3",
    "von": 0.08,
    "bis": 1.44,
-   "start_s": 7.65,
    "start": 230,
-   "dauer": 41
+   "dauer": 41,
+   "woerter": [
+    [
+     "Da",
+     230
+    ],
+    [
+     "klickt",
+     235
+    ],
+    [
+     "niemand",
+     242
+    ]
+   ]
   },
   {
    "satz": 5,
+   "text": "Dabei machst du gute Arbeit.",
+   "schluessel": "gute",
    "datei": "r01/a/stimme/satz5.mp3",
    "von": 0.1,
    "bis": 1.99,
-   "start_s": 9.23,
    "start": 277,
-   "dauer": 57
+   "dauer": 57,
+   "woerter": [
+    [
+     "Dabei",
+     277
+    ],
+    [
+     "machst",
+     285
+    ],
+    [
+     "du",
+     295
+    ],
+    [
+     "gute",
+     304
+    ],
+    [
+     "Arbeit",
+     318
+    ]
+   ]
   },
   {
    "satz": 6,
+   "text": "Nur sieht sie keiner.",
+   "schluessel": "keiner",
    "datei": "r01/a/stimme/satz6.mp3",
    "von": 0.04,
    "bis": 1.48,
-   "start_s": 11.34,
    "start": 340,
    "dauer": 43,
-   "woerter": {
-    "Nur": 340,
-    "sieht": 358,
-    "sie": 365,
-    "keiner": 371
-   }
+   "woerter": [
+    [
+     "Nur",
+     340
+    ],
+    [
+     "sieht",
+     358
+    ],
+    [
+     "sie",
+     365
+    ],
+    [
+     "keiner",
+     371
+    ]
+   ]
   },
   {
    "satz": 7,
+   "text": "Solleva heisst: anheben.",
+   "schluessel": "anheben",
    "datei": "r01/a/stimme/satz7.mp3",
    "von": 0.02,
-   "bis": 2.23,
-   "start_s": 13.0,
+   "bis": 2.15,
    "start": 390,
-   "dauer": 66,
-   "woerter": {
-    "Solleva": 390,
-    "heisst": 408,
-    "heb": 432,
-    "an": 442
-   }
+   "dauer": 64,
+   "woerter": [
+    [
+     "Solleva",
+     390
+    ],
+    [
+     "heisst",
+     415
+    ],
+    [
+     "anheben",
+     436
+    ]
+   ]
   },
   {
    "satz": 8,
+   "text": "Genau das mache ich mit deiner Website.",
+   "schluessel": "Website",
    "datei": "r01/a/stimme/satz8.mp3",
    "von": 0.09,
    "bis": 2.47,
-   "start_s": 15.43,
-   "start": 463,
-   "dauer": 71
+   "start": 460,
+   "dauer": 71,
+   "woerter": [
+    [
+     "Genau",
+     460
+    ],
+    [
+     "das",
+     472
+    ],
+    [
+     "mache",
+     480
+    ],
+    [
+     "ich",
+     488
+    ],
+    [
+     "mit",
+     492
+    ],
+    [
+     "deiner",
+     503
+    ],
+    [
+     "Website",
+     512
+    ]
+   ]
   },
   {
    "satz": 9,
+   "text": "Sichtbar sein ist kein Zufall.",
+   "schluessel": "Zufall",
    "datei": "r01/a/stimme/satz9.mp3",
    "von": 0.03,
    "bis": 1.91,
-   "start_s": 18.03,
-   "start": 541,
-   "dauer": 56
+   "start": 538,
+   "dauer": 56,
+   "woerter": [
+    [
+     "Sichtbar",
+     538
+    ],
+    [
+     "sein",
+     548
+    ],
+    [
+     "ist",
+     554
+    ],
+    [
+     "kein",
+     565
+    ],
+    [
+     "Zufall",
+     571
+    ]
+   ]
   }
  ]
 }
