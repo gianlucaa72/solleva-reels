@@ -1,0 +1,99 @@
+{
+ "fps": 30,
+ "gesamt": 657,
+ "saetze": [
+  {
+   "satz": 1,
+   "datei": "r01/a/stimme/satz1.mp3",
+   "von": 0.03,
+   "bis": 2.52,
+   "start_s": 0.0,
+   "start": 0,
+   "dauer": 75
+  },
+  {
+   "satz": 2,
+   "datei": "r01/a/stimme/satz2.mp3",
+   "von": 0.1,
+   "bis": 2.31,
+   "start_s": 2.71,
+   "start": 81,
+   "dauer": 66
+  },
+  {
+   "satz": 3,
+   "datei": "r01/a/stimme/satz3.mp3",
+   "von": 0.05,
+   "bis": 2.34,
+   "start_s": 5.14,
+   "start": 154,
+   "dauer": 69
+  },
+  {
+   "satz": 4,
+   "datei": "r01/a/stimme/satz4.mp3",
+   "von": 0.08,
+   "bis": 1.44,
+   "start_s": 7.65,
+   "start": 230,
+   "dauer": 41
+  },
+  {
+   "satz": 5,
+   "datei": "r01/a/stimme/satz5.mp3",
+   "von": 0.1,
+   "bis": 1.99,
+   "start_s": 9.23,
+   "start": 277,
+   "dauer": 57
+  },
+  {
+   "satz": 6,
+   "datei": "r01/a/stimme/satz6.mp3",
+   "von": 0.04,
+   "bis": 1.48,
+   "start_s": 11.34,
+   "start": 340,
+   "dauer": 43,
+   "woerter": {
+    "Nur": 340,
+    "sieht": 358,
+    "sie": 365,
+    "keiner": 371
+   }
+  },
+  {
+   "satz": 7,
+   "datei": "r01/a/stimme/satz7.mp3",
+   "von": 0.02,
+   "bis": 2.23,
+   "start_s": 13.0,
+   "start": 390,
+   "dauer": 66,
+   "woerter": {
+    "Solleva": 390,
+    "heisst": 408,
+    "heb": 432,
+    "an": 442
+   }
+  },
+  {
+   "satz": 8,
+   "datei": "r01/a/stimme/satz8.mp3",
+   "von": 0.09,
+   "bis": 2.47,
+   "start_s": 15.43,
+   "start": 463,
+   "dauer": 71
+  },
+  {
+   "satz": 9,
+   "datei": "r01/a/stimme/satz9.mp3",
+   "von": 0.03,
+   "bis": 1.91,
+   "start_s": 18.03,
+   "start": 541,
+   "dauer": 56
+  }
+ ]
+}
