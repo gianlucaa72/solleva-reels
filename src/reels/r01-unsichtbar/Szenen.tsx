@@ -348,25 +348,61 @@ export const Szene3: React.FC<{ v: V }> = ({ v }) => {
 };
 
 // =====================================================================
-// Satz 4: «Da klickt niemand.»  Humor: Cursor kommt, zögert, dreht ab
+// Satz 4: «Da klickt niemand.»  Humor: Spinnennetz auf dem Anfrage-Button, Cursor dreht ab
 // =====================================================================
+/** S01 Spinnennetz aus einer Ecke: Speichen + durchhängende Fäden, zeichnet sich mit p (0..1). */
+const Netz: React.FC<{ cx: number; cy: number; von: number; bis: number; r: number; p: number }> = ({ cx, cy, von, bis, r, p }) => {
+  const n = 6;
+  const winkel = Array.from({ length: n }, (_, i) => ((von + ((bis - von) * i) / (n - 1)) * Math.PI) / 180);
+  const pt = (a: number, rr: number) => [cx + Math.cos(a) * rr, cy + Math.sin(a) * rr];
+  const ringe = [0.25, 0.45, 0.65, 0.85];
+  const strich = { stroke: "rgba(110,108,146,.8)", strokeWidth: 2.2, fill: "none", pathLength: 1, strokeDasharray: 1 } as const;
+  return (
+    <g>
+      {winkel.map((a, i) => {
+        const [x, y] = pt(a, r);
+        return <path key={`s${i}`} d={`M ${cx} ${cy} L ${x} ${y}`} {...strich} strokeDashoffset={1 - Math.min(1, p * 1.6)} />;
+      })}
+      {ringe.map((q, j) => {
+        let d = "";
+        for (let i = 0; i < n; i++) {
+          const [x, y] = pt(winkel[i], r * q);
+          if (i === 0) d += `M ${x} ${y}`;
+          else {
+            const [px, py] = pt(winkel[i - 1], r * q);
+            const [mx, my] = pt((winkel[i] + winkel[i - 1]) / 2, r * q * 0.86);
+            d += ` Q ${mx + (mx - (px + x) / 2) * 0.1} ${my} ${x} ${y}`;
+          }
+        }
+        const pj = Math.max(0, Math.min(1, (p - 0.3 - j * 0.12) / 0.35));
+        return <path key={`r${j}`} d={d} {...strich} strokeDashoffset={1 - pj} />;
+      })}
+    </g>
+  );
+};
+
 export const Szene4: React.FC<{ v: V }> = ({ v }) => {
   const F = useCurrentFrame();
   const s = satz(4);
   const rein = tw(F, s.start - 1, 7, 0, 1, kurve.land);
   const nm = w(4, "niemand");
+  // Karte und Button (Button-Mitte ≈ 540/1440)
+  const KX = 170, KY = 830, KW = 740, KH = 700;
   const pfad = [
-    { f: s.start + 2, x: 1060, y: 1760 },
-    { f: nm + 2, x: 600, y: 1170 },
-    { f: nm + 8, x: 625, y: 1185 },
-    { f: nm + 20, x: 1010, y: 820 },
-    { f: nm + 30, x: 1200, y: 600 },
+    { f: s.start + 2, x: 1060, y: 1780 },
+    { f: nm + 2, x: 600, y: 1450 },
+    { f: nm + 8, x: 622, y: 1462 },
+    { f: nm + 20, x: 1010, y: 900 },
+    { f: nm + 30, x: 1200, y: 640 },
   ];
   const c = cursorPosition(F, pfad);
   const dreh = tw(F, nm + 8, 6, 0, 35, kurve.land);
   const zoegern = F > nm + 2 && F < nm + 8 ? Math.sin((F - nm) * 2.2) * 4 : 0;
   const notiz = tw(F, nm + 12, 10, 0, 1, kurve.linear);
-  const statue = tw(F, s.start - 2, 12, 0, 1, kurve.land);
+  const karte = tw(F, s.start - 2, 10, 0, 1, kurve.land);
+  const netz = tw(F, s.start + 1, 16, 0, 1, kurve.heavy);
+  const lockt = tw(F, s.start + 4, 8, 0, 1) * (1 - tw(F, nm + 8, 6, 0, 1));
+  const spinne = tw(F, nm + 14, 14, 0, 1, kurve.land);
   return (
     <AbsoluteFill style={{ transform: `translateY(${(1 - rein) * 500}px)`, filter: `blur(${(1 - rein) * 14}px)` }}>
       <Kamera dauer={50} seed={4} rucke={[nm]}>
@@ -379,19 +415,62 @@ export const Szene4: React.FC<{ v: V }> = ({ v }) => {
           </Gross>
         </Titel>
         <Bild v={v}>
-          <Statue src="statue-staub.webp" x={60} y={830 + (1 - statue) * 300} h={760} style={{ opacity: statue, filter: "drop-shadow(0 0 60px rgba(108,63,212,.35))" }} />
+          {/* Website-Karte mit Anfrage-Button, über den sich ein Spinnennetz zieht */}
+          <div style={abs(KX, KY + (1 - karte) * 260, { width: KW, height: KH, borderRadius: 40, background: farben.papier, opacity: karte, transform: "rotate(-2deg)", boxShadow: "0 40px 90px rgba(0,0,0,.55), 0 0 80px rgba(108,63,212,.25)", overflow: "hidden" })}>
+            <div style={abs(50, 46, { display: "flex", alignItems: "center", gap: 16 })}>
+              <div style={{ width: 44, height: 44, borderRadius: 14, background: farben.lavendel }} />
+              <span style={{ fontFamily: schrift.text, fontWeight: 800, fontSize: 32, color: farben.tinte }}>Deine Firma</span>
+            </div>
+            <div style={abs(50, 130, { width: 520, height: 34, borderRadius: 17, background: farben.grauHell })} />
+            <div style={abs(50, 186, { width: 400, height: 34, borderRadius: 17, background: farben.grauHell })} />
+            <div style={abs(50, 260, { width: KW - 100, height: 230, borderRadius: 28, background: `linear-gradient(135deg, ${farben.lavendel}, #D9CFFB)` })} />
+            <div
+              style={abs(50, 540, {
+                width: KW - 100,
+                height: 104,
+                borderRadius: 52,
+                background: farben.violett,
+                filter: `grayscale(${tw(F, nm + 10, 10, 0, 0.75)}) brightness(${1 + 0.25 * lockt})`,
+                boxShadow: `0 0 ${50 * lockt}px rgba(169,139,255,.9)`,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontFamily: schrift.text,
+                fontWeight: 800,
+                fontSize: 42,
+                color: "#fff",
+              })}
+            >
+              Anfrage senden
+            </div>
+            {/* Spinnennetze (zeichnen sich) */}
+            <svg width={KW} height={KH} style={{ position: "absolute", inset: 0 }}>
+              <Netz cx={KW} cy={KH} von={180} bis={270} r={360} p={netz} />
+              <Netz cx={0} cy={0} von={0} bis={90} r={210} p={netz} />
+            </svg>
+            {/* Spinne seilt sich ab, nachdem der Cursor weg ist */}
+            <div style={abs(KW - 150, 0, { width: 2, height: 120 + spinne * 260, background: "rgba(20,18,58,.6)" })} />
+            <svg width="76" height="76" viewBox="-11 -11 22 22" style={abs(KW - 187, 84 + spinne * 260, { opacity: tw(F, nm + 14, 3, 0, 1), transform: `rotate(${Math.sin(F / 4) * 8}deg)` })}>
+              {[-1, 1].flatMap((sgn) => [-6, -2, 2, 6].map((dy) => <path key={`${sgn}${dy}`} d={`M 0 ${dy * 0.4} Q ${sgn * 6} ${dy - 3} ${sgn * 10} ${dy + 2}`} stroke={farben.tinte} strokeWidth={1.3} fill="none" />))}
+              <circle r={4} fill={farben.tinte} />
+              <circle cy={-4} r={2.6} fill={farben.tinte} />
+            </svg>
+          </div>
           {/* Staub schwebt */}
-          {Array.from({ length: 14 }).map((_, k) => (
-            <div key={k} style={abs(140 + ((k * 137) % 520), 900 + ((k * 211) % 600) - ((F * (0.4 + (k % 3) * 0.2)) % 120), { width: 4 + (k % 3), height: 4 + (k % 3), borderRadius: 4, background: "rgba(213,209,233,.5)" })} />
+          {Array.from({ length: 12 }).map((_, k) => (
+            <div key={k} style={abs(150 + ((k * 137) % 760), 860 + ((k * 211) % 700) - ((F * (0.4 + (k % 3) * 0.2)) % 120), { width: 4 + (k % 3), height: 4 + (k % 3), borderRadius: 4, background: "rgba(213,209,233,.45)" })} />
           ))}
           <svg width="76" height="98" viewBox="0 0 28 36" style={abs(c.x - 8 + zoegern, c.y - 6, { transform: `rotate(${dreh}deg)`, transformOrigin: "8px 6px", opacity: tw(F, s.start + 2, 4, 0, 1) })}>
             <path d="M2 2 L2 28 L9 21 L14 33 L19 31 L14 19 L24 19 Z" fill={farben.papier} stroke={farben.tinte} strokeWidth={2} strokeLinejoin="round" />
           </svg>
-          <div style={abs(640, 1290, { fontFamily: schrift.notiz, fontWeight: 600, fontSize: 64, color: farben.cyan, transform: "rotate(-8deg)", clipPath: `inset(0 ${(1 - notiz) * 100}% 0 0)` })}>…und tschüss</div>
+          <div style={abs(470, 735, { fontFamily: schrift.notiz, fontWeight: 600, fontSize: 64, color: farben.cyan, transform: "rotate(-8deg)", clipPath: `inset(0 ${(1 - notiz) * 100}% 0 0)` })}>…und tschüss</div>
         </Bild>
       </Kamera>
+      <Ton nr="papier-01" bei={s.start} vol={0.25} />
+      <Ton nr="ratsche-13" bei={s.start + 2} vol={0.12} max={0.5} />
       <Ton nr="schlag-01" bei={nm} vol={0.4} />
       <Ton nr="swish-03" bei={nm + 10} vor={2} vol={0.35} />
+      <Ton nr="pop-05" bei={nm + 26} vol={0.18} />
       <Ton nr="schreiben-01" bei={nm + 12} vol={0.3} />
       <Ton nr="glitzer-05" bei={satz(5).start} vor={2} vol={0.15} max={2} />
     </AbsoluteFill>
