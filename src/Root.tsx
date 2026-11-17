@@ -6,6 +6,7 @@ import { Storyboard, SB_DAUER } from "./reels/spielautomat/Storyboard";
 import { Farbtest } from "./reels/spielautomat/Farbtest";
 import { Collage } from "./reels/spielautomat/Collage";
 import { Halbton } from "./reels/spielautomat/Halbton";
+import { Storyboard2, SB2_DAUER } from "./reels/spielautomat/Storyboard2";
 
 export const Root: React.FC = () => (
   <>
@@ -13,6 +14,7 @@ export const Root: React.FC = () => (
     <Composition id="SpielautomatFarbtest" component={Farbtest} durationInFrames={1} fps={FPS} width={BREITE} height={HOEHE} />
     <Composition id="SpielautomatCollage" component={Collage} durationInFrames={1} fps={FPS} width={BREITE} height={HOEHE} />
     <Composition id="SpielautomatHalbton" component={Halbton} durationInFrames={1} fps={FPS} width={BREITE} height={HOEHE} />
+    <Composition id="SpielautomatStoryboard2" component={Storyboard2} durationInFrames={SB2_DAUER} fps={FPS} width={BREITE} height={HOEHE} />
     <Composition id="Katalog" component={Katalog} durationInFrames={KATALOG_DAUER} fps={FPS} width={BREITE} height={HOEHE} />
   </>
 );

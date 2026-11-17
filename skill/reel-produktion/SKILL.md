@@ -55,6 +55,12 @@ Erst Bausteine aus dem Baukasten nehmen; Neues nur ergänzen und mit Nummer in K
 8. **Bildsprache statt Folien (wichtig für den Nutzer)**: Jede Szene braucht ein **Bild zur Veranschaulichung**, nicht nur Text auf Fläche. **Hauptbilder sind echte, generierte Objekte und Figuren** (Higgsfield, fotorealistisch oder im Collage-/Cartoon-Stil, freigestellt), z. B. ein **realistisches Gehirn**, **griechische Männer/Marmor-Statuen** (Denker, Philosoph am Laptop), Cartoon-/Ausschnitt-Figuren (wie das Buffett-Männchen), ein PC, der vom Himmel fällt, Hände, Geld, Lupe, Uhr. **Emojis (`assets/emoji/`, Fluent 3D, MIT) sind nur kleine Akzente** (Reaktionen, Aufzählungen), **nie Ersatz** für ein generiertes Hauptbild. Ablauf: zuerst in `assets/` nach bereits generierten Objekten suchen und wiederverwenden; Neues mit Higgsfield **nur nach Freigabe** (Kosten nennen), danach in `assets/objekte/` bzw. `assets/figuren/` speichern. Im Freigabe-Paket pro Szene das Bild nennen.
 9. **Hintergründe aufwerten**: Der Nutzer findet die Code-Hintergründe noch zu schlicht. Pro Reel prüfen, ob 1–3 Hintergründe als Foto/Textur mit Higgsfield erstellt werden sollen (Himmel, Marmor, Filz, Papier, Vorhang … in Solleva-Farben getönt); nach Freigabe generieren und in `assets/hintergrund/` für spätere Reels speichern.
 
+## Lesezeit, Übersicht, Hintergründe (Nutzer-Feedback Reel «Spielautomat»)
+- Text baut sich synchron zur Stimme auf und bleibt danach ≥ 1,5 s ganz stehen (≥ 0,3 s pro Wort); Hooks nie zu schnell. Pro Bild höchstens ca. 8 Wörter.
+- Übersicht: oben Text, Mitte ein Hauptobjekt, höchstens 2–3 Akzente.
+- Pro Satz ein anderer Hintergrund-Typ, und jeder Hintergrund bewegt sich leicht (Strahlen drehen, Tapete schwenkt, Punkte atmen).
+- Stil-Rezepte stehen in `CLAUDE.md` (R01 Halbton-Collage, R02 Papiertheater).
+
 ## Story-Bauplan (Vorlage, aus Ref. 01/03)
 1. **Hook** mit konkreter Zahl oder Szene (0–2 s) · 2. **Vergleich**, der sie fühlbar macht · 3. **Twist** («Aber …») · 4. **Spannung über Zeit** · 5. **Rätsel** («Warum?») · 6. **Beweis/Muster** · 7. **offene Schleife oder CTA**. Zahlen nur, wenn echt (eigene Projekte mit Erlaubnis).
 

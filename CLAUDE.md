@@ -34,6 +34,15 @@ Status: **v0.2: Bausteine aus 7 Referenzen gebaut, wartet auf Freigabe des Nutze
 - Standard-CTA ist **«Folge für mehr»** (nicht mehr «Schreib «Analyse»»). Endkarte E01 hat das als Vorgabe.
 - Skripte dürfen ausführlicher sein (ca. 30–40 s), wenn sie Wissen faktenbasiert erklären (z. B. Dopamin).
 
+## Lesezeit und Hintergründe (Wunsch des Nutzers, gilt immer)
+- **Hooks und Texte nicht zu schnell**: Text baut sich synchron zur Stimme auf und bleibt danach mindestens 1,5 s ganz stehen (Faustregel ≥ 0,3 s pro Wort). Nichts fliegt raus, bevor es gelesen werden kann. Pro Bild höchstens ca. 8 Wörter.
+- **Übersichtlich**: oben Text, Mitte EIN Hauptobjekt, höchstens 2–3 Akzente.
+- **Hintergründe immer anders und in Bewegung** (Ref. 08 «Batman»): pro Satz ein anderer Hintergrund-Typ, jeder bewegt sich leicht (Strahlen drehen, Tapete schwenkt, Punkte atmen, Spirale dreht).
+
+## Stil-Rezepte
+- **R01 Halbton-Collage** (`src/stil/halbton.tsx`, Reel «Spielautomat»): Halbton-Ausschnitte s/w mit weissem Papierrand, gerissenes Papier, Erpresserbrief-Buchstaben (Schlüsselwort), schwarze Etiketten (Mono) für den Rest des Satzes. Farben: Papier #ECE9E2, Schwarz #121212, Rot #D7232B, Gelb #FFD21F, Violett #6C3FD4. Hintergründe H1 Strahlen, H2 Zeitung, H3 Punkte, H4 Schwarzpapier, H5 Karo, H6 Halbton-Kreis, H7 Packpapier, H8 Spirale. Objekte: Higgsfield (Prompt-Kern: «vintage black and white halftone cutout, white paper border, plain white background»), danach freistellen.
+- **R02 Papiertheater** (`src/reels/spielautomat/Collage.tsx`, Ref. 08): Bühne mit Vorhängen, Strahlen, Kupferstich-Requisiten an Fäden, Fell-Serif. Noch nicht eingesetzt.
+
 ## Bildsprache (Wunsch des Nutzers, gilt immer)
 - **Nicht nur Folien mit Text**: jede Szene bekommt ein Bild zur Veranschaulichung.
 - **Hauptbilder = echte, generierte Objekte/Figuren** (Higgsfield, freigestellt): z. B. realistisches **Gehirn**, **griechische Männer/Marmor-Statuen**, Cartoon-Figuren, PC fällt vom Himmel. **Nicht** die Emoji-Version davon.

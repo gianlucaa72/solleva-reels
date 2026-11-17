@@ -23,3 +23,9 @@ Messwerte: keine harten Schnitte (Szenenerkennung 0,12 und 0,3: 0 Treffer), Welt
 - Übergänge: Kulissen-Klappe (3D-Schwenk), Bild-im-Bild-Zoom (Rahmen), Objekt-Wischer, Karten-Stapel.
 - Text sparsam, Holzschnitt-/Antiqua-Serif in Versalien, Buchstabe für Buchstabe oder mit Handkreis markiert.
 - Wörter werden zu Symbolen (Tarot-/Spielkarten mit Begriff).
+
+## Pinterest-Bilder des Nutzers (Nov. 2026) → Stil R01 «Halbton-Collage»
+- Halbton-Gehirn, Sanduhr, Buch, Laptop, Büste, Geldsack: s/w, grobes Punktraster, weisser ausgerissener Papierrand.
+- Collagen: gelbe Sprechblase, blauer/gelber Zackenstern, rote Blitze, Megafon, Lupe, Hände, Zeitungsstücke, rote Strahlen-Fläche, Schallplatte, Frau mit Fernglas.
+- «RansomLab» (Creative Market, kostenpflichtig): Erpresserbrief-Buchstaben, schwarzes zerkratztes Papier, Klebeband.
+- Entscheid Nutzer: Halbton-Collage, Objekte via Higgsfield, übersichtlich, Hooks mit Lesezeit, Hintergründe wie Batman-Video (immer anders, bewegt).
