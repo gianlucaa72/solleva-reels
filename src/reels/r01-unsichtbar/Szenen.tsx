@@ -507,8 +507,6 @@ export const Szene5: React.FC<{ v: V }> = ({ v }) => {
           <div style={{ position: "absolute", inset: 0, transform: `translate(${stoss(gute) + stoss(arbeit)}px, ${stoss(gute) * 0.5}px)` }}>
             <Statue src="statue-meissel.webp" x={sx} y={sy + (1 - statue) * 500} h={sh} style={{ opacity: statue }} />
           </div>
-          <Funken bei={gute} cx={spitze.x} cy={spitze.y} n={7} farbe="#fff" weite={90} />
-          <Funken bei={arbeit} cx={spitze.x} cy={spitze.y} n={9} weite={130} />
         </Bild>
       </Kamera>
       <Ton nr="swish-02" bei={s.start + 4} vor={2} vol={0.25} />
@@ -838,7 +836,6 @@ export const Szene8: React.FC<{ v: V }> = ({ v }) => {
               <div style={abs(40, 870, { width: 300 * teil(w(8, "mit") + 3), height: 18, borderRadius: 9, background: farben.grauLinie })} />
             </Telefon>
           </div>
-          <Funken bei={web + 4} cx={540} cy={760} n={8} weite={200} r0={60} />
         </Bild>
       </Kamera>
       <Ton nr="swish-02" bei={s.start + 4} vor={2} vol={0.3} />
@@ -867,14 +864,25 @@ export const Szene9: React.FC<{ v: V }> = ({ v }) => {
   const glas = tw(F, p0 + 2, 7, 0, 1, kurve.fade);
   const kRein = tw(F, zufall + 6, 16, 0, 1, kurve.land);
   const nach = zufall + 30;
-  const hebNochmal = tw(F, nach, 18, 0, 1, kurve.heavy);
-  const schweb = Math.sin(F / 14) * 10 - hebNochmal * 60;
+  // Kiesel fliegt in den CTA-Button und wird dessen Icon
+  const flug = tw(F, nach, 18, 0, 1, kurve.heavy);
+  const schweb = Math.sin(F / 14) * 10 * (1 - flug);
+  const ctaX = 540 - 290, ctaY = 1350;
+  const kx = 540 + (ctaX + 70 - 540) * flug;
+  const ky = 1420 + (ctaY - 1420) * flug + schweb - Math.sin(flug * Math.PI) * 120;
+  const kg = 300 - 230 * flug;
+  const cta = overshoot(F, nach + 8, 10, 1.04);
+  const ctaGlas = tw(F, nach + 10, 6, 0, 1, kurve.fade);
   const glanz9 = tw(F, nach + 10, 16, -30, 140, kurve.heavy);
   const ende = T.gesamt;
   return (
     <AbsoluteFill>
       <Kamera dauer={ende - s.start} seed={9} push={0.03} rucke={[zufall]}>
-        <div style={abs(0, 300, { width: 1080, textAlign: "center", fontFamily: schrift.text, fontWeight: 800, fontSize: 40, letterSpacing: "0.14em", color: farben.tinte, opacity: tw(F, s.start + 4, 10, 0, 1) })}>SOLLEVA</div>
+        {/* Logo (Datei des Nutzers, Version für hellen Hintergrund) */}
+        <Img
+          src={staticFile("assets/brand/solleva-logo-fuer-hell-zugeschnitten.png")}
+          style={abs(540 - 220, 250, { width: 440, opacity: tw(F, s.start + 2, 10, 0, 1), transform: `translateY(${(1 - tw(F, s.start + 2, 12, 0, 1, kurve.land)) * 24}px)`, filter: `blur(${(1 - tw(F, s.start + 2, 8, 0, 1)) * 8}px)` })}
+        />
         <Titel v={v}>
           <Gesperrt style={abs(0, 600, { width: 1080, textAlign: "center" })}>
             <Wort bei={w(9, "Sichtbar")}>Sichtbar</Wort> <Wort bei={w(9, "sein")}>sein</Wort>
@@ -890,14 +898,24 @@ export const Szene9: React.FC<{ v: V }> = ({ v }) => {
           <Kursiv size={290} style={abs(0, 900, { width: 1080, textAlign: "center", ...slam(F, zufall, 0.6, 10), transformOrigin: "50% 60%" })}>
             Zufall.
           </Kursiv>
-          <Funken bei={zufall + 2} cx={540} cy={1040} n={10} weite={300} r0={150} />
         </Titel>
         <Bild v={v}>
-          <div style={abs(540 - 300, 1420 - 300 + schweb, { width: 600, height: 600, borderRadius: "50%", background: `radial-gradient(circle, rgba(169,139,255,${0.4 * kRein}), rgba(169,139,255,0) 65%)` })} />
-          <div style={abs(540 - 70, 1640, { width: 140, height: 26, borderRadius: "50%", background: "rgba(44,30,120,.25)", filter: "blur(10px)", opacity: kRein, transform: `scaleX(${1 - schweb / 40})` })} />
+          <div style={abs(kx - kg, ky - kg + (1 - kRein) * 200, { width: kg * 2, height: kg * 2, borderRadius: "50%", background: `radial-gradient(circle, rgba(169,139,255,${0.4 * kRein}), rgba(169,139,255,0) 65%)` })} />
+          <div style={abs(540 - 70, 1640, { width: 140, height: 26, borderRadius: "50%", background: "rgba(44,30,120,.25)", filter: "blur(10px)", opacity: kRein * (1 - flug), transform: `scaleX(${1 - schweb / 40})` })} />
+          {/* CTA «Folge für mehr»: Island → Glas-Pille, Kiesel landet als Icon */}
+          <div style={abs(540 - 290 * cta, ctaY - 60 * Math.max(cta, 0.3), { width: 580 * cta, height: 120 * Math.max(cta, 0.3), borderRadius: 60, background: farben.nacht, opacity: tw(F, nach + 6, 3, 0, 1), overflow: "hidden", boxShadow: "0 24px 60px rgba(44,30,120,.2)" })}>
+            <div style={{ position: "absolute", inset: 0, opacity: ctaGlas, borderRadius: 60, background: "linear-gradient(160deg, rgba(255,255,255,.97), rgba(236,230,255,.88))", boxShadow: "inset 0 2px 0 #fff, inset 0 -10px 26px rgba(169,139,255,.22)", border: "1.5px solid rgba(255,255,255,.95)" }} />
+            <div style={{ position: "absolute", left: 150, top: 0, bottom: 0, display: "flex", alignItems: "center", gap: 14, whiteSpace: "nowrap", fontFamily: schrift.text, fontWeight: 800, fontSize: 50, color: farben.tinte }}>
+              <Wort bei={nach + 14}>Folge</Wort>
+              <Wort bei={nach + 18}>für</Wort>
+              <Wort bei={nach + 22} style={{ fontFamily: schrift.serif, fontStyle: "italic", fontWeight: 400, fontSize: 64, color: farben.violett }}>
+                mehr
+              </Wort>
+            </div>
+          </div>
           <Img
             src={staticFile("r01/a/glas-kiesel-b.webp")}
-            style={abs(540 - 150, 1420 - 150 + schweb + (1 - kRein) * 200, { width: 300, height: 300, opacity: kRein, transform: `rotate(${-6 + Math.sin(F / 20) * 4}deg)` })}
+            style={abs(kx - kg / 2, ky - kg / 2 + (1 - kRein) * 200, { width: kg, height: kg, opacity: kRein, transform: `rotate(${(-6 + Math.sin(F / 20) * 4) * (1 - flug)}deg)` })}
           />
         </Bild>
       </Kamera>
