@@ -294,12 +294,15 @@ const S10: React.FC<{ f: number }> = ({ f }) => {
       <HSpirale f={spiralWinkel(f)} tempo={1} />
       <PapierLage staerke={0.45} />
       <Rein f={f} start={z.start} art="rutsch">
-        <Papierstueck x={30} y={215} w={1010} h={600} dreh={-2} seed={14} style={{ background: zine.papier }} />
+        <Papierstueck x={30} y={215} w={1010} h={660} dreh={-2} seed={14} style={{ background: zine.papier }} />
+      </Rein>
+      <Rein f={f} start={z.start + 3} art="slap" ox={90} oy={260}>
+        <div style={{ position: "absolute", left: 90, top: 245, fontFamily: "JetBrains Mono", fontSize: 40, letterSpacing: "0.08em", color: zine.schwarz }}>DARUM SCROLLST DU …</div>
       </Rein>
       {zeilen.map((s, i) => {
         if (f < s) return null;
         const size = 56 + (94 * i) / 4;
-        let top = 250;
+        let top = 310;
         for (let k = 0; k < i; k++) top += (56 + (94 * k) / 4) * 0.88;
         return (
           <div key={i} style={{ position: "absolute", left: 90, top, fontFamily: "Barlow", fontWeight: 800, fontSize: size, lineHeight: 0.88, letterSpacing: "-0.03em", color: i % 2 ? zine.rot : zine.schwarz, transform: `scale(${tw(f, s, 5, 1.3, 1, kurve.whip)})`, transformOrigin: "left center" }}>WEITER.</div>
@@ -307,7 +310,7 @@ const S10: React.FC<{ f: number }> = ({ f }) => {
       })}
       {karten.map((s, i) =>
         f >= s ? (
-          <div key={i} style={{ position: "absolute", left: 140 + i * 50, top: 930 + i * 175, transform: `translateX(${tw(f, s, 8, 900, 0, kurve.whip)}px) rotate(${-6 + i * 5}deg) scale(${i === 2 ? 1.12 : 1})`, background: i === 2 ? zine.gelb : "#fff", border: `5px solid ${zine.schwarz}`, fontFamily: "Barlow", fontWeight: 800, fontSize: 84, padding: "8px 30px", boxShadow: "8px 12px 0 rgba(0,0,0,.28)" }}>
+          <div key={i} style={{ position: "absolute", left: 140 + i * 50, top: 980 + i * 175, transform: `translateX(${tw(f, s, 8, 900, 0, kurve.whip)}px) rotate(${-6 + i * 5}deg) scale(${i === 2 ? 1.12 : 1})`, background: i === 2 ? zine.gelb : "#fff", border: `5px solid ${zine.schwarz}`, fontFamily: "Barlow", fontWeight: 800, fontSize: 84, padding: "8px 30px", boxShadow: "8px 12px 0 rgba(0,0,0,.28)" }}>
             NUR NOCH EINS.
           </div>
         ) : null,
@@ -407,7 +410,7 @@ const S13: React.FC<{ f: number }> = ({ f }) => {
       <Rein f={f} start={z.m.wort} art="stempel" ox={800} oy={600}>
         <div style={{ position: "absolute", left: 560, top: 540, fontFamily: "Rye", fontSize: 98, color: zine.schwarz, transform: "rotate(4deg)" }}>Treffer?</div>
       </Rein>
-      <Obj f={f} src={A("papierball-frei")} w={330} ar={1} cx={270} cy={1250} start={z.m.niete} von="oben" dreh={-8} schweben={3} />
+      <Obj f={f} src={A("papierball-frei")} w={330} ar={1} cx={270} cy={1250} start={z.start + 6} von="oben" dreh={-8} schweben={3} />
       {f >= z.m.wort && <Zacken x={810} y={1170} r={overshoot(f, z.m.wort, 10, 1.1) * 260} farbe={zine.rot} spitzen={14} dreh={f * 0.8} />}
       <Obj f={f} src={A("pokal-frei")} w={440} ar={1168 / 880} cx={810} cy={1200} start={z.m.wort - 3} von="unten" dreh={5} />
     </AbsoluteFill>
@@ -630,6 +633,7 @@ const Toene: React.FC = () => {
   t("schlag-03", z(9).m.wort, 0.42);
   // 10
   t("downlifter-01", grenze(10), 0.2, 0, 1.0);
+  t("klick-05", z(10).start + 3, 0.22);
   [z(10).m.weiter1, z(10).m.weiter1 + 6, z(10).m.und, z(10).m.und + 5, z(10).m.wort].forEach((s) => t("klick-02", s, 0.26));
   [z(10).m.weiter1 + 14, z(10).m.und - 10].forEach((s) => t("papier-02", s + 2, 0.26));
   t("schlag-07", z(10).m.wort + 9, 0.4);
@@ -649,8 +653,9 @@ const Toene: React.FC = () => {
   t("schlag-07", z(12).m.stopp, 0.45);
   // 13
   t("swish-06", grenze(13) + 4, 0.3, 2);
-  t("swish-03", z(13).m.niete, 0.25, 2);
-  t("schlag-07", z(13).m.niete + 11, 0.3);
+  t("swish-03", z(13).start + 6, 0.25, 2);
+  t("schlag-07", z(13).start + 17, 0.3);
+  t("papier-02", z(13).m.niete, 0.24);
   t("schreiben-02", z(13).m.oder, 0.26, 0, 0.7);
   t("schlag-01", z(13).m.wort, 0.45);
   t("glitzer-01", z(13).m.wort + 2, 0.3);
