@@ -29,3 +29,12 @@ Messwerte: keine harten Schnitte (Szenenerkennung 0,12 und 0,3: 0 Treffer), Welt
 - Collagen: gelbe Sprechblase, blauer/gelber Zackenstern, rote Blitze, Megafon, Lupe, Hände, Zeitungsstücke, rote Strahlen-Fläche, Schallplatte, Frau mit Fernglas.
 - «RansomLab» (Creative Market, kostenpflichtig): Erpresserbrief-Buchstaben, schwarzes zerkratztes Papier, Klebeband.
 - Entscheid Nutzer: Halbton-Collage, Objekte via Higgsfield, übersichtlich, Hooks mit Lesezeit, Hintergründe wie Batman-Video (immer anders, bewegt).
+
+## Hinweis des Nutzers: Bildquelle der Referenz
+Der glatte, gemalte Tarot-Look (Batman) ist ein typisches **Midjourney-/Flux-Motiv**, keine offiziellen Artworks. Erkennbar an: leicht verwaschenen Details, nicht ganz konsistenten Kartenrahmen.
+→ Für uns heisst das: dieser Look ist mit Higgsfield machbar. Damit unser Ergebnis **nicht** nach «KI-Brei» aussieht:
+- **Rahmen, Karten, Etiketten, Text immer im Code** (exakt gleich in jeder Szene), nie generieren.
+- **Ein Prompt-Kern für alle Objekte** + das erste freigegebene Objekt als Stil-Referenz (image_references) für alle weiteren → einheitlicher Look.
+- **Halbton-Filter + weisser Papierrand im Code** über jedes generierte Bild: vereinheitlicht und kaschiert verwaschene Details.
+- Objekte einzeln generieren (ein Motiv pro Bild, weisser Grund), freistellen, dann komponieren; keine ganzen Szenen generieren.
+- Jedes generierte Bild prüfen: Hände/Finger, Ränder, kein KI-Text.
