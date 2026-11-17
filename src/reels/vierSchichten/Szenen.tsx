@@ -75,7 +75,7 @@ export const NeonGitter: React.FC<{ an?: number }> = ({ an = 1 }) => {
 };
 
 // ---------- Typo ----------
-const Satz: React.FC<{ dunkel?: boolean; y?: number; size?: number; children: React.ReactNode; start?: number }> = ({ dunkel, y = 260, size = 92, children, start = 0 }) => {
+export const Satz: React.FC<{ dunkel?: boolean; y?: number; size?: number; children: React.ReactNode; start?: number }> = ({ dunkel, y = 260, size = 92, children, start = 0 }) => {
   const f = useCurrentFrame();
   const p = tw(f, start, 14, 0, 1, kurve.land);
   return (
@@ -84,14 +84,14 @@ const Satz: React.FC<{ dunkel?: boolean; y?: number; size?: number; children: Re
     </div>
   );
 };
-const Akzent: React.FC<{ children: React.ReactNode; dunkel?: boolean }> = ({ children, dunkel }) => (
+export const Akzent: React.FC<{ children: React.ReactNode; dunkel?: boolean }> = ({ children, dunkel }) => (
   <Serif s={dunkel ? S2 : S1} style={{ color: dunkel ? farben.lavendelAkzent : farben.violett, fontSize: "1.12em", textShadow: dunkel ? `0 0 24px ${farben.violett}` : undefined }}>
     {children}
   </Serif>
 );
 
 // ---------- 3D-Stapel ----------
-const Stapel: React.FC<{ ebenen: React.ReactNode[]; spreiz: number; drehZ?: number; kipp?: number; skala?: number; y?: number; reflex?: boolean }> = ({
+export const Stapel: React.FC<{ ebenen: React.ReactNode[]; spreiz: number; drehZ?: number; kipp?: number; skala?: number; y?: number; reflex?: boolean }> = ({
   ebenen, spreiz, drehZ = -32, kipp = 56, skala = 0.9, y = 760, reflex,
 }) => {
   const inner = (
@@ -118,14 +118,14 @@ const Stapel: React.FC<{ ebenen: React.ReactNode[]; spreiz: number; drehZ?: numb
 };
 
 // Die vier Schichten als Ebenen-Inhalte
-const glas = (dunkel: boolean): React.CSSProperties => ({
+export const glas = (dunkel: boolean): React.CSSProperties => ({
   position: "absolute", inset: 0, borderRadius: 30,
   background: dunkel ? "rgba(17,20,58,.55)" : "rgba(255,255,255,.55)",
   border: `2px solid ${dunkel ? farben.lavendelAkzent : farben.rand}`,
   boxShadow: dunkel ? `0 0 30px rgba(108,63,212,.6), inset 0 0 40px rgba(169,139,255,.25)` : "0 30px 70px rgba(44,30,120,.25)",
   backdropFilter: "blur(6px)",
 });
-const EbeneMarke: React.FC = () => (
+export const EbeneMarke: React.FC = () => (
   <div style={{ ...glas(false), background: farben.weiss }}>
     {[farben.tinte, farben.papier, farben.violett].map((c, i) => (
       <div key={i} style={{ position: "absolute", left: 40 + i * 190, top: 60, width: 170, height: 240, borderRadius: 20, background: c, border: `1.5px solid ${farben.rand}` }} />
@@ -134,17 +134,17 @@ const EbeneMarke: React.FC = () => (
     <div style={{ position: "absolute", left: 330, top: 380, fontFamily: schrift.serif, fontStyle: "italic", fontSize: 160, color: farben.violett }}>Aa</div>
   </div>
 );
-const EbeneStruktur: React.FC = () => (
+export const EbeneStruktur: React.FC = () => (
   <div style={{ ...glas(false), background: farben.papier }}>
     <GymSeite m="bauplan" />
   </div>
 );
-const EbeneHandlung: React.FC = () => (
+export const EbeneHandlung: React.FC = () => (
   <div style={{ ...glas(false), background: "rgba(236,230,255,.9)" }}>
     <div style={{ position: "absolute", left: 120, top: 400, width: 400, height: 110, borderRadius: 55, background: farben.violett, color: "#fff", fontFamily: schrift.text, fontWeight: 800, fontSize: 36, display: "flex", alignItems: "center", justifyContent: "center" }}>Probetraining</div>
   </div>
 );
-const EbeneUnsichtbar: React.FC<{ sichtbar?: number }> = ({ sichtbar = 1 }) => (
+export const EbeneUnsichtbar: React.FC<{ sichtbar?: number }> = ({ sichtbar = 1 }) => (
   <div style={{ ...glas(true), opacity: sichtbar, borderStyle: "dashed" }} />
 );
 
@@ -355,12 +355,12 @@ export const SzLichtAus: React.FC<{ dauer?: number; aus?: number }> = ({ dauer =
 };
 
 /** 7 «Lädt sie auf dem Handy über drei Sekunden, springen laut Google viele ab.» */
-export const SzLadezeit: React.FC<{ dauer?: number; ohneHintergrund?: boolean }> = ({ dauer = 110, ohneHintergrund }) => {
+export const SzLadezeit: React.FC<{ dauer?: number; ohneHintergrund?: boolean; dreiBei?: number; fallBei?: number; quelleBei?: number }> = ({ dauer = 110, ohneHintergrund, dreiBei = 53, fallBei = 60, quelleBei = 0 }) => {
   const f = useCurrentFrame();
-  const sek = Math.min(3.4, tw(f, 6, 54, 0, 3.4, kurve.linear));
+  const sek = f < dreiBei ? tw(f, 4, dreiBei - 4, 0, 3, kurve.linear) : Math.min(3.6, 3 + (f - dreiBei) * 0.012);
   const ueber = sek >= 3;
   const punkte = Array.from({ length: 14 }, (_, i) => {
-    const fall = ueber ? tw(f, 60 + (i % 7) * 3, 22, 0, 1, (t) => t * t) : 0;
+    const fall = tw(f, fallBei + (i % 7) * 3, 22, 0, 1, (t) => t * t);
     const bleibt = i % 5 === 0;
     return (
       <div key={i} style={{ position: "absolute", left: 120 + (i % 7) * 130, top: 1420 + Math.floor(i / 7) * 80 + (bleibt ? 0 : fall * 600), width: 44, height: 44, borderRadius: 22, background: bleibt ? farben.cyan : farben.lavendelAkzent, opacity: bleibt ? 1 : 1 - fall * 0.8, boxShadow: `0 0 16px ${farben.violett}` }} />
@@ -379,7 +379,7 @@ export const SzLadezeit: React.FC<{ dauer?: number; ohneHintergrund?: boolean }>
           <div style={{ position: "absolute", left: 0, right: 0, top: 400, textAlign: "center", fontFamily: schrift.mono, fontSize: 64, color: farben.papier, textShadow: `0 0 20px ${farben.violett}` }}>{sek.toFixed(1).replace(".", ",")} s</div>
         </div>
         {punkte}
-        <div style={{ position: "absolute", left: 70, top: 1640, fontFamily: schrift.mono, fontSize: 22, color: "#7C80B8", letterSpacing: "0.1em" }}>QUELLE: GOOGLE</div>
+        <div style={{ position: "absolute", left: 70, top: 1290, padding: "10px 18px", borderRadius: 14, border: `1.5px solid #3A3D6B`, background: "rgba(17,20,58,.7)", fontFamily: schrift.mono, fontSize: 24, color: "#9CA0D8", letterSpacing: "0.1em", opacity: tw(f, quelleBei, 8, 0, 1), transform: `scale(${f >= quelleBei ? overshoot(f, quelleBei, 10) : 0.8})` }}>QUELLE: GOOGLE</div>
       </Kamera>
       <Label s={S2} text="// 04 Ladezeit · Mobile zuerst" x={70} y={230} />
       <Satz dunkel y={290} size={74}>

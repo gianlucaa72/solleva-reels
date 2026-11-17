@@ -26,17 +26,17 @@ const S2 = stimmungen.S2;
 const pfad = (v: string) => staticFile(`assets/reels/vier-schichten/${v}`);
 
 /** U18 Unschärfe-Wisch (aus Referenz 0:03): 8 Frames, Whip, diagonal nach rechts oben, Bewegungsunschärfe. */
-const Wisch: React.FC<{ start: number; rolle: "raus" | "rein"; dauer?: number; children: React.ReactNode }> = ({ start, rolle, dauer = 8, children }) => {
+export const Wisch: React.FC<{ start: number; rolle: "raus" | "rein"; dauer?: number; richtung?: "diagonal" | "hoch"; children: React.ReactNode }> = ({ start, rolle, dauer = 8, richtung = "diagonal", children }) => {
   const f = useCurrentFrame();
   const p = rolle === "raus" ? tw(f, start, dauer, 0, 1, kurve.whip) : tw(f, start, dauer, 1, 0, kurve.whip);
   const v = rolle === "raus" ? Math.abs(tw(f + 0.5, start, dauer, 0, 1, kurve.whip) - tw(f - 0.5, start, dauer, 0, 1, kurve.whip)) : Math.abs(tw(f + 0.5, start, dauer, 1, 0, kurve.whip) - tw(f - 0.5, start, dauer, 1, 0, kurve.whip));
-  const dx = (rolle === "raus" ? 1 : -1) * 1300 * p;
-  const dy = (rolle === "raus" ? -1 : 1) * 700 * p;
+  const dx = richtung === "hoch" ? 0 : (rolle === "raus" ? 1 : -1) * 1300 * p;
+  const dy = richtung === "hoch" ? (rolle === "raus" ? -1 : 1) * 2000 * p : (rolle === "raus" ? -1 : 1) * 700 * p;
   return <AbsoluteFill style={{ transform: `translate(${dx}px, ${dy}px) rotate(${(rolle === "raus" ? -1 : 1) * 6 * p}deg)`, filter: `blur(${Math.min(28, v * 140)}px)` }}>{children}</AbsoluteFill>;
 };
 
 /** Neonröhre geht an: flackert 1–0–1–0,3–1 und steigt dann weich. */
-const neonAn = (f: number, start: number) => {
+export const neonAn = (f: number, start: number) => {
   const d = f - start;
   if (d < 0) return 0;
   const muster = [0.9, 0, 0, 0.7, 0.15, 0, 1, 0.4];
@@ -45,7 +45,7 @@ const neonAn = (f: number, start: number) => {
 };
 
 /** Signature-Szene: Licht aus → Neon-Gitter (Higgsfield H5) + Drahtgitter-Website im Lichtkegel. */
-const SzLichtAusEcht: React.FC<{ video: string; lokalAus: number; lokalSieht: number; lokalKeiner: number; dauer: number }> = ({ video, lokalAus, lokalSieht, lokalKeiner, dauer }) => {
+export const SzLichtAusEcht: React.FC<{ video: string; lokalAus: number; lokalSieht: number; lokalKeiner: number; dauer: number; hell?: React.ReactNode; bilder?: string[] }> = ({ video, lokalAus, lokalSieht, lokalKeiner, dauer, hell, bilder }) => {
   const f = useCurrentFrame();
   const dunkel = f >= lokalAus;
   const an = neonAn(f, lokalAus + 2);
@@ -101,9 +101,10 @@ const SzLichtAusEcht: React.FC<{ video: string; lokalAus: number; lokalSieht: nu
         )}
         {!dunkel && (
           <AbsoluteFill style={{ background: farben.lavendel }}>
+            {hell}
             <AbsoluteFill style={{ perspective: 2400, perspectiveOrigin: "540px 700px" }}>
               <div style={{ position: "absolute", left: 540 - GYM.w / 2, top: 900 - GYM.h / 2, width: GYM.w, height: GYM.h, transform: `scale(0.86) rotateX(56deg) rotateZ(${dreh}deg)`, borderRadius: 30, overflow: "hidden", boxShadow: "0 40px 80px rgba(44,30,120,.3)" }}>
-                <GymSeite />
+                <GymSeite bilder={bilder} />
               </div>
             </AbsoluteFill>
           </AbsoluteFill>

@@ -10,6 +10,7 @@ import { Durchstreichen, MaskenAufstieg, SerifAkzent, textKatalog, Tippen, WortA
 import { BalkenHighlight, BuchstabenFlug, FokusZiehen, Handschrift, Kacheln, Kringel, LinieZeichnet, Stempel, textKatalog2, Ueberkleben, Wortstapel, ZahlAufbau } from "../text/Texteffekte2";
 import { Uebergang, uebergangsKatalog, UebergangsTyp } from "../transitions/Uebergaenge";
 import { Filz, Lichtkanal, Nacht, Rauten, Strahlen, Wellen, weltenKatalog } from "../welten/Welten";
+import { VierSchichten } from "../reels/vierSchichten/Reel";
 import { bausteinKatalog, EigenschaftenKarten, KalenderLauf, Kranz, Landen, Muenze, Schweben, Stakkato, WebKarte } from "../bausteine/Bausteine";
 
 const { S1, S2, S3, S4 } = stimmungen;
@@ -212,6 +213,15 @@ const teile: Teil[] = [
   { dauer: 80, el: <AbsoluteFill><Kranz s={S1} start={16}><Wellen /><div style={{ position: "absolute", left: 330, top: 700 }}><WebKarte s={S1} titel="Deine Website" /></div></Kranz><Ton nr="whoosh-03" bei={18} vol={0.6} /><Ton nr="glitzer-04" bei={22} vol={0.5} /><Ton nr="schlag-01" bei={22} vol={0.5} /><Schild {...B("E02")} /></AbsoluteFill> },
   { dauer: 50, el: <AbsoluteFill><Hintergrund s={S3} /><Stakkato start={4} teile={[{ text: "1", bg: "#E8562F", farbe: farben.tinte }, { text: "2", bg: "#2A2A33", farbe: farben.papier }, { text: "3", bg: farben.nacht, farbe: "#E8562F" }]} /><Ton nr="downlifter-02" bei={5} vol={0.5} max={1} /><Ton nr="klick-02" bei={11} vol={0.6} /><Ton nr="klick-02" bei={18} vol={0.6} /><Schild {...B("U13")} /></AbsoluteFill> },
   { dauer: 60, el: <AbsoluteFill><Filz /><Schweben objekt={() => <Muenze />} /><Kamera dauer={60}><FokusZiehen s={S2} start={4} text="Er verkauft." farbe={farben.papier} /></Kamera><Schild {...B("P01")} /></AbsoluteFill> },
+
+  // --- Neu aus Reel «4 Schichten» (Ausschnitte aus dem fertigen Reel) ---
+  ...([
+    { nr: "B08", name: "Ebenen-Stapel 3D", ab: 30, dauer: 55, wann: "CSS-3D-Stapel, fächert auf, Spiegel-Reflexion · Ref. Pinterest-Video" },
+    { nr: "U18", name: "Unschärfe-Wisch", ab: 256, dauer: 30, wann: "8 Frames Whip diagonal, Bewegungsunschärfe · Ref. 0:03" },
+    { nr: "U19", name: "Partikel-Zerfall", ab: 415, dauer: 45, wann: "Szene zerfällt von links unten nach rechts oben, 14 Frames · Ref. 0:04,7" },
+    { nr: "U20", name: "Licht aus (Signatur)", ab: 532, dauer: 75, wann: "2 Frames Schwarz, Neon flackert an, Drahtgitter-Scan · W08 Neon-Gitter" },
+    { nr: "U21", name: "Zusammensetzen", ab: 836, dauer: 70, wann: "Ebenen fliegen von den Rändern ein und rasten flach ein · Ref. 0:07,2" },
+  ]).map((t) => ({ dauer: t.dauer, el: <AbsoluteFill><Sequence from={-t.ab}><VierSchichten /></Sequence><Schild nr={t.nr} name={t.name} wann={t.wann} /></AbsoluteFill> })),
 
   { dauer: 75, el: <CursorDemo /> },
   { dauer: 90, el: <AbsoluteFill><Endkarte s={S1} start={0} klickAuf={60} /><Ton nr="pop-04" bei={14} vol={0.5} /><Ton nr="klick-03" bei={60} vol={0.7} /><Ton nr="schlag-01" bei={62} vol={0.4} /><Schild nr="E01" name="Endkarte" /></AbsoluteFill> },

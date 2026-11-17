@@ -117,3 +117,35 @@ Kein KI-Text in den Clips: alle Hintergründe ohne Schrift; Text kommt immer aus
 1. **Freigabe** von Skript + Storyboard (Korrekturen hier kosten nichts).
 2. **Beat** hochladen (MP3/WAV), damit ich den Drop auf «Licht aus» lege.
 3. **solleva.ch** statt/zusätzlich zum Gym? Vorschlag: Gym bleibt das Beispiel (Zielgruppe erkennt sich), echte Screenshots von solleva.ch landen im Finale im Handy («so sieht's bei mir aus») oder bleiben für ein eigenes Reel. Dafür müsste solleva.ch in der Umgebung erlaubt werden (aktuell blockiert) oder du lädst 2–3 Screenshots hoch.
+
+---
+
+## 7. Abgabe v1 (17.11.2026) – `docs/reels/final/vier-schichten-v1-ohne-musik.mp4`
+
+**Messwerte:** 34,9 s · 1080×1920 · 30 fps · H.264 yuv420p TV-Range · AAC 48 kHz · −13,8 LUFS · Peak −1,4 dBFS.
+**Stimme:** Andre, 10 Sätze einzeln; lange Pausen im Satz auf 0,25 s gekürzt (Satz 6 bewusst 0,45 s), 0,22 s zwischen Sätzen, Tempo 1,05, 1,6 s Halt (CTA steht insgesamt 4,3 s). Timeline: `src/reels/vierSchichten/timeline.json`, Skript `tools/vs_timeline.py`.
+**Musik:** noch keine (Beat fehlt). Einmischen: Datei nach `assets/reels/vier-schichten/beat.mp3`, Prop `mitMusik`, Drop auf Frame 548 («vier» = Licht aus).
+
+### Abgleich mit deinen Referenz-Notizen
+| Notiz | Umsetzung | Zeit |
+|---|---|---|
+| Stapel schwebt schräg, fächert auf | B08, fächert auf «vier» auf, Ebenen beschriftet 01–04 | 0:00–0:04 |
+| alle 1,5–2 s neuer Look | Studio → Papier → Bauplan → Wellen → Neon-Licht → Neon-Flug → Papier → Endkarte; innerhalb der Sätze Unter-Ereignisse alle 0,4–0,8 s | ganz |
+| Wisch mit Bewegungsunschärfe | U18 (8 Frames) | 0:08,9 · 0:20,1 · 0:24,2 (hoch) |
+| Partikel-Zerfall | U19 (14 Frames) | 0:14,2 |
+| Teile fliegen auseinander → flache Seite | U21 + Licht an | 0:27,9–0:29,2 |
+| dunkles Studio, Spiegelboden, Spot | H1 (Kling) + Code-Reflexion | 0:00–0:04,5 |
+| Fujifilm halb Foto/halb Zeichnung | Split-Linie + Beschriftungslinien + Kringel WAS/WO/FÜR WEN | 0:08,9–0:14,2 |
+| Glas-Ebenen (lina) | Glas-Ebenen Mobile/SEO/revDSG, Drahtgitter-Ebenen | 0:18,3–0:27,9 |
+| Farbkarten mit Hex | 60/30/10 mit Hex, fächern auf «Zwei Farben» | 0:06,0 |
+| Neon-Gitter violett | H5 B (Lichtkegel, Ping-Pong) + H5 A (Flug) | 0:18,3–0:27,9 |
+
+### Sound-Momente (Auswahl)
+Schlag-02 exakt auf «vier» (Frame 548) · Glitch beim Neon-Anflackern · Schlag-01 auf «keiner» · Ratsche-19 unter dem Ladebalken · Klicks auf Button/Nummer/CTA · Ratsche-12 + Schlag-03 beim Einrasten (Frame 876) · Pops auf Karten/Badges · Swishes 2 Frames vor jedem Wisch.
+
+### Bewusst anders als im Skill
+- **Keine zwei Versionen A/B mit Best-of-Schnitt**: Storyboard und Stiltest waren freigegeben, ich habe direkt diese eine Fassung gebaut. Bei Bedarf rendere ich einzelne Sätze als Variante.
+- Schicht 2 (Struktur) hält dieselbe Seite 4,6 s; Ereignisse alle ~0,6 s (Split, Uhr, Linien, Kringel), aber kein Hintergrundwechsel.
+
+### Credits
+Stiltest 22,45 · ganzes Reel weitere ≈ 43 (11 Bilder + 3 Kling-Pro-Clips) → total ≈ 65 (Schätzung war 75).
