@@ -56,3 +56,11 @@ export const unschaerfe = (frame: number, f: (fr: number) => number, faktor = 0.
 
 /** ms → Frames bei 30 fps */
 export const ms = (m: number) => Math.round((m / 1000) * 30);
+
+/** Landung mit Overshoot als Faktor: 1 → spitze → 1 (startet bei 1, nie bei 0). */
+export const landung = (frame: number, start: number, dauer: number, spitze = 1.03) => {
+  if (frame < start) return 1;
+  const t1 = Math.round(dauer * 0.4);
+  if (frame < start + t1) return tw(frame, start, t1, 1, spitze, kurve.land);
+  return tw(frame, start + t1, dauer - t1, spitze, 1, kurve.land);
+};

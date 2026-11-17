@@ -63,6 +63,14 @@ Erst Bausteine aus dem Baukasten nehmen; Neues nur ergänzen und mit Nummer in K
 
 - **Typografie nie kopieren**: jede Szene bekommt eine eigene Schrift-Idee (Typografie-Set T01–T13 in `src/stil/halbton.tsx`: Erpresser, Etikett, Lotterie-Los, Riso-Doppeldruck, Raster-Wort, Sprechblase, Stempel, Handschrift, Prägeband, Schlagzeile, Kreistext, Wiederholungs-Stapel, Karteikarte). Dieselbe Idee höchstens zweimal pro Reel (z. B. Hook und CTA als Klammer).
 
+## Kamera und Sound (Wunsch des Nutzers ab Reel «Spielautomat» v2)
+- **K01 Virtuelle Kamera** (`src/kamera/welt.tsx`): eine Kamera (Scale/Translate) über die ganze Timeline; Ebenen mit Tiefe (Hintergrund 0,3, Hauptobjekt 1,0, Text 1,1, Vordergrund 1,6) → Parallax. Jede Szene hat ein angeschnittenes, unscharfes Vordergrund-Element am Rand.
+- **Übergänge als Zoom-Through**: nächste Szene liegt verkleinert in einem 9:16-Fenster des Schlüsselobjekts (mit Rand, damit nie der Objektrahmen aufblitzt); Fahrt 0,7 s, cubic-bezier(0.65,0,0.15,1), danach unsichtbarer Wechsel (Bildabweichung prüfen). Bewegungsunschärfe per Sub-Frame-Mittelung.
+- Zwischen den Fahrten: Drift 100→104 %, 2–3 px; Objekte mit Idle (Schweben, Wackeln). Idle vor einer Fahrt auf 0 ausblenden.
+- **Filmlook als feste Ebene über allem** (nicht von der Kamera bewegt): Korn, Vignette, 1–2 % Flackern.
+- **Sounds minimal und teuer, nichts Futuristisches**: nur natürliche Geräusche (Papier, Schreibmaschine, Holz, Mechanik, Luft, Favoriten ratsche-18/19), wenige Ereignisse, leise. Gemessen synthetisch/tonal und darum meiden: ratsche-09/10 (Arcade), klick-01/02 (UI), pop-*, glitzer-*, glitch-*, riser-02/04, downlifter-02, schlag-01/03/04/06 (Sinus/Synth).
+- **Overshoot-Fehler vermeiden**: `overshoot()` startet bei 0 (nur für Pop-Eingänge). Für Landungen `landung()` nehmen (1 → Spitze → 1); sonst verschwindet das Objekt für einen Frame.
+
 ## Story-Bauplan (Vorlage, aus Ref. 01/03)
 1. **Hook** mit konkreter Zahl oder Szene (0–2 s) · 2. **Vergleich**, der sie fühlbar macht · 3. **Twist** («Aber …») · 4. **Spannung über Zeit** · 5. **Rätsel** («Warum?») · 6. **Beweis/Muster** · 7. **offene Schleife oder CTA**. Zahlen nur, wenn echt (eigene Projekte mit Erlaubnis).
 
