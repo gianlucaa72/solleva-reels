@@ -374,7 +374,7 @@ export const Riso: React.FC<{ x: number; y: number; text: string; size: number; 
   return (
     <div style={{ position: "absolute", left: x, top: y, transform: `rotate(${dreh}deg)` }}>
       <div style={{ ...st, color: b, transform: "translate(10px, 8px)" }}>{text}</div>
-      <div style={{ ...st, position: "relative", color: a }}>{text}</div>
+      <div style={{ ...st, position: "relative", color: a, mixBlendMode: "normal" }}>{text}</div>
     </div>
   );
 };

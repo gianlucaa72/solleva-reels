@@ -68,7 +68,7 @@ export const Fenster: React.FC<{ r: Rechteck; children: React.ReactNode; radius?
  * und gemittelt (Ebene i mit Deckkraft 1/(i+1) → gleiches Gewicht für alle Proben).
  */
 export const Bewegungsunschaerfe: React.FC<{ f: number; tempo: number; render: (f: number) => React.ReactNode; schwelle?: number; proben?: number; verschluss?: number }> = ({
-  f, tempo, render, schwelle = 0.012, proben = 10, verschluss = 0.7,
+  f, tempo, render, schwelle = 0.012, proben = 6, verschluss = 0.7,
 }) => {
   if (tempo < schwelle) return <AbsoluteFill>{render(f)}</AbsoluteFill>;
   const n = Math.round(Math.min(proben, 3 + (tempo / schwelle) * 1.5));

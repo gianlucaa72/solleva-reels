@@ -34,7 +34,7 @@ const KameraF: React.FC<{ f: number; start: number; dauer: number; push?: number
 
 // ---------- Text-Eingänge ----------
 type Art = "slap" | "stempel" | "fall" | "pop" | "schreiben" | "rutsch";
-const Rein: React.FC<{ f: number; start: number; art?: Art; dauer?: number; ox?: number; oy?: number; children: React.ReactNode }> = ({ f, start, art = "slap", dauer = 30, ox = 540, oy = 500, children }) => {
+export const Rein: React.FC<{ f: number; start: number; art?: Art; dauer?: number; ox?: number; oy?: number; children: React.ReactNode }> = ({ f, start, art = "slap", dauer = 30, ox = 540, oy = 500, children }) => {
   if (f < start) return null;
   let tr = "";
   let o = 1;
@@ -78,7 +78,7 @@ const Obj: React.FC<{ f: number; src: string; w: number; ar: number; cx: number;
 };
 
 // ---------- Hintergründe aus Bildern ----------
-const BildGrund: React.FC<{ name: string; f: number; start: number; zoom?: number; vx?: number; vy?: number }> = ({ name, f, start, zoom = 1.12, vx = 0, vy = -0.5 }) => {
+export const BildGrund: React.FC<{ name: string; f: number; start: number; zoom?: number; vx?: number; vy?: number }> = ({ name, f, start, zoom = 1.12, vx = 0, vy = -0.5 }) => {
   const l = f - start;
   return (
     <AbsoluteFill style={{ overflow: "hidden", background: "#222" }}>
@@ -86,7 +86,7 @@ const BildGrund: React.FC<{ name: string; f: number; start: number; zoom?: numbe
     </AbsoluteFill>
   );
 };
-const PapierLage: React.FC<{ staerke?: number }> = ({ staerke = 0.55 }) => (
+export const PapierLage: React.FC<{ staerke?: number }> = ({ staerke = 0.55 }) => (
   <AbsoluteFill style={{ mixBlendMode: "multiply", opacity: staerke }}>
     <Img src={A("papier")} style={{ width: 1080, height: 1920, objectFit: "cover" }} />
   </AbsoluteFill>
@@ -156,7 +156,7 @@ const S4: React.FC<{ f: number }> = ({ f }) => {
 
 // Flasche (Szene 5 + 6)
 const FLASCHE = { w: 540, ar: 1168 / 880, cx: 560, cy: 1190 };
-const Etikett: React.FC = () => (
+export const Etikett: React.FC = () => (
   <div style={{ position: "absolute", left: "24.5%", top: "43%", width: "50%", height: "41.5%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 6 }}>
     <div style={{ fontFamily: "Fell SC", fontSize: 64, color: zine.schwarz, letterSpacing: "0.04em", borderTop: `3px solid ${zine.schwarz}`, borderBottom: `3px solid ${zine.schwarz}`, padding: "2px 10px" }}>GLÜCK</div>
     <div style={{ fontFamily: "Fell", fontStyle: "italic", fontSize: 30, color: zine.rot }}>Tropfen · 100 ml</div>
