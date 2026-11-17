@@ -67,6 +67,7 @@ Erst Bausteine aus dem Baukasten nehmen; Neues nur ergänzen und mit Nummer in K
 - Drei Schichten: Stimme klar oben, basslastiger Beat durchgehend darunter, kurze Effekte (0,1–0,3 s) auf fast jedem Bildereignis.
 - **Swish/Whoosh 1–3 Frames VOR** der Bewegung, **Klick/Schlag exakt** auf Landung/Einrasten.
 - Tonhöhe folgt Bewegung: Einflug/Fall → fallender Swish; Spannung → Riser; Stakkato/Bruch → Downlifter; Enthüllung → Glitzer; Linie/Zähler/Ausrollen → Ratsche.
+- **Auffällige Effekte sparsam** (Glitzer, Light-Sweep, Riser, grosse Impacts mit Hall): derselbe Effekt **höchstens 2× pro Reel**, **nie in aufeinanderfolgenden Szenen** und **nur auf Schlüsselmomenten** (Hook, Signature-Moment, Schluss). Gleichartige Übergänge (z. B. mehrere Licht-Blitze) nicht jedes Mal gleich vertonen: variieren oder ohne Effekt lassen. (Feedback Reel 01: glitzer-05 lag 3× zwischen 8 und 16 s und klang monoton.)
 - Favoriten des Nutzers in `sounds/README.md` nachführen. Nutzer hört selbst und ergänzt Sounds.
 
 Zusätzlich gilt immer der Skill **motion-design** (Kurven Land/Heavy/Whip, ein Anführer pro Moment, Ausgänge schneller als Eingänge, Standbilder leben weiter).
@@ -193,6 +194,7 @@ Bibliotheken: `sfx-library/` (Mixkit: whoosh, transition, click, pop, notificati
 - Sound-Momente aus der Referenz-Analyse (Schritt 2) übernehmen: gleiche Art Sound an der gleichen Art Moment.
 - Zuordnung: **Klicks** auf Cursor-Klicks und Tippen, **Pops** auf Erscheinen, **Whooshes** auf Kamerafahrten und Nähte, **Glitch/Ticks** auf Einfrieren und laufende Zähler, **Impacts** auf grosse Enthüllungen und den CTA.
 - **Viele Sounds, aber nie zwei wichtige gleichzeitig.**
+- **Auffällige Effekte höchstens 2× pro Reel, nie in zwei Szenen nacheinander, nur auf Schlüsselmomenten** (siehe Sound-Regeln oben).
 - **Drei Spuren:** (1) Klicks/Pops, (2) Whooshes, (3) Impacts. Jeder Clip mit eigener Lautstärke und sprechendem Namen (z. B. `klick-suchleiste`, `whoosh-kamera-03`).
 - Lautstärken unter der Stimme: Klicks/Pops −14 bis −10 dB, Whooshes −12 bis −8 dB, Impacts −8 bis −5 dB.
 
@@ -217,7 +219,7 @@ Bibliotheken: `sfx-library/` (Mixkit: whoosh, transition, click, pop, notificati
 - Neues Bild oder neue Hauptaktion **mindestens alle 2 s** (Szenenliste/Timeline zählen).
 - Nur Farben aus dem Steckbrief; ≥ 2 Hintergrund-Wechsel; nicht durchgehend dunkel.
 - Text in Safe Zones (Pixel-Ausdehnung rechts ≤ 940 px), Captions lesbar, kein KI-Text in Higgsfield-Clips sichtbar.
-- Ton: −14 LUFS ±1, Peak ≤ −1 dBFS, nie zwei wichtige Sounds gleichzeitig.
+- Ton: −14 LUFS ±1, Peak ≤ −1 dBFS, nie zwei wichtige Sounds gleichzeitig. Auffällige Effekte gezählt: keiner öfter als 2×, keiner in zwei Szenen nacheinander (Ton-Liste aus dem Code ziehen und zählen).
 - Hook in Sekunde 1, Signature-Moment vorhanden, CTA auf dem letzten Wort und ≥ 1,5 s stehend, keine erfundenen Fakten.
 - motion-design-Prüfliste abgehakt.
 

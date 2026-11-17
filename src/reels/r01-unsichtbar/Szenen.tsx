@@ -680,7 +680,6 @@ export const Szene7: React.FC<{ v: V }> = ({ v }) => {
       <AbsoluteFill style={{ background: `radial-gradient(circle at 50% ${(kY / 1920) * 100}%, #fff ${bloom * 70}%, rgba(255,255,255,${bloom}) ${bloom * 100 + 10}%)`, opacity: bloom }} />
       {v === "A" && <Ton nr="pop-02" bei={p0 + 3} vol={0.4} />}
       {v === "A" && <Ton nr="klick-02" bei={p0 + 9} vol={0.35} />}
-      <Ton nr="glitzer-04" bei={heisst + 8} vol={0.18} />
       <Ton nr="riser-01" bei={heb} vol={0.25} />
       <Ton nr="whoosh-03" bei={heb + 4} vor={2} vol={0.45} />
       <Ton nr="glitzer-04" bei={heb + 10} vol={0.4} />
@@ -765,7 +764,6 @@ export const Szene8: React.FC<{ v: V }> = ({ v }) => {
       <Ton nr="pop-02" bei={w(8, "ich")} vol={0.3} />
       <Ton nr="ratsche-18" bei={w(8, "mit")} vol={0.2} max={0.5} />
       <Ton nr="schlag-01" bei={web} vol={0.4} />
-      <Ton nr="whoosh-03" bei={web + 2} vor={2} vol={0.3} />
       <Ton nr="whoosh-01" bei={ende + 2} vor={2} vol={0.35} />
     </AbsoluteFill>
   );
@@ -824,7 +822,7 @@ export const Szene9: React.FC<{ v: V }> = ({ v }) => {
       <Ton nr="klick-02" bei={p0 + 7} vol={0.3} />
       <Ton nr="schlag-04" bei={zufall} vol={0.35} />
       <Ton nr="glitzer-03" bei={zufall + 4} vol={0.3} />
-      <Ton nr="whoosh-03" bei={nach + 2} vor={2} vol={0.25} />
+      <Ton nr="swish-03" bei={nach + 2} vor={2} vol={0.22} />
       <Ton nr="glitzer-04" bei={nach + 14} vol={0.2} />
     </AbsoluteFill>
   );

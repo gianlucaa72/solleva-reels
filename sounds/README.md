@@ -26,5 +26,5 @@ Status: **wird vom Nutzer angehört**; Favoriten und Ergänzungen folgen.
 - **ratsche-19** (Knopf, lang, gleichmässig): für Zähler, Kalender, längere Drehbewegungen
 
 ## Regeln aus Feedback
-- **Auffällige Effekte (Glitzer, Light-Sweep, Riser) höchstens 1× pro Reel**, am Signature-Moment. Reel 01: glitzer-05 lag 3× zwischen 8 und 16 s (zwei Licht-Blitz-Übergänge + Stein) und klang monoton; nur der beim Stein blieb.
+- **Auffällige Effekte (Glitzer, Light-Sweep, Riser, grosse Impacts) höchstens 2× pro Reel, nie in zwei Szenen nacheinander, nur auf Schlüsselmomenten.** Reel 01: glitzer-05 lag 3× zwischen 8 und 16 s (zwei Licht-Blitz-Übergänge + Stein) und klang monoton; nur der beim Stein blieb.
 - Übergänge gleicher Art (z. B. mehrere Licht-Blitze) nicht jedes Mal mit demselben Sound vertonen: variieren oder weglassen.
