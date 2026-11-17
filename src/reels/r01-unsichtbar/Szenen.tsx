@@ -581,42 +581,6 @@ export const Szene6: React.FC<{ v: V }> = ({ v }) => {
 // =====================================================================
 // Satz 7: «Solleva heisst: anheben.»  ★ Signature: Glas-Kiesel hebt sich, Island → Glas-Pille
 // =====================================================================
-/** Bruchstücke, die beim Losreissen hochfliegen (deterministisch). */
-const Truemmer: React.FC<{ bei: number; cx: number; cy: number }> = ({ bei, cx, cy }) => {
-  const F = useCurrentFrame();
-  const t = F - bei;
-  if (t < 0 || t > 34) return null;
-  return (
-    <>
-      {Array.from({ length: 12 }).map((_, i) => {
-        const r = (k: number) => ((Math.sin((i + 1) * 12.9898 * k) * 43758.5453) % 1 + 1) % 1;
-        const seite = i % 2 ? 1 : -1;
-        const vx = seite * (5 + r(1) * 16);
-        const vy = -12 - r(2) * 20;
-        const g = 26 + r(3) * 28;
-        const x = cx + seite * (140 + r(4) * 150) + vx * t;
-        const y = cy + vy * t + 0.9 * t * t;
-        const o = t < 26 ? 1 : 1 - (t - 26) / 8;
-        return (
-          <div
-            key={i}
-            style={abs(x - g / 2, y - g / 2, {
-              width: g,
-              height: g * 0.8,
-              borderRadius: "45% 55% 50% 40%",
-              background: "radial-gradient(circle at 35% 30%, #FFFFFF, #D5D1E9 70%, #A9A6C4)",
-              boxShadow: "0 6px 10px rgba(20,18,58,.25)",
-              transform: `rotate(${t * (r(5) - 0.5) * 30}deg)`,
-              filter: `blur(${r(6) > 0.7 ? 2 : 0}px)`,
-              opacity: o,
-            })}
-          />
-        );
-      })}
-    </>
-  );
-};
-
 /** Schockwelle über die Masse (Ellipse in Perspektive). */
 const Welle: React.FC<{ bei: number; cx: number; cy: number }> = ({ bei, cx, cy }) => {
   const F = useCurrentFrame();
@@ -719,7 +683,6 @@ export const Szene7: React.FC<{ v: V }> = ({ v }) => {
         {/* violettes Licht fällt auf die Masse */}
         <div style={abs(540 - 520, 1300 - 150, { width: 1040, height: 300, borderRadius: "50%", background: "radial-gradient(closest-side, rgba(169,139,255,.55), rgba(108,63,212,.15) 60%, rgba(108,63,212,0))", opacity: pool, mixBlendMode: "screen" })} />
         <Strahlen7 staerke={Math.max(0, strahlen)} cx={540} cy={kY} />
-        <Aufsteigen ab={heb + 2} />
         <Kamera dauer={ende - s.start + 10} seed={7} rucke={[heb]}>
           <Bild v={v}>
             <Welle bei={heb} cx={540} cy={1300} />
@@ -734,9 +697,6 @@ export const Szene7: React.FC<{ v: V }> = ({ v }) => {
                 opacity: kRein * (0.55 - hub * 0.35),
               })}
             />
-            {/* Umlaufende Funken hinter dem Kiesel */}
-            <Truemmer bei={heb} cx={540} cy={1280} />
-            <Umlauf heb={heb} cy={kY} vorne={false} />
             <div
               style={abs(540 - 450 * kS + zittern, kY - 450 * kS, {
                 width: 900 * kS,
@@ -764,8 +724,6 @@ export const Szene7: React.FC<{ v: V }> = ({ v }) => {
                 />
               ))}
             </div>
-            <Umlauf heb={heb} cy={kY} vorne />
-            <Funken bei={heb + 8} cx={540} cy={1260 - 380} weite={180} r0={130} n={8} />
           </Bild>
         </Kamera>
       </AbsoluteFill>
@@ -802,64 +760,14 @@ export const Szene7: React.FC<{ v: V }> = ({ v }) => {
       <AbsoluteFill style={{ background: `radial-gradient(circle at 50% ${(kY / 1920) * 100}%, #fff ${bloom * 70}%, rgba(255,255,255,${bloom}) ${bloom * 100 + 10}%)`, opacity: bloom }} />
       {v === "A" && <Ton nr="pop-02" bei={p0 + 3} vol={0.4} />}
       {v === "A" && <Ton nr="klick-02" bei={p0 + 9} vol={0.35} />}
-      <Ton nr="riser-01" bei={heb} vol={0.18} />
-      {/* Engelschor: schwillt in der Spannung an, Höhepunkt kurz nach dem Losreissen */}
-      <Ton nr="chor-01" bei={heb + 18} vol={0.6} />
+      {/* Engelschor (chor-04, Wunsch des Nutzers): schwillt in der Spannung an, voll beim Losreissen, weich aus nach dem Übergang */}
+      <Sequence from={heb - 24} durationInFrames={ende - heb + 48} layout="none">
+        <Audio src={staticFile("sounds/chor-04-choir-harp-bless.mp3")} volume={(f) => 0.6 * (1 - Math.min(1, Math.max(0, (f - (ende - heb + 24)) / 22)))} />
+      </Sequence>
       <Ton nr="schlag-05" bei={heb} vol={0.45} />
       <Ton nr="glitzer-04" bei={heb + 10} vol={0.35} />
       <Ton nr="glitzer-05" bei={ende} vor={2} vol={0.2} max={2} />
     </AbsoluteFill>
-  );
-};
-
-/** Lichtpunkte steigen aus der Masse auf (Motiv «anheben»). */
-const Aufsteigen: React.FC<{ ab: number }> = ({ ab }) => {
-  const F = useCurrentFrame();
-  const da = tw(F, ab, 14, 0, 1, kurve.fade);
-  if (da <= 0) return null;
-  return (
-    <>
-      {Array.from({ length: 22 }).map((_, i) => {
-        const r = (k: number) => ((Math.sin((i + 3) * 78.233 * k) * 43758.5453) % 1 + 1) % 1;
-        const tempo = 3 + r(1) * 5;
-        const weg = ((F - ab) * tempo + r(2) * 900) % 900;
-        const y = 1560 - weg;
-        const x = 120 + r(3) * 840 + Math.sin((F + i * 20) / 18) * 14;
-        const g = 6 + r(4) * 10;
-        const o = da * Math.min(1, weg / 120) * Math.min(1, (900 - weg) / 200);
-        return <div key={i} style={abs(x, y, { width: g, height: g, borderRadius: g, background: r(5) > 0.5 ? "#fff" : farben.lavendelAkzent, boxShadow: `0 0 ${g * 2}px ${farben.lavendelAkzent}`, opacity: o * 0.85 })} />;
-      })}
-    </>
-  );
-};
-
-/** Funken, die den gehobenen Kiesel umkreisen (hinten gedämpft, vorne hell). */
-const Umlauf: React.FC<{ heb: number; cy: number; vorne: boolean }> = ({ heb, cy, vorne }) => {
-  const F = useCurrentFrame();
-  const da = tw(F, heb + 12, 12, 0, 1, kurve.land);
-  if (da <= 0) return null;
-  return (
-    <>
-      {Array.from({ length: 7 }).map((_, i) => {
-        const a = (F - heb) * 0.09 + (i / 7) * Math.PI * 2;
-        const z = Math.sin(a);
-        if (vorne !== z > 0) return null;
-        const g = (vorne ? 20 : 12) + (i % 3) * 3;
-        return (
-          <div
-            key={i}
-            style={abs(540 + Math.cos(a) * 300 * da - g / 2, cy + z * 80 - g / 2, {
-              width: g,
-              height: g,
-              borderRadius: g,
-              background: i % 2 ? farben.lavendelAkzent : "#fff",
-              boxShadow: `0 0 ${vorne ? 34 : 16}px ${farben.lavendelAkzent}, 0 0 8px #fff`,
-              opacity: da * (vorne ? 1 : 0.45),
-            })}
-          />
-        );
-      })}
-    </>
   );
 };
 

@@ -30,3 +30,9 @@ A = Hook-Titel gross im Raum, B = Captions oben + Bild kompakter.
 
 ## Generiert (Higgsfield, ~29 Credits)
 Kieselfeld (2), Glas-Kiesel (2), Statuen Lupe/Staub/Meissel (je 2), Stimme 9 + 2 Sätze.
+
+## Feedback-Runden
+- v2: Satz 4 Spinnennetz auf «Anfrage senden» statt dritter Statue (Nutzer: nicht nochmal der Grieche).
+- v3: Pause nach jedem Satz 0,40 s, Schluss 2,5 s (Nutzer: etwas ruhiger).
+- v4/v5: Licht-Wischer nur beim Stein; Regel «auffällige Effekte max. 2×, nie nacheinander, nur Schlüsselmomente» im Skill.
+- v6/v7: Höhepunkt Satz 7 hält 1,8 s nach dem Satz; Spannung (dunkler Rand, Zittern, Strahlen), Blitz, Schockwelle, Kamerafahrt, Engelschor chor-04 (Wunsch des Nutzers). **Partikel (Trümmer, Lichtpunkte, kreisende Funken) wirkten komisch → entfernt.**
