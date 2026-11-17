@@ -61,6 +61,8 @@ Erst Bausteine aus dem Baukasten nehmen; Neues nur ergänzen und mit Nummer in K
 - Pro Satz ein anderer Hintergrund-Typ, und jeder Hintergrund bewegt sich leicht (Strahlen drehen, Tapete schwenkt, Punkte atmen).
 - Stil-Rezepte stehen in `CLAUDE.md` (R01 Halbton-Collage, R02 Papiertheater).
 
+- **Typografie nie kopieren**: jede Szene bekommt eine eigene Schrift-Idee (Typografie-Set T01–T13 in `src/stil/halbton.tsx`: Erpresser, Etikett, Lotterie-Los, Riso-Doppeldruck, Raster-Wort, Sprechblase, Stempel, Handschrift, Prägeband, Schlagzeile, Kreistext, Wiederholungs-Stapel, Karteikarte). Dieselbe Idee höchstens zweimal pro Reel (z. B. Hook und CTA als Klammer).
+
 ## Story-Bauplan (Vorlage, aus Ref. 01/03)
 1. **Hook** mit konkreter Zahl oder Szene (0–2 s) · 2. **Vergleich**, der sie fühlbar macht · 3. **Twist** («Aber …») · 4. **Spannung über Zeit** · 5. **Rätsel** («Warum?») · 6. **Beweis/Muster** · 7. **offene Schleife oder CTA**. Zahlen nur, wenn echt (eigene Projekte mit Erlaubnis).
 

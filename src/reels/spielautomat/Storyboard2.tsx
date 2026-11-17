@@ -3,6 +3,7 @@ import { AbsoluteFill, Sequence } from "remotion";
 import {
   Ausschnitt, Blitz, Erpresser, Etikett, HfNotiz, HKaro, HKreis, HPackpapier, HPunkte, HSchwarz, HSpirale, HStrahlen, HZeitung,
   Hebel, Korn, Papierstueck, Zacken, zine, ZineSchriften,
+  Los, Riso, Rasterwort, Blase, Stempel, Hand, Praegeband, Schlagzeile, Kreistext, Stapel, Karteikarte,
 } from "../../stil/halbton";
 
 // Storyboard v2 «Spielautomat» im Stil Halbton-Collage. Pro Moment ein Schlüsselbild (Frame i*SB2_PANEL+30).
@@ -40,8 +41,7 @@ const P = {
   dreh: () => (
     <>
       <HZeitung f={20} />
-      <Etikett text="JEDER WISCH IST EIN NEUER" x={70} y={280} dreh={-2} />
-      <Erpresser text="DREH" x={300} y={380} size={150} versatz={1} />
+      <Los x={140} y={260} w={760} klein="JEDER WISCH IST EIN NEUER" text="DREH" dreh={-3} />
       <Walzen x={150} y={820} zeichen={["▤", "▥", "▦"]} gross dreh={2} />
       <Blitz x={880} y={720} s={80} dreh={14} />
       <HfNotiz text="(nur Code: Feed klappt zu 3 Walzen auf)" />
@@ -50,9 +50,8 @@ const P = {
   treffer: () => (
     <>
       <HPunkte />
-      <Etikett text="MEISTENS NIETE." x={80} y={270} dreh={-3} />
-      <Etikett text="ABER MANCHMAL:" x={300} y={355} dreh={2} />
-      <Erpresser text="TREFFER" x={90} y={460} size={120} versatz={5} />
+      <div style={{ position: "absolute", left: 80, top: 260, fontFamily: "Fell", fontStyle: "italic", fontSize: 72, color: zine.schwarz }}>Meistens <s>Niete</s>. Aber manchmal:</div>
+      <Riso x={60} y={380} text="TREFFER!" size={190} dreh={-4} />
       <Walzen x={150} y={820} zeichen={["✕", "✕", "♥"]} gross />
       <Zacken x={850} y={820} r={110} farbe={zine.rot} />
       <HfNotiz text="Halbton-Herz mit Papierrand (oder Code)" />
@@ -61,9 +60,9 @@ const P = {
   dopamin: () => (
     <>
       <HKreis f={10} />
-      <Etikett text="UND DANN SCHÜTTET DEIN GEHIRN" x={60} y={270} dreh={-2} />
-      <Erpresser text="DOPAMIN" x={100} y={370} size={130} versatz={2} />
-      <Etikett text="AUS." x={760} y={540} dreh={4} />
+      <div style={{ position: "absolute", left: 80, top: 270, fontFamily: "JetBrains Mono", fontSize: 38, color: "#fff", letterSpacing: "0.08em" }}>UND DANN SCHÜTTET DEIN GEHIRN …</div>
+      <Rasterwort x={50} y={340} text="DOPAMIN" size={200} />
+      <div style={{ position: "absolute", left: 720, top: 540, fontFamily: "JetBrains Mono", fontSize: 38, color: "#fff" }}>… AUS.</div>
       <Ausschnitt name="brain" x={540} y={1080} size={620} />
       <Zacken x={280} y={850} r={70} farbe={zine.gelb} spitzen={9} />
       <Zacken x={820} y={1300} r={55} farbe={zine.gelb} spitzen={9} />
@@ -73,9 +72,8 @@ const P = {
   glueck: () => (
     <>
       <HKaro f={10} />
-      <Etikett text="VIELE DENKEN, DOPAMIN SEI DAS" x={60} y={270} dreh={-2} />
-      <Erpresser text="GLÜCKS" x={90} y={380} size={120} versatz={4} />
-      <Erpresser text="HORMON" x={260} y={530} size={110} versatz={1} />
+      <Hand x={130} y={250} text="Viele denken, Dopamin sei das …" size={64} farbe={zine.schwarz} strich={zine.violett} />
+      <Blase x={140} y={370} w={680} dreh={-3}>Glücks&shy;hormon!</Blase>
       <Ausschnitt name="zany-face" x={540} y={1120} size={520} dreh={6} />
       <HfNotiz text="Vintage-Frau lacht (Halbton, 50er-Foto)" />
     </>
@@ -83,11 +81,9 @@ const P = {
   falsch: () => (
     <>
       <HSchwarz />
-      <div style={{ position: "absolute", left: 70, top: 280, transform: "rotate(-4deg)" }}>
-        <Erpresser text="FALSCH." x={0} y={0} size={150} versatz={0} />
-      </div>
-      <Etikett text="DOPAMIN HEISST:" x={80} y={560} dreh={2} />
-      <div style={{ position: "absolute", left: 80, top: 650, fontFamily: "Instrument Serif", fontStyle: "italic", fontSize: 110, color: zine.gelb, transform: "rotate(-2deg)" }}>Da kommt noch mehr.</div>
+      <Stempel x={150} y={270} text="FALSCH." size={170} dreh={-9} farbe="#FF3B3B" dunkel />
+      <div style={{ position: "absolute", left: 90, top: 540, fontFamily: "JetBrains Mono", fontSize: 36, color: "#bbb", letterSpacing: "0.1em" }}>DOPAMIN HEISST:</div>
+      <Hand x={80} y={600} text="Da kommt noch mehr!" size={118} />
       <Ausschnitt name="megaphone" x={560} y={1200} size={520} dreh={-12} />
       <HfNotiz text="Hand mit Megafon (Halbton)" />
     </>
@@ -95,9 +91,9 @@ const P = {
   erwartet: () => (
     <>
       <HPackpapier />
-      <Etikett text="EIN ERWARTETER TREFFER" x={70} y={280} dreh={-2} />
-      <Etikett text="LÄSST ES FAST" x={200} y={365} dreh={2} />
-      <Erpresser text="KALT" x={300} y={460} size={140} versatz={6} />
+      <Praegeband x={70} y={270} text="EIN ERWARTETER TREFFER" size={44} dreh={-2} />
+      <Praegeband x={220} y={370} text="LÄSST ES FAST" size={44} farbe={zine.violett} dreh={2} />
+      <Praegeband x={300} y={470} text="KALT." size={110} farbe="#2F6FB5" dreh={-3} />
       <Ausschnitt name="sleeping-face" x={540} y={1120} size={540} />
       <HfNotiz text="Marmorbüste gähnt (Halbton)" />
     </>
@@ -105,9 +101,7 @@ const P = {
   ueberraschung: () => (
     <>
       <HStrahlen a={zine.gelb} b="#FFF6D0" f={40} />
-      <Etikett text="EIN ÜBERRASCHENDER TREFFER" x={60} y={270} dreh={-2} />
-      <Etikett text="LÖST EINEN" x={200} y={355} dreh={2} />
-      <Erpresser text="SCHUB" x={220} y={450} size={140} versatz={2} />
+      <Schlagzeile x={70} y={250} w={880} dach="EXTRABLATT · ÜBERRASCHENDER TREFFER" titel="Löst einen Schub aus!" dreh={-2} />
       <Zacken x={540} y={1100} r={380} farbe={zine.rot} spitzen={14} />
       <Ausschnitt name="face-screaming-in-fear" x={540} y={1100} size={480} />
       <HfNotiz text="Frau mit Fernglas staunt (Halbton)" />
@@ -116,20 +110,19 @@ const P = {
   ungewiss: () => (
     <>
       <HSpirale f={20} tempo={0.6} />
-      <Etikett text="AM STÄRKSTEN, WENN ES" x={70} y={280} dreh={-2} />
-      <Erpresser text="UNGEWISS" x={60} y={380} size={120} versatz={3} />
-      <Etikett text="IST." x={760} y={530} dreh={3} />
+      <div style={{ position: "absolute", left: 70, right: 140, top: 270, background: "#fff", border: `4px solid ${zine.schwarz}`, padding: "14px 24px", fontFamily: "Fell", fontStyle: "italic", fontSize: 70, lineHeight: 1, transform: "rotate(-2deg)" }}>Am stärksten, wenn es …</div>
+      <div style={{ position: "absolute", left: 540 - 380, top: 1120 - 380, width: 760, height: 760, borderRadius: "50%", background: "#F2EFE8", boxShadow: "0 0 0 6px #121212" }} />
+      <Kreistext cx={540} cy={1120} r={300} text="UNGEWISS · UNGEWISS · UNGEWISS · UNGEWISS · " size={74} farbe={zine.rot} dreh={-20} />
       <Ausschnitt name="coin" x={540} y={1120} size={420} dreh={30} />
-      <div style={{ position: "absolute", left: 760, top: 860, fontFamily: "Rye", fontSize: 220, color: zine.rot, transform: "rotate(14deg)" }}>?</div>
+      <div style={{ position: "absolute", left: 830, top: 1440, fontFamily: "Rye", fontSize: 200, color: zine.rot, transform: "rotate(14deg)" }}>?</div>
       <HfNotiz text="Münze im Flug, halb Kopf halb Zahl" />
     </>
   ),
   weiter: () => (
     <>
       <HSpirale f={80} tempo={1} />
-      <Etikett text="DARUM SCROLLST DU WEITER." x={70} y={280} dreh={-2} />
-      <Etikett text="UND" x={300} y={365} dreh={2} />
-      <Erpresser text="WEITER" x={140} y={460} size={140} versatz={0} />
+      <Papierstueck x={30} y={220} w={1000} h={560} dreh={-2} seed={14} style={{ background: zine.papier }} />
+      <Stapel x={90} y={250} text="WEITER." von={56} bis={150} n={5} farben={[zine.schwarz, zine.rot]} />
       {["NUR NOCH EINS.", "NUR NOCH EINS.", "NUR NOCH EINS."].map((t, i) => (
         <div key={i} style={{ position: "absolute", left: 140 + i * 50, top: 900 + i * 170, transform: `rotate(${-6 + i * 5}deg)`, background: i === 2 ? zine.gelb : "#fff", border: `5px solid ${zine.schwarz}`, fontFamily: "Barlow", fontWeight: 800, fontSize: 80, padding: "8px 28px", boxShadow: "6px 10px 0 rgba(0,0,0,.25)" }}>
           {t}
@@ -142,9 +135,7 @@ const P = {
     <>
       <HZeitung f={120} />
       <Papierstueck x={-40} y={720} w={1160} h={860} dreh={-3} seed={8} style={{ background: zine.papier }} />
-      <Etikett text="DEINE FIRMA STECKT IN" x={70} y={280} dreh={-2} />
-      <Etikett text="DERSELBEN" x={280} y={365} dreh={2} />
-      <Erpresser text="WALZE" x={220} y={460} size={140} versatz={5} />
+      <Karteikarte x={90} y={250} w={860} dreh={-2} zeilen={["Deine Firma steckt", <span key="w">in derselben <span style={{ background: zine.gelb, padding: "0 8px" }}>Walze.</span></span>]} />
       <Ausschnitt name="laptop" x={540} y={1130} size={560} dreh={-4} />
       <HfNotiz text="Laptop mit Website im Halbton, Riss-Übergang" />
     </>
@@ -152,9 +143,9 @@ const P = {
   sekunde: () => (
     <>
       <HPunkte farbe={zine.rot} punkt="rgba(0,0,0,.22)" />
-      <Etikett text="IN DER ERSTEN" x={80} y={270} dreh={-2} />
-      <Erpresser text="SEKUNDE" x={80} y={370} size={130} versatz={1} />
-      <Etikett text="ENTSCHEIDET SICH: WEITER ODER STOPP." x={40} y={560} dreh={2} />
+      <div style={{ position: "absolute", left: 70, top: 240, fontFamily: "Barlow", fontWeight: 800, fontSize: 420, lineHeight: 0.8, color: "#fff", letterSpacing: "-0.05em" }}>1</div>
+      <div style={{ position: "absolute", left: 330, top: 280, fontFamily: "Rye", fontSize: 92, color: zine.gelb, lineHeight: 1 }}>SEKUNDE</div>
+      <div style={{ position: "absolute", left: 335, top: 400, fontFamily: "JetBrains Mono", fontSize: 34, color: "#fff", lineHeight: 1.35 }}>entscheidet:<br />WEITER — oder STOPP.</div>
       <Ausschnitt name="hourglass-done" x={540} y={1150} size={520} />
       <HfNotiz text="Sanduhr (Halbton, wie Pinterest-Ref.)" />
     </>
@@ -163,9 +154,9 @@ const P = {
     <>
       <AbsoluteFill style={{ background: zine.schwarz }} />
       <Papierstueck x={540} y={-50} w={620} h={2050} dreh={3} seed={11} style={{ background: zine.gelb }} />
-      <Etikett text="BIST DU DIE NIETE –" x={60} y={280} dreh={-2} />
-      <Etikett text="ODER DER" x={420} y={365} dreh={2} />
-      <Erpresser text="TREFFER?" x={170} y={460} size={130} versatz={4} />
+      <div style={{ position: "absolute", left: 70, top: 300, fontFamily: "Fell SC", fontSize: 120, color: "#666", textDecoration: "line-through", textDecorationColor: zine.rot, textDecorationThickness: 10 }}>Niete</div>
+      <div style={{ position: "absolute", left: 470, top: 440, fontFamily: "Caveat", fontWeight: 600, fontSize: 70, color: "#fff", transform: "rotate(-6deg)" }}>oder …</div>
+      <div style={{ position: "absolute", left: 590, top: 520, fontFamily: "Rye", fontSize: 108, color: zine.schwarz, transform: "rotate(4deg)" }}>Treffer?</div>
       <Ausschnitt name="cross-mark" x={270} y={1100} size={300} dreh={-10} />
       <Ausschnitt name="trophy" x={800} y={1100} size={380} dreh={6} farbig />
       <HfNotiz text="Zerknülltes Papier vs. Pokal (Halbton)" />

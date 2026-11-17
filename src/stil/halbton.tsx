@@ -19,6 +19,8 @@ const fonts: [string, string, string, string][] = [
   ["Barlow", "barlow-latin-800-normal.woff2", "normal", "800"],
   ["Instrument Serif", "instrument-serif-latin-400-italic.woff2", "italic", "400"],
   ["JetBrains Mono", "jetbrains-mono-latin-500-normal.woff2", "normal", "500"],
+  ["Caveat", "caveat-latin-600-normal.woff2", "normal", "600"],
+  ["Fell", "im-fell-english-latin-400-italic.woff2", "italic", "400"],
 ];
 export const ZineSchriften: React.FC = () => {
   const [h] = useState(() => delayRender("Zine-Schriften"));
@@ -348,5 +350,128 @@ export const Korn: React.FC<{ staerke?: number }> = ({ staerke = 0.22 }) => (
 export const HfNotiz: React.FC<{ text: string; y?: number }> = ({ text, y = 1600 }) => (
   <div style={{ position: "absolute", left: 70, right: 140, top: y, fontFamily: "JetBrains Mono", fontSize: 24, lineHeight: 1.35, color: zine.schwarz, background: "rgba(255,255,255,.85)", border: `2px dashed ${zine.schwarz}`, padding: "10px 16px" }}>
     HIGGSFIELD: {text}
+  </div>
+);
+
+
+// ================= Typografie-Set T01–T13: jede Szene eine andere Schrift-Idee =================
+// T01 Erpresser + T02 Etikett: oben. Weitere:
+
+/** T03 Lotterie-Los: Text auf Ticket mit Perforation und Nummer. */
+export const Los: React.FC<{ x: number; y: number; w: number; text: string; klein?: string; dreh?: number }> = ({ x, y, w, text, klein, dreh = 0 }) => (
+  <div style={{ position: "absolute", left: x, top: y, width: w, transform: `rotate(${dreh}deg)`, filter: "drop-shadow(8px 12px 0 rgba(0,0,0,.25))" }}>
+    <div style={{ background: zine.gelb, border: `4px solid ${zine.schwarz}`, borderRadius: 18, padding: "22px 34px", position: "relative", WebkitMaskImage: "radial-gradient(circle at 0 50%, transparent 26px, #000 27px), radial-gradient(circle at 100% 50%, transparent 26px, #000 27px)", WebkitMaskComposite: "source-in" as any, maskComposite: "intersect" }}>
+      <div style={{ fontFamily: "JetBrains Mono", fontSize: 26, letterSpacing: "0.2em", color: zine.schwarz }}>{klein ?? "LOS Nr. 000 471"}</div>
+      <div style={{ borderTop: `3px dashed ${zine.schwarz}`, margin: "10px 0" }} />
+      <div style={{ fontFamily: "Rye", fontSize: w * 0.26, lineHeight: 1, color: zine.rot, textAlign: "center" }}>{text}</div>
+    </div>
+  </div>
+);
+
+/** T04 Riso-Doppeldruck: zwei versetzte Farbschichten. */
+export const Riso: React.FC<{ x: number; y: number; text: string; size: number; a?: string; b?: string; dreh?: number }> = ({ x, y, text, size, a = zine.rot, b = zine.violett, dreh = 0 }) => {
+  const st: React.CSSProperties = { position: "absolute", left: 0, top: 0, fontFamily: "Barlow", fontWeight: 800, fontSize: size, lineHeight: 0.9, letterSpacing: "-0.03em", whiteSpace: "nowrap", mixBlendMode: "multiply" };
+  return (
+    <div style={{ position: "absolute", left: x, top: y, transform: `rotate(${dreh}deg)` }}>
+      <div style={{ ...st, color: b, transform: "translate(10px, 8px)" }}>{text}</div>
+      <div style={{ ...st, position: "relative", color: a }}>{text}</div>
+    </div>
+  );
+};
+
+/** T05 Halbton-gefüllte Riesenbuchstaben (Punktraster im Buchstaben). */
+export const Rasterwort: React.FC<{ x: number; y: number; text: string; size: number; farbe?: string; dreh?: number }> = ({ x, y, text, size, farbe = "#fff", dreh = 0 }) => (
+  <div
+    style={{
+      position: "absolute", left: x, top: y, transform: `rotate(${dreh}deg)`,
+      fontFamily: "Barlow", fontWeight: 800, fontSize: size, lineHeight: 0.9, letterSpacing: "-0.03em", whiteSpace: "nowrap",
+      backgroundImage: `radial-gradient(circle, ${farbe} 42%, transparent 46%)`, backgroundSize: `${size / 14}px ${size / 14}px`,
+      WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent",
+      WebkitTextStroke: `3px ${farbe}`,
+    }}
+  >
+    {text}
+  </div>
+);
+
+/** T06 Gelbe Sprechblase (Pinterest-Ref.) mit Serif kursiv. */
+export const Blase: React.FC<{ x: number; y: number; w: number; children: React.ReactNode; dreh?: number }> = ({ x, y, w, children, dreh = 0 }) => (
+  <div style={{ position: "absolute", left: x, top: y, width: w, transform: `rotate(${dreh}deg)`, filter: weisserRand(6) }}>
+    <div style={{ background: zine.gelb, borderRadius: "50%", padding: `${w * 0.12}px ${w * 0.1}px`, textAlign: "center", fontFamily: "Instrument Serif", fontStyle: "italic", fontSize: w * 0.15, lineHeight: 0.95, color: zine.schwarz }}>
+      {children}
+    </div>
+    <div style={{ position: "absolute", left: w * 0.62, bottom: -w * 0.1, width: 0, height: 0, borderLeft: `${w * 0.06}px solid transparent`, borderRight: `${w * 0.1}px solid transparent`, borderTop: `${w * 0.16}px solid ${zine.gelb}`, transform: "rotate(-18deg)" }} />
+  </div>
+);
+
+/** T07 Gummistempel: rot, schief, ausgefranst. */
+export const Stempel: React.FC<{ x: number; y: number; text: string; size: number; dreh?: number; farbe?: string; dunkel?: boolean }> = ({ x, y, text, size, dreh = -8, farbe = zine.rot, dunkel = false }) => (
+  <div style={{ position: "absolute", left: x, top: y, transform: `rotate(${dreh}deg)`, border: `${size * 0.07}px solid ${farbe}`, borderRadius: size * 0.12, padding: `${size * 0.04}px ${size * 0.18}px`, color: farbe, fontFamily: "Barlow", fontWeight: 800, fontSize: size, letterSpacing: "0.04em", lineHeight: 1,
+    WebkitMaskImage: "radial-gradient(circle at 30% 40%, #000 55%, rgba(0,0,0,.55) 75%, #000 90%)", opacity: 0.95, mixBlendMode: dunkel ? "normal" : "multiply" }}>
+    {text}
+  </div>
+);
+
+/** T08 Handschrift mit Marker-Unterstrich. */
+export const Hand: React.FC<{ x: number; y: number; text: string; size: number; farbe?: string; dreh?: number; strich?: string }> = ({ x, y, text, size, farbe = zine.gelb, dreh = -3, strich = zine.rot }) => (
+  <div style={{ position: "absolute", left: x, top: y, transform: `rotate(${dreh}deg)`, fontFamily: "Caveat", fontWeight: 600, fontSize: size, color: farbe, lineHeight: 1, whiteSpace: "nowrap" }}>
+    {text}
+    <svg style={{ position: "absolute", left: 0, top: size * 0.95 }} width="100%" height={size * 0.3} viewBox="0 0 100 10" preserveAspectRatio="none">
+      <path d="M2,6 C30,2 60,9 98,3" fill="none" stroke={strich} strokeWidth={2.4} strokeLinecap="round" />
+    </svg>
+  </div>
+);
+
+/** T09 Prägeband (Dymo): erhabene weisse Buchstaben auf farbigem Band. */
+export const Praegeband: React.FC<{ x: number; y: number; text: string; size: number; farbe?: string; dreh?: number }> = ({ x, y, text, size, farbe = zine.schwarz, dreh = 0 }) => (
+  <div style={{ position: "absolute", left: x, top: y, transform: `rotate(${dreh}deg)`, background: `linear-gradient(${farbe}, ${farbe} 45%, #000 140%)`, padding: `${size * 0.14}px ${size * 0.3}px`, borderRadius: 6, boxShadow: "4px 7px 0 rgba(0,0,0,.25), inset 0 2px 0 rgba(255,255,255,.25)",
+    fontFamily: "Barlow", fontWeight: 800, fontSize: size, letterSpacing: "0.22em", color: "#F2F2F2", textShadow: "0 -1px 0 rgba(0,0,0,.6), 0 1px 0 rgba(255,255,255,.4)" }}>
+    {text}
+  </div>
+);
+
+/** T10 Zeitungs-Schlagzeile: Streifen aus der Zeitung gerissen. */
+export const Schlagzeile: React.FC<{ x: number; y: number; w: number; dach: string; titel: string; dreh?: number }> = ({ x, y, w, dach, titel, dreh = 0 }) => (
+  <Papierstueck x={x} y={y} w={w} h={w * 0.5} dreh={dreh} seed={21} style={{ background: "#F1ECDF", padding: "26px 34px", boxSizing: "border-box" }}>
+    <div style={{ fontFamily: "Fell SC", fontSize: w * 0.045, letterSpacing: "0.1em", color: zine.rot, borderBottom: `3px double ${zine.schwarz}`, paddingBottom: 6 }}>{dach}</div>
+    <div style={{ fontFamily: "Fell SC", fontSize: w * 0.14, lineHeight: 0.95, color: zine.schwarz, marginTop: 10 }}>{titel}</div>
+  </Papierstueck>
+);
+
+/** T11 Text auf Kreisbahn (um ein Objekt). */
+export const Kreistext: React.FC<{ cx: number; cy: number; r: number; text: string; size: number; farbe?: string; dreh?: number }> = ({ cx, cy, r, text, size, farbe = zine.schwarz, dreh = 0 }) => (
+  <svg style={{ position: "absolute", left: cx - r - size, top: cy - r - size, transform: `rotate(${dreh}deg)` }} width={(r + size) * 2} height={(r + size) * 2} viewBox={`${-r - size} ${-r - size} ${(r + size) * 2} ${(r + size) * 2}`}>
+    <defs>
+      <path id={`kreis${r}`} d={`M ${-r},0 a ${r},${r} 0 1,1 ${r * 2},0 a ${r},${r} 0 1,1 ${-r * 2},0`} />
+    </defs>
+    <text style={{ fontFamily: "Barlow", fontWeight: 800, fontSize: size, letterSpacing: "0.12em" }} fill={farbe}>
+      <textPath href={`#kreis${r}`}>{text}</textPath>
+    </text>
+  </svg>
+);
+
+/** T12 Wiederholungs-Stapel: Wort wiederholt, jede Zeile grösser. */
+export const Stapel: React.FC<{ x: number; y: number; text: string; von: number; bis: number; n: number; farben?: string[] }> = ({ x, y, text, von, bis, n, farben = [zine.schwarz] }) => {
+  let top = 0;
+  return (
+    <div style={{ position: "absolute", left: x, top: y }}>
+      {Array.from({ length: n }, (_, i) => {
+        const s = von + ((bis - von) * i) / (n - 1);
+        const el = <div key={i} style={{ position: "absolute", left: 0, top, fontFamily: "Barlow", fontWeight: 800, fontSize: s, lineHeight: 0.86, letterSpacing: "-0.03em", color: farben[i % farben.length], whiteSpace: "nowrap" }}>{text}</div>;
+        top += s * 0.86;
+        return el;
+      })}
+    </div>
+  );
+};
+
+/** T13 Karteikarte mit Schreibmaschine. */
+export const Karteikarte: React.FC<{ x: number; y: number; w: number; zeilen: React.ReactNode[]; dreh?: number }> = ({ x, y, w, zeilen, dreh = 0 }) => (
+  <div style={{ position: "absolute", left: x, top: y, width: w, transform: `rotate(${dreh}deg)`, background: "#FBF8F0", boxShadow: "8px 12px 0 rgba(0,0,0,.2)", padding: "30px 36px 34px",
+    backgroundImage: "linear-gradient(transparent 62px, #9DB5D9 62px, #9DB5D9 64px, transparent 64px), repeating-linear-gradient(transparent 0 58px, #C9D5EA 58px 60px)", backgroundPosition: "0 0, 0 70px" }}>
+    <div style={{ position: "absolute", left: w * 0.38, top: -24, width: 150, height: 46, background: "rgba(240,234,210,.8)", transform: "rotate(-4deg)" }} />
+    {zeilen.map((z, i) => (
+      <div key={i} style={{ fontFamily: "JetBrains Mono", fontSize: 44, lineHeight: "60px", color: "#222" }}>{z}</div>
+    ))}
   </div>
 );

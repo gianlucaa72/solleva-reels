@@ -39,6 +39,8 @@ Status: **v0.2: Bausteine aus 7 Referenzen gebaut, wartet auf Freigabe des Nutze
 - **Übersichtlich**: oben Text, Mitte EIN Hauptobjekt, höchstens 2–3 Akzente.
 - **Hintergründe immer anders und in Bewegung** (Ref. 08 «Batman»): pro Satz ein anderer Hintergrund-Typ, jeder bewegt sich leicht (Strahlen drehen, Tapete schwenkt, Punkte atmen, Spirale dreht).
 
+- **Typografie nie kopieren**: jede Szene bekommt eine eigene Schrift-Idee (Typografie-Set T01–T13 in `src/stil/halbton.tsx`: Erpresser, Etikett, Lotterie-Los, Riso-Doppeldruck, Raster-Wort, Sprechblase, Stempel, Handschrift, Prägeband, Schlagzeile, Kreistext, Wiederholungs-Stapel, Karteikarte). Dieselbe Idee höchstens zweimal pro Reel (z. B. Hook und CTA als Klammer).
+
 ## Stil-Rezepte
 - **R01 Halbton-Collage** (`src/stil/halbton.tsx`, Reel «Spielautomat»): Halbton-Ausschnitte s/w mit weissem Papierrand, gerissenes Papier, Erpresserbrief-Buchstaben (Schlüsselwort), schwarze Etiketten (Mono) für den Rest des Satzes. Farben: Papier #ECE9E2, Schwarz #121212, Rot #D7232B, Gelb #FFD21F, Violett #6C3FD4. Hintergründe H1 Strahlen, H2 Zeitung, H3 Punkte, H4 Schwarzpapier, H5 Karo, H6 Halbton-Kreis, H7 Packpapier, H8 Spirale. Objekte: Higgsfield (Prompt-Kern: «vintage black and white halftone cutout, white paper border, plain white background»), danach freistellen.
 - **R02 Papiertheater** (`src/reels/spielautomat/Collage.tsx`, Ref. 08): Bühne mit Vorhängen, Strahlen, Kupferstich-Requisiten an Fäden, Fell-Serif. Noch nicht eingesetzt.
