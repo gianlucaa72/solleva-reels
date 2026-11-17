@@ -70,6 +70,6 @@ Status: **v0.2: Bausteine aus 7 Referenzen gebaut, wartet auf Freigabe des Nutze
 
 ## Offen
 - Ratsche erledigt: Favoriten ratsche-18 (rollt aus) und ratsche-19 (gleichmässig).
-- Musik (basslastiger Beat ohne Gesang) noch nicht gewählt.
+- Musik Reel «Spielautomat»: Nutzer wählt **Variante 3 «Kino-Puls»** (gezupfte Streicher, tiefes Klavier, weicher Puls, 103 BPM, d-Moll, kein klassischer Beat) aus 3 ElevenLabs-Varianten. Richtung Batman-Reel (Ref. 08): dunkel, filmisch, ~103 BPM, Moll. Musik ~10 dB unter der Stimme, Sidechain-Ducking, 0,8 s Fade-out (`assets/spielautomat/musik/`).
 - Tiefere Stimme bei Higgsfield testen (kostet Credits, nur mit Freigabe).
 - Collage-Foto-Objekte (Hände, Geräte) via Higgsfield erst nach Freigabe.
