@@ -30,7 +30,7 @@ export const Walze: React.FC<{
         height: h,
         borderRadius: 30,
         overflow: "hidden",
-        background: s.dunkel ? "#0D1033" : farben.weiss,
+        background: s.dunkel ? s.flaeche : farben.weiss,
         border: `2px solid ${leuchten ? s.akzent : s.rand}`,
         boxShadow: leuchten
           ? `0 0 60px ${s.akzent}88, inset 0 0 40px ${s.akzent}33`

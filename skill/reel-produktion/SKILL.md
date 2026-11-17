@@ -83,7 +83,7 @@ Zusätzlich gilt immer der Skill **motion-design** (Kurven Land/Heavy/Whip, ein 
 ### 1. Brief und Referenz-Intake (eine Nachricht, nur nachfragen, was fehlt)
 Typischer Start: «Heute machen wir ein Reel über X.» Dann gemeinsam klären:
 - **Kanal:** Solleva, giani.hockey, Lieblingsfund oder Kunde → bestimmt den Basis-Steckbrief (unten).
-- **Eine Botschaft** in einem Satz, **Zielgruppe**, **CTA** (z. B. «Schreib «Analyse»»).
+- **Eine Botschaft** in einem Satz, **Zielgruppe**, **CTA** (Standard Solleva: «Folge für mehr»).
 - **Länge:** Standard 20–30 s. Nie über 35 s ohne Grund.
 
 **Referenzen: drei Bausteine** (Upload-Limit des Nutzers: 30 MB pro Datei)
@@ -235,7 +235,7 @@ Bibliotheken: `sfx-library/` (Mixkit: whoosh, transition, click, pop, notificati
 - Formen: weisse Karten, Radius 34, Rand 1,5 px #E1DDF5, weicher Schatten (0 30 70 rgba(44,30,120,.14)). Cursor weiss mit Tinten-Rand.
 - Schrift: Barlow 800 (Text), Instrument Serif kursiv (Schlüsselwörter), Barlow 700 Versalien mit Sperrung 0,14 em (Labels).
 - Motive: Suche (neutral, ohne Google-Logo; «Google» nur gesprochen), Ergebnisliste, Website-Karte, Google-Profil-Karte, Checkliste, Termin/Anfrage, «anheben»-Motiv (Dinge heben sich, Schatten wird kleiner).
-- Endkarte: Logo + «Solleva» oben, Claim «Heb dich von der *Masse* ab.», CTA-Button «Schreib «Analyse»», Instagram-Karte @solleva.ch / solleva.ch mit «Folgen».
+- Endkarte: Logo + «Solleva» oben, Claim «Heb dich von der *Masse* ab.», CTA-Button «Folge für mehr» (seit Reel «Spielautomat»), Instagram-Karte @solleva.ch / solleva.ch mit «Folgen».
 - Stimme: Andre (siehe Schritt 4). Ich-Form.
 
 **giani.hockey** (Hockey, persönlich)

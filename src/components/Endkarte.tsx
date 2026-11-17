@@ -9,7 +9,7 @@ import { Hintergrund } from "./Basis";
 export const Endkarte: React.FC<{ s: Stimmung; start?: number; cta?: string; klickAuf?: number }> = ({
   s,
   start = 0,
-  cta = "Schreib «Analyse»",
+  cta = "Folge für mehr",
   klickAuf,
 }) => {
   const frame = useCurrentFrame();

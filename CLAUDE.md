@@ -30,6 +30,10 @@ Status: **v0.2: Bausteine aus 7 Referenzen gebaut, wartet auf Freigabe des Nutze
 - `npm run katalog` (Katalog-Video mit Ton)
 - `python3 tools/hoerprobe.py` (Hörprobe neu bauen)
 
+## CTA (Wunsch des Nutzers, ab Reel «Spielautomat»)
+- Standard-CTA ist **«Folge für mehr»** (nicht mehr «Schreib «Analyse»»). Endkarte E01 hat das als Vorgabe.
+- Skripte dürfen ausführlicher sein (ca. 30–40 s), wenn sie Wissen faktenbasiert erklären (z. B. Dopamin).
+
 ## Bildsprache (Wunsch des Nutzers, gilt immer)
 - **Nicht nur Folien mit Text**: jede Szene bekommt ein Bild zur Veranschaulichung.
 - **Hauptbilder = echte, generierte Objekte/Figuren** (Higgsfield, freigestellt): z. B. realistisches **Gehirn**, **griechische Männer/Marmor-Statuen**, Cartoon-Figuren, PC fällt vom Himmel. **Nicht** die Emoji-Version davon.
