@@ -429,10 +429,10 @@ const Szene3: React.FC<SzProps> = ({ f, cam, stufe, camT }) => {
             <div style={{ position: "absolute", left: 760, top: 575, background: "#fff", padding: "8px 18px", fontFamily: "JetBrains Mono", fontSize: 38, color: zine.schwarz, boxShadow: "6px 9px 0 rgba(0,0,0,.2)" }}>… AUS.</div>
           </Rein>
         </AbsoluteFill>
-        <LinsenText f={f} start={z6.start} x={110} y={330} size={84}>DOPAMIN HEISST:</LinsenText>
-        <LinsenText f={f} start={z6.m.mehr - 12} x={110} y={430} size={104}>DA KOMMT NOCH</LinsenText>
-        <LinsenText f={f} start={z6.m.mehr} x={150} y={540} size={250} farbe="#E8231F" von="rechts" schub={mehrSchub}>MEHR</LinsenText>
-        <LinsenText f={f} start={z6.m.mehr + 7} x={820} y={540} size={250} farbe="#E8231F" von="rechts">!</LinsenText>
+        <LinsenText f={f} start={z6.start} x={110} y={290} size={80}>DOPAMIN HEISST:</LinsenText>
+        <LinsenText f={f} start={z6.m.mehr - 12} x={110} y={395} size={100}>DA KOMMT NOCH</LinsenText>
+        <LinsenText f={f} start={z6.m.mehr} x={150} y={505} size={250} farbe="#E8231F" von="rechts" schub={mehrSchub}>MEHR</LinsenText>
+        <LinsenText f={f} start={z6.m.mehr + 7} x={772} y={505} size={250} farbe="#E8231F" von="rechts">!</LinsenText>
       </Ebene>
       <Ebene cam={cam} tiefe={TIEFE.vordergrund} style={{ opacity: weg(f, 3, 6, 9) }}>
         <div style={{ filter: "blur(9px)" }}>
@@ -804,7 +804,7 @@ const stoss = (f: number) => {
 type Schwenk = { f: number; dauer: number; ds: number; dx?: number; dy?: number };
 const SCHWENKS: Record<number, Schwenk[]> = {
   1: [{ f: Z(1).m.zeile2, dauer: 26, ds: 0.05, dy: 50 }],
-  2: [{ f: Z(3).start, dauer: 24, ds: 0.07, dy: 110 }],
+  2: [{ f: Z(3).start, dauer: 24, ds: 0.04, dy: 40 }],
   4: [{ f: Z(8).m.wort - 2, dauer: 16, ds: 0.05, dx: 50, dy: -30 }],
   5: [{ f: Z(10).m.und - 6, dauer: 20, ds: 0.06, dy: 120 }],
   6: [{ f: Z(11).m.wort - 12, dauer: 20, ds: 0.05, dy: 70 }],
