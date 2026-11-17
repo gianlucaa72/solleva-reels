@@ -5,6 +5,7 @@ import { Katalog, KATALOG_DAUER } from "./katalog/Katalog";
 import { VsBoard } from "./reels/vierSchichten/Board";
 import { Stiltest, STILTEST_DAUER } from "./reels/vierSchichten/Stiltest";
 import { VierSchichten, REEL_DAUER } from "./reels/vierSchichten/Reel";
+import { Blueprint, BP_DAUER } from "./reels/vierSchichten/Blueprint";
 
 export const Root: React.FC = () => (
   <>
@@ -12,5 +13,6 @@ export const Root: React.FC = () => (
     <Composition id="VS-Board" component={VsBoard} durationInFrames={150} fps={FPS} width={BREITE} height={HOEHE} defaultProps={{ nr: 0 }} />
     <Composition id="VS-Stiltest" component={Stiltest} durationInFrames={STILTEST_DAUER} fps={FPS} width={BREITE} height={HOEHE} defaultProps={{ video: "h5-gitter-b.mp4" }} />
     <Composition id="VierSchichten" component={VierSchichten} durationInFrames={REEL_DAUER} fps={FPS} width={BREITE} height={HOEHE} defaultProps={{ mitMusik: "" }} />
+    <Composition id="VierSchichtenV2" component={Blueprint} durationInFrames={BP_DAUER} fps={FPS} width={BREITE} height={HOEHE} defaultProps={{ mitMusik: "" }} />
   </>
 );
