@@ -38,3 +38,7 @@ Der glatte, gemalte Tarot-Look (Batman) ist ein typisches **Midjourney-/Flux-Mot
 - **Halbton-Filter + weisser Papierrand im Code** über jedes generierte Bild: vereinheitlicht und kaschiert verwaschene Details.
 - Objekte einzeln generieren (ein Motiv pro Bild, weisser Grund), freistellen, dann komponieren; keine ganzen Szenen generieren.
 - Jedes generierte Bild prüfen: Hände/Finger, Ränder, kein KI-Text.
+
+## Weitere Hintergrund-Referenzen des Nutzers (Nov. 2026)
+- **Strahlen mit Textur** (Pinterest): unregelmässige, wie gemalte Strahlen, Samt-Rot auf fleckigem Papier → «sieht teuer aus». Umgesetzt als Higgsfield-Textur `assets/spielautomat/strahlen-rot-a.png` (2k, 1 Credit), im Code langsam gedreht. Regel: **Hintergründe mit echter Textur generieren, nicht flach im Code** (Code nur für Bewegung/Geometrie).
+- **Rote Wellen** (japanisches Muster, rot/creme), **Rahmen aus gerissener Zeitung** (weisses Feld in der Mitte), **Halbton-Wolkenhimmel** (blau, Riso-Raster) «zur Abwechslung».

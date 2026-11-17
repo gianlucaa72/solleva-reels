@@ -1,0 +1,133 @@
+{
+ "fps": 30,
+ "gesamtSek": 44.56,
+ "gesamtF": 1337,
+ "saetze": [
+  {
+   "nr": 1,
+   "text": "Dein Daumen zieht gerade an einem Spielautomaten.",
+   "datei": "satz_01.wav",
+   "start": 0.15,
+   "dauer": 3.016,
+   "startF": 4,
+   "endeF": 95
+  },
+  {
+   "nr": 2,
+   "text": "Jeder Wisch ist ein neuer Dreh.",
+   "datei": "satz_02.wav",
+   "start": 3.386,
+   "dauer": 1.92,
+   "startF": 102,
+   "endeF": 159
+  },
+  {
+   "nr": 3,
+   "text": "Meistens Niete. Aber manchmal: Treffer.",
+   "datei": "satz_03.wav",
+   "start": 5.526,
+   "dauer": 3.543,
+   "startF": 166,
+   "endeF": 272
+  },
+  {
+   "nr": 4,
+   "text": "Und dann schüttet dein Gehirn Dopamin aus.",
+   "datei": "satz_04.wav",
+   "start": 9.289,
+   "dauer": 2.654,
+   "startF": 279,
+   "endeF": 358
+  },
+  {
+   "nr": 5,
+   "text": "Viele denken, Dopamin sei das Glückshormon.",
+   "datei": "satz_05.wav",
+   "start": 12.163,
+   "dauer": 2.692,
+   "startF": 365,
+   "endeF": 446
+  },
+  {
+   "nr": 6,
+   "text": "Falsch. Dopamin heisst: Da kommt noch mehr.",
+   "datei": "satz_06.wav",
+   "start": 15.075,
+   "dauer": 3.919,
+   "startF": 452,
+   "endeF": 570
+  },
+  {
+   "nr": 7,
+   "text": "Ein erwarteter Treffer lässt es fast kalt.",
+   "datei": "satz_07.wav",
+   "start": 19.214,
+   "dauer": 2.653,
+   "startF": 576,
+   "endeF": 656
+  },
+  {
+   "nr": 8,
+   "text": "Ein überraschender Treffer löst einen Schub aus.",
+   "datei": "satz_08.wav",
+   "start": 22.087,
+   "dauer": 3.008,
+   "startF": 663,
+   "endeF": 753
+  },
+  {
+   "nr": 9,
+   "text": "Am stärksten wirkt es, wenn es ungewiss ist.",
+   "datei": "satz_09.wav",
+   "start": 25.315,
+   "dauer": 2.515,
+   "startF": 759,
+   "endeF": 835
+  },
+  {
+   "nr": 10,
+   "text": "Darum scrollst du weiter. Und weiter.",
+   "datei": "satz_10.wav",
+   "start": 28.051,
+   "dauer": 3.571,
+   "startF": 842,
+   "endeF": 949
+  },
+  {
+   "nr": 11,
+   "text": "Deine Firma steckt in derselben Walze.",
+   "datei": "satz_11.wav",
+   "start": 31.842,
+   "dauer": 2.333,
+   "startF": 955,
+   "endeF": 1025
+  },
+  {
+   "nr": 12,
+   "text": "In der ersten Sekunde entscheidet sich: weiter oder Stopp.",
+   "datei": "satz_12.wav",
+   "start": 34.394,
+   "dauer": 3.889,
+   "startF": 1032,
+   "endeF": 1148
+  },
+  {
+   "nr": 13,
+   "text": "Bist du die Niete – oder der Treffer?",
+   "datei": "satz_13.wav",
+   "start": 38.503,
+   "dauer": 2.41,
+   "startF": 1155,
+   "endeF": 1227
+  },
+  {
+   "nr": 14,
+   "text": "Folge für mehr.",
+   "datei": "satz_14.wav",
+   "start": 41.133,
+   "dauer": 1.427,
+   "startF": 1234,
+   "endeF": 1277
+  }
+ ]
+}
