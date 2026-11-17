@@ -47,6 +47,12 @@ const ruhe = (f: number, n: number) => {
   return s == null ? 1 : 1 - tw(f, s - 14, 12, 0, 1, kurve.land);
 };
 
+/** Während der Fahrt fliegen Vordergrund und Text der alten Szene unscharf vorbei und blenden aus (sonst Sprung beim Wechsel). */
+const weg = (f: number, n: number, ab: number, dauer: number) => {
+  const s = FAHRT[n];
+  return s == null ? 1 : 1 - tw(f, s + ab, dauer, 0, 1, kurve.fade);
+};
+
 // ============================== Bausteine ==============================
 /** Bei starkem Zoom (Kamera > 2×) teure Papierrand-Filter weglassen (Elemente sind dann ohnehin aus dem Bild oder verwischt). */
 const Leicht = React.createContext(false);
@@ -213,13 +219,13 @@ const Szene1: React.FC<SzProps> = ({ f, cam, stufe }) => {
       <Ebene cam={cam} tiefe={TIEFE.haupt}>
         <HandyMitSzene f={f} stufe={stufe} sc={S1_SC} x={S1_POS.x} y={S1_POS.y} tr={handTransform(f)} blur={ein * 6} n={2} />
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.text}>
+      <Ebene cam={cam} tiefe={TIEFE.text} style={{ opacity: weg(f, 1, 11, 8) }}>
         <EtikettAnim text="DEIN DAUMEN ZIEHT" x={70} y={250} dreh={-3} start={z.start} f={f} />
         <EtikettAnim text="GERADE AN EINEM" x={240} y={338} dreh={2} start={z.m.zeile2} f={f} />
         <ErpresserAnim text="SPIEL" x={80} y={432} size={120} start={z.m.wort} f={f} />
         <ErpresserAnim text="AUTOMATEN" x={50} y={584} size={92} versatz={3} start={z.m.wort + 10} f={f} />
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.vordergrund}>
+      <Ebene cam={cam} tiefe={TIEFE.vordergrund} style={{ opacity: weg(f, 1, 6, 9) }}>
         <VMuenze f={f} x={-190} y={1560} g={520} dreh={-20} blur={7} />
         <VMuenze f={-f} x={900} y={40} g={300} dreh={30} blur={9} />
       </Ebene>
@@ -281,7 +287,7 @@ const Szene2: React.FC<SzProps> = ({ f, cam, stufe }) => {
         <Walzen f={f} pos={walze12} />
         <Portal n={3} f={f} stufe={stufe} fenster={S2_FENSTER} box={S2_BOX} radius={18} auf={[FAHRT[2] as number, 8]} />
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.text}>
+      <Ebene cam={cam} tiefe={TIEFE.text} style={{ opacity: weg(f, 2, 11, 8) }}>
         {f >= los - 1 && (
           <div style={{ position: "absolute", left: 120, top: 250, width: 840, transformOrigin: "50% 0", transform: `translateY(${losP * -900}px) rotate(${-3 + losP * -25 + losWackel}deg) scale(${landung(f, los + 9, 8, 1.03)})`, filter: "drop-shadow(10px 14px 0 rgba(0,0,0,.28))" }}>
             <div style={{ background: zine.gelb, border: `5px solid ${zine.schwarz}`, borderRadius: 20, padding: "26px 40px 30px", WebkitMaskImage: "radial-gradient(circle at 0 50%, transparent 30px, #000 31px), radial-gradient(circle at 100% 50%, transparent 30px, #000 31px)", WebkitMaskComposite: "source-in", maskComposite: "intersect" } as React.CSSProperties}>
@@ -297,7 +303,7 @@ const Szene2: React.FC<SzProps> = ({ f, cam, stufe }) => {
           </div>
         )}
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.vordergrund}>
+      <Ebene cam={cam} tiefe={TIEFE.vordergrund} style={{ opacity: weg(f, 2, 6, 9) }}>
         <div style={{ filter: "blur(2.5px)" }}>
           <Papierstueck x={-80} y={1660} w={1240} h={420} dreh={-5} seed={44} style={{ background: "#EFE7D3" }}>
             <Img src={A("papier")} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.8 }} />
@@ -351,7 +357,7 @@ const Szene3: React.FC<SzProps> = ({ f, cam, stufe }) => {
           </div>
         )}
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.text}>
+      <Ebene cam={cam} tiefe={TIEFE.text} style={{ opacity: weg(f, 3, 11, 8) }}>
         <Rein f={f} start={z.start} art="rutsch">
           <Papierstueck x={50} y={235} w={980} h={230} dreh={-2} seed={31} style={{ background: "#F6F1E4" }} />
         </Rein>
@@ -373,7 +379,7 @@ const Szene3: React.FC<SzProps> = ({ f, cam, stufe }) => {
           <Riso x={70} y={485} text="TREFFER!" size={190} dreh={-4} />
         </Rein>
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.vordergrund}>
+      <Ebene cam={cam} tiefe={TIEFE.vordergrund} style={{ opacity: weg(f, 3, 6, 9) }}>
         <VLos x={-260} y={60} dreh={-14} />
       </Ebene>
     </AbsoluteFill>
@@ -419,7 +425,7 @@ const Szene4: React.FC<SzProps> = ({ f, cam, stufe }) => {
           </div>
         )}
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.text}>
+      <Ebene cam={cam} tiefe={TIEFE.text} style={{ opacity: weg(f, 4, 11, 8) }}>
         <Rein f={f} start={z.start} art="slap" ox={80} oy={280}>
           <div style={{ position: "absolute", left: 80, top: 255, background: "#fff", padding: "10px 20px", fontFamily: "JetBrains Mono", fontSize: 38, letterSpacing: "0.06em", color: zine.schwarz, boxShadow: "6px 9px 0 rgba(0,0,0,.2)", transform: "rotate(-1.5deg)" }}>UND DANN SCHÜTTET DEIN GEHIRN …</div>
         </Rein>
@@ -430,7 +436,7 @@ const Szene4: React.FC<SzProps> = ({ f, cam, stufe }) => {
           <div style={{ position: "absolute", left: 760, top: 545, background: "#fff", padding: "8px 18px", fontFamily: "JetBrains Mono", fontSize: 38, color: zine.schwarz, boxShadow: "6px 9px 0 rgba(0,0,0,.2)" }}>… AUS.</div>
         </Rein>
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.vordergrund}>
+      <Ebene cam={cam} tiefe={TIEFE.vordergrund} style={{ opacity: weg(f, 4, 6, 9) }}>
         <div style={{ filter: "blur(9px)" }}>
           <Zacken x={1010} y={150} r={210} farbe={zine.gelb} spitzen={11} dreh={f * 0.3} />
         </div>
@@ -463,7 +469,7 @@ const Szene5: React.FC<SzProps> = ({ f, cam, stufe }) => {
           </Objekt>
         )}
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.text}>
+      <Ebene cam={cam} tiefe={TIEFE.text} style={{ opacity: weg(f, 5, 11, 8) }}>
         <Rein f={f} start={z.start} art="schreiben" dauer={52}>
           <Hand x={90} y={245} text="Viele denken, Dopamin sei das …" size={66} farbe={zine.schwarz} strich={zine.violett} />
         </Rein>
@@ -471,7 +477,7 @@ const Szene5: React.FC<SzProps> = ({ f, cam, stufe }) => {
           <Blase x={150} y={360} w={660} dreh={-3}>Glücks&shy;hormon!</Blase>
         </Rein>
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.vordergrund}>
+      <Ebene cam={cam} tiefe={TIEFE.vordergrund} style={{ opacity: weg(f, 5, 6, 9) }}>
         <Img src={A("papierball-frei")} style={{ position: "absolute", left: 820, top: 1620, width: 420, height: 420, filter: "blur(8px)", transform: `rotate(${f * 0.15}deg)` }} />
       </Ebene>
     </AbsoluteFill>
@@ -481,7 +487,7 @@ const Szene5: React.FC<SzProps> = ({ f, cam, stufe }) => {
 const Szene6: React.FC<SzProps> = ({ f, cam, stufe }) => {
   const z = Z(6);
   const fahrt = FAHRT[6] as number;
-  const weg = 1 - tw(f, fahrt, 8, 0, 1, kurve.fade);
+  const etikettWeg = 1 - tw(f, fahrt, 8, 0, 1, kurve.fade);
   const riss = tw(f, z.start + 3, 10, 0, 1, kurve.land);
   const h = ruhe(f, 6);
   return (
@@ -491,20 +497,20 @@ const Szene6: React.FC<SzProps> = ({ f, cam, stufe }) => {
       </Ebene>
       <Ebene cam={cam} tiefe={TIEFE.haupt}>
         <Objekt bild="flasche-frei" bw={FL.bw} bh={FL.bh} sc={FL.sc} x={FL.x} y={FL.y} tr={`rotate(${4 * h}deg) translateY(${Math.sin(f / 22) * 6 * h}px)`}>
-          <div style={{ opacity: weg }}><Etikett /></div>
-          <svg style={{ position: "absolute", inset: 0, opacity: weg }} width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <div style={{ opacity: etikettWeg }}><Etikett /></div>
+          <svg style={{ position: "absolute", inset: 0, opacity: etikettWeg }} width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
             <path d="M30,30 L44,46 L36,55 L52,70 L46,86 M44,46 L58,50 M52,70 L64,66" fill="none" stroke="#fff" strokeWidth={0.9} strokeDasharray="120" strokeDashoffset={120 * (1 - riss)} />
             <path d="M30,30 L44,46 L36,55 L52,70 L46,86 M44,46 L58,50 M52,70 L64,66" fill="none" stroke={zine.schwarz} strokeWidth={0.45} strokeDasharray="120" strokeDashoffset={120 * (1 - riss)} />
           </svg>
           <Portal n={7} f={f} stufe={stufe} fenster={FL_FENSTER} box={FL_BOX} radius={6} auf={[fahrt, 8]} />
         </Objekt>
-        <div style={{ opacity: weg }}>
+        <div style={{ opacity: etikettWeg }}>
           <Rein f={f} start={z.start + 1} art="stempel" ox={480} oy={1180}>
             <div style={{ position: "absolute", left: 150, top: 1090, transform: "rotate(-14deg)", border: "12px solid #FF3B3B", borderRadius: 20, padding: "6px 30px", color: "#FF3B3B", fontFamily: "Barlow", fontWeight: 800, fontSize: 170, letterSpacing: "0.04em", lineHeight: 1, WebkitMaskImage: "radial-gradient(circle at 30% 40%, #000 55%, rgba(0,0,0,.55) 75%, #000 90%)" }}>FALSCH.</div>
           </Rein>
         </div>
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.text}>
+      <Ebene cam={cam} tiefe={TIEFE.text} style={{ opacity: weg(f, 6, 11, 8) }}>
         <Rein f={f} start={z.m.heisst} art="slap" ox={90} oy={300}>
           <div style={{ position: "absolute", left: 90, top: 280, fontFamily: "JetBrains Mono", fontSize: 40, color: "#C9C9C9", letterSpacing: "0.1em" }}>DOPAMIN HEISST:</div>
         </Rein>
@@ -512,7 +518,7 @@ const Szene6: React.FC<SzProps> = ({ f, cam, stufe }) => {
           <Hand x={80} y={350} text="Da kommt noch mehr!" size={104} />
         </Rein>
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.vordergrund}>
+      <Ebene cam={cam} tiefe={TIEFE.vordergrund} style={{ opacity: weg(f, 6, 6, 9) }}>
         <div style={{ filter: "blur(7px)" }}>
           <Papierstueck x={760} y={-80} w={520} h={300} dreh={18} seed={61} style={{ background: "#EDE6D8" }} />
         </div>
@@ -544,7 +550,7 @@ const Szene7: React.FC<SzProps> = ({ f, cam, stufe }) => {
           </Objekt>
         )}
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.text}>
+      <Ebene cam={cam} tiefe={TIEFE.text} style={{ opacity: weg(f, 7, 11, 8) }}>
         <Rein f={f} start={z.start} art="slap" ox={70} oy={290}>
           <Praegeband x={70} y={262} text="EIN ERWARTETER TREFFER" size={44} dreh={-2} />
         </Rein>
@@ -558,7 +564,7 @@ const Szene7: React.FC<SzProps> = ({ f, cam, stufe }) => {
           <div style={{ position: "absolute", left: 700, top: 820, fontFamily: "Caveat", fontWeight: 600, fontSize: 92, color: zine.schwarz, transform: "rotate(-8deg)" }}>gääähn …</div>
         </Rein>
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.vordergrund}>
+      <Ebene cam={cam} tiefe={TIEFE.vordergrund} style={{ opacity: weg(f, 7, 6, 9) }}>
         <VKlebeband x={-140} y={1640} dreh={-18} />
         <VKlebeband x={760} y={60} dreh={14} />
       </Ebene>
@@ -591,7 +597,7 @@ const Szene8: React.FC<SzProps> = ({ f, cam, stufe }) => {
           </Objekt>
         )}
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.text}>
+      <Ebene cam={cam} tiefe={TIEFE.text} style={{ opacity: weg(f, 8, 11, 8) }}>
         <Rein f={f} start={z.start + 1} art="fall" ox={540} oy={360}>
           <Papierstueck x={60} y={235} w={960} h={330} dreh={-2} seed={21} style={{ background: "#F1ECDF", padding: "26px 40px", boxSizing: "border-box" }}>
             <div style={{ fontFamily: "Fell SC", fontSize: 33, letterSpacing: "0.06em", color: zine.rot, whiteSpace: "nowrap", borderBottom: `4px double ${zine.schwarz}`, paddingBottom: 6 }}>EXTRABLATT · ÜBERRASCHENDER TREFFER</div>
@@ -601,7 +607,7 @@ const Szene8: React.FC<SzProps> = ({ f, cam, stufe }) => {
           </Papierstueck>
         </Rein>
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.vordergrund}>
+      <Ebene cam={cam} tiefe={TIEFE.vordergrund} style={{ opacity: weg(f, 8, 6, 9) }}>
         <div style={{ filter: "blur(10px)" }}>
           <Zacken x={-40} y={1720} r={230} farbe={zine.gelb} spitzen={12} dreh={-f * 0.3} />
         </div>
@@ -654,12 +660,12 @@ const Szene9: React.FC<SzProps> = ({ f, cam, stufe }) => {
         )}
         <Objekt bild="muenze-frei" bw={1024} bh={1024} sc={520 / 1024} x={540 - 260} y={1080 - 260} tr={`scale(${f < z.start + 3 ? 0 : overshoot(f, z.start + 3, 12, 1.08)}) translateY(${Math.sin(f / 20) * 14 * h}px) scaleX(${0.25 + 0.75 * Math.abs(flip)})`} />
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.text}>
+      <Ebene cam={cam} tiefe={TIEFE.text} style={{ opacity: weg(f, 9, 11, 8) }}>
         <Rein f={f} start={z.start} art="slap" ox={100} oy={300}>
           <div style={{ position: "absolute", left: 70, right: 130, top: 255, background: "#fff", border: `4px solid ${zine.schwarz}`, padding: "14px 26px", fontFamily: "Fell", fontStyle: "italic", fontSize: 78, lineHeight: 1, transform: "rotate(-2deg)", boxShadow: "8px 12px 0 rgba(0,0,0,.25)" }}>Am stärksten wirkt es,<br />wenn es …</div>
         </Rein>
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.vordergrund}>
+      <Ebene cam={cam} tiefe={TIEFE.vordergrund} style={{ opacity: weg(f, 9, 6, 9) }}>
         <VMuenze f={f} x={-200} y={1380} g={460} dreh={-30} blur={9} />
         <VMuenze f={-f} x={860} y={520} g={300} dreh={40} blur={10} />
       </Ebene>
@@ -721,7 +727,7 @@ const Szene10: React.FC<SzProps> = ({ f, cam, stufe }) => {
           </Objekt>
         )}
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.text}>
+      <Ebene cam={cam} tiefe={TIEFE.text} style={{ opacity: weg(f, 10, 11, 8) }}>
         <Rein f={f} start={z.start} art="rutsch">
           <Papierstueck x={30} y={215} w={1010} h={640} dreh={-2} seed={14} style={{ background: zine.papier }} />
         </Rein>
@@ -736,7 +742,7 @@ const Szene10: React.FC<SzProps> = ({ f, cam, stufe }) => {
           return <div key={i} style={{ position: "absolute", left: 90, top, fontFamily: "Barlow", fontWeight: 800, fontSize: size, lineHeight: 0.88, letterSpacing: "-0.03em", color: i % 2 ? zine.rot : zine.schwarz, transform: `scale(${tw(f, s, 5, 1.3, 1, kurve.whip)})`, transformOrigin: "left center" }}>WEITER.</div>;
         })}
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.vordergrund}>
+      <Ebene cam={cam} tiefe={TIEFE.vordergrund} style={{ opacity: weg(f, 10, 6, 9) }}>
         <div style={{ position: "absolute", left: -120, top: 1650, transform: "rotate(-10deg)", background: zine.gelb, border: `6px solid ${zine.schwarz}`, fontFamily: "Barlow", fontWeight: 800, fontSize: 110, padding: "10px 40px", filter: "blur(8px)" }}>NUR NOCH EINS.</div>
       </Ebene>
     </AbsoluteFill>
@@ -783,7 +789,7 @@ const Szene11: React.FC<SzProps> = ({ f, cam, stufe }) => {
           </Objekt>
         )}
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.text}>
+      <Ebene cam={cam} tiefe={TIEFE.text} style={{ opacity: weg(f, 11, 11, 8) }}>
         <Rein f={f} start={z.start} art="fall" ox={520} oy={330}>
           <div style={{ position: "absolute", left: 80, top: 240, width: 900, transform: "rotate(-2deg)", background: "#FBF8F0", boxShadow: "8px 12px 0 rgba(0,0,0,.22)", padding: "30px 40px 36px", backgroundImage: "repeating-linear-gradient(transparent 0 66px, #C9D5EA 66px 68px)", backgroundPosition: "0 44px" }}>
             <div style={{ position: "absolute", left: 360, top: -26, width: 170, height: 50, background: "rgba(240,234,210,.85)", transform: "rotate(-4deg)" }} />
@@ -798,7 +804,7 @@ const Szene11: React.FC<SzProps> = ({ f, cam, stufe }) => {
           </div>
         </Rein>
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.vordergrund}>
+      <Ebene cam={cam} tiefe={TIEFE.vordergrund} style={{ opacity: weg(f, 11, 6, 9) }}>
         <VLos x={760} y={1660} dreh={12} farbe="#F4EFE4" />
       </Ebene>
     </AbsoluteFill>
@@ -832,7 +838,7 @@ const Szene12: React.FC<SzProps> = ({ f, cam, stufe }) => {
           </Objekt>
         )}
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.text}>
+      <Ebene cam={cam} tiefe={TIEFE.text} style={{ opacity: weg(f, 12, 11, 8) }}>
         <Rein f={f} start={z.m.wort} art="stempel" ox={180} oy={420}>
           <div style={{ position: "absolute", left: 70, top: 230, fontFamily: "Barlow", fontWeight: 800, fontSize: 430, lineHeight: 0.8, color: "#fff", letterSpacing: "-0.05em", textShadow: "10px 12px 0 rgba(0,0,0,.25)" }}>1</div>
         </Rein>
@@ -851,7 +857,7 @@ const Szene12: React.FC<SzProps> = ({ f, cam, stufe }) => {
           </div>
         </Rein>
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.vordergrund}>
+      <Ebene cam={cam} tiefe={TIEFE.vordergrund} style={{ opacity: weg(f, 12, 6, 9) }}>
         <VMuenze f={f} x={-160} y={1500} g={420} dreh={15} blur={9} />
       </Ebene>
     </AbsoluteFill>
@@ -890,7 +896,7 @@ const Szene13: React.FC<SzProps> = ({ f, cam, stufe }) => {
           </Objekt>
         )}
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.text}>
+      <Ebene cam={cam} tiefe={TIEFE.text} style={{ opacity: weg(f, 13, 11, 8) }}>
         <Rein f={f} start={z.m.niete} art="slap" ox={80} oy={330}>
           <div style={{ position: "absolute", left: 80, top: 270, fontFamily: "Fell SC", fontSize: 130, color: "#8A8A8A" }}>
             Niete
@@ -904,7 +910,7 @@ const Szene13: React.FC<SzProps> = ({ f, cam, stufe }) => {
           <div style={{ position: "absolute", left: 560, top: 540, fontFamily: "Rye", fontSize: 98, color: zine.schwarz, transform: "rotate(4deg)" }}>Treffer?</div>
         </Rein>
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.vordergrund}>
+      <Ebene cam={cam} tiefe={TIEFE.vordergrund} style={{ opacity: weg(f, 13, 6, 9) }}>
         <Img src={A("papierball-frei")} style={{ position: "absolute", left: -220, top: 1560, width: 520, height: 520, filter: "blur(10px)", transform: `rotate(${f * 0.12}deg)` }} />
         <VMuenze f={f} x={900} y={60} g={280} dreh={20} blur={10} />
       </Ebene>
@@ -928,14 +934,14 @@ const Szene14: React.FC<SzProps> = ({ f, cam, stufe }) => {
           </div>
         </Rein>
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.text}>
+      <Ebene cam={cam} tiefe={TIEFE.text} style={{ opacity: weg(f, 14, 11, 8) }}>
         <ErpresserAnim text="FOLGE" x={200} y={360} size={150} versatz={5} start={z.start} takt={3} f={f} />
         <ErpresserAnim text="FÜR MEHR" x={100} y={560} size={124} versatz={2} start={z.m.mehr} takt={2} f={f} />
         <Rein f={f} start={z.ende + 10} art="slap" ox={540} oy={1330}>
           <div style={{ position: "absolute", left: 150, top: 1300, background: zine.schwarz, color: "#F4F1EA", fontFamily: "JetBrains Mono", fontWeight: 500, fontSize: 40, letterSpacing: "0.1em", padding: "10px 22px", transform: "rotate(2deg)" }}>HEB DICH VON DER MASSE AB.</div>
         </Rein>
       </Ebene>
-      <Ebene cam={cam} tiefe={TIEFE.vordergrund}>
+      <Ebene cam={cam} tiefe={TIEFE.vordergrund} style={{ opacity: weg(f, 14, 6, 9) }}>
         <VMuenze f={f} x={820} y={1560} g={460} dreh={-10} blur={9} />
         <VMuenze f={-f} x={-140} y={80} g={300} dreh={35} blur={10} />
       </Ebene>

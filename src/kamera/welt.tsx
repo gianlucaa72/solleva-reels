@@ -39,8 +39,9 @@ export const drift = (f: number, start: number, dauer: number, seed = 0): Cam =>
   const t = Math.min(1, l / Math.max(1, dauer));
   return {
     s: 1 + 0.04 * t,
-    cx: MITTE.x + Math.sin((l + seed * 37) / 48) * 2.6,
-    cy: MITTE.y + Math.cos((l + seed * 23) / 62) * 1.6,
+    // startet exakt bei 0 Versatz (sonst springt das Bild beim unsichtbaren Wechsel)
+    cx: MITTE.x + (Math.sin((l + seed * 37) / 48) - Math.sin((seed * 37) / 48)) * 2.6,
+    cy: MITTE.y + (Math.cos((l + seed * 23) / 62) - Math.cos((seed * 23) / 62)) * 1.6,
   };
 };
 
