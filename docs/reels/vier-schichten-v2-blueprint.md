@@ -66,3 +66,6 @@ Messwerte: 34,9 s · 1080×1920 · 30 fps · yuv420p TV · −13,8 LUFS · Peak 
 ### Offen
 - Musik (Beat) fehlt weiterhin; Prop `mitMusik`, Drop auf Frame 548.
 - Gym-Foto im Foto-Feld ist das Higgsfield-Bild aus v1 (bereits bezahlt, wiederverwendet), in Graustufen.
+
+## Musik (17.11.2026)
+Mixkit #299 (`assets/reels/vier-schichten/beat-mixkit-299.mp3`, Mixkit-Lizenz, Titel unbekannt). Start im Song 36,59 s → Drop (54,86 s im Song) exakt auf Frame 548 «vier». Vor dem Drop −26 LUFS, nach dem Drop −23 LUFS (Wunsch Nutzer: Drop etwas leiser als Hörprobe), Fade-in 0,4 s, Fade-out 0,8 s, Gesamt loudnorm −14 LUFS. Fassungen: `final/vier-schichten-v2.mp4` (mit Musik) und `final/vier-schichten-v2-ohne-musik.mp4`.
