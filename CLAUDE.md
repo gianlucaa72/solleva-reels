@@ -49,6 +49,12 @@ Status: **v0.2: Bausteine aus 7 Referenzen gebaut, wartet auf Freigabe des Nutze
 - **Sounds minimal und teuer, nichts Futuristisches**: nur natürliche Geräusche (Papier, Schreibmaschine, Holz, Mechanik, Luft, Favoriten ratsche-18/19), wenige Ereignisse, leise. Gemessen synthetisch/tonal und darum meiden: ratsche-09/10 (Arcade), klick-01/02 (UI), pop-*, glitzer-*, glitch-*, riser-02/04, downlifter-02, schlag-01/03/04/06 (Sinus/Synth).
 - **Overshoot-Fehler vermeiden**: `overshoot()` startet bei 0 (nur für Pop-Eingänge). Für Landungen `landung()` nehmen (1 → Spitze → 1); sonst verschwindet das Objekt für einen Frame.
 
+## Länge und Tempo (Nutzer-Feedback «Spielautomat» v2 → v3)
+- **Zielmass ~30–35 s, höchstens 8–9 Szenen.** 14 Szenen in 47 s waren zu viel: am Ende «kommt man nicht mehr nach».
+- Gleiche Motive nicht in mehreren Szenen hintereinander (Walzen 3× am Anfang wirkte langweilig) → zusammenlegen, innerhalb der Szene mit Kamera-Schwenk weiterführen.
+- Innerhalb jeder Szene **sichtbare Kamerabewegung**: Stoss auf jedes Schlüsselwort, 1–2 Schwenks, Drift bis 107 %. Nur Drift wirkte «fast zu wenig Bewegung».
+- **K02 Lupen-Kamera** (Ref. 01): Ring rollt in 6 Frames von rechts ein, innen 1,6×, Ring bleibt als Vignette, Text mit Farbversatz; Sound swish-06 auf die Landung. Sparsam einsetzen (1× pro Reel).
+
 ## Stil-Rezepte
 - **R01 Halbton-Collage** (`src/stil/halbton.tsx`, Reel «Spielautomat», **vom Nutzer gut befunden** «sieht sehr sehr gut aus», 17.11.2026): Halbton-Ausschnitte s/w mit weissem Papierrand, gerissenes Papier, Erpresserbrief-Buchstaben (Schlüsselwort), schwarze Etiketten (Mono) für den Rest des Satzes. Farben: Papier #ECE9E2, Schwarz #121212, Rot #D7232B, Gelb #FFD21F, Violett #6C3FD4. Hintergründe H1 Strahlen, H2 Zeitung, H3 Punkte, H4 Schwarzpapier, H5 Karo, H6 Halbton-Kreis, H7 Packpapier, H8 Spirale. Objekte: Higgsfield (Prompt-Kern: «vintage black and white halftone cutout, white paper border, plain white background»), danach freistellen.
 - Neue Bausteine aus Reel «Spielautomat» (noch nicht im Katalog-Video): **B08 Walze** (`src/bausteine/Walze.tsx`, animiert in `Stiltest.tsx`), **U18 Riss**, **U19 Kulissen-Klappe**, **U20 Papier-Wischer**, **U21 Zoom ins Bild** (alle in `src/reels/spielautomat/Reel.tsx`, Funktion `Uebergang`), Text-Eingänge `Rein` (slap, stempel, fall, pop, schreiben, rutsch).
