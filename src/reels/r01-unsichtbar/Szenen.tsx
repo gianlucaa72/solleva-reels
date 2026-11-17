@@ -472,7 +472,6 @@ export const Szene4: React.FC<{ v: V }> = ({ v }) => {
       <Ton nr="swish-03" bei={nm + 10} vor={2} vol={0.35} />
       <Ton nr="pop-05" bei={nm + 26} vol={0.18} />
       <Ton nr="schreiben-01" bei={nm + 12} vol={0.3} />
-      <Ton nr="glitzer-05" bei={satz(5).start} vor={2} vol={0.15} max={2} />
     </AbsoluteFill>
   );
 };
@@ -516,7 +515,6 @@ export const Szene5: React.FC<{ v: V }> = ({ v }) => {
       <Ton nr="schlag-07" bei={gute} vol={0.45} />
       <Ton nr="schlag-07" bei={arbeit} vol={0.4} />
       <Ton nr="schlag-01" bei={arbeit} vol={0.35} />
-      <Ton nr="glitzer-05" bei={satz(6).start} vor={2} vol={0.15} max={2} />
     </AbsoluteFill>
   );
 };
