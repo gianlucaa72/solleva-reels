@@ -6,7 +6,7 @@ import { HZeitung, Korn, stile, weisserRand, zine, ZineSchriften } from "../../s
 
 // 5-Sekunden-Stiltest «Spielautomat»: Szene 1 (Hook) komplett + Übergang (Zoom ins Handy) + Anfang Szene 2.
 // Zeiten in Frames (30 fps), aus timeline.json + Hüllkurve Satz 1 («gerade» ab 1,06 s, «Spielautomaten» ab 2,06 s).
-const T = {
+export const T = {
   stimme1: 4,
   zeile2: 36,
   wort: 66, // «Spielautomaten»
@@ -15,15 +15,15 @@ const T = {
   zoom: 137, // = Start Satz 2 (Hook-Pause 1,4 s zum Lesen)
   zoomDauer: 14,
   los: 150,
-  dreh: 183, // «Dreh»
+  dreh: 180, // «Dreh»
 };
 export const STILTEST_DAUER = 232;
 
 // ---------- Objekt: Hand + Handy (Higgsfield, freigestellt) ----------
-const BILD = { w: 880, h: 1168, screen: { x: 71, y: 309, w: 329, h: 560 } };
-const S = 1.22;
-const POS = { x: 1090 - BILD.w * S, y: 486 };
-const screenFrame = () => ({
+export const BILD = { w: 880, h: 1168, screen: { x: 71, y: 309, w: 329, h: 560 } };
+export const S = 1.22;
+export const POS = { x: 1090 - BILD.w * S, y: 486 };
+export const screenFrame = () => ({
   x: POS.x + BILD.screen.x * S,
   y: POS.y + BILD.screen.y * S,
   w: BILD.screen.w * S,
@@ -31,11 +31,11 @@ const screenFrame = () => ({
 });
 
 // ---------- Walzen ----------
-const SYMBOLE = ["♥", "✕", "★", "?", "♣", "✕"];
-const symbolFarbe = (c: string) => (c === "♥" ? zine.rot : c === "?" ? zine.violett : zine.schwarz);
+export const SYMBOLE = ["♥", "✕", "★", "?", "♣", "✕"];
+export const symbolFarbe = (c: string) => (c === "♥" ? zine.rot : c === "?" ? zine.violett : zine.schwarz);
 
 /** Position (in Zellen) einer Walze: steht, dreht ab start, rastet bei stop auf Ziel ein (mit Overshoot). */
-const walzenPos = (f: number, start: number, stop: number, startIdx: number, zielIdx: number, tempo = 0.55) => {
+export const walzenPos = (f: number, start: number, stop: number, startIdx: number, zielIdx: number, tempo = 0.55) => {
   const n = SYMBOLE.length;
   if (f < start) return startIdx;
   const bremsBeginn = stop - 10;
@@ -49,7 +49,7 @@ const walzenPos = (f: number, start: number, stop: number, startIdx: number, zie
   return p0 + (ziel - p0) * kurve.land(t) + ueber;
 };
 
-const Walze: React.FC<{ p: number; tempo: number; w: number; h: number; dunkel?: boolean }> = ({ p, tempo, w, h }) => {
+export const Walze: React.FC<{ p: number; tempo: number; w: number; h: number; dunkel?: boolean }> = ({ p, tempo, w, h }) => {
   const n = SYMBOLE.length;
   const off = ((p % n) + n) % n;
   const zelle = h;
@@ -66,7 +66,7 @@ const Walze: React.FC<{ p: number; tempo: number; w: number; h: number; dunkel?:
   );
 };
 
-const Walzenreihe: React.FC<{ f: number; w: number; h: number; start: number; stops: number[]; ziele: number[]; startIdx?: number[] }> = ({ f, w, h, start, stops, ziele, startIdx = [1, 2, 3] }) => (
+export const Walzenreihe: React.FC<{ f: number; w: number; h: number; start: number; stops: number[]; ziele: number[]; startIdx?: number[] }> = ({ f, w, h, start, stops, ziele, startIdx = [1, 2, 3] }) => (
   <div style={{ display: "flex", gap: w * 0.12 }}>
     {stops.map((st, i) => {
       const p = walzenPos(f, start + i * 2, st, startIdx[i], ziele[i]);
@@ -77,7 +77,7 @@ const Walzenreihe: React.FC<{ f: number; w: number; h: number; start: number; st
 );
 
 // ---------- Texte (animiert) ----------
-const EtikettAnim: React.FC<{ text: string; x: number; y: number; dreh: number; start: number; f: number }> = ({ text, x, y, dreh, start, f }) => {
+export const EtikettAnim: React.FC<{ text: string; x: number; y: number; dreh: number; start: number; f: number }> = ({ text, x, y, dreh, start, f }) => {
   if (f < start - 1) return null;
   const s = tw(f, start, 6, 1.35, 1, kurve.whip);
   const o = tw(f, start - 1, 3, 0, 1, kurve.fade);
@@ -89,7 +89,7 @@ const EtikettAnim: React.FC<{ text: string; x: number; y: number; dreh: number; 
   );
 };
 
-const ErpresserAnim: React.FC<{ text: string; x: number; y: number; size: number; versatz?: number; start: number; takt?: number; f: number }> = ({ text, x, y, size, versatz = 0, start, takt = 2, f }) => (
+export const ErpresserAnim: React.FC<{ text: string; x: number; y: number; size: number; versatz?: number; start: number; takt?: number; f: number }> = ({ text, x, y, size, versatz = 0, start, takt = 2, f }) => (
   <div style={{ position: "absolute", left: x, top: y, display: "flex", gap: 6 }}>
     {text.split("").map((c, i) => {
       const st = stile[(i + versatz) % stile.length];
@@ -108,17 +108,17 @@ const ErpresserAnim: React.FC<{ text: string; x: number; y: number; size: number
 );
 
 // ---------- Hintergrund: Strahlen (Higgsfield-Textur), dreht langsam ----------
-const StrahlenBild: React.FC<{ f: number; cx: number; cy: number }> = ({ f, cx, cy }) => {
+export const StrahlenBild: React.FC<{ f: number; cx: number; cy: number; bild?: string; grund?: string; tempo?: number }> = ({ f, cx, cy, bild = "strahlen-rot-a", grund = "#5A0E12", tempo = 0.09 }) => {
   const g = 2520;
   return (
-    <AbsoluteFill style={{ background: "#5A0E12", overflow: "hidden" }}>
-      <Img src={staticFile("assets/spielautomat/strahlen-rot-a.png")} style={{ position: "absolute", left: cx - g / 2, top: cy - g / 2, width: g, height: g, transform: `rotate(${f * 0.09}deg) scale(${1 + Math.sin(f / 40) * 0.01})` }} />
+    <AbsoluteFill style={{ background: grund, overflow: "hidden" }}>
+      <Img src={staticFile(`assets/spielautomat/${bild}.png`)} style={{ position: "absolute", left: cx - g / 2, top: cy - g / 2, width: g, height: g, transform: `rotate(${f * tempo}deg) scale(${1 + Math.sin(f / 40) * 0.01})` }} />
     </AbsoluteFill>
   );
 };
 
 // ---------- Szene 1: Hook ----------
-const Szene1: React.FC<{ f: number }> = ({ f }) => {
+export const Szene1: React.FC<{ f: number }> = ({ f }) => {
   const sf = screenFrame();
   // Objekt fliegt von unten rechts ein
   const ein = tw(f, 0, 12, 1, 0, kurve.whip);
@@ -161,7 +161,7 @@ const Szene1: React.FC<{ f: number }> = ({ f }) => {
 };
 
 // ---------- Szene 2: «Jeder Wisch ist ein neuer Dreh.» (Lotterie-Los + grosse Walzen) ----------
-const Szene2: React.FC<{ f: number }> = ({ f }) => {
+export const Szene2: React.FC<{ f: number }> = ({ f }) => {
   const g = f - T.zoom;
   const losP = tw(f, T.los, 10, 1, 0, kurve.whip);
   const losLand = f >= T.los + 8 ? overshoot(f, T.los + 8, 8, 1.03) : 1;

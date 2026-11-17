@@ -445,7 +445,7 @@ export const Kreistext: React.FC<{ cx: number; cy: number; r: number; text: stri
       <path id={`kreis${r}`} d={`M ${-r},0 a ${r},${r} 0 1,1 ${r * 2},0 a ${r},${r} 0 1,1 ${-r * 2},0`} />
     </defs>
     <text style={{ fontFamily: "Barlow", fontWeight: 800, fontSize: size, letterSpacing: "0.12em" }} fill={farbe}>
-      <textPath href={`#kreis${r}`}>{text}</textPath>
+      <textPath href={`#kreis${r}`} textLength={2 * Math.PI * r * 0.985} lengthAdjust="spacing">{text}</textPath>
     </text>
   </svg>
 );
