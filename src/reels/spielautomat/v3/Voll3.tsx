@@ -519,7 +519,7 @@ const Szene7: React.FC<SzProps> = ({ f, cam, stufe }) => {
           <div style={{ position: "absolute", left: 470, top: 430, fontFamily: "Caveat", fontWeight: 600, fontSize: 80, color: "#fff", transform: "rotate(-6deg)", textShadow: "3px 3px 0 #000" }}>oder …</div>
         </Rein>
         <Rein f={f} start={z13.m.wort} art="stempel" ox={800} oy={600}>
-          <div style={{ position: "absolute", left: 560, top: 540, fontFamily: "Rye", fontSize: 98, color: zine.schwarz, transform: "rotate(4deg)" }}>Treffer?</div>
+          <div style={{ position: "absolute", left: 615, top: 540, fontFamily: "Rye", fontSize: 92, color: zine.schwarz, transform: "rotate(4deg)" }}>Treffer?</div>
         </Rein>
       </Ebene>
       <Ebene cam={cam} tiefe={TIEFE.vordergrund} style={{ opacity: weg(f, 7, 6, 9) }}>
@@ -808,7 +808,7 @@ const SCHWENKS: Record<number, Schwenk[]> = {
   4: [{ f: Z(8).m.wort - 2, dauer: 16, ds: 0.05, dx: 50, dy: -30 }],
   5: [{ f: Z(10).m.und - 6, dauer: 20, ds: 0.06, dy: 120 }],
   6: [{ f: Z(11).m.wort - 12, dauer: 20, ds: 0.05, dy: 70 }],
-  7: [{ f: Z(13).start - 2, dauer: 14, ds: -0.04 }, { f: Z(13).m.wort - 4, dauer: 16, ds: 0.06, dx: 80 }],
+  7: [{ f: Z(13).start - 2, dauer: 14, ds: -0.04 }, { f: Z(13).m.wort - 4, dauer: 16, ds: 0.06, dx: 30 }],
   8: [{ f: Z(14).start, dauer: 40, ds: 0.05, dy: -40 }],
 };
 /** Drift zwischen den Fahrten: Zoom 100 → 107 %, ±4 px (startet ohne Versatz). */
