@@ -11,6 +11,7 @@ import { Stiltest, STILTEST_DAUER } from "./reels/spielautomat/Stiltest";
 import { Reel, REEL_DAUER } from "./reels/spielautomat/Reel";
 import { ReelV2Test, V2_TEST_DAUER } from "./reels/spielautomat/v2/ReelV2";
 import { ReelV2Voll, V2_DAUER, PortalDebug } from "./reels/spielautomat/v2/Voll";
+import { ReelV3, V3_DAUER } from "./reels/spielautomat/v3/Voll3";
 
 export const Root: React.FC = () => (
   <>
@@ -24,6 +25,7 @@ export const Root: React.FC = () => (
     <Composition id="SpielautomatV2Test" component={ReelV2Test} durationInFrames={V2_TEST_DAUER} fps={FPS} width={BREITE} height={HOEHE} />
     <Composition id="SpielautomatV2" component={ReelV2Voll} durationInFrames={V2_DAUER} fps={FPS} width={BREITE} height={HOEHE} />
     <Composition id="PortalDebug" component={PortalDebug} durationInFrames={1} fps={FPS} width={BREITE} height={HOEHE} />
+    <Composition id="SpielautomatV3" component={ReelV3} durationInFrames={V3_DAUER} fps={FPS} width={BREITE} height={HOEHE} />
     <Composition id="Katalog" component={Katalog} durationInFrames={KATALOG_DAUER} fps={FPS} width={BREITE} height={HOEHE} />
   </>
 );
