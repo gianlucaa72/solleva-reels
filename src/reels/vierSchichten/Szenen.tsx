@@ -355,7 +355,7 @@ export const SzLichtAus: React.FC<{ dauer?: number; aus?: number }> = ({ dauer =
 };
 
 /** 7 «Lädt sie auf dem Handy über drei Sekunden, springen laut Google viele ab.» */
-export const SzLadezeit: React.FC<{ dauer?: number }> = ({ dauer = 110 }) => {
+export const SzLadezeit: React.FC<{ dauer?: number; ohneHintergrund?: boolean }> = ({ dauer = 110, ohneHintergrund }) => {
   const f = useCurrentFrame();
   const sek = Math.min(3.4, tw(f, 6, 54, 0, 3.4, kurve.linear));
   const ueber = sek >= 3;
@@ -368,7 +368,7 @@ export const SzLadezeit: React.FC<{ dauer?: number }> = ({ dauer = 110 }) => {
   });
   return (
     <AbsoluteFill>
-      <NeonGitter />
+      {!ohneHintergrund && <NeonGitter />}
       <Kamera dauer={dauer} push={0.05}>
         {/* Glas-Handy mit Drahtgitter-Seite und Ladebalken */}
         <div style={{ position: "absolute", left: 330, top: 560, width: 420, height: 800, borderRadius: 60, border: `3px solid ${farben.lavendelAkzent}`, background: "rgba(17,20,58,.5)", boxShadow: `0 0 40px ${farben.violett}, inset 0 0 40px rgba(169,139,255,.3)`, overflow: "hidden" }}>
