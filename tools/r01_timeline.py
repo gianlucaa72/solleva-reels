@@ -2,6 +2,7 @@
 PAUSE = Halt nach jedem Satz (Nutzer: lieber etwas ruhiger), ENDE = Halt am Schluss."""
 import json
 PAUSE, ENDE = 0.40, 2.5
+PAUSE_NACH = {7: 1.8}  # Höhepunkt: Stein steht länger
 trim={1:(0.03,2.52),2:(0.1,2.31),3:(0.05,2.34),4:(0.08,1.44),5:(0.1,1.99),6:(0.04,1.48),7:(0.02,2.15),8:(0.09,2.47),9:(0.03,1.91)}
 texte={1:"Deine Kunden suchen dich. Jeden Tag.",2:"Und finden: deine Konkurrenz.",3:"Du? Irgendwo auf Seite zwei.",4:"Da klickt niemand.",5:"Dabei machst du gute Arbeit.",6:"Nur sieht sie keiner.",7:"Solleva heisst: anheben.",8:"Genau das mache ich mit deiner Website.",9:"Sichtbar sein ist kein Zufall."}
 schluessel={1:"suchen",2:"Konkurrenz",3:"zwei",4:"niemand",5:"gute",6:"keiner",7:"anheben",8:"Website",9:"Zufall"}
@@ -20,7 +21,7 @@ for i in range(1,10):
     a,b=trim[i]; d=b-a
     out.append({"satz":i,"text":texte[i],"schluessel":schluessel[i],"datei":f"r01/a/stimme/satz{i}.mp3","von":a,"bis":b,
                 "start":round(t*30),"dauer":round(d*30),"woerter":[[wd,round((t+max(0,s-a))*30)] for wd,s in roh[i]]})
-    t+=d+PAUSE
+    t+=d+PAUSE_NACH.get(i, PAUSE)
 gesamt=round((t-PAUSE+ENDE)*30)
 json.dump({"fps":30,"gesamt":gesamt,"saetze":out},open('src/reels/r01-unsichtbar/timeline.json','w'),indent=1,ensure_ascii=False)
 print(gesamt, round(gesamt/30,2), [o["start"] for o in out])

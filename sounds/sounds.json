@@ -637,5 +637,41 @@
   "dauer": 3.0,
   "einsatz": 0.03,
   "hit": 0.03
+ },
+ {
+  "datei": "chor-01-huge-choir-echo-swell.mp3",
+  "kategorie": "chor",
+  "titel": "Huge choir echo swell",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/656/656-preview.mp3",
+  "dauer": 3.01,
+  "einsatz": 0.0,
+  "hit": 1.0
+ },
+ {
+  "datei": "chor-02-angelical-choir.mp3",
+  "kategorie": "chor",
+  "titel": "Angelical choir",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/655/655-preview.mp3",
+  "dauer": 2.99,
+  "einsatz": 0.0,
+  "hit": 0.3
+ },
+ {
+  "datei": "chor-03-heavenly-swell.mp3",
+  "kategorie": "chor",
+  "titel": "Heavenly swell",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/2276/2276-preview.mp3",
+  "dauer": 3.37,
+  "einsatz": 0.1,
+  "hit": 1.7
+ },
+ {
+  "datei": "chor-04-choir-harp-bless.mp3",
+  "kategorie": "chor",
+  "titel": "Choir harp bless",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/654/654-preview.mp3",
+  "dauer": 7.73,
+  "einsatz": 0.05,
+  "hit": 3.6
  }
 ]

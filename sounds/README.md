@@ -18,6 +18,7 @@ Auswahl abgeleitet aus der Sound-Analyse der Referenzen (`docs/referenzen/sound-
 | pop | Text/Elemente erscheinen |
 | glitch | dunkle Stimmung, Störung |
 | tippen / schreiben | Tippen, Handschrift, Kringel |
+| chor | Engelschor «Haaa» für den einen epischen Höhepunkt (max. 1× pro Reel) |
 
 Status: **wird vom Nutzer angehört**; Favoriten und Ergänzungen folgen.
 
@@ -28,3 +29,6 @@ Status: **wird vom Nutzer angehört**; Favoriten und Ergänzungen folgen.
 ## Regeln aus Feedback
 - **Auffällige Effekte (Glitzer, Light-Sweep, Riser, grosse Impacts) höchstens 2× pro Reel, nie in zwei Szenen nacheinander, nur auf Schlüsselmomenten.** Reel 01: glitzer-05 lag 3× zwischen 8 und 16 s (zwei Licht-Blitz-Übergänge + Stein) und klang monoton; nur der beim Stein blieb.
 - Übergänge gleicher Art (z. B. mehrere Licht-Blitze) nicht jedes Mal mit demselben Sound vertonen: variieren oder weglassen.
+
+## Chor (neu, Reel 01)
+- chor-01 Huge choir echo swell (in Reel 01 beim Stein), chor-02 Angelical choir (kurz, sofort), chor-03 Heavenly swell (schwillt an), chor-04 Choir harp bless (lang, mit Harfe). Quelle Mixkit, gleiche Lizenz.

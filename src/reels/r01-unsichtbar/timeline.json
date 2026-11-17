@@ -1,6 +1,6 @@
 {
  "fps": 30,
- "gesamt": 713,
+ "gesamt": 755,
  "saetze": [
   {
    "satz": 1,
@@ -213,36 +213,36 @@
    "datei": "r01/a/stimme/satz8.mp3",
    "von": 0.09,
    "bis": 2.47,
-   "start": 498,
+   "start": 540,
    "dauer": 71,
    "woerter": [
     [
      "Genau",
-     498
+     540
     ],
     [
      "das",
-     510
+     552
     ],
     [
      "mache",
-     518
+     560
     ],
     [
      "ich",
-     526
+     568
     ],
     [
      "mit",
-     530
+     572
     ],
     [
      "deiner",
-     541
+     583
     ],
     [
      "Website",
-     550
+     592
     ]
    ]
   },
@@ -253,28 +253,28 @@
    "datei": "r01/a/stimme/satz9.mp3",
    "von": 0.03,
    "bis": 1.91,
-   "start": 582,
+   "start": 624,
    "dauer": 56,
    "woerter": [
     [
      "Sichtbar",
-     582
+     624
     ],
     [
      "sein",
-     592
+     634
     ],
     [
      "ist",
-     597
+     639
     ],
     [
      "kein",
-     608
+     650
     ],
     [
      "Zufall",
-     614
+     656
     ]
    ]
   }

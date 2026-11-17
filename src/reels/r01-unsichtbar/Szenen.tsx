@@ -581,6 +581,93 @@ export const Szene6: React.FC<{ v: V }> = ({ v }) => {
 // =====================================================================
 // Satz 7: «Solleva heisst: anheben.»  ★ Signature: Glas-Kiesel hebt sich, Island → Glas-Pille
 // =====================================================================
+/** Bruchstücke, die beim Losreissen hochfliegen (deterministisch). */
+const Truemmer: React.FC<{ bei: number; cx: number; cy: number }> = ({ bei, cx, cy }) => {
+  const F = useCurrentFrame();
+  const t = F - bei;
+  if (t < 0 || t > 34) return null;
+  return (
+    <>
+      {Array.from({ length: 12 }).map((_, i) => {
+        const r = (k: number) => ((Math.sin((i + 1) * 12.9898 * k) * 43758.5453) % 1 + 1) % 1;
+        const seite = i % 2 ? 1 : -1;
+        const vx = seite * (5 + r(1) * 16);
+        const vy = -12 - r(2) * 20;
+        const g = 26 + r(3) * 28;
+        const x = cx + seite * (140 + r(4) * 150) + vx * t;
+        const y = cy + vy * t + 0.9 * t * t;
+        const o = t < 26 ? 1 : 1 - (t - 26) / 8;
+        return (
+          <div
+            key={i}
+            style={abs(x - g / 2, y - g / 2, {
+              width: g,
+              height: g * 0.8,
+              borderRadius: "45% 55% 50% 40%",
+              background: "radial-gradient(circle at 35% 30%, #FFFFFF, #D5D1E9 70%, #A9A6C4)",
+              boxShadow: "0 6px 10px rgba(20,18,58,.25)",
+              transform: `rotate(${t * (r(5) - 0.5) * 30}deg)`,
+              filter: `blur(${r(6) > 0.7 ? 2 : 0}px)`,
+              opacity: o,
+            })}
+          />
+        );
+      })}
+    </>
+  );
+};
+
+/** Schockwelle über die Masse (Ellipse in Perspektive). */
+const Welle: React.FC<{ bei: number; cx: number; cy: number }> = ({ bei, cx, cy }) => {
+  const F = useCurrentFrame();
+  return (
+    <>
+      {[0, 5].map((d) => {
+        const p = tw(F, bei + d, 22, 0, 1, kurve.land);
+        if (p <= 0 || p >= 1) return null;
+        const R = 80 + p * 1000;
+        return (
+          <div
+            key={d}
+            style={abs(cx - R, cy - R * 0.28, {
+              width: R * 2,
+              height: R * 0.56,
+              borderRadius: "50%",
+              border: `${6 - p * 4}px solid rgba(255,255,255,${0.9 * (1 - p)})`,
+              boxShadow: `0 0 40px rgba(169,139,255,${0.8 * (1 - p)}), inset 0 0 40px rgba(169,139,255,${0.5 * (1 - p)})`,
+            })}
+          />
+        );
+      })}
+    </>
+  );
+};
+
+/** Lichtstrahlen von oben (God Rays), drehen sich langsam. */
+const Strahlen7: React.FC<{ staerke: number; cx: number; cy: number }> = ({ staerke, cx, cy }) => {
+  const F = useCurrentFrame();
+  if (staerke <= 0) return null;
+  const dreh = Math.sin(F / 40) * 4;
+  return (
+    <AbsoluteFill style={{ opacity: staerke, mixBlendMode: "screen", filter: "blur(18px)", transform: `rotate(${dreh}deg)`, transformOrigin: `${cx}px -300px` }}>
+      <svg width="1080" height="1920">
+        <defs>
+          <linearGradient id="strahl" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#FFFFFF" stopOpacity="0.9" />
+            <stop offset="0.6" stopColor="#ECE6FF" stopOpacity="0.45" />
+            <stop offset="1" stopColor="#A98BFF" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+        {[-3, -2, -1, 0, 1, 2, 3].map((k) => {
+          const breite = 26 + (k % 2 ? 14 : 30);
+          const ziel = cx + k * 150;
+          return <path key={k} d={`M ${cx - 6} -300 L ${cx + 6} -300 L ${ziel + breite} ${cy + 520} L ${ziel - breite} ${cy + 520} Z`} fill="url(#strahl)" opacity={k === 0 ? 1 : 0.55} />;
+        })}
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
 export const Szene7: React.FC<{ v: V }> = ({ v }) => {
   const F = useCurrentFrame();
   const s = satz(7);
@@ -595,96 +682,184 @@ export const Szene7: React.FC<{ v: V }> = ({ v }) => {
   const glas = tw(F, p0 + 4, 7, 0, 1, kurve.fade);
   const pO = tw(F, p0, 3, 0, 1, kurve.fade);
 
+  // Spannung vor dem Losreissen: Licht sammelt sich, Rand wird dunkler, Kiesel zittert
+  const spannung = tw(F, heb - 30, 28, 0, 1, kurve.heavy);
+  const zittern = F < heb ? Math.sin(F * 2.7) * 4 * spannung : 0;
   const aus = tw(F, heb - 5, 4, 0, 1, kurve.land) - tw(F, heb - 1, 3, 0, 1, kurve.land);
   const hub = tw(F, heb - 1, 20, 0, 1, kurve.heavy);
-  const schweb = hub >= 1 ? Math.sin((F - heb) / 10) * 8 : 0;
+  const schweb = hub >= 1 ? Math.sin((F - heb) / 12) * 10 : 0;
   const kY = 1260 + aus * 14 - hub * 380 + schweb;
-  const kS = 0.6 + hub * 0.22;
+  const kS = 0.6 + hub * 0.24;
   const versunken = 1 - hub;
   const kRein = tw(F, s.start, 10, 0, 1, kurve.land);
   const glanz = tw(F, heisst + 2, 14, -20, 130, kurve.heavy);
+  const glanz2 = tw(F, heb + 26, 16, -20, 130, kurve.heavy);
+  const drehY = hub >= 1 ? Math.cos((F - heb) / 18) : 1; // langsame Drehung im Raum
+  const bild = (F: number) => staticFile("r01/a/glas-kiesel-b.webp");
+
+  // Nach dem Losreissen: langsame Kamerafahrt auf den Kiesel (episch, ruhig)
+  const fahrt = tw(F, heb + 8, ende - heb - 8, 0, 1, kurve.heavy);
+  const zoom = 1 + 0.14 * fahrt;
+  const strahlen = tw(F, heb - 24, 24, 0, 0.45, kurve.fade) + tw(F, heb, 6, 0, 0.55, kurve.land) - tw(F, heb + 30, 20, 0, 0.25);
+  const dunkel = spannung * 0.5 - tw(F, heb, 10, 0, 0.18);
+  const blitz = F >= heb && F < heb + 6 ? 0.4 * (1 - (F - heb) / 6) : 0;
+  const pool = tw(F, heb, 14, 0, 1, kurve.land);
 
   const bloom = tw(F, ende - 12, 12, 0, 1, kurve.heavy);
-  const feldScale = 1.11 - tw(F, s.start, s.dauer + 10, 0, 0.04, kurve.heavy) + bloom * 0.06;
+  const feldScale = 1.11 - tw(F, s.start, ende - s.start, 0, 0.04, kurve.heavy) + bloom * 0.06 + (tw(F, heb, 3, 0, 0.025, kurve.whip) - tw(F, heb + 3, 12, 0, 0.025, kurve.land));
   const txt: React.CSSProperties = { fontFamily: schrift.text, fontWeight: 800, fontSize: 58, color: farben.tinte };
-  const ser: React.CSSProperties = { fontFamily: schrift.serif, fontStyle: "italic", fontSize: 88, color: farben.violett };
+  const ser: React.CSSProperties = { fontFamily: schrift.serif, fontStyle: "italic", fontSize: 88, color: farben.violett, textShadow: `0 0 ${24 * pool}px rgba(169,139,255,${0.8 * pool})` };
 
   return (
     <AbsoluteFill>
-      <KieselFeld scale={feldScale} spot={tw(F, s.start, 14, 0, 1, kurve.fade)} />
-      <Kamera dauer={s.dauer + 20} seed={7} rucke={[heb]}>
-        <Bild v={v}>
-          <div style={abs(540 - 380, kY - 380, { width: 760, height: 760, borderRadius: "50%", background: `radial-gradient(circle, rgba(169,139,255,${0.55 * hub}) 0%, rgba(169,139,255,0) 65%)` })} />
-          <div
-            style={abs(540 - (200 - hub * 70), 1330, {
-              width: (200 - hub * 70) * 2,
-              height: 60 - hub * 20,
-              borderRadius: "50%",
-              background: "rgba(20,18,58,.55)",
-              filter: `blur(${12 + hub * 20}px)`,
-              opacity: kRein * (0.55 - hub * 0.35),
-            })}
-          />
-          <div
-            style={abs(540 - 450 * kS, kY - 450 * kS, {
-              width: 900 * kS,
-              height: 900 * kS,
-              opacity: kRein,
-              WebkitMaskImage: `linear-gradient(180deg, black ${62 - versunken * 22}%, rgba(0,0,0,${1 - versunken}) ${80 - versunken * 10}%)`,
-              transform: `rotate(${-8 + hub * 10 + schweb * 0.25}deg)`,
-            })}
-          >
-            <Img src={staticFile("r01/a/glas-kiesel-b.webp")} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+      <AbsoluteFill style={{ transform: `scale(${zoom})`, transformOrigin: "540px 900px" }}>
+        <KieselFeld scale={feldScale} spot={tw(F, s.start, 14, 0, 1, kurve.fade)} />
+        {/* Rand dunkelt ab, Mitte bleibt im Licht */}
+        <AbsoluteFill style={{ opacity: Math.max(0, dunkel), background: "radial-gradient(520px 760px at 50% 58%, rgba(20,18,58,0) 0%, rgba(30,20,80,.5) 70%, rgba(20,18,58,.8) 100%)" }} />
+        {/* violettes Licht fällt auf die Masse */}
+        <div style={abs(540 - 520, 1300 - 150, { width: 1040, height: 300, borderRadius: "50%", background: "radial-gradient(closest-side, rgba(169,139,255,.55), rgba(108,63,212,.15) 60%, rgba(108,63,212,0))", opacity: pool, mixBlendMode: "screen" })} />
+        <Strahlen7 staerke={Math.max(0, strahlen)} cx={540} cy={kY} />
+        <Aufsteigen ab={heb + 2} />
+        <Kamera dauer={ende - s.start + 10} seed={7} rucke={[heb]}>
+          <Bild v={v}>
+            <Welle bei={heb} cx={540} cy={1300} />
+            <div style={abs(540 - 400, kY - 400, { width: 800, height: 800, borderRadius: "50%", background: `radial-gradient(circle, rgba(169,139,255,${0.6 * hub}) 0%, rgba(169,139,255,0) 65%)` })} />
             <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                WebkitMaskImage: `url(${staticFile("r01/a/glas-kiesel-b.webp")})`,
-                WebkitMaskSize: "contain",
-                WebkitMaskRepeat: "no-repeat",
-                WebkitMaskPosition: "center",
-                background: `linear-gradient(115deg, rgba(255,255,255,0) ${glanz - 12}%, rgba(255,255,255,.85) ${glanz}%, rgba(255,255,255,0) ${glanz + 12}%)`,
-                mixBlendMode: "screen",
-              }}
+              style={abs(540 - (200 - hub * 70), 1330, {
+                width: (200 - hub * 70) * 2,
+                height: 60 - hub * 20,
+                borderRadius: "50%",
+                background: "rgba(20,18,58,.55)",
+                filter: `blur(${12 + hub * 20}px)`,
+                opacity: kRein * (0.55 - hub * 0.35),
+              })}
             />
-          </div>
-          <Funken bei={heb + 8} cx={540} cy={1260 - 380} weite={160} r0={120} />
-        </Bild>
-        <Titel v={v}>
-          <div style={abs(540 - pw / 2, 420 - ph / 2, { width: pw, height: ph, borderRadius: ph / 2, opacity: pO, background: farben.nacht, boxShadow: "0 30px 70px rgba(44,30,120,.22)", overflow: "hidden" })}>
+            {/* Umlaufende Funken hinter dem Kiesel */}
+            <Truemmer bei={heb} cx={540} cy={1280} />
+            <Umlauf heb={heb} cy={kY} vorne={false} />
             <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                opacity: glas,
-                borderRadius: ph / 2,
-                background: "linear-gradient(160deg, rgba(255,255,255,.97), rgba(236,230,255,.88))",
-                boxShadow: "inset 0 2px 0 #fff, inset 0 -12px 30px rgba(169,139,255,.22)",
-                border: "1.5px solid rgba(255,255,255,.95)",
-              }}
-            />
-            <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", gap: 18, whiteSpace: "nowrap" }}>
-              <Wort bei={w(7, "Solleva") + 6} style={txt}>
-                Solleva
-              </Wort>
-              <Wort bei={heisst} style={txt}>
-                heisst:
-              </Wort>
-              <Wort bei={heb} style={ser}>
-                anheben.
-              </Wort>
+              style={abs(540 - 450 * kS + zittern, kY - 450 * kS, {
+                width: 900 * kS,
+                height: 900 * kS,
+                opacity: kRein,
+                WebkitMaskImage: `linear-gradient(180deg, black ${62 - versunken * 22}%, rgba(0,0,0,${1 - versunken}) ${80 - versunken * 10}%)`,
+                transform: `rotate(${-8 + hub * 10 + schweb * 0.25}deg) scaleX(${0.88 + 0.12 * Math.abs(drehY)})`,
+                filter: `drop-shadow(0 0 ${40 * hub}px rgba(169,139,255,.7))`,
+              })}
+            >
+              <Img src={bild(F)} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+              {[glanz, glanz2].map((g, k) => (
+                <div
+                  key={k}
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    WebkitMaskImage: `url(${bild(F)})`,
+                    WebkitMaskSize: "contain",
+                    WebkitMaskRepeat: "no-repeat",
+                    WebkitMaskPosition: "center",
+                    background: `linear-gradient(115deg, rgba(255,255,255,0) ${g - 12}%, rgba(255,255,255,.85) ${g}%, rgba(255,255,255,0) ${g + 12}%)`,
+                    mixBlendMode: "screen",
+                  }}
+                />
+              ))}
             </div>
-          </div>
-        </Titel>
+            <Umlauf heb={heb} cy={kY} vorne />
+            <Funken bei={heb + 8} cx={540} cy={1260 - 380} weite={180} r0={130} n={8} />
+          </Bild>
+        </Kamera>
+      </AbsoluteFill>
+      {/* Pille bleibt ausserhalb der Kamerafahrt, damit sie nicht über den Rand wächst */}
+      <Kamera dauer={ende - s.start + 10} seed={7} rucke={[heb]}>
+          <Titel v={v}>
+            <div style={abs(540 - pw / 2, 420 - ph / 2, { width: pw, height: ph, borderRadius: ph / 2, opacity: pO, background: farben.nacht, boxShadow: "0 30px 70px rgba(44,30,120,.22)", overflow: "hidden" })}>
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  opacity: glas,
+                  borderRadius: ph / 2,
+                  background: "linear-gradient(160deg, rgba(255,255,255,.97), rgba(236,230,255,.88))",
+                  boxShadow: "inset 0 2px 0 #fff, inset 0 -12px 30px rgba(169,139,255,.22)",
+                  border: "1.5px solid rgba(255,255,255,.95)",
+                }}
+              />
+              <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", gap: 18, whiteSpace: "nowrap" }}>
+                <Wort bei={w(7, "Solleva") + 6} style={txt}>
+                  Solleva
+                </Wort>
+                <Wort bei={heisst} style={txt}>
+                  heisst:
+                </Wort>
+                <Wort bei={heb} style={ser}>
+                  anheben.
+                </Wort>
+              </div>
+            </div>
+          </Titel>
       </Kamera>
+      <AbsoluteFill style={{ background: "#fff", opacity: blitz }} />
       <AbsoluteFill style={{ background: `radial-gradient(circle at 50% ${(kY / 1920) * 100}%, #fff ${bloom * 70}%, rgba(255,255,255,${bloom}) ${bloom * 100 + 10}%)`, opacity: bloom }} />
       {v === "A" && <Ton nr="pop-02" bei={p0 + 3} vol={0.4} />}
       {v === "A" && <Ton nr="klick-02" bei={p0 + 9} vol={0.35} />}
-      <Ton nr="riser-01" bei={heb} vol={0.25} />
-      <Ton nr="whoosh-03" bei={heb + 4} vor={2} vol={0.45} />
-      <Ton nr="glitzer-04" bei={heb + 10} vol={0.4} />
+      <Ton nr="riser-01" bei={heb} vol={0.18} />
+      {/* Engelschor: schwillt in der Spannung an, Höhepunkt kurz nach dem Losreissen */}
+      <Ton nr="chor-01" bei={heb + 18} vol={0.6} />
+      <Ton nr="schlag-05" bei={heb} vol={0.45} />
+      <Ton nr="glitzer-04" bei={heb + 10} vol={0.35} />
       <Ton nr="glitzer-05" bei={ende} vor={2} vol={0.2} max={2} />
     </AbsoluteFill>
+  );
+};
+
+/** Lichtpunkte steigen aus der Masse auf (Motiv «anheben»). */
+const Aufsteigen: React.FC<{ ab: number }> = ({ ab }) => {
+  const F = useCurrentFrame();
+  const da = tw(F, ab, 14, 0, 1, kurve.fade);
+  if (da <= 0) return null;
+  return (
+    <>
+      {Array.from({ length: 22 }).map((_, i) => {
+        const r = (k: number) => ((Math.sin((i + 3) * 78.233 * k) * 43758.5453) % 1 + 1) % 1;
+        const tempo = 3 + r(1) * 5;
+        const weg = ((F - ab) * tempo + r(2) * 900) % 900;
+        const y = 1560 - weg;
+        const x = 120 + r(3) * 840 + Math.sin((F + i * 20) / 18) * 14;
+        const g = 6 + r(4) * 10;
+        const o = da * Math.min(1, weg / 120) * Math.min(1, (900 - weg) / 200);
+        return <div key={i} style={abs(x, y, { width: g, height: g, borderRadius: g, background: r(5) > 0.5 ? "#fff" : farben.lavendelAkzent, boxShadow: `0 0 ${g * 2}px ${farben.lavendelAkzent}`, opacity: o * 0.85 })} />;
+      })}
+    </>
+  );
+};
+
+/** Funken, die den gehobenen Kiesel umkreisen (hinten gedämpft, vorne hell). */
+const Umlauf: React.FC<{ heb: number; cy: number; vorne: boolean }> = ({ heb, cy, vorne }) => {
+  const F = useCurrentFrame();
+  const da = tw(F, heb + 12, 12, 0, 1, kurve.land);
+  if (da <= 0) return null;
+  return (
+    <>
+      {Array.from({ length: 7 }).map((_, i) => {
+        const a = (F - heb) * 0.09 + (i / 7) * Math.PI * 2;
+        const z = Math.sin(a);
+        if (vorne !== z > 0) return null;
+        const g = (vorne ? 20 : 12) + (i % 3) * 3;
+        return (
+          <div
+            key={i}
+            style={abs(540 + Math.cos(a) * 300 * da - g / 2, cy + z * 80 - g / 2, {
+              width: g,
+              height: g,
+              borderRadius: g,
+              background: i % 2 ? farben.lavendelAkzent : "#fff",
+              boxShadow: `0 0 ${vorne ? 34 : 16}px ${farben.lavendelAkzent}, 0 0 8px #fff`,
+              opacity: da * (vorne ? 1 : 0.45),
+            })}
+          />
+        );
+      })}
+    </>
   );
 };
 
