@@ -48,7 +48,7 @@ Status: **v0.2: Bausteine aus 7 Referenzen gebaut, wartet auf Freigabe des Nutze
 ## Bildsprache (Wunsch des Nutzers, gilt immer)
 - **Nicht nur Folien mit Text**: jede Szene bekommt ein Bild zur Veranschaulichung.
 - **Hauptbilder = echte, generierte Objekte/Figuren** (Higgsfield, freigestellt): z. B. realistisches **Gehirn**, **griechische Männer/Marmor-Statuen**, Cartoon-Figuren, PC fällt vom Himmel. **Nicht** die Emoji-Version davon.
-- `assets/emoji/` (74 Fluent 3D, MIT, `src/bausteine/Emoji.tsx`) = **nur kleine Akzente**, kein Ersatz für Hauptbilder.
+- `assets/emoji/` (74 Fluent 3D, MIT, `src/bausteine/Emoji.tsx`) = **nur kleine Akzente**, kein Ersatz für Hauptbilder. **Keine Smiley-Gesichter** (Nutzer mag sie nicht), auch nicht als Platzhalter; Gefühle über echte Motive zeigen (z. B. gähnende Marmorbüste statt schlafender Smiley).
 - Figuren/Objekte/Foto-Hintergründe mit Higgsfield **nur nach Freigabe**, danach in `assets/` speichern und wiederverwenden.
 - Hintergründe: Nutzer findet sie noch zu schlicht → pro Reel 1–3 Foto/Textur-Hintergründe vorschlagen.
 

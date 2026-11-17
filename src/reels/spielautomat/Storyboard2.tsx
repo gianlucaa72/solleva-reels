@@ -3,6 +3,7 @@ import { AbsoluteFill, Sequence } from "remotion";
 import {
   Ausschnitt, Blitz, Erpresser, Etikett, HfNotiz, HKaro, HKreis, HPackpapier, HPunkte, HSchwarz, HSpirale, HStrahlen, HZeitung,
   Hebel, Korn, Papierstueck, Zacken, zine, ZineSchriften,
+  Flasche, Bueste, Kanone,
   Los, Riso, Rasterwort, Blase, Stempel, Hand, Praegeband, Schlagzeile, Kreistext, Stapel, Karteikarte,
 } from "../../stil/halbton";
 
@@ -74,18 +75,18 @@ const P = {
       <HKaro f={10} />
       <Hand x={130} y={250} text="Viele denken, Dopamin sei das …" size={64} farbe={zine.schwarz} strich={zine.violett} />
       <Blase x={140} y={370} w={680} dreh={-3}>Glücks&shy;hormon!</Blase>
-      <Ausschnitt name="zany-face" x={540} y={1120} size={520} dreh={6} />
-      <HfNotiz text="Vintage-Frau lacht (Halbton, 50er-Foto)" />
+      <Flasche x={560} y={1140} h={640} dreh={5} />
+      <HfNotiz text="Apotheker-Flasche, Etikett «GLÜCK» (Halbton)" />
     </>
   ),
   falsch: () => (
     <>
       <HSchwarz />
-      <Stempel x={150} y={270} text="FALSCH." size={170} dreh={-9} farbe="#FF3B3B" dunkel />
-      <div style={{ position: "absolute", left: 90, top: 540, fontFamily: "JetBrains Mono", fontSize: 36, color: "#bbb", letterSpacing: "0.1em" }}>DOPAMIN HEISST:</div>
-      <Hand x={80} y={600} text="Da kommt noch mehr!" size={118} />
-      <Ausschnitt name="megaphone" x={560} y={1200} size={520} dreh={-12} />
-      <HfNotiz text="Hand mit Megafon (Halbton)" />
+      <div style={{ position: "absolute", left: 90, top: 290, fontFamily: "JetBrains Mono", fontSize: 36, color: "#bbb", letterSpacing: "0.1em" }}>DOPAMIN HEISST:</div>
+      <Hand x={80} y={350} text="Da kommt noch mehr!" size={118} />
+      <Flasche x={560} y={1180} h={600} dreh={-6} riss />
+      <Stempel x={170} y={1060} text="FALSCH." size={170} dreh={-14} farbe="#FF3B3B" dunkel />
+      <HfNotiz text="dieselbe Flasche, bekommt Riss + Stempel (Code)" />
     </>
   ),
   erwartet: () => (
@@ -94,7 +95,7 @@ const P = {
       <Praegeband x={70} y={270} text="EIN ERWARTETER TREFFER" size={44} dreh={-2} />
       <Praegeband x={220} y={370} text="LÄSST ES FAST" size={44} farbe={zine.violett} dreh={2} />
       <Praegeband x={300} y={470} text="KALT." size={110} farbe="#2F6FB5" dreh={-3} />
-      <Ausschnitt name="sleeping-face" x={540} y={1120} size={540} />
+      <Bueste x={540} y={1140} h={660} />
       <HfNotiz text="Marmorbüste gähnt (Halbton)" />
     </>
   ),
@@ -102,9 +103,9 @@ const P = {
     <>
       <HStrahlen a={zine.gelb} b="#FFF6D0" f={40} />
       <Schlagzeile x={70} y={250} w={880} dach="EXTRABLATT · ÜBERRASCHENDER TREFFER" titel="Löst einen Schub aus!" dreh={-2} />
-      <Zacken x={540} y={1100} r={380} farbe={zine.rot} spitzen={14} />
-      <Ausschnitt name="face-screaming-in-fear" x={540} y={1100} size={480} />
-      <HfNotiz text="Frau mit Fernglas staunt (Halbton)" />
+      <Zacken x={700} y={900} r={260} farbe={zine.rot} spitzen={14} />
+      <Kanone x={520} y={1150} w={860} />
+      <HfNotiz text="Zirkus-Kanone, Mann fliegt raus (Kupferstich/Halbton)" />
     </>
   ),
   ungewiss: () => (

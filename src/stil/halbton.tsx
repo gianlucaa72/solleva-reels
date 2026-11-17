@@ -475,3 +475,68 @@ export const Karteikarte: React.FC<{ x: number; y: number; w: number; zeilen: Re
     ))}
   </div>
 );
+
+// ================= Platzhalter-Silhouetten (nur Storyboard, werden durch Higgsfield-Bilder ersetzt) =================
+const Rasterfuellung: React.FC<{ id: string }> = ({ id }) => (
+  <defs>
+    <linearGradient id={`${id}g`} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stopColor="#D8D8D8" />
+      <stop offset="1" stopColor="#6A6A6A" />
+    </linearGradient>
+    <pattern id={`${id}p`} width="10" height="10" patternUnits="userSpaceOnUse">
+      <rect width="10" height="10" fill={`url(#${id}g)`} />
+      <circle cx="5" cy="5" r="2.6" fill="rgba(0,0,0,.45)" />
+    </pattern>
+  </defs>
+);
+
+const Silhouette: React.FC<{ x: number; y: number; w: number; h: number; dreh?: number; children: React.ReactNode; vb: string }> = ({ x, y, w, h, dreh = 0, children, vb }) => (
+  <svg style={{ position: "absolute", left: x - w / 2, top: y - h / 2, transform: `rotate(${dreh}deg)`, filter: weisserRand(7), overflow: "visible" }} width={w} height={h} viewBox={vb}>
+    {children}
+  </svg>
+);
+
+/** Apotheker-Flasche mit Etikett «GLÜCK». */
+export const Flasche: React.FC<{ x: number; y: number; h?: number; dreh?: number; riss?: boolean }> = ({ x, y, h = 620, dreh = 0, riss = false }) => (
+  <Silhouette x={x} y={y} w={h * 0.5} h={h} dreh={dreh} vb="0 0 100 200">
+    <Rasterfuellung id="fl" />
+    <rect x="38" y="0" width="24" height="14" rx="3" fill="#3A2A1E" />
+    <path d="M40,14 L60,14 L60,46 C88,58 92,74 92,96 L92,186 C92,194 86,200 78,200 L22,200 C14,200 8,194 8,186 L8,96 C8,74 12,58 40,46 Z" fill="url(#flp)" stroke="#121212" strokeWidth="2" />
+    <rect x="16" y="104" width="68" height="58" fill="#F3EEDF" stroke="#121212" strokeWidth="1.6" />
+    <text x="50" y="128" textAnchor="middle" style={{ fontFamily: "Fell SC", fontSize: 17 }} fill="#121212">GLÜCK</text>
+    <text x="50" y="146" textAnchor="middle" style={{ fontFamily: "Fell", fontStyle: "italic", fontSize: 10 }} fill="#D7232B">Tropfen · 100 ml</text>
+    {riss && <path d="M30,60 L44,92 L36,110 L52,140 L46,170" fill="none" stroke="#121212" strokeWidth="2.5" />}
+  </Silhouette>
+);
+
+/** Marmorbüste, gähnt. */
+export const Bueste: React.FC<{ x: number; y: number; h?: number; dreh?: number }> = ({ x, y, h = 640, dreh = 0 }) => (
+  <Silhouette x={x} y={y} w={h * 0.8} h={h} dreh={dreh} vb="0 0 160 200">
+    <Rasterfuellung id="bu" />
+    <path d="M80,10 C112,10 124,36 122,62 C121,80 114,96 104,106 L104,124 C130,130 152,146 156,176 L160,200 L0,200 L4,176 C8,146 30,130 56,124 L56,106 C46,96 39,80 38,62 C36,36 48,10 80,10 Z" fill="url(#bup)" stroke="#121212" strokeWidth="2" />
+    <path d="M52,34 C60,18 100,16 110,34 C104,26 96,30 88,24 C80,30 66,24 60,32 Z" fill="#9A9A9A" stroke="#121212" strokeWidth="1.2" />
+    <path d="M58,62 C64,58 70,58 74,62 M88,62 C92,58 98,58 104,62" fill="none" stroke="#121212" strokeWidth="2" />
+    <ellipse cx="81" cy="88" rx="9" ry="13" fill="#2A2A2A" />
+    <text x="128" y="40" style={{ fontFamily: "Caveat", fontWeight: 600, fontSize: 22 }} fill="#121212">gääähn</text>
+  </Silhouette>
+);
+
+/** Zirkus-Kanone, Mann fliegt raus. */
+export const Kanone: React.FC<{ x: number; y: number; w?: number; dreh?: number }> = ({ x, y, w = 820, dreh = 0 }) => (
+  <Silhouette x={x} y={y} w={w} h={w * 0.75} dreh={dreh} vb="0 0 200 150">
+    <Rasterfuellung id="ka" />
+    <g transform="rotate(-32 70 110)">
+      <rect x="40" y="92" width="120" height="36" rx="8" fill="url(#kap)" stroke="#121212" strokeWidth="2" />
+      <rect x="150" y="86" width="16" height="48" rx="4" fill="#D7232B" stroke="#121212" strokeWidth="2" />
+      <rect x="70" y="92" width="10" height="36" fill="#FFD21F" stroke="#121212" strokeWidth="1.2" />
+      <rect x="100" y="92" width="10" height="36" fill="#FFD21F" stroke="#121212" strokeWidth="1.2" />
+    </g>
+    <circle cx="66" cy="126" r="22" fill="#F3EEDF" stroke="#121212" strokeWidth="2" />
+    <path d="M66,104 L66,148 M44,126 L88,126 M50,110 L82,142 M82,110 L50,142" stroke="#121212" strokeWidth="1.5" />
+    <g transform="translate(160 22) rotate(30)">
+      <circle cx="0" cy="0" r="8" fill="url(#kap)" stroke="#121212" strokeWidth="1.5" />
+      <path d="M0,8 L0,30 M0,14 L-14,4 M0,14 L14,22 M0,30 L-10,44 M0,30 L12,42" stroke="#121212" strokeWidth="4" strokeLinecap="round" />
+    </g>
+    <path d="M120,58 C130,50 136,44 148,36" fill="none" stroke="#121212" strokeWidth="1.5" strokeDasharray="4 4" />
+  </Silhouette>
+);
