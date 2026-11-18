@@ -63,6 +63,7 @@ Status: **v0.2: Bausteine aus 7 Referenzen gebaut, wartet auf Freigabe des Nutze
 - **Keine halb angeschnittenen, unscharfen Deko-Elemente am Rand** (Münzen etc.): ganz ins Bild und scharf, oder weg.
 - **Loop-Ende**: Endcard geht raus, der erste Hintergrund blendet deckungsgleich ein (letzter ≈ erster Frame).
 - **Karten** (`assets/cards/`, 2:3, 400 × 600): Walzen-Symbole sind austauschbare Bilder (treffer, niete, stern, frage, klee). Ersetzen durch Illustrationen mit gleichem Namen/Format; Herz der Treffer-Karte bleibt an derselben Stelle (Portal).
+- **Animierte Karten/Figuren** (Joker v5): Startbild auf 9:16-Fläche setzen (Kling kann nur 16:9/9:16/1:1), danach Kartenbereich ausschneiden und als **Bildfolge** einbauen (nicht als Video: so läuft sie in Portalen und mit Bewegungsunschärfe exakt synchron). Endbild = Quellframe, der dem letzten Clip-Frame entspricht (Abweichung messen). Upload zu Higgsfield geht nur über `media_import_url` (raw.githubusercontent.com, Repo ist öffentlich); upload.higgsfield.ai ist gesperrt.
 - Schnelle Kontrollbilder: `REMOTION_UNSCHAERFE=1 npx remotion still …` (keine Dateiänderung nötig).
 
 ## Stil-Rezepte
