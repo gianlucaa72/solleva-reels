@@ -64,12 +64,16 @@ export const Fenster: React.FC<{ r: Rechteck; children: React.ReactNode; radius?
   </div>
 );
 
+/** Proben für die Bewegungsunschärfe. Für schnelle Kontrollbilder: REMOTION_UNSCHAERFE=1 npx remotion still … */
+declare const process: { env: Record<string, string | undefined> };
+const UNSCHAERFE_PROBEN = Number(process.env.REMOTION_UNSCHAERFE ?? 6) || 6;
+
 /**
  * Bewegungsunschärfe: bei schnellen Kamerafahrten wird die Welt mehrfach in Sub-Frames gerendert
  * und gemittelt (Ebene i mit Deckkraft 1/(i+1) → gleiches Gewicht für alle Proben).
  */
 export const Bewegungsunschaerfe: React.FC<{ f: number; tempo: number; render: (f: number) => React.ReactNode; schwelle?: number; proben?: number; verschluss?: number }> = ({
-  f, tempo, render, schwelle = 0.012, proben = 6, verschluss = 0.7,
+  f, tempo, render, schwelle = 0.012, proben = UNSCHAERFE_PROBEN, verschluss = 0.7,
 }) => {
   if (tempo < schwelle) return <AbsoluteFill>{render(f)}</AbsoluteFill>;
   const n = Math.round(Math.min(proben, 3 + (tempo / schwelle) * 1.5));

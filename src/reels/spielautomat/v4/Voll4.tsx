@@ -258,12 +258,12 @@ const Szene1: React.FC<SzProps> = ({ f, cam, stufe }) => {
         <HandyMitSzene f={f} stufe={stufe} sc={S1_SC} x={S1_POS.x} y={S1_POS.y} tr={handTransform(f)} blur={ein * 6} n={2} />
       </Ebene>
       <Ebene cam={cam} tiefe={TIEFE.text} style={{ opacity: weg(f, 1, 11, 8) }}>
-        <HookLabel text="DEIN DAUMEN ZIEHT" x={60} y={250} dreh={-3} start={z.start} f={f} />
-        <HookLabel text="GERADE AN EINEM" x={130} y={352} dreh={2} start={z.m.zeile2} f={f} />
+        <HookLabel text="DEIN DAUMEN ZIEHT" x={100} y={300} dreh={-3} start={z.start} f={f} />
+        <HookLabel text="GERADE AN EINEM" x={150} y={404} dreh={2} start={z.m.zeile2} f={f} />
         {/* «SPIELAUTOMATEN» steht bei 0,7 s; beim gesprochenen Wort pulsiert es */}
-        <div style={{ position: "absolute", inset: 0, transformOrigin: "480px 600px", transform: `scale(${landung(f, z.m.wort, 10, 1.07)})` }}>
-          <ErpresserAnim text="SPIEL" x={70} y={470} size={124} start={8} takt={1} f={f} />
-          <ErpresserAnim text="AUTOMATEN" x={60} y={626} size={98} versatz={3} start={13} takt={1} f={f} />
+        <div style={{ position: "absolute", inset: 0, transformOrigin: "480px 640px", transform: `scale(${landung(f, z.m.wort, 10, 1.05)})` }}>
+          <ErpresserAnim text="SPIEL" x={100} y={512} size={122} start={8} takt={1} f={f} />
+          <ErpresserAnim text="AUTOMATEN" x={100} y={664} size={86} versatz={3} start={13} takt={1} f={f} />
         </div>
       </Ebene>
     </AbsoluteFill>
@@ -272,7 +272,7 @@ const Szene1: React.FC<SzProps> = ({ f, cam, stufe }) => {
 
 
 // ============================== Walzen ==============================
-const WALZE = { w: 240, h: 360, gap: 30, y: 880 };
+const WALZE = { w: 228, h: 342, gap: 24, y: 900 };
 const WALZE_X = (1080 - (3 * WALZE.w + 2 * WALZE.gap)) / 2;
 const wx = (i: number) => WALZE_X + i * (WALZE.w + WALZE.gap);
 const HOOK_STOPS = [Z(1).m.wort + 14, Z(1).m.wort + 20, Z(1).m.wort + 27];
@@ -299,7 +299,9 @@ const HERZ_PFAD = (s: number, ox: number, oy: number) => {
   const P = (x: number, y: number) => `${(ox + x * s).toFixed(1)},${(oy + y * s).toFixed(1)}`;
   return `M${P(50, 88)} C${P(20, 65)} ${P(0, 48)} ${P(0, 26)} C${P(0, 10)} ${P(12, 0)} ${P(26, 0)} C${P(38, 0)} ${P(46, 8)} ${P(50, 16)} C${P(54, 8)} ${P(62, 0)} ${P(74, 0)} C${P(88, 0)} ${P(100, 10)} ${P(100, 26)} C${P(100, 48)} ${P(80, 65)} ${P(50, 88)} Z`;
 };
-const HERZ = { s: 1.9, x: wx(2) + WALZE.w / 2 - 95, y: WALZE.y + WALZE.h / 2 - 82 };
+/** Herz exakt wie in assets/cards/treffer.png (Karte 2:3, Herz 79 % der Breite). */
+const HERZ_S = (1.9 * WALZE.w) / 240;
+const HERZ = { s: HERZ_S, x: wx(2) + WALZE.w / 2 - 50 * HERZ_S, y: WALZE.y + WALZE.h / 2 - 43.16 * HERZ_S };
 const S3_FENSTER: Rechteck = { x: HERZ.x + 35.4 * HERZ.s, y: HERZ.y + 20 * HERZ.s, w: 29.25 * HERZ.s, h: 52 * HERZ.s };
 
 
@@ -341,7 +343,7 @@ const Szene2: React.FC<SzProps> = ({ f, cam, stufe }) => {
         {/* Satz 2: Lotterie-Los «DREH» – fliegt beim nächsten Satz nach oben raus */}
         {f >= los - 1 && f < z3.start + 9 && (
           <AbsoluteFill style={raus(f, z3.start - 2)}>
-            <div style={{ position: "absolute", left: 100, top: 250, width: 820, transformOrigin: "50% 0", transform: `translateY(${losP * -900}px) rotate(${-3 + losP * -25 + losWackel}deg) scale(${landung(f, los + 9, 8, 1.03)})`, filter: "drop-shadow(10px 14px 0 rgba(0,0,0,.28))" }}>
+            <div style={{ position: "absolute", left: 110, top: 300, width: 780, transformOrigin: "50% 0", transform: `translateY(${losP * -900}px) rotate(${-3 + losP * -25 + losWackel}deg) scale(${landung(f, los + 9, 8, 1.03)})`, filter: "drop-shadow(10px 14px 0 rgba(0,0,0,.28))" }}>
               <div style={{ background: zine.gelb, border: `5px solid ${zine.schwarz}`, borderRadius: 20, padding: "26px 40px 30px", WebkitMaskImage: "radial-gradient(circle at 0 50%, transparent 30px, #000 31px), radial-gradient(circle at 100% 50%, transparent 30px, #000 31px)", WebkitMaskComposite: "source-in", maskComposite: "intersect" } as React.CSSProperties}>
                 <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "JetBrains Mono", fontSize: 30, letterSpacing: "0.14em", color: zine.schwarz }}>
                   <span>JEDER WISCH IST EIN NEUER</span>
@@ -357,10 +359,11 @@ const Szene2: React.FC<SzProps> = ({ f, cam, stufe }) => {
         )}
         {/* Satz 3 */}
         <Rein f={f} start={z3.start} art="rutsch">
-          <Papierstueck x={60} y={250} w={870} h={230} dreh={-2} seed={31} style={{ background: "#F6F1E4" }} />
+          {/* Papier wächst mit der zweiten Zeile (nie leere Fläche) */}
+          <Papierstueck x={100} y={300} w={800} h={128 + tw(f, z3.m.aber - 2, 6, 0, 98, kurve.whip)} dreh={-2} seed={31} style={{ background: "#F6F1E4" }} />
         </Rein>
         <Rein f={f} start={z3.start + 2} art="slap" ox={100} oy={280}>
-          <div style={{ position: "absolute", left: 100, top: 266, fontFamily: "Fell", fontStyle: "italic", fontSize: 84, color: zine.schwarz, whiteSpace: "nowrap" }}>
+          <div style={{ position: "absolute", left: 135, top: 316, fontFamily: "Fell", fontStyle: "italic", fontSize: 84, color: zine.schwarz, whiteSpace: "nowrap" }}>
             Meistens{" "}
             {f >= z3.m.niete && (
               <span style={{ position: "relative" }}>
@@ -371,15 +374,15 @@ const Szene2: React.FC<SzProps> = ({ f, cam, stufe }) => {
           </div>
         </Rein>
         <Rein f={f} start={z3.m.aber} art="slap" ox={300} oy={370}>
-          <div style={{ position: "absolute", left: 300, top: 362, fontFamily: "Fell", fontStyle: "italic", fontSize: 84, color: zine.schwarz }}>Aber manchmal:</div>
+          <div style={{ position: "absolute", left: 320, top: 412, fontFamily: "Fell", fontStyle: "italic", fontSize: 84, color: zine.schwarz }}>Aber manchmal:</div>
         </Rein>
         <Rein f={f} start={z3.m.wort} art="stempel" ox={540} oy={560}>
-          <Riso x={70} y={505} text="TREFFER!" size={186} dreh={-4} />
+          <Riso x={105} y={545} text="TREFFER!" size={158} dreh={-4} />
         </Rein>
       </Ebene>
       <Ebene cam={cam} tiefe={TIEFE.vordergrund} style={{ opacity: weg(f, 2, 6, 9) }}>
         {/* «Der Jackpot»: scharf, ganz in der Safe Zone */}
-        <Papierstueck x={90} y={1330} w={820} h={190} dreh={-4} seed={44} style={{ background: "#EFE7D3" }}>
+        <Papierstueck x={110} y={1300} w={780} h={190} dreh={-4} seed={44} style={{ background: "#EFE7D3" }}>
           <Img src={A("papier")} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.8 }} />
           <div style={{ position: "relative", padding: "34px 60px", fontFamily: "Fell SC", fontSize: 112, color: zine.schwarz, lineHeight: 1, whiteSpace: "nowrap" }}>Der Jackpot</div>
         </Papierstueck>
@@ -470,9 +473,9 @@ const Szene3: React.FC<SzProps> = ({ f, cam, stufe, camT }) => {
           <Rein f={f} start={z4.start} art="slap" ox={120} oy={360}>
             <HellLabel x={120} y={315} size={50}>UND DANN SCHÜTTET<br />DEIN GEHIRN …</HellLabel>
           </Rein>
-          <LinsenText f={f} start={z4.m.wort} x={120} y={470} size={180}>DOPAMIN</LinsenText>
+          <LinsenText f={f} start={z4.m.wort} x={115} y={470} size={164}>DOPAMIN</LinsenText>
           <Rein f={f} start={z4.m.wort + 14} art="slap" ox={720} oy={680}>
-            <HellLabel x={690} y={655} size={50} dreh={2}>… AUS.</HellLabel>
+            <HellLabel x={640} y={655} size={50} dreh={2}>… AUS.</HellLabel>
           </Rein>
         </AbsoluteFill>
         {/* dunkle Schrift auf hellen Labels (Kontrast auf den Wolken), «MEHR!» gross wie «80%» in Ref. 01 */}
@@ -528,7 +531,7 @@ const Szene7: React.FC<SzProps> = ({ f, cam, stufe }) => {
           </Objekt>
         )}
         {ball.sichtbar && <Objekt bild="papierball-frei" bw={1024} bh={1024} sc={330 / 1024} x={270 - 165} y={1250 - 165} blur={ball.blur} tr={`${ball.tr} rotate(${-8 + Math.sin(f / 20) * 4 * h}deg)`} />}
-        {f >= z13.m.wort && <Zacken x={728} y={1150} r={overshoot(f, z13.m.wort, 10, 1.1) * 260} farbe={zine.rot} spitzen={14} dreh={f * 0.9} />}
+        {f >= z13.m.wort && <Zacken x={698} y={1150} r={overshoot(f, z13.m.wort, 10, 1.1) * 260} farbe={zine.rot} spitzen={14} dreh={f * 0.9} />}
         {pokal.sichtbar && (
           <Objekt bild="pokal-frei" bw={PK.bw} bh={PK.bh} sc={PK.sc} x={PK.x} y={PK.y} blur={pokal.blur} tr={`${pokal.tr} rotate(${5 * h}deg) translateY(${Math.sin(f / 16) * 7 * h}px)`}>
             <div style={{ position: "absolute", inset: 0, opacity: 0.25 + 0.75 * tw(f, fahrt, 8, 0, 1, kurve.fade), mixBlendMode: f >= fahrt + 8 ? "normal" : "multiply" }}>
@@ -541,35 +544,35 @@ const Szene7: React.FC<SzProps> = ({ f, cam, stufe }) => {
         {f < wechsel + 9 && (
           <AbsoluteFill style={f >= wechsel ? raus(f, wechsel) : undefined}>
             <Rein f={f} start={z12.m.wort} art="stempel" ox={180} oy={420}>
-              <div style={{ position: "absolute", left: 70, top: 262, fontFamily: "Barlow", fontWeight: 800, fontSize: 430, lineHeight: 0.8, color: "#fff", letterSpacing: "-0.05em", textShadow: "10px 12px 0 rgba(0,0,0,.25)" }}>1</div>
+              <div style={{ position: "absolute", left: 100, top: 305, fontFamily: "Barlow", fontWeight: 800, fontSize: 430, lineHeight: 0.8, color: "#fff", letterSpacing: "-0.05em", textShadow: "10px 12px 0 rgba(0,0,0,.25)" }}>1</div>
             </Rein>
             <Rein f={f} start={z12.m.wort + 6} art="slap" ox={330} oy={320}>
-              <div style={{ position: "absolute", left: 330, top: 275, fontFamily: "Rye", fontSize: 98, color: zine.gelb, lineHeight: 1, textShadow: `5px 5px 0 ${zine.schwarz}` }}>SEKUNDE</div>
+              <div style={{ position: "absolute", left: 360, top: 318, fontFamily: "Rye", fontSize: 98, color: zine.gelb, lineHeight: 1, textShadow: `5px 5px 0 ${zine.schwarz}` }}>SEKUNDE</div>
             </Rein>
             <Rein f={f} start={z12.m.wort + 16} art="slap" ox={335} oy={410}>
-              <div style={{ position: "absolute", left: 335, top: 400, fontFamily: "JetBrains Mono", fontSize: 40, color: "#fff" }}>entscheidet:</div>
+              <div style={{ position: "absolute", left: 365, top: 443, fontFamily: "JetBrains Mono", fontSize: 40, color: "#fff" }}>entscheidet:</div>
             </Rein>
             <Rein f={f} start={z12.m.weiter} art="slap" ox={335} oy={480}>
-              <div style={{ position: "absolute", left: 335, top: 460, fontFamily: "Barlow", fontWeight: 800, fontSize: 64, color: "#fff" }}>WEITER —</div>
+              <div style={{ position: "absolute", left: 365, top: 503, fontFamily: "Barlow", fontWeight: 800, fontSize: 64, color: "#fff" }}>WEITER —</div>
             </Rein>
             <Rein f={f} start={z12.m.stopp - 4} art="stempel" ox={540} oy={590}>
-              <div style={{ position: "absolute", left: 335, top: 540, fontFamily: "Barlow", fontWeight: 800, fontSize: 64, color: "#fff" }}>
+              <div style={{ position: "absolute", left: 365, top: 583, fontFamily: "Barlow", fontWeight: 800, fontSize: 64, color: "#fff" }}>
                 oder <span style={{ background: zine.gelb, color: zine.schwarz, padding: "0 12px" }}>STOPP.</span>
               </div>
             </Rein>
           </AbsoluteFill>
         )}
         <Rein f={f} start={z13.m.niete} art="slap" ox={80} oy={330}>
-          <div style={{ position: "absolute", left: 80, top: 270, fontFamily: "Fell SC", fontSize: 130, color: "#8A8A8A" }}>
+          <div style={{ position: "absolute", left: 105, top: 305, fontFamily: "Fell SC", fontSize: 124, color: "#8A8A8A" }}>
             Niete
             <span style={{ position: "absolute", left: -10, top: "50%", height: 12, width: `${strich * 112}%`, background: zine.rot, transform: "rotate(-5deg)" }} />
           </div>
         </Rein>
         <Rein f={f} start={z13.m.oder} art="pop" ox={560} oy={470}>
-          <div style={{ position: "absolute", left: 380, top: 430, fontFamily: "Caveat", fontWeight: 600, fontSize: 80, color: "#fff", transform: "rotate(-6deg)", textShadow: "3px 3px 0 #000" }}>oder …</div>
+          <div style={{ position: "absolute", left: 360, top: 465, fontFamily: "Caveat", fontWeight: 600, fontSize: 80, color: "#fff", transform: "rotate(-6deg)", textShadow: "3px 3px 0 #000" }}>oder …</div>
         </Rein>
         <Rein f={f} start={z13.m.wort} art="stempel" ox={800} oy={600}>
-          <div style={{ position: "absolute", left: 505, top: 540, fontFamily: "Rye", fontSize: 84, color: zine.schwarz, transform: "rotate(4deg)" }}>Treffer?</div>
+          <div style={{ position: "absolute", left: 480, top: 575, fontFamily: "Rye", fontSize: 76, color: zine.schwarz, transform: "rotate(4deg)" }}>Treffer?</div>
         </Rein>
       </Ebene>
     </AbsoluteFill>
@@ -604,11 +607,11 @@ const Szene4: React.FC<SzProps> = ({ f, cam, stufe }) => {
       <Ebene cam={cam} tiefe={TIEFE.text} style={{ opacity: weg(f, 4, 11, 8) }}>
         <Rein f={f} start={z.start + 1} art="fall" ox={500} oy={340}>
           {/* Papier ist nur so gross wie der Text: wächst, wenn die zweite Zeile kommt */}
-          <Papierstueck x={70} y={250} w={860} h={190 + tw(f, z.m.zeile2, 7, 0, 100, kurve.whip)} dreh={-2} seed={21} style={{ background: "#F1ECDF", padding: "22px 40px", boxSizing: "border-box" }}>
+          <Papierstueck x={100} y={300} w={800} h={176 + tw(f, z.m.zeile2, 7, 0, 92, kurve.whip)} dreh={-2} seed={21} style={{ background: "#F1ECDF", padding: "22px 40px", boxSizing: "border-box" }}>
             <div style={{ fontFamily: "Fell SC", fontSize: 34, letterSpacing: "0.12em", color: zine.rot, whiteSpace: "nowrap", borderBottom: `4px double ${zine.schwarz}`, paddingBottom: 4 }}>EXTRABLATT</div>
-            <div style={{ fontFamily: "Fell SC", fontSize: 58, lineHeight: 1.05, color: zine.schwarz, marginTop: 10, whiteSpace: "nowrap" }}>Überraschender Treffer:</div>
-            <div style={{ fontFamily: "Fell SC", fontSize: 74, lineHeight: 1, color: zine.schwarz, marginTop: 12, whiteSpace: "nowrap", opacity: titel ? 1 : 0, transform: `scale(${titel ? tw(f, z.m.zeile2, 6, 1.15, 1, kurve.whip) : 1})`, transformOrigin: "left center" }}>
-              Löst einen <span style={{ color: zine.rot, display: "inline-block", transform: `scale(${f >= z.m.wort ? tw(f, z.m.wort, 6, 1.6, 1, kurve.whip) : 1})`, opacity: f >= z.m.wort ? 1 : 0 }}>Schub</span> aus!
+            <div style={{ fontFamily: "Fell SC", fontSize: 54, lineHeight: 1.05, color: zine.schwarz, marginTop: 10, whiteSpace: "nowrap" }}>Überraschender Treffer:</div>
+            <div style={{ fontFamily: "Fell SC", fontSize: 66, lineHeight: 1, color: zine.schwarz, marginTop: 12, whiteSpace: "nowrap", opacity: titel ? 1 : 0, transform: `scale(${titel ? tw(f, z.m.zeile2, 6, 1.15, 1, kurve.whip) : 1})`, transformOrigin: "left center" }}>
+              Löst einen <span style={{ display: "inline-block", ...(f >= z.m.wort ? { color: zine.rot, transform: `scale(${tw(f, z.m.wort, 6, 1.6, 1, kurve.whip)})` } : { color: "transparent", WebkitTextStroke: `2px ${zine.rot}`, opacity: 0.6 }) }}>Schub</span> aus!
             </div>
           </Papierstueck>
         </Rein>
@@ -644,7 +647,7 @@ const SpiraleZ: React.FC<{ cx: number; cy: number; winkel: number; loch?: number
 const weiterPapierH = (f: number) => {
   const z = Z(10);
   const zeilen = [z.m.weiter1, z.m.weiter1 + 6, z.m.und, z.m.und + 5, z.m.wort];
-  let h = 135;
+  let h = 112;
   zeilen.forEach((s, i) => (h += tw(f, s - 2, 6, 0, (56 + (94 * i) / 4) * 0.88, kurve.whip)));
   return h + 10;
 };
@@ -704,20 +707,20 @@ const Szene5: React.FC<SzProps> = ({ f, cam, stufe }) => {
       </Ebene>
       <Ebene cam={cam} tiefe={TIEFE.text} style={{ opacity: weg(f, 5, 11, 8) }}>
         <Rein f={f} start={z.start} art="rutsch">
-          <Papierstueck x={60} y={230} w={870} h={weiterPapierH(f)} dreh={-2} seed={14} style={{ background: zine.papier }} />
+          <Papierstueck x={95} y={300} w={810} h={weiterPapierH(f)} dreh={-2} seed={14} style={{ background: zine.papier }} />
         </Rein>
         <Rein f={f} start={z.start + 3} art="slap" ox={90} oy={260}>
-          <div style={{ position: "absolute", left: 92, top: 252, fontFamily: "Barlow", fontWeight: 800, fontSize: 70, lineHeight: 1, letterSpacing: "-0.01em", color: zine.schwarz, whiteSpace: "nowrap" }}>DARUM SCROLLST DU …</div>
+          <div style={{ position: "absolute", left: 125, top: 322, fontFamily: "Barlow", fontWeight: 800, fontSize: 66, lineHeight: 1, letterSpacing: "-0.01em", color: zine.schwarz, whiteSpace: "nowrap" }}>DARUM SCROLLST DU …</div>
         </Rein>
         {zeilen.map((s, i) => {
           if (f < s) return null;
           const size = 56 + (94 * i) / 4;
-          let top = 345;
+          let top = 410;
           for (let k = 0; k < i; k++) top += (56 + (94 * k) / 4) * 0.88;
-          return <div key={i} style={{ position: "absolute", left: 90, top, fontFamily: "Barlow", fontWeight: 800, fontSize: size, lineHeight: 0.88, letterSpacing: "-0.03em", color: i % 2 ? zine.rot : zine.schwarz, transform: `scale(${tw(f, s, 5, 1.3, 1, kurve.whip)})`, transformOrigin: "left center" }}>WEITER.</div>;
+          return <div key={i} style={{ position: "absolute", left: 125, top, fontFamily: "Barlow", fontWeight: 800, fontSize: size, lineHeight: 0.88, letterSpacing: "-0.03em", color: i % 2 ? zine.rot : zine.schwarz, transform: `scale(${tw(f, s, 5, 1.3, 1, kurve.whip)})`, transformOrigin: "left center" }}>WEITER.</div>;
         })}
-        <Rein f={f} start={z.m.weiter1 + 10} art="slap" ox={120} oy={920}>
-          <div style={{ position: "absolute", left: 100, top: 868, transform: "rotate(-4deg)", background: zine.gelb, border: `6px solid ${zine.schwarz}`, fontFamily: "Barlow", fontWeight: 800, fontSize: 84, lineHeight: 1, padding: "12px 32px", boxShadow: "8px 12px 0 rgba(0,0,0,.28)", whiteSpace: "nowrap" }}>NUR NOCH EINS.</div>
+        <Rein f={f} start={z.m.weiter1 + 10} art="slap" ox={140} oy={960}>
+          <div style={{ position: "absolute", left: 120, top: 905, transform: "rotate(-4deg)", background: zine.gelb, border: `6px solid ${zine.schwarz}`, fontFamily: "Barlow", fontWeight: 800, fontSize: 84, lineHeight: 1, padding: "12px 32px", boxShadow: "8px 12px 0 rgba(0,0,0,.28)", whiteSpace: "nowrap" }}>NUR NOCH EINS.</div>
         </Rein>
       </Ebene>
     </AbsoluteFill>
@@ -726,7 +729,7 @@ const Szene5: React.FC<SzProps> = ({ f, cam, stufe }) => {
 
 
 // ============================== Szene 6: Laptop ==============================
-const LA = { bw: 1168, bh: 880, sc: 940 / 1168, x: 70, y: 876 };
+const LA = { bw: 1168, bh: 880, sc: 860 / 1168, x: 110, y: 900 };
 const LA_SCHIRM = { x: 274 * LA.sc, y: 149 * LA.sc, w: 612 * LA.sc, h: 375 * LA.sc };
 const MINI = { w: 76, h: 114, gap: 14 };
 const MINI_X = LA_SCHIRM.x + (LA_SCHIRM.w - (3 * MINI.w + 2 * MINI.gap)) / 2;
@@ -767,7 +770,7 @@ const Szene6: React.FC<SzProps> = ({ f, cam, stufe }) => {
       </Ebene>
       <Ebene cam={cam} tiefe={TIEFE.text} style={{ opacity: weg(f, 6, 11, 8) }}>
         <Rein f={f} start={z.start} art="fall" ox={520} oy={330}>
-          <div style={{ position: "absolute", left: 80, top: 250, width: 840, transform: "rotate(-2deg)", background: "#FBF8F0", boxShadow: "8px 12px 0 rgba(0,0,0,.22)", padding: "30px 40px 36px", backgroundImage: "repeating-linear-gradient(transparent 0 66px, #C9D5EA 66px 68px)", backgroundPosition: "0 44px" }}>
+          <div style={{ position: "absolute", left: 100, top: 300, width: 800, transform: "rotate(-2deg)", background: "#FBF8F0", boxShadow: "8px 12px 0 rgba(0,0,0,.22)", padding: "30px 40px 36px", backgroundImage: "repeating-linear-gradient(transparent 0 66px, #C9D5EA 66px 68px)", backgroundPosition: "0 44px" }}>
             <div style={{ position: "absolute", left: 360, top: -26, width: 170, height: 50, background: "rgba(240,234,210,.85)", transform: "rotate(-4deg)" }} />
             <div style={{ fontFamily: "JetBrains Mono", fontSize: 54, lineHeight: "68px", color: "#222" }}>Deine Firma steckt</div>
             <div style={{ fontFamily: "JetBrains Mono", fontSize: 54, lineHeight: "68px", color: "#222" }}>
@@ -781,7 +784,7 @@ const Szene6: React.FC<SzProps> = ({ f, cam, stufe }) => {
         </Rein>
       </Ebene>
       <Ebene cam={cam} tiefe={TIEFE.vordergrund} style={{ opacity: weg(f, 6, 6, 9) }}>
-        <VLos x={540} y={480} dreh={8} farbe="#F4EFE4" blur={0} skala={0.66} />
+        <VLos x={560} y={575} dreh={8} farbe="#F4EFE4" blur={0} skala={0.6} />
       </Ebene>
     </AbsoluteFill>
   );
@@ -794,7 +797,7 @@ const SU_FENSTER: Rechteck = { x: 399 * SU.sc, y: 236 * SU.sc, w: 72 * SU.sc, h:
 const SU_BOX: Rechteck = { x: (435 - 150) * SU.sc, y: (300 - 80) * SU.sc, w: 300 * SU.sc, h: 160 * SU.sc };
 
 
-const PK = { bw: 880, bh: 1168, sc: 0.45, x: 530, y: 930 };
+const PK = { bw: 880, bh: 1168, sc: 0.45, x: 500, y: 930 };
 const PK_FENSTER: Rechteck = { x: 365.5 * PK.sc, y: 200 * PK.sc, w: 169 * PK.sc, h: 300 * PK.sc };
 const PK_BOX: Rechteck = { x: (450 - 175) * PK.sc, y: (350 - 200) * PK.sc, w: 350 * PK.sc, h: 400 * PK.sc };
 
@@ -828,17 +831,17 @@ const Szene8: React.FC<SzProps> = ({ f, cam, stufe }) => {
       </Ebene>
       <Ebene cam={cam} tiefe={TIEFE.haupt} style={loopAus(f)}>
         <Rein f={f} start={z.m.mehr + 2} art="pop" ox={540} oy={960}>
-          <div style={{ position: "absolute", left: 160, right: 160, top: 840, background: "#F6F1E4", padding: "28px 40px", transform: `rotate(${-2 + Math.sin(f / 30) * 0.6}deg)`, boxShadow: "10px 14px 0 rgba(0,0,0,.3)", filter: weisserRand(6), display: "flex", flexDirection: "column", alignItems: "center", gap: 18 }}>
-            <Img src={A("logo")} style={{ width: 520 }} />
+          <div style={{ position: "absolute", left: 180, right: 180, top: 850, background: "#F6F1E4", padding: "28px 40px", transform: `rotate(${-2 + Math.sin(f / 30) * 0.6}deg)`, boxShadow: "10px 14px 0 rgba(0,0,0,.3)", filter: weisserRand(6), display: "flex", flexDirection: "column", alignItems: "center", gap: 18 }}>
+            <Img src={A("logo")} style={{ width: 480 }} />
             <div style={{ background: zine.schwarz, color: "#fff", fontFamily: "Barlow", fontWeight: 800, fontSize: 56, padding: "10px 34px" }}>@solleva.ch</div>
           </div>
         </Rein>
       </Ebene>
       <Ebene cam={cam} tiefe={TIEFE.text} style={loopAus(f)}>
-        <ErpresserAnim text="FOLGE" x={200} y={360} size={150} versatz={5} start={z.start} takt={3} f={f} />
-        <ErpresserAnim text="FÜR MEHR" x={70} y={560} size={106} versatz={2} start={z.m.mehr} takt={2} f={f} />
+        <ErpresserAnim text="FOLGE" x={170} y={380} size={138} versatz={5} start={z.start} takt={3} f={f} />
+        <ErpresserAnim text="FÜR MEHR" x={100} y={570} size={98} versatz={2} start={z.m.mehr} takt={2} f={f} />
         <Rein f={f} start={z.m.mehr + 12} art="slap" ox={540} oy={1330}>
-          <div style={{ position: "absolute", left: 150, top: 1300, background: zine.schwarz, color: "#F4F1EA", fontFamily: "JetBrains Mono", fontWeight: 500, fontSize: 40, letterSpacing: "0.1em", padding: "10px 22px", transform: "rotate(2deg)" }}>HEB DICH VON DER MASSE AB.</div>
+          <div style={{ position: "absolute", left: 140, top: 1300, background: zine.schwarz, color: "#F4F1EA", fontFamily: "JetBrains Mono", fontWeight: 500, fontSize: 36, letterSpacing: "0.1em", padding: "10px 22px", transform: "rotate(2deg)" }}>HEB DICH VON DER MASSE AB.</div>
         </Rein>
       </Ebene>
     </AbsoluteFill>
@@ -867,26 +870,27 @@ const fahrtFenster = (n: number): Rechteck => {
 const STOESSE = [Z(1).m.wort, Z(2).m.wort, Z(3).m.wort, Z(4).m.wort, Z(6).m.mehr, Z(8).m.wort, Z(10).m.und, Z(12).m.wort, Z(13).m.wort, Z(14).m.mehr];
 const stoss = (f: number) => {
   let s = 0;
-  for (const r of STOESSE) if (f >= r && f < r + 18) s += tw(f, r, 3, 0, 0.045, kurve.whip) - tw(f, r + 3, 15, 0, 0.045, kurve.land);
+  for (const r of STOESSE) if (f >= r && f < r + 18) s += tw(f, r, 3, 0, 0.03, kurve.whip) - tw(f, r + 3, 15, 0, 0.03, kurve.land);
   return s;
 };
 /** Schwenks innerhalb einer Szene (bleiben stehen): Zoom-Änderung ds, Blickpunkt-Verschiebung dx/dy. */
 type Schwenk = { f: number; dauer: number; ds: number; dx?: number; dy?: number };
 const SCHWENKS: Record<number, Schwenk[]> = {
-  1: [{ f: Z(1).m.zeile2, dauer: 26, ds: 0.05, dy: 50 }],
-  2: [{ f: Z(3).start, dauer: 24, ds: 0.04, dy: 40 }],
-  4: [{ f: Z(8).m.wort - 2, dauer: 16, ds: 0.05, dx: 50, dy: -30 }],
-  5: [{ f: Z(10).m.und - 6, dauer: 20, ds: 0.06, dy: 120 }],
-  6: [{ f: Z(11).m.wort - 12, dauer: 20, ds: 0.05, dy: 70 }],
-  7: [{ f: Z(13).start - 2, dauer: 14, ds: -0.04 }, { f: Z(13).m.wort - 4, dauer: 16, ds: 0.06, dx: 30 }],
-  8: [{ f: Z(14).start, dauer: 40, ds: 0.05, dy: -40 }],
+  // v4: Schwenks kleiner (Text bleibt in der Instagram-Safe-Zone), Bewegung vor allem über Seitwärts-Drift
+  1: [{ f: Z(1).m.zeile2, dauer: 26, ds: 0.02, dx: -12 }],
+  2: [{ f: Z(3).start, dauer: 24, ds: 0.02, dx: 12 }],
+  4: [{ f: Z(8).m.wort - 2, dauer: 16, ds: 0.02, dx: 20 }],
+  5: [{ f: Z(10).m.und - 6, dauer: 20, ds: 0.02, dy: -20 }],
+  6: [{ f: Z(11).m.wort - 12, dauer: 20, ds: 0.02, dx: -12 }],
+  7: [{ f: Z(13).start - 2, dauer: 14, ds: -0.03 }, { f: Z(13).m.wort - 4, dauer: 16, ds: 0.04, dx: 12 }],
+  8: [{ f: Z(14).start, dauer: 40, ds: 0.02, dy: -20 }],
 };
 /** Drift zwischen den Fahrten: Zoom 100 → 107 %, ±4 px (startet ohne Versatz). */
 const drift3 = (f: number, start: number, dauer: number, seed: number): Cam => {
   const l = Math.max(0, f - start);
   const t = Math.min(1, l / Math.max(1, dauer));
   return {
-    s: 1 + 0.07 * kurve.heavy(t),
+    s: 1 + 0.04 * kurve.heavy(t),
     cx: MITTE.x + (Math.sin((l + seed * 37) / 40) - Math.sin((seed * 37) / 40)) * 4,
     cy: MITTE.y + (Math.cos((l + seed * 23) / 52) - Math.cos((seed * 23) / 52)) * 3,
   };
