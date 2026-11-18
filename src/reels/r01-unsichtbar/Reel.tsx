@@ -1,6 +1,6 @@
 // Reel 01 «Unsichtbar»: Zusammenbau. Version A, Version B und Best-of (Wahl pro Satz).
 import React from "react";
-import { AbsoluteFill, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { farben, schrift } from "../../brand/solleva";
 import { Label, Schriften } from "../../components/Basis";
 import { kurve, tw } from "../../lib/bewegung";
@@ -81,7 +81,27 @@ const Captions: React.FC<{ nur?: (n: number) => boolean }> = ({ nur }) => {
   );
 };
 
-export const ReelBau: React.FC<{ wahl: (n: number) => V }> = ({ wahl }) => {
+// ---------- Musik: «Deep Urban» (Mixkit), Drop (29,5 s im Track) auf Kapitel 8 ----------
+const MUSIK = { datei: "assets/musik/deep-urban-mixkit-371.mp3", drop: 29.5, leiseVol: 0.19, lautVol: 0.2 };
+const Musik: React.FC = () => {
+  const dropF = st(8);
+  const startImTrack = Math.round((MUSIK.drop - dropF / 30) * 30); // Frames
+  return (
+    <Sequence from={0} durationInFrames={T.gesamt} layout="none">
+      <Audio
+        src={staticFile(MUSIK.datei)}
+        startFrom={startImTrack}
+        volume={(f) => {
+          const rein = Math.min(1, f / 9);
+          const raus = Math.min(1, Math.max(0, (T.gesamt - f) / 24)); // 0,8 s Fade-out
+          return (f < dropF ? MUSIK.leiseVol : MUSIK.lautVol) * rein * raus;
+        }}
+      />
+    </Sequence>
+  );
+};
+
+export const ReelBau: React.FC<{ wahl: (n: number) => V; musik?: boolean }> = ({ wahl, musik = false }) => {
   const F = useCurrentFrame();
   const b = bloom(F);
   return (
@@ -100,6 +120,7 @@ export const ReelBau: React.FC<{ wahl: (n: number) => V }> = ({ wahl }) => {
       </AbsoluteFill>
       <AbsoluteFill style={{ zIndex: 30, background: "#fff", opacity: b }} />
       <Stimme />
+      {musik && <Musik />}
     </AbsoluteFill>
   );
 };
@@ -109,4 +130,5 @@ export const ReelB: React.FC = () => <ReelBau wahl={() => "B"} />;
 
 // Best-of: pro Satz die klarere Version (Begründung in docs/reels/r01-unsichtbar.md)
 export const BEST_OF: Record<number, V> = { 1: "A", 2: "A", 3: "A", 4: "A", 5: "A", 6: "A", 7: "A", 8: "A", 9: "A" };
-export const ReelFinal: React.FC = () => <ReelBau wahl={(n) => BEST_OF[n]} />;
+export const ReelFinal: React.FC = () => <ReelBau wahl={(n) => BEST_OF[n]} musik />;
+export const ReelFinalOhneMusik: React.FC = () => <ReelBau wahl={(n) => BEST_OF[n]} />;

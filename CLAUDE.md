@@ -39,6 +39,6 @@ Status: **v0.2: Bausteine aus 7 Referenzen gebaut, wartet auf Freigabe des Nutze
 
 ## Offen
 - Ratsche erledigt: Favoriten ratsche-18 (rollt aus) und ratsche-19 (gleichmässig).
-- Musik (basslastiger Beat ohne Gesang) noch nicht gewählt.
+- Musik: Reel 01 nutzt «Deep Urban» (Mixkit, `assets/musik/`), Drop auf Kapitelwechsel. Weitere Kandidaten: Close Up (175), Stylz (726).
 - Tiefere Stimme bei Higgsfield testen (kostet Credits, nur mit Freigabe).
 - Collage-Foto-Objekte (Hände, Geräte) via Higgsfield erst nach Freigabe.
