@@ -8,24 +8,24 @@ import { feder, punchFeder } from "../../lib/punchFeder";
 import { Koernung, r04, schriftR04, SchriftenR04, TiltShift } from "./Look";
 
 // ---------- Timeline (Frames bei 30 fps, aus silencedetect + Energie-Hüllkurve) ----------
-const S1 = 4; // Stimme Satz 1 startet
-const w1 = (s: number) => S1 + Math.round(s * 30);
-const T = {
+export const S1 = 4; // Stimme Satz 1 startet
+export const w1 = (s: number) => S1 + Math.round(s * 30);
+export const T = {
   fuer: w1(0.04), video: w1(0.5), brauchte: w1(1.04), man: w1(1.31), frueher: w1(1.64), eine: w1(2.01), filmcrew: w1(2.28),
 };
-const SCHNITT = 97; // harter Schnitt Szene 1 → 2
-const S2 = 96; // Stimme Satz 2 (0,06 s Vorlauf in der Datei)
-const w2 = (s: number) => S2 + Math.round(s * 30);
-const U = { kamera: w2(0.06), licht: w2(0.8), schnitt: w2(1.45), wochenlang: w2(2.26), ende: w2(3.47) };
+export const SCHNITT = 97; // harter Schnitt Szene 1 → 2
+export const S2 = 96; // Stimme Satz 2 (0,06 s Vorlauf in der Datei)
+export const w2 = (s: number) => S2 + Math.round(s * 30);
+export const U = { kamera: w2(0.06), licht: w2(0.8), schnitt: w2(1.45), wochenlang: w2(2.26), ende: w2(3.47) };
 export const STILTEST_DAUER = 232;
 
 // ---------- Helfer ----------
-const Welt: React.FC<{ src: string; breite: number }> = ({ src, breite }) => (
+export const Welt: React.FC<{ src: string; breite: number }> = ({ src, breite }) => (
   <Img src={staticFile(src)} style={{ position: "absolute", width: breite, left: (1080 - breite) / 2, top: "50%", transform: "translateY(-50%)" }} />
 );
 
 /** Objekt fällt von oben auf den Tisch (von der Kamera weg): gross + unscharf → Landung mit Feder. */
-const fallen = (f: number, start: number, dauer = 7) => {
+export const fallen = (f: number, start: number, dauer = 7) => {
   const p = Math.min(1, Math.max(0, (f - start) / dauer));
   const k = kurve.whip(p);
   const nach = f - start - dauer;
@@ -34,7 +34,7 @@ const fallen = (f: number, start: number, dauer = 7) => {
 };
 
 /** Fächer: dreht von oben um einen Drehpunkt über dem Bild ein (5 Frames, wie Geldfächer). */
-const faecher = (f: number, start: number, vonGrad: number, dauer = 5) => {
+export const faecher = (f: number, start: number, vonGrad: number, dauer = 5) => {
   const t = f - start;
   if (t < 0) return null;
   const p = feder(t * (8 / dauer), 8);
@@ -42,12 +42,12 @@ const faecher = (f: number, start: number, vonGrad: number, dauer = 5) => {
 };
 
 /** Text-Ebene folgt der Kamera nur halb (ruhiger, bleibt in der Safe Zone). */
-const halb = (k: { z: number; x: number; y: number; r: number }) => `translate(${k.x / 2}px, ${k.y / 2}px) scale(${1 + (k.z - 1) / 2}) rotate(${k.r / 2}deg)`;
+export const halb = (k: { z: number; x: number; y: number; r: number }) => `translate(${k.x / 2}px, ${k.y / 2}px) scale(${1 + (k.z - 1) / 2}) rotate(${k.r / 2}deg)`;
 
-const Schatten = (h: number) => `drop-shadow(${10 * h}px ${18 * h}px ${12 * h}px rgba(20,10,40,${0.55 / Math.sqrt(h)}))`;
+export const Schatten = (h: number) => `drop-shadow(${10 * h}px ${18 * h}px ${12 * h}px rgba(20,10,40,${0.55 / Math.sqrt(h)}))`;
 
 /** Text kommt aus der Unschärfe (Gucci: 2 Frames Versatz pro Zeile, je ~6 Frames). */
-const Zeile3D: React.FC<{ text: string; start: number; top: number; groesse: number; f: number; farbe?: string; pA?: string; pB?: string }> = ({ text, start, top, groesse, f, farbe = farben.papier, pA = "#C9B48F", pB = "#2B170C" }) => {
+export const Zeile3D: React.FC<{ text: string; start: number; top: number; groesse: number; f: number; farbe?: string; pA?: string; pB?: string }> = ({ text, start, top, groesse, f, farbe = farben.papier, pA = "#C9B48F", pB = "#2B170C" }) => {
   if (f < start) return null;
   const p = tw(f, start, 6, 0, 1, kurve.land);
   const tiefe = 9;
@@ -67,8 +67,8 @@ const Zeile3D: React.FC<{ text: string; start: number; top: number; groesse: num
 };
 
 /** Wort-für-Wort-Untertitel in Box (Referenz: Phrasen à 2–4 Wörter). */
-type Wort = { w: string; f: number; key?: boolean };
-const Untertitel: React.FC<{ f: number; phrasen: { von: number; bis: number; woerter: Wort[] }[] }> = ({ f, phrasen }) => {
+export type Wort = { w: string; f: number; key?: boolean };
+export const Untertitel: React.FC<{ f: number; phrasen: { von: number; bis: number; woerter: Wort[] }[] }> = ({ f, phrasen }) => {
   const ph = phrasen.find((p) => f >= p.von && f < p.bis);
   if (!ph) return null;
   const pop = tw(f, ph.von, 4, 0.92, 1, kurve.land);
@@ -86,14 +86,14 @@ const Untertitel: React.FC<{ f: number; phrasen: { von: number; bis: number; woe
 };
 
 /** Handschrift schreibt sich von links nach rechts. */
-const Schreiben: React.FC<{ text: string; x: number; y: number; groesse: number; p: number; dreh: number }> = ({ text, x, y, groesse, p, dreh }) => (
+export const Schreiben: React.FC<{ text: string; x: number; y: number; groesse: number; p: number; dreh: number; farbe?: string }> = ({ text, x, y, groesse, p, dreh, farbe = farben.gold }) => (
   <div style={{ position: "absolute", left: x, top: y, transform: `rotate(${dreh}deg)`, clipPath: `inset(-30% ${100 - p * 100}% -30% -5%)` }}>
-    <span style={{ fontFamily: schriftR04.marker, fontSize: groesse, color: farben.gold, textShadow: `4px 6px 6px ${r04.schatten}`, whiteSpace: "nowrap" }}>{text}</span>
+    <span style={{ fontFamily: schriftR04.marker, fontSize: groesse, color: farbe, textShadow: `4px 6px 6px ${r04.schatten}`, whiteSpace: "nowrap" }}>{text}</span>
   </div>
 );
 
 /** Kreidestaub beim Zuklappen. */
-const Staub: React.FC<{ f: number; start: number; x: number; y: number }> = ({ f, start, x, y }) => {
+export const Staub: React.FC<{ f: number; start: number; x: number; y: number }> = ({ f, start, x, y }) => {
   const t = f - start;
   if (t < 0 || t > 16) return null;
   return (
@@ -109,7 +109,7 @@ const Staub: React.FC<{ f: number; start: number; x: number; y: number }> = ({ f
 };
 
 /** Kalenderblatt (Papier, Code). */
-const Blatt: React.FC<{ nr: number }> = ({ nr }) => (
+export const Blatt: React.FC<{ nr: number }> = ({ nr }) => (
   <div style={{ width: 190, height: 220, background: "#F7F3EA", borderRadius: 6, overflow: "hidden", boxShadow: "inset 0 0 30px rgba(120,100,60,.18)" }}>
     <div style={{ height: 52, background: farben.violett, color: farben.papier, fontFamily: schriftR04.mono, fontSize: 22, textAlign: "center", lineHeight: "52px", letterSpacing: "0.1em" }}>WOCHE</div>
     <div style={{ fontFamily: schriftR04.display, fontWeight: 900, fontStretch: "112%", fontSize: 120, color: farben.tinte, textAlign: "center", lineHeight: "160px" }}>{nr}</div>
@@ -117,7 +117,7 @@ const Blatt: React.FC<{ nr: number }> = ({ nr }) => (
 );
 
 // ---------- Szene 1: Filmcrew ----------
-const Szene1: React.FC<{ f: number }> = ({ f }) => {
+export const Szene1: React.FC<{ f: number }> = ({ f }) => {
   const kam = punchFeder(f, [
     { f: 8, zoom: 1.06, y: 10, dreh: -0.4, tau: 5 }, // Landung der Klappe
     { f: T.brauchte, zoom: 1.03, y: -10, dreh: 0.3, tau: 9 }, // raus
@@ -161,7 +161,7 @@ const Szene1: React.FC<{ f: number }> = ({ f }) => {
 };
 
 // ---------- Szene 2: Kamera, Licht, Schnitt. Wochenlang. ----------
-const Szene2: React.FC<{ f: number }> = ({ f }) => {
+export const Szene2: React.FC<{ f: number; ende?: number }> = ({ f, ende = STILTEST_DAUER }) => {
   const kam = punchFeder(f, [
     { f: SCHNITT, zoom: 1.12, tau: 1 }, // Einstieg nah …
     { f: SCHNITT + 1, zoom: 1.0, tau: 10 }, // … zieht zurück (Gucci-Eintritt)
@@ -169,9 +169,9 @@ const Szene2: React.FC<{ f: number }> = ({ f }) => {
     { f: U.licht + 5, zoom: 1.02, x: -30, y: 10, dreh: 0.4, tau: 7 }, // raus
     { f: U.schnitt + 5, zoom: 1.1, x: 0, y: -20, dreh: -0.3, tau: 6 }, // rein (Schnitt)
     { f: U.wochenlang, zoom: 0.96, x: 0, y: 40, dreh: 0.2, tau: 10 }, // raus: viele Wochen
-    { f: STILTEST_DAUER - 14, zoom: 1.45, y: -40, dreh: -2, art: "raus", dauer: 14 }, // Ausgang
+    { f: ende - 12, zoom: 1.45, y: -40, dreh: -2, art: "raus", dauer: 12 }, // Ausgang
   ]);
-  const exitBlur = f > STILTEST_DAUER - 8 ? (f - (STILTEST_DAUER - 8)) * 3 : 0;
+  const exitBlur = f > ende - 7 ? (f - (ende - 7)) * 3 : 0;
   const objekte = [
     { src: "r04/obj-kamera-a.png", start: U.kamera, x: 290, y: 800, w: 560, dreh: -12, von: -75, pivot: "50% -60%" },
     { src: "r04/obj-lampe-a.png", start: U.licht, x: 790, y: 760, w: 470, dreh: 8, von: 70, pivot: "50% -70%" },
