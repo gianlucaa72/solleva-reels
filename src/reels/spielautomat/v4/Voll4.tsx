@@ -185,7 +185,7 @@ const HookLabel: React.FC<{ text: string; x: number; y: number; dreh: number; st
   const o = tw(f, start - 1, 3, 0, 1, kurve.fade);
   const r = tw(f, start, 8, dreh - 7, dreh, kurve.land);
   return (
-    <div style={{ position: "absolute", left: x, top: y, transform: `rotate(${r}deg) scale(${s})`, transformOrigin: "left center", opacity: o, background: zine.schwarz, color: "#F4F1EA", fontFamily: "JetBrains Mono", fontWeight: 500, fontSize: 62, letterSpacing: "0.1em", padding: "12px 26px", boxShadow: "6px 9px 0 rgba(0,0,0,.25)", whiteSpace: "nowrap" }}>
+    <div style={{ position: "absolute", left: x, top: y, transform: `rotate(${r}deg) scale(${s})`, transformOrigin: "left center", opacity: o, background: zine.schwarz, color: "#F4F1EA", fontFamily: "JetBrains Mono", fontWeight: 500, fontSize: 58, letterSpacing: "0.09em", padding: "12px 24px", boxShadow: "6px 9px 0 rgba(0,0,0,.25)", whiteSpace: "nowrap" }}>
       {text}
     </div>
   );
@@ -607,7 +607,7 @@ const Szene4: React.FC<SzProps> = ({ f, cam, stufe }) => {
       <Ebene cam={cam} tiefe={TIEFE.text} style={{ opacity: weg(f, 4, 11, 8) }}>
         <Rein f={f} start={z.start + 1} art="fall" ox={500} oy={340}>
           {/* Papier ist nur so gross wie der Text: wächst, wenn die zweite Zeile kommt */}
-          <Papierstueck x={100} y={300} w={800} h={176 + tw(f, z.m.zeile2, 7, 0, 92, kurve.whip)} dreh={-2} seed={21} style={{ background: "#F1ECDF", padding: "22px 40px", boxSizing: "border-box" }}>
+          <Papierstueck x={115} y={300} w={780} h={176 + tw(f, z.m.zeile2, 7, 0, 92, kurve.whip)} dreh={-2} seed={21} style={{ background: "#F1ECDF", padding: "22px 40px", boxSizing: "border-box" }}>
             <div style={{ fontFamily: "Fell SC", fontSize: 34, letterSpacing: "0.12em", color: zine.rot, whiteSpace: "nowrap", borderBottom: `4px double ${zine.schwarz}`, paddingBottom: 4 }}>EXTRABLATT</div>
             <div style={{ fontFamily: "Fell SC", fontSize: 54, lineHeight: 1.05, color: zine.schwarz, marginTop: 10, whiteSpace: "nowrap" }}>Überraschender Treffer:</div>
             <div style={{ fontFamily: "Fell SC", fontSize: 66, lineHeight: 1, color: zine.schwarz, marginTop: 12, whiteSpace: "nowrap", opacity: titel ? 1 : 0, transform: `scale(${titel ? tw(f, z.m.zeile2, 6, 1.15, 1, kurve.whip) : 1})`, transformOrigin: "left center" }}>
