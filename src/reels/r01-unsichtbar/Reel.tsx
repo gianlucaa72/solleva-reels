@@ -89,7 +89,7 @@ export const MUSIKEN: Record<string, MusikDef> = {
   // Drop 29,9 s im Track auf Kapitel 8
   closeUp: { datei: "assets/musik/close-up-mixkit-175.mp3", drop: 29.9, aufFrame: () => st(8), leiseVol: 0.2, lautVol: 0.23 },
   // Beat-Einsatz 14,3 s im Track auf den Licht-Blitz Nacht → hell (Kapitel 5)
-  stylz: { datei: "assets/musik/stylz-mixkit-726.mp3", drop: 14.3, aufFrame: () => st(5), leiseVol: 0.33, lautVol: 0.23 },
+  stylz: { datei: "assets/musik/stylz-mixkit-726.mp3", drop: 14.3, aufFrame: () => st(5), leiseVol: 0.23, lautVol: 0.16 }, // Nutzer: etwas leiser (−3 dB)
 };
 const Musik: React.FC<{ m: MusikDef }> = ({ m }) => {
   const dropF = m.aufFrame();
@@ -138,7 +138,7 @@ export const ReelB: React.FC = () => <ReelBau wahl={() => "B"} />;
 
 // Best-of: pro Satz die klarere Version (Begründung in docs/reels/r01-unsichtbar.md)
 export const BEST_OF: Record<number, V> = { 1: "A", 2: "A", 3: "A", 4: "A", 5: "A", 6: "A", 7: "A", 8: "A", 9: "A" };
-export const ReelFinal: React.FC = () => <ReelBau wahl={(n) => BEST_OF[n]} musik="deepUrban" />;
+export const ReelFinal: React.FC = () => <ReelBau wahl={(n) => BEST_OF[n]} musik="stylz" />; // Wahl des Nutzers
 export const ReelFinalCloseUp: React.FC = () => <ReelBau wahl={(n) => BEST_OF[n]} musik="closeUp" />;
 export const ReelFinalStylz: React.FC = () => <ReelBau wahl={(n) => BEST_OF[n]} musik="stylz" />;
 export const ReelFinalOhneMusik: React.FC = () => <ReelBau wahl={(n) => BEST_OF[n]} />;
