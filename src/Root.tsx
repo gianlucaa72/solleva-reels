@@ -14,6 +14,7 @@ import { ReelV2Voll, V2_DAUER, PortalDebug } from "./reels/spielautomat/v2/Voll"
 import { ReelV3, V3_DAUER } from "./reels/spielautomat/v3/Voll3";
 import { Karte } from "./reels/spielautomat/v4/Karte";
 import { ReelV4, V4_DAUER } from "./reels/spielautomat/v4/Voll4";
+import { ReelV5, V5_DAUER } from "./reels/spielautomat/v5/Voll5";
 
 export const Root: React.FC = () => (
   <>
@@ -30,6 +31,7 @@ export const Root: React.FC = () => (
     <Composition id="SpielautomatV3" component={ReelV3} durationInFrames={V3_DAUER} fps={FPS} width={BREITE} height={HOEHE} />
     <Composition id="Karte" component={Karte} durationInFrames={1} fps={FPS} width={400} height={600} defaultProps={{ name: "treffer" as const }} />
     <Composition id="SpielautomatV4" component={ReelV4} durationInFrames={V4_DAUER} fps={FPS} width={BREITE} height={HOEHE} />
+    <Composition id="SpielautomatV5" component={ReelV5} durationInFrames={V5_DAUER} fps={FPS} width={BREITE} height={HOEHE} />
     <Composition id="Katalog" component={Katalog} durationInFrames={KATALOG_DAUER} fps={FPS} width={BREITE} height={HOEHE} />
   </>
 );
