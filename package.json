@@ -6,7 +6,9 @@
   "scripts": {
     "studio": "remotion studio",
     "katalog": "remotion render Katalog out/katalog.mp4 --concurrency=4",
-    "still": "remotion still"
+    "still": "remotion still",
+    "r04:assets": "mkdir -p public/r04 && cp assets/r04/higgsfield/welt-matte-a.png assets/r04/higgsfield/welt-filmset-a.png assets/r04/higgsfield/obj-*.png public/r04/ && cp -r assets/r04/stimme public/r04/",
+    "r04:stiltest": "remotion render R04Stiltest out/r04/stiltest-roh.mp4 --concurrency=4"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",

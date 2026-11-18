@@ -1,0 +1,263 @@
+// Reel 04 Stiltest: Satz 1 (Filmcrew) + Satz 2 (Wochenlang). Welten und Objekte von Higgsfield, Rest Code.
+import React from "react";
+import { AbsoluteFill, Audio, Img, Sequence, staticFile, useCurrentFrame } from "remotion";
+import { farben } from "../../brand/solleva";
+import { Ton } from "../../lib/kamera";
+import { kurve, tw } from "../../lib/bewegung";
+import { feder, punchFeder } from "../../lib/punchFeder";
+import { Koernung, r04, schriftR04, SchriftenR04, TiltShift } from "./Look";
+
+// ---------- Timeline (Frames bei 30 fps, aus silencedetect + Energie-Hüllkurve) ----------
+const S1 = 4; // Stimme Satz 1 startet
+const w1 = (s: number) => S1 + Math.round(s * 30);
+const T = {
+  fuer: w1(0.04), video: w1(0.5), brauchte: w1(1.04), man: w1(1.31), frueher: w1(1.64), eine: w1(2.01), filmcrew: w1(2.28),
+};
+const SCHNITT = 97; // harter Schnitt Szene 1 → 2
+const S2 = 96; // Stimme Satz 2 (0,06 s Vorlauf in der Datei)
+const w2 = (s: number) => S2 + Math.round(s * 30);
+const U = { kamera: w2(0.06), licht: w2(0.8), schnitt: w2(1.45), wochenlang: w2(2.26), ende: w2(3.47) };
+export const STILTEST_DAUER = 232;
+
+// ---------- Helfer ----------
+const Welt: React.FC<{ src: string; breite: number }> = ({ src, breite }) => (
+  <Img src={staticFile(src)} style={{ position: "absolute", width: breite, left: (1080 - breite) / 2, top: "50%", transform: "translateY(-50%)" }} />
+);
+
+/** Objekt fällt von oben auf den Tisch (von der Kamera weg): gross + unscharf → Landung mit Feder. */
+const fallen = (f: number, start: number, dauer = 7) => {
+  const p = Math.min(1, Math.max(0, (f - start) / dauer));
+  const k = kurve.whip(p);
+  const nach = f - start - dauer;
+  const wipp = nach > 0 ? Math.exp(-nach / 4) * Math.sin(nach / 1.6) * 0.025 : 0;
+  return { s: 1.7 - 0.7 * k - wipp, blur: (1 - k) * 14, hoehe: 1 + (1 - k) * 5, sichtbar: f >= start, k };
+};
+
+/** Fächer: dreht von oben um einen Drehpunkt über dem Bild ein (5 Frames, wie Geldfächer). */
+const faecher = (f: number, start: number, vonGrad: number, dauer = 5) => {
+  const t = f - start;
+  if (t < 0) return null;
+  const p = feder(t * (8 / dauer), 8);
+  return { dreh: vonGrad * (1 - p), blur: t < dauer ? (1 - t / dauer) * 10 : 0 };
+};
+
+/** Text-Ebene folgt der Kamera nur halb (ruhiger, bleibt in der Safe Zone). */
+const halb = (k: { z: number; x: number; y: number; r: number }) => `translate(${k.x / 2}px, ${k.y / 2}px) scale(${1 + (k.z - 1) / 2}) rotate(${k.r / 2}deg)`;
+
+const Schatten = (h: number) => `drop-shadow(${10 * h}px ${18 * h}px ${12 * h}px rgba(20,10,40,${0.55 / Math.sqrt(h)}))`;
+
+/** Text kommt aus der Unschärfe (Gucci: 2 Frames Versatz pro Zeile, je ~6 Frames). */
+const Zeile3D: React.FC<{ text: string; start: number; top: number; groesse: number; f: number; farbe?: string; pA?: string; pB?: string }> = ({ text, start, top, groesse, f, farbe = farben.papier, pA = "#C9B48F", pB = "#2B170C" }) => {
+  if (f < start) return null;
+  const p = tw(f, start, 6, 0, 1, kurve.land);
+  const tiefe = 9;
+  const hex = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+  const [a, b] = [hex(pA), hex(pB)];
+  const sh: string[] = [];
+  for (let i = 1; i <= tiefe; i++) {
+    const c = a.map((v, k) => Math.round(v + (b[k] - v) * (i / tiefe)));
+    sh.push(`${i * 0.7}px ${i}px 0 rgb(${c.join(",")})`);
+  }
+  sh.push(`18px 30px 26px ${r04.schatten}`);
+  return (
+    <div style={{ position: "absolute", top, left: 70, right: 140, textAlign: "center", opacity: p, filter: `blur(${(1 - p) * 16}px)`, transform: `scale(${1.25 - 0.25 * p}) rotate(-2deg)` }}>
+      <span style={{ fontFamily: schriftR04.display, fontWeight: 900, fontStretch: "118%", fontSize: groesse, lineHeight: 0.86, color: farbe, textShadow: sh.join(","), whiteSpace: "nowrap" }}>{text}</span>
+    </div>
+  );
+};
+
+/** Wort-für-Wort-Untertitel in Box (Referenz: Phrasen à 2–4 Wörter). */
+type Wort = { w: string; f: number; key?: boolean };
+const Untertitel: React.FC<{ f: number; phrasen: { von: number; bis: number; woerter: Wort[] }[] }> = ({ f, phrasen }) => {
+  const ph = phrasen.find((p) => f >= p.von && f < p.bis);
+  if (!ph) return null;
+  const pop = tw(f, ph.von, 4, 0.92, 1, kurve.land);
+  return (
+    <div style={{ position: "absolute", top: 1400, left: 70, right: 140, display: "flex", justifyContent: "center" }}>
+      <div style={{ background: "rgba(14,10,40,.8)", borderRadius: 12, padding: "10px 22px", transform: `scale(${pop})`, fontFamily: "Barlow", fontWeight: 700, fontSize: 44, lineHeight: 1.15 }}>
+        {ph.woerter.map((w, i) => (
+          <span key={i} style={{ color: w.key ? farben.lavendelAkzent : farben.papier, opacity: f >= w.f ? 1 : 0.35 }}>
+            {w.w}{i < ph.woerter.length - 1 ? " " : ""}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+/** Handschrift schreibt sich von links nach rechts. */
+const Schreiben: React.FC<{ text: string; x: number; y: number; groesse: number; p: number; dreh: number }> = ({ text, x, y, groesse, p, dreh }) => (
+  <div style={{ position: "absolute", left: x, top: y, transform: `rotate(${dreh}deg)`, clipPath: `inset(-30% ${100 - p * 100}% -30% -5%)` }}>
+    <span style={{ fontFamily: schriftR04.marker, fontSize: groesse, color: farben.gold, textShadow: `4px 6px 6px ${r04.schatten}`, whiteSpace: "nowrap" }}>{text}</span>
+  </div>
+);
+
+/** Kreidestaub beim Zuklappen. */
+const Staub: React.FC<{ f: number; start: number; x: number; y: number }> = ({ f, start, x, y }) => {
+  const t = f - start;
+  if (t < 0 || t > 16) return null;
+  return (
+    <>
+      {Array.from({ length: 16 }).map((_, i) => {
+        const a = (i / 16) * Math.PI * 2 + (i % 3) * 0.3;
+        const v = 8 + (i % 5) * 4;
+        const d = v * Math.log(1 + t);
+        return <div key={i} style={{ position: "absolute", left: x + Math.cos(a) * d * 1.6, top: y + Math.sin(a) * d * 0.7, width: 6 + (i % 3) * 3, height: 6 + (i % 3) * 3, borderRadius: "50%", background: "rgba(246,245,252,.85)", opacity: 1 - t / 16, filter: "blur(1px)" }} />;
+      })}
+    </>
+  );
+};
+
+/** Kalenderblatt (Papier, Code). */
+const Blatt: React.FC<{ nr: number }> = ({ nr }) => (
+  <div style={{ width: 190, height: 220, background: "#F7F3EA", borderRadius: 6, overflow: "hidden", boxShadow: "inset 0 0 30px rgba(120,100,60,.18)" }}>
+    <div style={{ height: 52, background: farben.violett, color: farben.papier, fontFamily: schriftR04.mono, fontSize: 22, textAlign: "center", lineHeight: "52px", letterSpacing: "0.1em" }}>WOCHE</div>
+    <div style={{ fontFamily: schriftR04.display, fontWeight: 900, fontStretch: "112%", fontSize: 120, color: farben.tinte, textAlign: "center", lineHeight: "160px" }}>{nr}</div>
+  </div>
+);
+
+// ---------- Szene 1: Filmcrew ----------
+const Szene1: React.FC<{ f: number }> = ({ f }) => {
+  const kam = punchFeder(f, [
+    { f: 8, zoom: 1.06, y: 10, dreh: -0.4, tau: 5 }, // Landung der Klappe
+    { f: T.brauchte, zoom: 1.03, y: -10, dreh: 0.3, tau: 9 }, // raus
+    { f: T.frueher, zoom: 1.08, x: 20, tau: 10 }, // leicht rein
+    { f: T.eine, zoom: 1.04, x: 0, tau: 6 }, // Ausholen vor dem Schlag
+    { f: T.filmcrew, zoom: 1.24, y: 60, dreh: -0.8, tau: 8 }, // PUNCH auf «Filmcrew»
+    { f: SCHNITT - 11, zoom: 0.78, y: 0, dreh: 2.5, art: "raus", dauer: 11 }, // Ausgang beschleunigt
+  ]);
+  const kl = fallen(f, 0, 8);
+  // Stab: 0 = offen wie im Bild, +11,5 = zu, negativ = weiter offen
+  let stab = 0;
+  if (f >= T.brauchte) stab = -16 * feder(f - T.brauchte, 6);
+  if (f >= T.eine) stab = -16 - 8 * feder(f - T.eine, 5);
+  if (f >= T.filmcrew - 2) {
+    const t = f - (T.filmcrew - 2);
+    stab = t < 2 ? -24 + 35.5 * kurve.whip(t / 2) : 11.5 + Math.exp(-(t - 2) / 2) * Math.sin((t - 2) / 1.1) * -2.5;
+  }
+  const exitBlur = f > SCHNITT - 6 ? (f - (SCHNITT - 6)) * 3 : 0;
+  const KL_W = 640;
+  return (
+    <AbsoluteFill style={{ background: "#2a1d14" }}>
+      <AbsoluteFill style={{ transform: kam.css, transformOrigin: "50% 40%", filter: `blur(${exitBlur}px)` }}>
+        <Welt src="r04/welt-matte-a.png" breite={1380} />
+        {kl.sichtbar && (
+          <div style={{ position: "absolute", left: 540 - KL_W / 2, top: 880 - KL_W / 2, width: KL_W, height: KL_W, transform: `scale(${kl.s}) rotate(${-6 + (1 - kl.k) * -18}deg)`, filter: `blur(${kl.blur}px) ${Schatten(kl.hoehe)}` }}>
+            <Img src={staticFile("r04/obj-klappe-brett.png")} style={{ position: "absolute", width: "100%" }} />
+            <Img src={staticFile("r04/obj-klappe-stab.png")} style={{ position: "absolute", width: "100%", transformOrigin: `${(90 / 1024) * 100}% ${(258 / 1024) * 100}%`, transform: `rotate(${stab}deg)` }} />
+          </div>
+        )}
+        <Staub f={f} start={T.filmcrew} x={760} y={690} />
+      </AbsoluteFill>
+      <TiltShift blur={10} fokus={50} />
+      <AbsoluteFill style={{ transform: halb(kam), transformOrigin: "50% 40%", filter: `blur(${exitBlur}px)` }}>
+        {f >= T.frueher && (
+          <Schreiben text="früher …" x={130} y={480} groesse={96} p={tw(f, T.frueher, 10, 0, 1, kurve.linear)} dreh={-7} />
+        )}
+        <Zeile3D text="FILMCREW" start={T.filmcrew} top={290} groesse={116} f={f} pA="#B9A6F5" pB="#2A1670" />
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+// ---------- Szene 2: Kamera, Licht, Schnitt. Wochenlang. ----------
+const Szene2: React.FC<{ f: number }> = ({ f }) => {
+  const kam = punchFeder(f, [
+    { f: SCHNITT, zoom: 1.12, tau: 1 }, // Einstieg nah …
+    { f: SCHNITT + 1, zoom: 1.0, tau: 10 }, // … zieht zurück (Gucci-Eintritt)
+    { f: U.kamera + 5, zoom: 1.07, x: 40, y: 30, dreh: -0.5, tau: 7 }, // rein
+    { f: U.licht + 5, zoom: 1.02, x: -30, y: 10, dreh: 0.4, tau: 7 }, // raus
+    { f: U.schnitt + 5, zoom: 1.1, x: 0, y: -20, dreh: -0.3, tau: 6 }, // rein (Schnitt)
+    { f: U.wochenlang, zoom: 0.96, x: 0, y: 40, dreh: 0.2, tau: 10 }, // raus: viele Wochen
+    { f: STILTEST_DAUER - 14, zoom: 1.45, y: -40, dreh: -2, art: "raus", dauer: 14 }, // Ausgang
+  ]);
+  const exitBlur = f > STILTEST_DAUER - 8 ? (f - (STILTEST_DAUER - 8)) * 3 : 0;
+  const objekte = [
+    { src: "r04/obj-kamera-a.png", start: U.kamera, x: 290, y: 800, w: 560, dreh: -12, von: -75, pivot: "50% -60%" },
+    { src: "r04/obj-lampe-a.png", start: U.licht, x: 790, y: 760, w: 470, dreh: 8, von: 70, pivot: "50% -70%" },
+    { src: "r04/obj-filmrolle-a.png", start: U.schnitt, x: 560, y: 1080, w: 470, dreh: -6, von: 80, pivot: "20% -60%" },
+  ];
+  const licht = f >= U.licht + 6 ? Math.min(1, (f - U.licht - 6) / 3) * (f < U.licht + 9 ? (f % 2 ? 0.4 : 1) : 1) : 0;
+  const blaetter = [0, 1, 2, 3, 4, 5].map((i) => ({ nr: i + 1, start: U.wochenlang + 1 + i * 2, x: 90 + (i % 3) * 290 + (i > 2 ? 120 : 0), y: 900 + (i > 2 ? 120 : 0) + (i % 2) * 30, dreh: [-18, 9, -6, 15, -12, 7][i], von: [-60, 50, -70, 65, -55, 60][i] }));
+  return (
+    <AbsoluteFill style={{ background: "#2a1d14" }}>
+      <AbsoluteFill style={{ transform: kam.css, transformOrigin: "50% 40%", filter: `blur(${exitBlur}px)` }}>
+        <Welt src="r04/welt-filmset-a.png" breite={1100} />
+        {objekte.map((o, i) => {
+          const fa = faecher(f, o.start, o.von);
+          if (!fa) return null;
+          return (
+            <div key={i} style={{ position: "absolute", left: o.x - o.w / 2, top: o.y - o.w / 2, width: o.w, height: o.w, transformOrigin: o.pivot, transform: `rotate(${o.dreh + fa.dreh}deg)`, filter: `blur(${fa.blur}px) ${Schatten(1.3)}` }}>
+              <Img src={staticFile(o.src)} style={{ width: "100%" }} />
+            </div>
+          );
+        })}
+        {/* Lampe geht an: warmes Licht */}
+        <AbsoluteFill style={{ opacity: licht, mixBlendMode: "screen", background: "radial-gradient(circle at 795px 770px, rgba(255,236,200,.9) 0, rgba(255,214,150,.45) 70px, rgba(255,190,110,.12) 190px, transparent 320px)" }} />
+        <AbsoluteFill style={{ opacity: licht * 0.12, background: "#FFB866", mixBlendMode: "soft-light" }} />
+        {blaetter.map((b, i) => {
+          const fa = faecher(f, b.start, b.von, 5);
+          if (!fa) return null;
+          return (
+            <div key={i} style={{ position: "absolute", left: b.x, top: b.y, transformOrigin: "50% -120%", transform: `rotate(${b.dreh + fa.dreh}deg)`, filter: `blur(${fa.blur}px) ${Schatten(1)}` }}>
+              <Blatt nr={b.nr} />
+            </div>
+          );
+        })}
+      </AbsoluteFill>
+      <TiltShift blur={10} fokus={50} />
+      <AbsoluteFill style={{ transform: halb(kam), transformOrigin: "50% 40%", filter: `blur(${exitBlur}px)` }}>
+        <Zeile3D text="KAMERA." start={U.kamera} top={250} groesse={104} f={f} />
+        <Zeile3D text="LICHT." start={U.licht} top={345} groesse={104} f={f} />
+        <Zeile3D text="SCHNITT." start={U.schnitt} top={440} groesse={104} f={f} />
+        {f >= U.wochenlang + 4 && (
+          <Schreiben text="wochenlang." x={190} y={1230} groesse={124} p={tw(f, U.wochenlang + 4, 16, 0, 1, kurve.linear)} dreh={-6} />
+        )}
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
+
+export const R04Stiltest: React.FC = () => {
+  const f = useCurrentFrame();
+  return (
+    <AbsoluteFill style={{ background: "#000" }}>
+      <SchriftenR04 />
+      {f < SCHNITT ? <Szene1 f={f} /> : <Szene2 f={f} />}
+      <Untertitel
+        f={f}
+        phrasen={[
+          { von: T.fuer, bis: T.brauchte, woerter: [{ w: "Für", f: T.fuer }, { w: "so", f: w1(0.22) }, { w: "ein", f: w1(0.36) }, { w: "Video", f: T.video }] },
+          { von: T.brauchte, bis: T.eine, woerter: [{ w: "brauchte", f: T.brauchte }, { w: "man", f: T.man }, { w: "früher", f: T.frueher }] },
+          { von: T.eine, bis: SCHNITT, woerter: [{ w: "eine", f: T.eine }, { w: "Filmcrew.", f: T.filmcrew, key: true }] },
+          { von: U.kamera, bis: U.licht, woerter: [{ w: "Kamera,", f: U.kamera }] },
+          { von: U.licht, bis: U.schnitt, woerter: [{ w: "Licht,", f: U.licht }] },
+          { von: U.schnitt, bis: U.wochenlang, woerter: [{ w: "Schnitt.", f: U.schnitt }] },
+          { von: U.wochenlang, bis: STILTEST_DAUER - 6, woerter: [{ w: "Wochenlang.", f: U.wochenlang, key: true }] },
+        ]}
+      />
+      <Koernung staerke={0.1} seed={Math.floor(f / 2) % 8} />
+      {/* Stimme */}
+      <Sequence from={S1} layout="none"><Audio src={staticFile("r04/stimme/s1.mp3")} /></Sequence>
+      <Sequence from={S2} layout="none"><Audio src={staticFile("r04/stimme/s2.mp3")} /></Sequence>
+      {/* Sounds: stumpfe Grundsounds, ein Akzent pro Wechsel */}
+      <Ton nr="swish-02" bei={7} vor={2} vol={0.35} />
+      <Ton nr="schlag-07" bei={8} vol={0.4} />
+      <Ton nr="klick-04" bei={T.brauchte + 2} vol={0.35} />
+      <Ton nr="schreiben-01" bei={T.frueher + 2} vol={0.3} />
+      <Ton nr="schlag-07" bei={T.filmcrew} vol={0.95} />
+      <Ton nr="schlag-01" bei={T.filmcrew} vol={0.5} />
+      <Ton nr="whoosh-03" bei={SCHNITT} vol={0.45} />
+      <Ton nr="swish-01" bei={U.kamera + 5} vor={2} vol={0.3} />
+      <Ton nr="schlag-01" bei={U.kamera + 6} vol={0.22} />
+      <Ton nr="swish-05" bei={U.licht + 5} vor={2} vol={0.3} />
+      <Ton nr="klick-01" bei={U.licht + 6} vol={0.4} />
+      <Ton nr="swish-06" bei={U.schnitt + 5} vor={2} vol={0.3} />
+      <Ton nr="papier-04" bei={U.schnitt + 6} vol={0.55} />
+      <Ton nr="papier-05" bei={U.wochenlang + 3} vol={0.4} />
+      <Ton nr="ratsche-19" bei={U.wochenlang + 2} vol={0.28} max={1.2} />
+      <Ton nr="schreiben-01" bei={U.wochenlang + 6} vol={0.3} />
+      <Ton nr="whoosh-02" bei={STILTEST_DAUER - 1} vol={0.45} />
+    </AbsoluteFill>
+  );
+};
