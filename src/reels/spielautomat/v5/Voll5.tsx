@@ -298,7 +298,7 @@ const Walzen: React.FC<{ f: number; pos: (f: number, i: number) => number }> = (
 
 // ============================== Joker ==============================
 /** Joker-Lachen (Higgsfield/Mirelo, getrimmt) */
-const LACHEN = { datei: "assets/spielautomat/joker/lachen.wav", frames: 60, vol: 0.55 };
+const LACHEN = { datei: "assets/spielautomat/joker/lachen.wav", frames: 62, vol: 1.0 };
 /** Joker-Karte gross im Bild (Hauptebene). Münze im letzten Animationsbild (joker-ende.png, 1024 × 1536):
  *  Mitte (170 | 547,5), r 102 → relativ 16,6 % / 35,6 % / 10 % der Kartenbreite. Daumen deckt unten links ab → Portal leicht nach oben rechts. */
 const JK = { w: 500, h: 750, x: 290, y: 715 };
@@ -1047,9 +1047,9 @@ export const ReelV5: React.FC = () => {
         </Sequence>
       ))}
       <Toene />
-      {/* dreckiges Joker-Lachen: setzt mit dem Knall ein, wird unter der Stimme leiser */}
-      <Sequence from={J_LAND - 1} durationInFrames={LACHEN.frames} layout="none">
-        <Audio src={staticFile(LACHEN.datei)} volume={(x) => LACHEN.vol * (1 - 0.55 * tw(x + J_LAND - 1, Z(4).start - 2, 8, 0, 1, kurve.fade)) * (1 - tw(x, LACHEN.frames - 9, 9, 0, 1, kurve.fade))} />
+      {/* dreckiges Joker-Lachen: zentral im Vordergrund, setzt ein, wenn die Karte aus der Walze springt; unter der Stimme nur leicht leiser */}
+      <Sequence from={J_RAUS} durationInFrames={LACHEN.frames} layout="none">
+        <Audio src={staticFile(LACHEN.datei)} volume={(x) => LACHEN.vol * (1 - 0.25 * tw(x + J_RAUS, Z(4).start - 2, 8, 0, 1, kurve.fade)) * (1 - tw(x, LACHEN.frames - 9, 9, 0, 1, kurve.fade))} />
       </Sequence>
     </AbsoluteFill>
   );
