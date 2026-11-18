@@ -55,6 +55,16 @@ Status: **v0.2: Bausteine aus 7 Referenzen gebaut, wartet auf Freigabe des Nutze
 - Innerhalb jeder Szene **sichtbare Kamerabewegung**: Stoss auf jedes Schlüsselwort, 1–2 Schwenks, Drift bis 107 %. Nur Drift wirkte «fast zu wenig Bewegung».
 - **K02 Lupen-Kamera** (Ref. 01): Ring rollt in 6 Frames von rechts ein, innen 1,6×, Ring bleibt als Vignette, Text mit Farbversatz; Sound swish-06 auf die Landung. Sparsam einsetzen (1× pro Reel).
 
+## Instagram-Safe-Zone und Loop (Nutzer-Feedback «Spielautomat» v4, gilt immer)
+- Alles Wichtige (Text, Schlüsselobjekte) in **x 60–940, y 250–1550**. Weil die Kamera zoomt: Text mit Reserve setzen (**x 95–900, y ≥ 300**), Kamera-Zoom in Haltephasen ≤ ~104 % (+ kurze Stösse 3 %). Prüfen mit Safe-Zone-Rahmen über Kontrollbildern.
+- **Keine leeren Papierflächen > 0,2 s**: Papier/Label wächst mit dem Text oder ist von Anfang an gefüllt; fehlende Wörter als Kontur vorzeigen (wie «DREH», «Schub»).
+- **Kontrast**: auf hellen Hintergründen dunkle Schrift auf hellem Label (`HellLabel`); Hook-Etiketten ≥ 58 px.
+- **Hook**: Schlüsselwort steht bis spätestens 0,8 s gross im Bild (nicht erst, wenn es gesprochen wird; dann nur noch ein Puls).
+- **Keine halb angeschnittenen, unscharfen Deko-Elemente am Rand** (Münzen etc.): ganz ins Bild und scharf, oder weg.
+- **Loop-Ende**: Endcard geht raus, der erste Hintergrund blendet deckungsgleich ein (letzter ≈ erster Frame).
+- **Karten** (`assets/cards/`, 2:3, 400 × 600): Walzen-Symbole sind austauschbare Bilder (treffer, niete, stern, frage, klee). Ersetzen durch Illustrationen mit gleichem Namen/Format; Herz der Treffer-Karte bleibt an derselben Stelle (Portal).
+- Schnelle Kontrollbilder: `REMOTION_UNSCHAERFE=1 npx remotion still …` (keine Dateiänderung nötig).
+
 ## Stil-Rezepte
 - Entscheid Nutzer (17.11.2026): Stil-Rezepte sind **Optionen unter mehreren**, kein fester Standard. Pro Reel einen Stil wählen (Abwechslung gemäss Logbuch). Fest für alle Reels gelten nur Kamera K01, Tempo/Länge, Sounds, Lesezeit, CTA.
 - **R01 Halbton-Collage** (`src/stil/halbton.tsx`, Reel «Spielautomat», **vom Nutzer gut befunden** «sieht sehr sehr gut aus», 17.11.2026): Halbton-Ausschnitte s/w mit weissem Papierrand, gerissenes Papier, Erpresserbrief-Buchstaben (Schlüsselwort), schwarze Etiketten (Mono) für den Rest des Satzes. Farben: Papier #ECE9E2, Schwarz #121212, Rot #D7232B, Gelb #FFD21F, Violett #6C3FD4. Hintergründe H1 Strahlen, H2 Zeitung, H3 Punkte, H4 Schwarzpapier, H5 Karo, H6 Halbton-Kreis, H7 Packpapier, H8 Spirale. Objekte: Higgsfield (Prompt-Kern: «vintage black and white halftone cutout, white paper border, plain white background»), danach freistellen.
