@@ -1,5 +1,7 @@
 # Reel 04 v2: Sound-Liste für ElevenLabs Sound Effects
 
+**Stand 19.11.:** Alle benötigten Sounds sind generiert und eingebaut (zweite ZIP: Gummistempel, Röhren-TV, Filzstift-X, Ladenglocke).
+
 Der Ordner «new sounds» ist weder im Repo noch im Upload angekommen. Deshalb stehen hier **alle** benötigten Sounds. Was du im Ordner schon hast, kannst du überspringen.
 
 Stil überall: **stumpf, old school, mechanisch** (Papier, Holz, Metall, Film). Digital/futuristisch nur bei KI-Momenten (markiert mit **KI**).

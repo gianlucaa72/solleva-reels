@@ -395,7 +395,7 @@ const PHRASEN = [
   P(W9.schreib, W9.reel + 24, [["Schreib", W9.schreib], ["«Reel».", W9.reel, true]]),
 ];
 
-export const R04Reel: React.FC<{ untertitel?: UntertitelStil }> = ({ untertitel = "aus" }) => {
+export const R04Reel: React.FC<{ untertitel?: UntertitelStil; musik?: boolean }> = ({ untertitel = "aus", musik = true }) => {
   const f = useCurrentFrame();
   const szene =
     f < SCHNITT ? <Szene1 f={f} /> :
@@ -423,10 +423,12 @@ export const R04Reel: React.FC<{ untertitel?: UntertitelStil }> = ({ untertitel 
             <Sequence key={n as string} from={from as number} layout="none"><Audio src={staticFile(`r04/stimme/${n}.mp3`)} /></Sequence>
           ))}
       {/* Musikbett aus «new sounds»: ca. 17 dB unter der Stimme, keine toten Löcher */}
+{musik && (
       <Sequence from={0} durationInFrames={REEL04_DAUER} layout="none">
         <Audio src={staticFile("sounds-neu/neu-dark-cinematic-suspe.mp3")} volume={(fr) => 0.1 * Math.min(1, fr / 9) * Math.min(1, (REEL04_DAUER - fr) / 24)} />
       </Sequence>
-      {/* Satz 1: Klappe in Frame 1 (Holz, trocken), Schlag 2 auf «Filmcrew» */}
+      )}
+      {/* Satz 1: Klappe schlägt einmal in Frame 1 zu (Holz, trocken) */}
       <Ton nr="neu-wooden-film-clapperb-2" bei={1} vol={0.95} />
       <Ton nr="neu-kick-drum-vintage-3" bei={1} vol={0.35} />
       <Ton nr="schreiben-01" bei={T.frueher + 2} vol={0.3} />
@@ -445,13 +447,11 @@ export const R04Reel: React.FC<{ untertitel?: UntertitelStil }> = ({ untertitel 
       {/* Satz 3: Papier, dumpfer Stempel, Zettel fliegt weg */}
       <Ton nr="neu-paper-page-flip-qui-4" bei={W3.bezahlen + 5} vol={0.5} />
       <Ton nr="neu-paper-page-flip-qui-3" bei={W3.bezahlen + 10} vol={0.4} />
-      <Ton nr="neu-heavy-punching-bag-h-1" bei={W3.nur} vol={1.0} />
-      <Ton nr="neu-wooden-knock-on-a-ta-2" bei={W3.nur} vol={0.45} />
+      <Ton nr="neu-rubber-stamp-pressed-1" bei={W3.nur} vol={1.0} />
       <Ton nr="neu-quick-air-swoosh-li-2" bei={W3.nur + 3} vol={0.35} />
       <Ton nr="neu-riser-build-up-2" bei={V.s4} vol={0.3} />
       {/* Satz 4 (KI-Moment: hier dürfen digitale Sounds) */}
-      <Ton nr="neu-rotary-knob-clicking-4" bei={V.s4 + 1} vol={1.0} />
-      <Ton nr="glitch-03" bei={V.s4 + 2} vol={0.3} />
+      <Ton nr="neu-old-crt-television-s-1" bei={V.s4 + 1} vol={1.0} />
       <Ton nr="neu-tape-stop-effect-ca-1" bei={W4.kam} ab={0.02} max={0.5} vol={0.45} />
       <Ton nr="glitch-02" bei={W4.ai - 2} vol={0.3} max={0.6} />
       <Ton nr="neu-short-impact-hit-pu" bei={W4.ai} vol={0.45} />
@@ -459,7 +459,7 @@ export const R04Reel: React.FC<{ untertitel?: UntertitelStil }> = ({ untertitel 
       {/* Satz 5: Roboter-Polaroid (digital erlaubt), Stift-X, weg */}
       <Ton nr="neu-quick-air-swoosh-li-1" bei={W5.ai} vor={2} vol={0.3} />
       <Ton nr="neu-soft-pop-ui-click-1" bei={W5.ai + 1} vol={0.45} />
-      <Ton nr="schreiben-01" bei={W5.kein + 1} vol={0.45} />
+      <Ton nr="neu-thick-felt-tip-marke-2" bei={W5.kein + 4} vol={0.7} />
       <Ton nr="neu-double-swoosh-two-f-1" bei={W5.video + 4} vol={0.4} />
       {/* Satz 6: Schreibmaschine (ein Klack pro Buchstabe), Karte fliegt, dumpfer Tap beim Anpinnen */}
       {tippPlan().flatMap((p, i) => [
@@ -467,9 +467,9 @@ export const R04Reel: React.FC<{ untertitel?: UntertitelStil }> = ({ untertitel 
         ...(p.flug !== undefined ? [<Ton key={`f${i}`} nr="neu-paper-page-flip-qui-3" bei={p.flug + 1} vol={0.35} />, <Ton key={`p${i}`} nr="neu-wooden-knock-on-a-ta-1" bei={p.flug + 8} vol={0.6} />] : []),
       ])}
       <Ton nr="neu-heavy-cloth-swoosh-2" bei={V.s7} vor={2} vol={0.4} />
-      {/* Satz 7: Laden hebt ab (Ladenglocke fehlt noch: Platzhalter Korken) */}
+      {/* Satz 7: Laden hebt ab, Ladenglocke */}
       <Ton nr="schreiben-01" bei={W7.heute + 2} vol={0.3} />
-      <Ton nr="neu-cork-popping-out-of-1" bei={W7.kleine + 2} vol={0.4} />
+      <Ton nr="neu-small-brass-bell-abo-1" bei={W7.kleine + 2} vol={0.8} />
       <Ton nr="neu-soft-wind-swoosh-lo-4" bei={V.s8} vor={2} vol={0.35} />
       {/* Satz 8 (Signature): Figur landet mit dumpfem Tock */}
       <Ton nr="neu-quick-air-swoosh-li-2" bei={V.s8 + 7} vor={2} vol={0.3} />

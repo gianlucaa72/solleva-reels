@@ -45,12 +45,57 @@
   "kategorie": "neu"
  },
  {
+  "datei": "neu/neu-old-crt-television-s-1.mp3",
+  "original": "Old_CRT_television_s_#1-1795101091938.mp3",
+  "dauer": 1.48,
+  "einsatz": 0.0,
+  "hit": 0.01,
+  "lufs": -33.1,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-rubber-stamp-pressed-1.mp3",
+  "original": "Rubber_stamp_pressed_#1-1795101025218.mp3",
+  "dauer": 0.607,
+  "einsatz": 0.52,
+  "hit": 0.55,
+  "lufs": -19.1,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-small-brass-bell-abo-1.mp3",
+  "original": "Small_brass_bell_abo_#1-1795101184580.mp3",
+  "dauer": 1.2,
+  "einsatz": 0.0,
+  "hit": 0.0,
+  "lufs": -29.9,
+  "kategorie": "neu"
+ },
+ {
   "datei": "neu/neu-subtle-cinematic-ten.mp3",
   "original": "Subtle_cinematic_ten-1795067661387.mp3",
   "dauer": 12.0,
   "einsatz": 1.93,
   "hit": 3.02,
   "lufs": -23.1,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-thick-felt-tip-marke-1.mp3",
+  "original": "Thick_felt-tip_marke_#1-1795101138109.mp3",
+  "dauer": 0.806,
+  "einsatz": 0.03,
+  "hit": 0.33,
+  "lufs": -19.8,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-thick-felt-tip-marke-2.mp3",
+  "original": "Thick_felt-tip_marke_#2-1795101138110.mp3",
+  "dauer": 0.806,
+  "einsatz": 0.1,
+  "hit": 0.36,
+  "lufs": -17.0,
   "kategorie": "neu"
  },
  {
