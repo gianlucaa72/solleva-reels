@@ -337,29 +337,30 @@ const Szene9: React.FC<{ f: number }> = ({ f }) => {
       <Ebene css={kam.css} blur={kam.blur}>
         <Welt src="r04/welt-hohlkehle-b.png" breite={1100} />
       </Ebene>
+      {/* Figur ohne Lippensynchronisation (Wunsch des Nutzers): ruhig unter der Solleva-Karte, atmet leicht */}
       <Ebene css={kam.css} blur={kam.blur}>
-        <div style={{ position: "absolute", left: 740 - 130, top: 1515, width: 260, height: 50, borderRadius: "50%", background: "rgba(8,2,30,.55)", filter: "blur(12px)" }} />
-        <div style={{ position: "absolute", inset: 0, filter: Schatten(0.8) }}>
-          <SprechendeFigur f={f} start={CLIPS.c9.start} dauerF={CLIPS.c9.dauer} video={FIGUR_VIDEO.satz9} ende={FIGUR_VIDEO.satz9Ende} hoehe={500} fussX={740} fussY={1540} />
+        <div style={{ position: "absolute", left: 510 - 120, top: 1515, width: 240, height: 46, borderRadius: "50%", background: "rgba(8,2,30,.55)", filter: "blur(12px)" }} />
+        <div style={{ position: "absolute", left: 510 - 107, top: 1540 - 470, width: 213, transformOrigin: "50% 100%", transform: `scale(${1 + 0.008 * Math.sin((f - V.s9) / 14)})`, filter: Schatten(0.7) }}>
+          <Img src={staticFile("r04/figur-b-frei.png")} style={{ width: "100%" }} />
         </div>
       </Ebene>
       <TiltShift blur={8} fokus={55} />
       <Ebene css={halbeKamera(kam)} blur={kam.blur / 2}>
-        <div style={{ position: "absolute", top: 240, left: 70, right: 140, textAlign: "center", opacity: marke, transform: `translateY(${(1 - marke) * 20}px)`, fontFamily: "Barlow", fontWeight: 700, fontSize: 60, color: farben.papier, letterSpacing: "0.01em", textShadow: `4px 6px 10px ${r04.schatten}` }}>Solleva</div>
+        <div style={{ position: "absolute", top: 230, left: 70, right: 140, textAlign: "center", opacity: marke, transform: `translateY(${(1 - marke) * 20}px)`, fontFamily: "Barlow", fontWeight: 700, fontSize: 60, color: farben.papier, letterSpacing: "0.01em", textShadow: `4px 6px 10px ${r04.schatten}` }}>Solleva</div>
         {CTA_ZEILEN.map((z, i) => (
-          <Zeile3D key={i} text={z} start={i === 0 ? W9.willst : W9.auch} top={350 + i * 100} groesse={CTA_ZEILEN[0].length > 12 ? 84 : 112} f={f} pA="#B9A6F5" pB="#2A1670" />
+          <Zeile3D key={i} text={z} start={i === 0 ? W9.willst : W9.auch} top={335 + i * 92} groesse={CTA_ZEILEN[0].length >= 12 ? 90 : 112} f={f} pA="#B9A6F5" pB="#2A1670" />
         ))}
         {f >= W9.schreib && (
-          <div style={{ position: "absolute", top: 700 + (1 - btn) * 500, left: 120, right: 180, height: 180, borderRadius: 90, background: farben.nacht, display: "flex", alignItems: "center", justifyContent: "center", transform: `scale(${druck}) rotate(${-2 * (1 - btn)}deg)`, boxShadow: `0 10px 0 #2A1670, 18px 36px 30px ${r04.schatten}` }}>
+          <div style={{ position: "absolute", top: 600 + (1 - btn) * 500, left: 120, right: 180, height: 180, borderRadius: 90, background: farben.nacht, display: "flex", alignItems: "center", justifyContent: "center", transform: `scale(${druck}) rotate(${-2 * (1 - btn)}deg)`, boxShadow: `0 10px 0 #2A1670, 18px 36px 30px ${r04.schatten}` }}>
             <span style={{ fontFamily: schriftR04.display, fontWeight: 900, fontStretch: "112%", fontSize: 72, color: farben.papier, whiteSpace: "nowrap" }}>
               Schreib <span style={{ color: farben.lavendelAkzent }}>«Reel»</span>
             </span>
           </div>
         )}
-        <div style={{ position: "absolute", top: 960, left: 70, right: 140, textAlign: "center", opacity: marke, fontFamily: "Barlow", fontWeight: 700, fontSize: 64, lineHeight: 1.05, color: farben.papier, textShadow: `4px 6px 10px ${r04.schatten}` }}>
+        <div style={{ position: "absolute", top: 830, left: 70, right: 140, textAlign: "center", opacity: marke, fontFamily: "Barlow", fontWeight: 700, fontSize: 64, lineHeight: 1.05, color: farben.papier, textShadow: `4px 6px 10px ${r04.schatten}` }}>
           Heb dich von der <span style={{ fontFamily: schriftR04.marker, color: farben.gold, fontWeight: 400 }}>Masse</span> ab.
         </div>
-        <div style={{ position: "absolute", top: 1130, left: 70, right: 480, height: 96, borderRadius: 48, background: "rgba(246,245,252,.94)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 14px 0 30px", opacity: marke, boxShadow: `10px 18px 22px ${r04.schatten}` }}>
+        <div style={{ position: "absolute", top: 960, left: 240, right: 300, height: 96, borderRadius: 48, background: "rgba(246,245,252,.94)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 14px 0 30px", opacity: marke, boxShadow: `10px 18px 22px ${r04.schatten}` }}>
           <span style={{ fontFamily: "Barlow", fontWeight: 700, fontSize: 34, color: farben.tinte }}>@solleva.ch</span>
           <span style={{ fontFamily: "Barlow", fontWeight: 700, fontSize: 30, color: farben.papier, background: farben.violett, borderRadius: 34, padding: "12px 24px" }}>Folgen</span>
         </div>
