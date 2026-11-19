@@ -243,13 +243,13 @@ const Szene7: React.FC<{ f: number }> = ({ f }) => {
 };
 
 // ---------- Satz 8 (Signature): Dieses Video? Keine Filmcrew. Nur ich. → Mini-Figur landet in der Mitte der Matte ----------
-// Figur: figur-a2-frei.png (1792×2400, Figur im Bild x 436–1261, y 289–2150). Höhe im Bild ca. 760 px, Füsse bei y 1330.
-const FIGUR = { breite: 731, links: 194, oben: 453, fussY: 1330 };
+// Figur: figur-b-frei.png (Karikatur mit grossem Kopf wie Buffett, 835×1842, freigestellt). Höhe im Bild ca. 860 px (≈ 45 %), Füsse bei y 1330.
+const FIGUR = { breite: 390, links: 345, oben: 470, fussY: 1330 };
 const Szene8: React.FC<{ f: number }> = ({ f }) => {
   // Kamera gleitet ruhig auf die Figur zu (Heavy, 100 → 108 % über die ganze Szene), kein Bounce.
   const kam = gleitKamera(f, kamera8());
   const kreis = [
-    { src: "r04/obj-kamera-a.png", x: 850, y: 640, w: 300, d: 10 },
+    { src: "r04/obj-kamera-a.png", x: 890, y: 640, w: 280, d: 10 },
     { src: "r04/obj-lampe-a.png", x: 880, y: 1010, w: 250, d: 12 },
     { src: "r04/obj-filmrolle-a.png", x: 200, y: 1010, w: 250, d: -8 },
     { src: "r04/obj-polaroid-a.png", x: 250, y: 1360, w: 210, d: -9 },
@@ -277,7 +277,7 @@ const Szene8: React.FC<{ f: number }> = ({ f }) => {
       <Ebene css={kam.css} blur={kam.blur}>
         <Welt src="r04/welt-matte-a.png" breite={1500} />
         {kreis.map((o, i) => <Obj key={i} src={o.src} x={o.x} y={o.y} w={o.w} dreh={o.d} h={0.8} />)}
-        <div style={{ position: "absolute", left: 120, top: 520, width: 260, height: 260, transform: "rotate(-9deg)", filter: Schatten(0.8) }}>
+        <div style={{ position: "absolute", left: 50, top: 540, width: 250, height: 250, transform: "rotate(-9deg)", filter: Schatten(0.8) }}>
           <Img src={staticFile("r04/obj-klappe-brett.png")} style={{ position: "absolute", width: "100%" }} />
           <Img src={staticFile("r04/obj-klappe-stab.png")} style={{ position: "absolute", width: "100%", transformOrigin: `${(90 / 1024) * 100}% ${(258 / 1024) * 100}%`, transform: "rotate(11.5deg)" }} />
         </div>
@@ -286,7 +286,7 @@ const Szene8: React.FC<{ f: number }> = ({ f }) => {
             {/* weicher Schatten am Boden: klein und dunkel bei Landung, gross und blass in der Luft */}
             <div style={{ position: "absolute", left: 540 - 170 * (1 + hoehe), top: FIGUR.fussY - 40, width: 340 * (1 + hoehe), height: 80, borderRadius: "50%", background: "rgba(20,8,60,.5)", filter: `blur(${12 + 30 * hoehe}px)`, opacity: t < 0 ? 0 : 1 - 0.6 * hoehe }} />
             <div style={{ position: "absolute", left: FIGUR.links, top: FIGUR.oben + fy, width: FIGUR.breite, transformOrigin: `50% ${FIGUR.fussY - FIGUR.oben}px`, transform: `scale(${fs})`, filter: `blur(${fb}px) ${Schatten(0.9)}`, opacity: t < 0 ? 0 : 1 }}>
-              <Img src={staticFile("r04/figur-a2-frei.png")} style={{ width: "100%" }} />
+              <Img src={staticFile("r04/figur-b-frei.png")} style={{ width: "100%" }} />
             </div>
           </>
         )}
