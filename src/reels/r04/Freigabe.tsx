@@ -80,7 +80,7 @@ const Szene: React.FC<{ nr: number }> = ({ nr }) => {
     // Hook, Frame 1: Klappe ist schon zu (Staub fliegt), FILMCREW steht sofort gross.
     return (
       <AbsoluteFill>
-        <SamtSpot />
+        <Welt src="r04/welt-samt-b.png" breite={1100} />
         {/* Matte nur angedeutet: Ecke unten links, im Halbdunkel */}
         <div style={{ position: "absolute", left: -380, top: 1240, width: 900, height: 900, overflow: "hidden", transform: "rotate(-12deg)", borderRadius: 18, opacity: 0.75, filter: "brightness(.55)" }}>
           <Img src={staticFile("r04/welt-matte-a.png")} style={{ width: 1300, marginLeft: -200, marginTop: -400 }} />
@@ -92,7 +92,7 @@ const Szene: React.FC<{ nr: number }> = ({ nr }) => {
         <Staub f={3} start={0} x={760} y={690} />
         <TiltShift blur={9} fokus={52} />
         <Zeile3D text="FILMCREW" start={-10} top={300} groesse={126} f={0} pA="#B9A6F5" pB="#2A1670" />
-        <Hinweis text="HOOK · FRAME 1 · Samt = Platzhalter (Higgsfield)" />
+        <Hinweis text="HOOK · FRAME 1 · Samt Variante B (Higgsfield)" />
       </AbsoluteFill>
     );
   }
@@ -151,10 +151,12 @@ const Szene: React.FC<{ nr: number }> = ({ nr }) => {
         </div>
       ))}
       <div style={{ position: "absolute", left: cx - 150, top: cy + 160, width: 300, height: 70, borderRadius: "50%", background: "rgba(20,8,60,.45)", filter: "blur(14px)" }} />
-      <div style={{ position: "absolute", left: cx - 110, top: cy - 300, width: 220, height: 480, borderRadius: "110px 110px 40px 40px", border: `4px dashed ${farben.gold}`, background: "rgba(14,10,40,.45)", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center", fontFamily: schriftR04.mono, fontSize: 24, color: farben.gold, padding: 14, boxSizing: "border-box", whiteSpace: "pre-line" }}>MINI-FIGUR{"\n"}von dir{"\n"}(Higgsfield, nach deinen Fotos)</div>
+      <div style={{ position: "absolute", left: cx - 175, top: cy - 330, width: 350, filter: Schatten(1.1) }}>
+        <Img src={staticFile("r04/figur-a-vorschau-frei.png")} style={{ width: "100%" }} />
+      </div>
       <TiltShift blur={8} fokus={56} />
       <Zeile3D text="NUR ICH." start={-10} top={280} groesse={140} f={0} pA="#C9B48F" pB="#2B170C" />
-      <Hinweis text="NUR ICH · Anordnung · Figur folgt nach deinen Fotos" />
+      <Hinweis text="NUR ICH · Figur A (Vorschau, grob freigestellt)" />
     </AbsoluteFill>
   );
 };
