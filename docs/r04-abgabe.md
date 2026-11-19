@@ -1,4 +1,33 @@
-# Reel 04 «Keine Filmcrew»: Abgabe v6
+# Reel 04 «Keine Filmcrew»: Abgabe v7
+
+Datei (lokal, nicht im Repo): `out/r04/reel04-keine-filmcrew-v7.mp4` + Standbilder `reel04-v7-0.0s.png`, `-0.3s.png`, `-1.0s.png`.
+Neu rendern: `npm run r04:assets`, `npx remotion render R04ReelV7 out/r04/roh-v7.mp4`, dann `tools/r04_mix.sh out/r04/roh-v7.mp4 out/r04/reel04-keine-filmcrew-v7.mp4`.
+
+## Was sich gegenüber v6 geändert hat (nur Einstieg + ein Übergang)
+- **Szene 1 neu** (`src/reels/r04/V7.tsx`, `HookSzene`), 54 Frames = 1,8 s: Text «DIESES VIDEO HAT KEINE / FILMCREW GEMACHT.» ab Frame 0 voll da
+  (gleicher Stil wie «FILMCREW»: Archivo 900, 118 %, weiss, violetter 3D-Schatten; 50 / 57 px, damit beide Zeilen in x 95–900 passen, Oberkante y 300).
+  Klappe offen ab Frame 0, holt bis Frame 5 noch etwas aus, schlägt bis Frame 9 (0,3 s) zu: Overshoot 2°, kleiner Rückprall, Brett-Puls,
+  Kreidestaub, Shake 3/2/2/1 px über 4 Frames. Dann Push durch den Schnitt (Mitte = Frame 54).
+- **«Früher …»** (gelbe Handschrift) schreibt sich am Anfang der Szene «Kamera. Licht. Schnitt.» unter den drei Zeilen ein (x 130, y 514), bevor «KAMERA.» erscheint.
+  Szene 2 beginnt dafür 12 Frames vor «KAMERA.» (alter Frame 82).
+- **Loch vor «DER UNTERSCHIED:» geschlossen**: Zeile steht ab dem ersten Frame der Schreibmaschinen-Szene (vorher 9 leere Frames + 6 Frames Einblenden).
+- **Timing**: alles ab Szene 2 ist v6, um 28 Frames (0,93 s) nach vorne gerückt (`<Sequence from={-28}>`): Bild, Stimme, Sounds, Musik und Figur-Clips
+  bleiben untereinander exakt synchron (geprüft: v7-Frame 200 = v6-Frame 228, Abweichung 0). Satz 1 der Stimme und die Sounds der alten Szene 1 fallen weg.
+
+## Messwerte v7
+- 1080×1920, 30 fps, H.264 High yuv420p TV-Range, AAC 48 kHz, 839 Frames = 28,0 s (v6: 28,9 s)
+- Lautheit −13,9 LUFS, Peak −1,8 dBFS
+- Ton ab 2,4 s gegen v6 (um 28 Frames verschoben): bester Versatz 0 ms, Pegelunterschied 0,0 dB
+- Bild ab Szene 2: v7-Frame 200 = v6-Frame 228 (Abweichung 0); Hook-Text bei 0,0 / 0,3 / 1,0 s ganz in der Safe Zone
+
+## Platzhalter (werden 1:1 ersetzt, gleicher Name)
+- `assets/r04/hook/hook-voice.mp3` → Hook-Stimme ab Frame 0. Platzhalter = Ausschnitt der bisherigen Stimme «Dieses Video? Keine Filmcrew.» (1,78 s).
+  Läuft höchstens bis Frame 62 (dort setzt Satz 2 ein), die echte Datei also ≤ ca. 2,0 s.
+- `assets/r04/hook/klappe-klack.mp3` → Klappen-Knall auf Frame 9. Platzhalter = `neu-wooden-film-clapperb-2`. Der Knall muss am Dateianfang liegen
+  (sonst `HOOK_TON.KLAPPE_HIT_SEK` in `V7.tsx` anpassen). Darunter bleibt wie in v6 leise `neu-kick-drum-vintage-3`.
+- Nach dem Ersetzen: `npm run r04:assets`, neu rendern, mischen.
+
+# Abgabe v6 (Stand vorher)
 
 Dateien (lokal, nicht im Repo): `out/r04/reel04-keine-filmcrew-v6.mp4` und `out/r04/reel04-keine-filmcrew-v6-ohne-musik.mp4`.
 Neu rendern: `npm run r04:assets`, Stimme nach `public/r04/stimme-neu.mp3` kopieren, `npx remotion render R04Reel …`, dann `tools/r04_mix.sh roh.mp4 ziel.mp4`.

@@ -170,7 +170,8 @@ export const tippPlan = () => {
   }
   return plan;
 };
-const Szene6: React.FC<{ f: number }> = ({ f }) => {
+// unterschiedAb (ab v7): «DER UNTERSCHIED:» steht schon im ersten Frame der Szene (kein leeres Violett).
+const Szene6: React.FC<{ f: number; unterschiedAb?: number }> = ({ f, unterschiedAb = W6.unterschied }) => {
   // Auf «Details» beginnt EINE Fahrt auf die Karte in der Walze, die durch den Schnitt in Satz 7 läuft.
   const kam = gleitKamera(f, kamera6());
   const plan = tippPlan();
@@ -210,7 +211,7 @@ const Szene6: React.FC<{ f: number }> = ({ f }) => {
       </Ebene>
       <TiltShift blur={10} fokus={50} />
       <Ebene css={halbeKamera(kam)} blur={kam.blur / 2}>
-        <Zeile3D text="DER UNTERSCHIED:" start={W6.unterschied} top={250} groesse={66} f={f} pA="#B9A6F5" pB="#2A1670" />
+        <Zeile3D text="DER UNTERSCHIED:" start={unterschiedAb} top={250} groesse={66} f={f} pA="#B9A6F5" pB="#2A1670" />
       </Ebene>
     </AbsoluteFill>
   );
@@ -395,15 +396,22 @@ const PHRASEN = [
   P(W9.schreib, W9.reel + 24, [["Schreib", W9.schreib], ["«Reel».", W9.reel, true]]),
 ];
 
-export const R04Reel: React.FC<{ untertitel?: UntertitelStil; musik?: boolean }> = ({ untertitel = "aus", musik = true }) => {
+/**
+ * v7 (Hook neu): Szene 1 kommt aus V7.tsx (R04ReelV7 legt dieses Reel um V7_VERSATZ nach vorne).
+ * Hier fallen dann Szene 1, Satz 1 der Stimme und die Sounds von Szene 1 weg; Szene 2 beginnt früher mit «Früher …».
+ */
+export const V7_ALT_START = U.kamera - 12; // alter Frame, an dem Szene 2 in v7 beginnt
+
+export const R04Reel: React.FC<{ untertitel?: UntertitelStil; musik?: boolean; v7?: boolean }> = ({ untertitel = "aus", musik = true, v7 = false }) => {
   const f = useCurrentFrame();
   const szene =
-    f < SCHNITT ? <Szene1 f={f} /> :
-    f < V.s3 ? <Szene2 f={f} ende={V.s3} /> :
+    v7 && f < V7_ALT_START ? null :
+    f < SCHNITT && !v7 ? <Szene1 f={f} /> :
+    f < V.s3 ? <Szene2 f={f} ende={V.s3} frueherAb={v7 ? V7_ALT_START + 1 : undefined} /> :
     f < V.s4 ? <Szene3 f={f} /> :
     f < V.s5 ? <Szene4 f={f} /> :
     f < V.s6 ? <Szene5 f={f} /> :
-    f < V.s7 ? <Szene6 f={f} /> :
+    f < V.s7 ? <Szene6 f={f} unterschiedAb={v7 ? V.s6 - 6 : undefined} /> :
     f < V.s8 ? <Szene7 f={f} /> :
     f < V.s9 ? <Szene8 f={f} /> : <Szene9 f={f} />;
   return (
@@ -414,7 +422,7 @@ export const R04Reel: React.FC<{ untertitel?: UntertitelStil; musik?: boolean }>
       <Koernung staerke={0.1} seed={Math.floor(f / 2) % 8} />
       {/* Stimme: neue Datei in Segmenten pro Satz (erlaubt Extra-Pausen), sonst die 9 alten Einzeldateien */}
       {NEUE_STIMME
-        ? STIMME_SEGMENTE.map((sg) => (
+        ? STIMME_SEGMENTE.filter((sg) => !(v7 && sg.satz === 1)).map((sg) => (
             <Sequence key={`st${sg.satz}`} from={sg.reel} durationInFrames={Math.max(1, Math.round((sg.bis - sg.von) * 30))} layout="none">
               <Audio src={staticFile(STIMME_DATEI)} startFrom={Math.round(sg.von * 30)} />
             </Sequence>
@@ -428,12 +436,21 @@ export const R04Reel: React.FC<{ untertitel?: UntertitelStil; musik?: boolean }>
         <Audio src={staticFile("sounds-neu/neu-dark-cinematic-suspe.mp3")} volume={(fr) => 0.1 * Math.min(1, fr / 9) * Math.min(1, (REEL04_DAUER - fr) / 24)} />
       </Sequence>
       )}
-      {/* Satz 1: Klappe schlägt einmal in Frame 1 zu (Holz, trocken) */}
-      <Ton nr="neu-wooden-film-clapperb-2" bei={1} vol={0.95} />
-      <Ton nr="neu-kick-drum-vintage-3" bei={1} vol={0.35} />
-      <Ton nr="schreiben-01" bei={T.frueher + 2} vol={0.3} />
-      <Ton nr="neu-heavy-cloth-swoosh-1" bei={T.filmcrew + 2} vol={0.3} />
-      <Ton nr="neu-heavy-cloth-swoosh-1" bei={SCHNITT} vor={2} vol={0.5} />
+      {/* Satz 1: Klappe schlägt einmal in Frame 1 zu (Holz, trocken). v7: Hook-Sounds in V7.tsx, hier nur Schnitt + «Früher …» */}
+      {v7 ? (
+        <>
+          <Ton nr="neu-heavy-cloth-swoosh-1" bei={V7_ALT_START} vor={2} vol={0.5} />
+          <Ton nr="schreiben-01" bei={V7_ALT_START + 2} vol={0.3} />
+        </>
+      ) : (
+        <>
+          <Ton nr="neu-wooden-film-clapperb-2" bei={1} vol={0.95} />
+          <Ton nr="neu-kick-drum-vintage-3" bei={1} vol={0.35} />
+          <Ton nr="schreiben-01" bei={T.frueher + 2} vol={0.3} />
+          <Ton nr="neu-heavy-cloth-swoosh-1" bei={T.filmcrew + 2} vol={0.3} />
+          <Ton nr="neu-heavy-cloth-swoosh-1" bei={SCHNITT} vor={2} vol={0.5} />
+        </>
+      )}
       {/* Satz 2: Kamera rattert, schwerer Lichtschalter, Filmrolle, Kalender (Ratsche bleibt) */}
       <Ton nr="neu-quick-air-swoosh-li-1" bei={U.kamera + 5} vor={2} vol={0.35} />
       <Ton nr="neu-vintage-16mm-film-ca-2" bei={U.kamera + 5} ab={0.18} max={1.1} vol={0.55} />

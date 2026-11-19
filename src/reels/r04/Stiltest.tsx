@@ -40,7 +40,7 @@ export const halb = (k: { z: number; x: number; y: number; r: number }) => `tran
 export const Schatten = (h: number) => `drop-shadow(${10 * h}px ${18 * h}px ${12 * h}px rgba(20,10,40,${0.55 / Math.sqrt(h)}))`;
 
 /** Text kommt aus der Unschärfe (Gucci: 2 Frames Versatz pro Zeile, je ~6 Frames). */
-export const Zeile3D: React.FC<{ text: string; start: number; top: number; groesse: number; f: number; farbe?: string; pA?: string; pB?: string }> = ({ text, start, top, groesse, f, farbe = farben.papier, pA = "#C9B48F", pB = "#2B170C" }) => {
+export const Zeile3D: React.FC<{ text: string; start: number; top: number; groesse: number; f: number; farbe?: string; pA?: string; pB?: string; links?: number; rechts?: number }> = ({ text, start, top, groesse, f, farbe = farben.papier, pA = "#C9B48F", pB = "#2B170C", links = 70, rechts = 140 }) => {
   if (f < start) return null;
   const p = tw(f, start, 6, 0, 1, kurve.land);
   const tiefe = 9;
@@ -53,7 +53,7 @@ export const Zeile3D: React.FC<{ text: string; start: number; top: number; groes
   }
   sh.push(`18px 30px 26px ${r04.schatten}`);
   return (
-    <div style={{ position: "absolute", top, left: 70, right: 140, textAlign: "center", opacity: p, filter: `blur(${(1 - p) * 16}px)`, transform: `scale(${1.25 - 0.25 * p}) rotate(-2deg)` }}>
+    <div style={{ position: "absolute", top, left: links, right: rechts, textAlign: "center", opacity: p, filter: `blur(${(1 - p) * 16}px)`, transform: `scale(${1.25 - 0.25 * p}) rotate(-2deg)` }}>
       <span style={{ fontFamily: schriftR04.display, fontWeight: 900, fontStretch: "118%", fontSize: groesse, lineHeight: 0.86, color: farbe, textShadow: sh.join(","), whiteSpace: "nowrap" }}>{text}</span>
     </div>
   );
@@ -154,7 +154,9 @@ export const Szene1: React.FC<{ f: number }> = ({ f }) => {
 };
 
 // ---------- Szene 2: Kamera, Licht, Schnitt. Wochenlang. ----------
-export const Szene2: React.FC<{ f: number; ende?: number }> = ({ f, ende = STILTEST_DAUER }) => {
+export const FRUEHER = { x: 130, y: 514, groesse: 80 };
+// frueherAb (ab v7): «Früher …» schreibt sich ab diesem Frame oben ein, bevor «KAMERA.» erscheint.
+export const Szene2: React.FC<{ f: number; ende?: number; frueherAb?: number }> = ({ f, ende = STILTEST_DAUER, frueherAb }) => {
   // Kamera K04: Eintritt (zweite Hälfte des Push aus Satz 1), dann Bounce pro Wort, Übergang in Satz 3.
   const kam = gleitKamera(f, kamera2(ende));
   const objekte = [
@@ -195,6 +197,10 @@ export const Szene2: React.FC<{ f: number; ende?: number }> = ({ f, ende = STILT
         <Zeile3D text="KAMERA." start={U.kamera} top={250} groesse={104} f={f} />
         <Zeile3D text="LICHT." start={U.licht} top={345} groesse={104} f={f} />
         <Zeile3D text="SCHNITT." start={U.schnitt} top={440} groesse={104} f={f} />
+        {/* über den Zeilen gezeichnet, damit der Schatten von «SCHNITT.» die Ü-Punkte nicht verdeckt */}
+        {frueherAb !== undefined && f >= frueherAb && (
+          <Schreiben text="Früher …" x={FRUEHER.x} y={FRUEHER.y} groesse={FRUEHER.groesse} p={tw(f, frueherAb, 9, 0, 1, kurve.linear)} dreh={-7} />
+        )}
         {f >= U.wochenlang + 4 && (
           <Schreiben text="wochenlang." x={190} y={1230} groesse={124} p={tw(f, U.wochenlang + 4, 16, 0, 1, kurve.linear)} dreh={-6} />
         )}
