@@ -1,7 +1,7 @@
 // Reel 04 «Keine Filmcrew»: ganzes Reel (Satz 1–9). Satz 1–2 = freigegebener Stiltest.
 // Welten + Objekte: Higgsfield (assets/r04/higgsfield). Code: Schrift, Kamera K02, Tiefe, Animation, Stempel, Ton.
 import React from "react";
-import { AbsoluteFill, Audio, Img, Sequence, staticFile, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Audio, Img, OffthreadVideo, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { farben } from "../../brand/solleva";
 import { Ton } from "../../lib/kamera";
 import { kurve, tw } from "../../lib/bewegung";
@@ -245,6 +245,29 @@ const Szene7: React.FC<{ f: number }> = ({ f }) => {
 // ---------- Satz 8 (Signature): Dieses Video? Keine Filmcrew. Nur ich. → Mini-Figur landet in der Mitte der Matte ----------
 // Figur: figur-b-frei.png (Karikatur mit grossem Kopf wie Buffett, 835×1842, freigestellt). Höhe im Bild ca. 860 px (≈ 45 %), Füsse bei y 1330.
 const FIGUR = { breite: 390, links: 345, oben: 470, fussY: 1330 };
+// Sprechende Figur (Higgsfield Wan 2.7, Grün herausgerechnet → WebM mit Alpha). Danach hält das letzte Bild.
+// Startbild-Geometrie: Figur 1560 px hoch, Füsse bei y 1760, Mitte x 540 im 1080×1920-Video.
+const FIGUR_CLIP = { hoehe: 1560, fussY: 1760, mitteX: 540 };
+export const FIGUR_VIDEO = { satz8: "r04/figur-satz8.webm", satz8Ende: "r04/figur-satz8-ende.png", satz9: "r04/figur-satz9.webm", satz9Ende: "r04/figur-satz9-ende.png" };
+const SprechendeFigur: React.FC<{ f: number; start: number; dauerF: number; video: string; ende: string; hoehe: number; fussX: number; fussY: number; style?: React.CSSProperties }> = ({ f, start, dauerF, video, ende, hoehe, fussX, fussY, style }) => {
+  const k = hoehe / FIGUR_CLIP.hoehe;
+  const box: React.CSSProperties = { position: "absolute", width: 1080 * k, height: 1920 * k, left: fussX - FIGUR_CLIP.mitteX * k, top: fussY - FIGUR_CLIP.fussY * k, ...style };
+  return (
+    <div style={box}>
+      {f < start + dauerF ? (
+        <Sequence from={start} durationInFrames={dauerF} layout="none">
+          <OffthreadVideo src={staticFile(video)} transparent muted style={{ width: "100%", height: "100%" }} />
+        </Sequence>
+      ) : (
+        <Img src={staticFile(ende)} style={{ width: "100%", height: "100%" }} />
+      )}
+    </div>
+  );
+};
+const CLIP8_START = STIMME_SEGMENTE.length ? Math.round(STIMME_SEGMENTE[7].reel + (20.1 - STIMME_SEGMENTE[7].von) * 30) : V.s8;
+const CLIP9_START = STIMME_SEGMENTE.length ? Math.round(STIMME_SEGMENTE[8].reel + (22.9 - STIMME_SEGMENTE[8].von) * 30) : V.s9;
+export const CLIPS = { c8: { start: CLIP8_START, dauer: 90 }, c9: { start: CLIP9_START, dauer: 120 } };
+
 const Szene8: React.FC<{ f: number }> = ({ f }) => {
   // Kamera gleitet ruhig auf die Figur zu (Heavy, 100 → 108 % über die ganze Szene), kein Bounce.
   const kam = gleitKamera(f, kamera8());
@@ -255,8 +278,8 @@ const Szene8: React.FC<{ f: number }> = ({ f }) => {
     { src: "r04/obj-polaroid-a.png", x: 250, y: 1360, w: 210, d: -9 },
     { src: "r04/obj-laden-a.png", x: 830, y: 1370, w: 240, d: 0 },
   ];
-  // Figur fällt auf «Nur»: von oben (näher an der Kamera = grösser, unscharf), landet mit kleinem Hüpfer.
-  const t = f - W8.nur;
+  // Figur landet zu Beginn der Szene (sie spricht den ganzen Satz selbst), mit kleinem Hüpfer.
+  const t = f - V.s8;
   let fy = -900, fs = 1.25, fb = 10;
   if (t >= 0) {
     const p = Math.min(1, t / 8);
@@ -285,8 +308,8 @@ const Szene8: React.FC<{ f: number }> = ({ f }) => {
           <>
             {/* weicher Schatten am Boden: klein und dunkel bei Landung, gross und blass in der Luft */}
             <div style={{ position: "absolute", left: 540 - 170 * (1 + hoehe), top: FIGUR.fussY - 40, width: 340 * (1 + hoehe), height: 80, borderRadius: "50%", background: "rgba(20,8,60,.5)", filter: `blur(${12 + 30 * hoehe}px)`, opacity: t < 0 ? 0 : 1 - 0.6 * hoehe }} />
-            <div style={{ position: "absolute", left: FIGUR.links, top: FIGUR.oben + fy, width: FIGUR.breite, transformOrigin: `50% ${FIGUR.fussY - FIGUR.oben}px`, transform: `scale(${fs})`, filter: `blur(${fb}px) ${Schatten(0.9)}`, opacity: t < 0 ? 0 : 1 }}>
-              <Img src={staticFile("r04/figur-b-frei.png")} style={{ width: "100%" }} />
+            <div style={{ position: "absolute", inset: 0, transformOrigin: `540px ${FIGUR.fussY}px`, transform: `translateY(${fy}px) scale(${fs})`, filter: `blur(${fb}px) ${Schatten(0.9)}`, opacity: t < 0 ? 0 : 1 }}>
+              <SprechendeFigur f={f} start={CLIPS.c8.start} dauerF={CLIPS.c8.dauer} video={FIGUR_VIDEO.satz8} ende={FIGUR_VIDEO.satz8Ende} hoehe={FIGUR.fussY - FIGUR.oben} fussX={540} fussY={FIGUR.fussY} />
             </div>
           </>
         )}
@@ -314,6 +337,12 @@ const Szene9: React.FC<{ f: number }> = ({ f }) => {
       <Ebene css={kam.css} blur={kam.blur}>
         <Welt src="r04/welt-hohlkehle-b.png" breite={1100} />
       </Ebene>
+      <Ebene css={kam.css} blur={kam.blur}>
+        <div style={{ position: "absolute", left: 740 - 130, top: 1515, width: 260, height: 50, borderRadius: "50%", background: "rgba(8,2,30,.55)", filter: "blur(12px)" }} />
+        <div style={{ position: "absolute", inset: 0, filter: Schatten(0.8) }}>
+          <SprechendeFigur f={f} start={CLIPS.c9.start} dauerF={CLIPS.c9.dauer} video={FIGUR_VIDEO.satz9} ende={FIGUR_VIDEO.satz9Ende} hoehe={500} fussX={740} fussY={1540} />
+        </div>
+      </Ebene>
       <TiltShift blur={8} fokus={55} />
       <Ebene css={halbeKamera(kam)} blur={kam.blur / 2}>
         <div style={{ position: "absolute", top: 240, left: 70, right: 140, textAlign: "center", opacity: marke, transform: `translateY(${(1 - marke) * 20}px)`, fontFamily: "Barlow", fontWeight: 700, fontSize: 60, color: farben.papier, letterSpacing: "0.01em", textShadow: `4px 6px 10px ${r04.schatten}` }}>Solleva</div>
@@ -330,7 +359,7 @@ const Szene9: React.FC<{ f: number }> = ({ f }) => {
         <div style={{ position: "absolute", top: 960, left: 70, right: 140, textAlign: "center", opacity: marke, fontFamily: "Barlow", fontWeight: 700, fontSize: 64, lineHeight: 1.05, color: farben.papier, textShadow: `4px 6px 10px ${r04.schatten}` }}>
           Heb dich von der <span style={{ fontFamily: schriftR04.marker, color: farben.gold, fontWeight: 400 }}>Masse</span> ab.
         </div>
-        <div style={{ position: "absolute", top: 1130, left: 240, right: 300, height: 96, borderRadius: 48, background: "rgba(246,245,252,.94)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 14px 0 30px", opacity: marke, boxShadow: `10px 18px 22px ${r04.schatten}` }}>
+        <div style={{ position: "absolute", top: 1130, left: 70, right: 480, height: 96, borderRadius: 48, background: "rgba(246,245,252,.94)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 14px 0 30px", opacity: marke, boxShadow: `10px 18px 22px ${r04.schatten}` }}>
           <span style={{ fontFamily: "Barlow", fontWeight: 700, fontSize: 34, color: farben.tinte }}>@solleva.ch</span>
           <span style={{ fontFamily: "Barlow", fontWeight: 700, fontSize: 30, color: farben.papier, background: farben.violett, borderRadius: 34, padding: "12px 24px" }}>Folgen</span>
         </div>
@@ -442,10 +471,10 @@ export const R04Reel: React.FC<{ untertitel?: UntertitelStil }> = ({ untertitel 
       <Ton nr="neu-cork-popping-out-of-1" bei={W7.kleine + 2} vol={0.4} />
       <Ton nr="neu-soft-wind-swoosh-lo-4" bei={V.s8} vor={2} vol={0.35} />
       {/* Satz 8 (Signature): Figur landet mit dumpfem Tock */}
-      <Ton nr="neu-riser-build-up-1" bei={W8.nur + 8} vol={0.25} />
-      <Ton nr="neu-quick-air-swoosh-li-2" bei={W8.nur + 7} vor={2} vol={0.3} />
-      <Ton nr="neu-wooden-knock-on-a-ta-2" bei={W8.nur + 8} vol={0.9} />
-      <Ton nr="neu-kick-drum-vintage-4" bei={W8.nur + 8} vol={0.4} />
+      <Ton nr="neu-quick-air-swoosh-li-2" bei={V.s8 + 7} vor={2} vol={0.3} />
+      <Ton nr="neu-wooden-knock-on-a-ta-2" bei={V.s8 + 8} vol={0.9} />
+      <Ton nr="neu-kick-drum-vintage-4" bei={V.s8 + 8} vol={0.4} />
+      <Ton nr="neu-deep-cinematic-boom" bei={W8.ich} vol={0.3} />
       <Ton nr="neu-soft-wind-swoosh-lo-3" bei={V.s9} vor={2} vol={0.35} />
       {/* Satz 9: Button-Klick (mechanisch), dumpfer Impact auf «Reel» */}
       <Ton nr="neu-heavy-cloth-swoosh-1" bei={W9.schreib + 3} vor={2} vol={0.3} />
