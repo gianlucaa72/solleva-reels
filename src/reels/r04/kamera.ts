@@ -1,6 +1,6 @@
 // Reel 04: Kamera pro Szene (K03/K04). Eine Datei, damit Kurven geplottet und geprüft werden können (tools/r04_kamerakurve).
 import { WEICH } from "../../lib/gleitKamera";
-import { REEL04_DAUER, SCHNITT, T, U, V, W3, W4, W5, W6, W7, W8, W9 } from "./timeline";
+import { REEL04_DAUER, SCHNITT, T, U, V, W3, W4, W5, W6, W7, W9 } from "./timeline";
 
 export const kamera1 = () => ({
     start: 0,
@@ -87,7 +87,7 @@ export const kamera6 = () => {
       { f: V.s6 - 9, dauer: 18, zoom: 1.08, notiz: "Eintritt (zweite Hälfte)" },
       { f: W6.hook, dauer: 15, zoom: 1.13, y: 20, notiz: "rein: «Hook»" },
       { f: W6.hook + 15, dauer: 15, zoom: 1.07, notiz: "raus: «Geschichte»" },
-      { f: ende - 19, dauer: 38, zoom: 1.7, x: 136, y: -483, notiz: "Fahrt auf DETAILS, Schnitt in der Mitte" },
+      { f: ende - 19, dauer: 38, zoom: 1.7, x: -8, y: -628, notiz: "Fahrt auf DETAILS in der Schreibmaschine, Schnitt in der Mitte" },
     ],
   };
 };
@@ -109,20 +109,13 @@ export const kamera7 = () => {
 };
 
 export const kamera8 = () => {
+  // Signature: EINE ruhige Fahrt auf die Mini-Figur zu, Heavy-Kurve über die ganze Szene (100 → 108 %), kein Bounce.
   const ende = V.s9;
-  // Matte in der Bildmitte halten: Verschiebung = Zoom × Abstand der Mattenmitte (524/985) zur Bildmitte.
-  const nah = (z: number) => ({ zoom: z, x: 16 * z, y: -25 * z });
   return {
     start: V.s8,
     ende,
-    von: nah(1.55),
-    feder: { zeta: 0.7, omega: 0.3 }, // etwas mehr Dämpfung: die Rausfahrt darf nicht unter 100 % schwingen
-    fahrten: [
-      { f: V.s8 - 9, dauer: 18, ...nah(1.75), notiz: "Eintritt (zweite Hälfte)" },
-      { f: W8.video, dauer: 15, ...nah(1.68), notiz: "raus: «Video?»" },
-      { f: W8.keine, dauer: 15, ...nah(1.82), notiz: "rein: «Keine Filmcrew»" },
-      { f: W8.nur, dauer: 24, zoom: 1.04, x: 0, y: 0, dreh: -1, notiz: "RAUSFAHRT auf den echten Tisch" },
-    ],
+    push: 0,
+    fahrten: [{ f: V.s8, dauer: ende - V.s8, zoom: 1.08, y: -15, notiz: "langsam auf die Figur zu" }],
   };
 };
 

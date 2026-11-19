@@ -120,13 +120,8 @@ export const Szene1: React.FC<{ f: number }> = ({ f }) => {
   // Hook: Die Klappe liegt schon da und schlägt in Frame 1 zu (Aufprall: 104 → 100 %).
   const kl = { sichtbar: true, s: 1 + 0.04 * Math.exp(-f / 3) * Math.cos(f / 1.5), blur: 0, hoehe: 1, k: 1 };
   // Stab: 0 = offen wie im Bild, +11,5 = zu, negativ = weiter offen
-  let stab = f < 1 ? -14 : 11.5 + Math.exp(-(f - 1) / 2) * Math.sin((f - 1) / 1.1) * -2.5;
-  if (f >= T.brauchte) stab = 11.5 - 27.5 * kurve.heavy(Math.min(1, (f - T.brauchte) / 15));
-  if (f >= T.eine) stab = -16 - 8 * feder(f - T.eine, 5);
-  if (f >= T.filmcrew - 2) {
-    const t = f - (T.filmcrew - 2);
-    stab = t < 2 ? -24 + 35.5 * kurve.whip(t / 2) : 11.5 + Math.exp(-(t - 2) / 2) * Math.sin((t - 2) / 1.1) * -2.5;
-  }
+  // Nur EIN Schlag (Frame 1), danach bleibt die Klappe zu (Wunsch des Nutzers).
+  const stab = f < 1 ? -14 : 11.5 + Math.exp(-(f - 1) / 2) * Math.sin((f - 1) / 1.1) * -2.5;
   const KL_W = 640;
   return (
     <AbsoluteFill style={{ background: "#2a1d14" }}>
@@ -146,7 +141,6 @@ export const Szene1: React.FC<{ f: number }> = ({ f }) => {
           </div>
         )}
         <Staub f={f} start={1} x={760} y={690} />
-        <Staub f={f} start={T.filmcrew} x={760} y={690} />
       </AbsoluteFill>
       <TiltShift blur={10} fokus={50} />
       <AbsoluteFill style={{ transform: halbeKamera(kam), transformOrigin: "50% 40%", filter: `blur(${kam.blur / 2}px)` }}>

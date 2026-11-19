@@ -23,3 +23,7 @@ export const W6 = { den: at(V.s6, 0.08), unterschied: at(V.s6, 0.28), machen: at
 export const W7 = { heute: at(V.s7, 0.11), bekommen: at(V.s7, 0.3), das: at(V.s7, 0.8), auch: at(V.s7, 0.95), kleine: at(V.s7, 1.2), betriebe: at(V.s7, 1.64) };
 export const W8 = { dieses: at(V.s8, 0.08), video: at(V.s8, 0.48), keine: at(V.s8, 1.34), filmcrew: at(V.s8, 1.81), nur: at(V.s8, 2.74), ich: at(V.s8, 3.07) };
 export const W9 = { willst: at(V.s9, 0.04), du: at(V.s9, 0.37), das: at(V.s9, 0.6), auch: at(V.s9, 0.93), schreib: at(V.s9, 1.31), reel: at(V.s9, 2.0) };
+
+// Text, der vom Skript abhängt (alte Stimme = Platzhalter; mit der neuen Stimme umstellen)
+export const NEUE_STIMME = false;
+export const CTA_ZEILEN = NEUE_STIMME ? ["SO EIN VIDEO", "FÜR DICH?"] : ["WILLST DU", "DAS AUCH?"];

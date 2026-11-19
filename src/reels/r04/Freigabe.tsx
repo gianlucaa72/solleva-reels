@@ -5,7 +5,7 @@ import { farben } from "../../brand/solleva";
 import { Blaetterschatten, Koernung, schriftR04, SchriftenR04, TiltShift } from "./Look";
 import { Schatten, Staub, Welt, Zeile3D } from "./Stiltest";
 
-const SchreibmaschinenSchrift: React.FC = () => {
+export const SchreibmaschinenSchrift: React.FC = () => {
   const [h] = useState(() => delayRender("Special Elite"));
   useEffect(() => {
     const ff = new FontFace("Special Elite", `url(${staticFile("fonts/special-elite-latin-400-normal.woff2")})`);
@@ -58,7 +58,7 @@ export const DymoBand: React.FC<{ text: string; sichtbar?: number; farbe?: strin
 );
 
 // ---------- Karteikarte mit Schreibmaschinenschrift ----------
-const Karteikarte: React.FC<{ text: string; cursor?: boolean }> = ({ text, cursor }) => (
+export const Karteikarte: React.FC<{ text: string; cursor?: boolean }> = ({ text, cursor }) => (
   <div style={{ width: 640, height: 250, background: "#F5F0E3", borderRadius: 6, position: "relative", backgroundImage: "repeating-linear-gradient(0deg, transparent 0 46px, rgba(108,63,212,.14) 46px 48px)", boxShadow: "inset 0 0 30px rgba(120,100,60,.18)" }}>
     <div style={{ position: "absolute", top: 0, left: 58, width: 3, height: "100%", background: "rgba(201,53,53,.35)" }} />
     <div style={{ position: "absolute", left: 90, top: 70, fontFamily: "Special Elite", fontSize: 74, color: "#1b1630", letterSpacing: "0.04em" }}>
@@ -67,7 +67,7 @@ const Karteikarte: React.FC<{ text: string; cursor?: boolean }> = ({ text, curso
     </div>
   </div>
 );
-const Pin: React.FC<{ x: number; y: number }> = ({ x, y }) => (
+export const Pin: React.FC<{ x: number; y: number }> = ({ x, y }) => (
   <div style={{ position: "absolute", left: x - 18, top: y - 18, width: 36, height: 36, borderRadius: 18, background: "radial-gradient(circle at 35% 30%, #C9B6FF, #6C3FD4 55%, #3a1c8c)", boxShadow: "6px 10px 8px rgba(20,8,60,.5)" }} />
 );
 

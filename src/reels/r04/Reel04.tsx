@@ -8,12 +8,13 @@ import { kurve, tw } from "../../lib/bewegung";
 import { feder } from "../../lib/punchFeder";
 import { gleitKamera, halbeKamera } from "../../lib/gleitKamera";
 import { kamera3, kamera4, kamera5, kamera6, kamera7, kamera8, kamera9 } from "./kamera";
+import { Karteikarte, Pin, SchreibmaschinenSchrift } from "./Freigabe";
 import { Koernung, r04, schriftR04, SchriftenR04, TiltShift } from "./Look";
 import { fallen, faecher, Schatten, Schreiben, Staub, Szene1, Szene2, Untertitel, UntertitelStil, Welt, Zeile3D } from "./Stiltest";
 import { REEL04_DAUER, S1, S2, SCHNITT, T, U, w1 } from "./timeline";
 
 export { REEL04_DAUER } from "./timeline";
-import { V, W3, W4, W5, W6, W7, W8, W9 } from "./timeline";
+import { CTA_ZEILEN, V, W3, W4, W5, W6, W7, W8, W9 } from "./timeline";
 
 const Ebene: React.FC<{ css: string; blur?: number; children: React.ReactNode }> = ({ css, blur = 0, children }) => (
   <AbsoluteFill style={{ transform: css, transformOrigin: "50% 40%", filter: blur ? `blur(${blur}px)` : undefined }}>{children}</AbsoluteFill>
@@ -33,8 +34,9 @@ const Szene3: React.FC<{ f: number }> = ({ f }) => {
   const kam = gleitKamera(f, kamera3());
   const um = Math.max(0, Math.min(1, (f - W3.bezahlen) / 8));
   const umP = f >= W3.bezahlen ? feder(f - W3.bezahlen, 4) : 0;
-  const zettelIn = f >= W3.das ? feder(f - W3.das, 4) : 0;
-  const weg = f >= W3.nur + 1 ? kurve.raus(Math.min(1, (f - W3.nur - 1) / 10)) : 0;
+  const ZETTEL = W3.bezahlen + 8; // nach der Landung des Umschlags
+  const zettelIn = f >= ZETTEL ? feder(f - ZETTEL, 5) : 0;
+  const weg = f >= W3.nur + 1 ? kurve.raus(Math.min(1, (f - W3.nur - 1) / 14)) : 0;
   const st = f >= W3.nur ? Math.min(1, (f - W3.nur) / 3) : 0;
   const stS = f >= W3.nur ? (f - W3.nur < 3 ? 1.9 - 0.9 * kurve.whip(st) : 1 - Math.exp(-(f - W3.nur - 3) / 3) * Math.sin((f - W3.nur - 3) / 1.3) * 0.04) : 0;
   return (
@@ -42,7 +44,7 @@ const Szene3: React.FC<{ f: number }> = ({ f }) => {
       <Ebene css={kam.css} blur={kam.blur}>
         <Welt src="r04/welt-chef-b.png" breite={1100} />
         {f >= W3.bezahlen && <Obj src="r04/obj-umschlag-a.png" x={540 + (1 - umP) * 900} y={900} w={720} dreh={-5 + (1 - umP) * 25} blur={(1 - um) * 10} h={1.1} />}
-        {f >= W3.das && weg < 1 && (
+        {f >= ZETTEL && weg < 1 && (
           <div style={{ position: "absolute", left: 210, top: 1040, width: 260, height: 220, background: "#E4D9FF", boxShadow: "0 3px 0 rgba(0,0,0,.05) inset", transform: `translate(${-500 * (1 - zettelIn) - 900 * weg}px, ${300 * (1 - zettelIn) + 500 * weg}px) rotate(${-9 - 260 * weg}deg)`, filter: `blur(${weg * 8}px) ${Schatten(1 + weg * 2)}`, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <span style={{ fontFamily: schriftR04.marker, fontSize: 46, color: farben.tinte, textAlign: "center", lineHeight: 1.05, transform: "rotate(-4deg)" }}>kleiner<br />Betrieb</span>
           </div>
@@ -89,7 +91,7 @@ const Bildschirm: React.FC<{ f: number }> = ({ f }) => {
         <div style={{ position: "absolute", inset: 0, background: "#1F2FB8" }}>
           <div style={{ position: "absolute", left: 40, top: 30, fontFamily: schriftR04.mono, fontSize: 30, color: "#E8ECFF", textShadow: "0 0 6px rgba(255,255,255,.7)" }}>PLAY ▶</div>
           <div style={{ position: "absolute", right: 40, bottom: 30, fontFamily: schriftR04.mono, fontSize: 26, color: "#E8ECFF", opacity: 0.85 }}>SP 0:00:0{Math.min(9, Math.floor((f - W4.ai) / 6))}</div>
-          <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: schriftR04.display, fontWeight: 900, fontStretch: "125%", fontSize: 250, color: farben.papier, transform: `scale(${tw(f, W4.ai, 5, 1.4, 1, kurve.land)})`, textShadow: "-8px 0 0 rgba(143,227,255,.8), 8px 0 0 rgba(216,74,200,.8), 10px 18px 20px rgba(0,0,0,.5)" }}>AI</div>
+          <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: schriftR04.display, fontWeight: 900, fontStretch: "125%", fontSize: 250, color: farben.papier, transform: `scale(${tw(f, W4.ai, 5, 1.4, 1, kurve.land)})`, textShadow: "-8px 0 0 rgba(143,227,255,.8), 8px 0 0 rgba(216,74,200,.8), 10px 18px 20px rgba(0,0,0,.5)" }}>KI</div>
         </div>
       )}
       <div style={{ position: "absolute", inset: 0, background: "repeating-linear-gradient(0deg, rgba(0,0,0,.28) 0 2px, transparent 2px 5px)" }} />
@@ -125,7 +127,7 @@ const Szene5: React.FC<{ f: number }> = ({ f }) => {
   return (
     <AbsoluteFill style={{ background: "#cfc4f2" }}>
       <Ebene css={kam.css} blur={kam.blur}>
-        <Welt src="r04/welt-lavendel-a.png" breite={1100} />
+        <Welt src="r04/welt-leuchttisch-b.png" breite={1100} />
         {po.sichtbar && (
           <div style={{ position: "absolute", left: 560 - 300, top: 880 - 300, width: 600, height: 600, transform: `translateX(${weg * 1200}px) rotate(${6 + (1 - po.k) * 14 + weg * 35}deg) scale(${po.s})`, filter: `blur(${po.blur + weg * 12}px) ${Schatten(po.hoehe)}` }}>
             <Img src={staticFile("r04/obj-polaroid-a.png")} style={{ width: "100%" }} />
@@ -138,64 +140,92 @@ const Szene5: React.FC<{ f: number }> = ({ f }) => {
       </Ebene>
       <TiltShift blur={9} fokus={52} />
       <Ebene css={halbeKamera(kam)} blur={kam.blur / 2}>
-        <Zeile3D text="AI ALLEIN" start={W5.allein} top={270} groesse={124} f={f} farbe={farben.tinte} pA="#B9A6F5" pB="#6C3FD4" />
+        <Zeile3D text="KI ALLEIN" start={W5.allein} top={270} groesse={124} f={f} farbe={farben.tinte} pA="#B9A6F5" pB="#6C3FD4" />
         {f >= W5.kein && <Schreiben text="reicht nicht." x={300} y={1190} groesse={104} p={tw(f, W5.kein, 14, 0, 1, kurve.linear)} dreh={-5} farbe={farben.violett} />}
       </Ebene>
     </AbsoluteFill>
   );
 };
 
-// ---------- Satz 6: Den Unterschied machen Hook, Geschichte und Details. ----------
-const Karte: React.FC<{ wort: string; aktiv?: boolean; strich?: number }> = ({ wort, aktiv, strich = 0 }) => (
-  <div style={{ width: 640, height: 240, background: "#F7F4EC", borderRadius: 8, position: "relative", overflow: "hidden", backgroundImage: "repeating-linear-gradient(0deg, transparent 0 46px, rgba(108,63,212,.16) 46px 48px)", boxShadow: "inset 0 0 30px rgba(120,100,60,.15)" }}>
-    <div style={{ position: "absolute", top: 0, left: 56, width: 3, height: "100%", background: "rgba(201,53,53,.4)" }} />
-    <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: schriftR04.display, fontWeight: 900, fontStretch: "118%", fontSize: wort.length > 8 ? 80 : 100, color: aktiv ? farben.violett : farben.tinte }}>{wort}</div>
-    {aktiv && <div style={{ position: "absolute", left: 130, width: 380 * strich, bottom: 40, height: 12, background: farben.gold, borderRadius: 6 }} />}
-  </div>
-);
-const Szene6: React.FC<{ f: number }> = ({ f }) => {
-  const ende = V.s7;
-  // Auf «Details» beginnt EINE Fahrt auf die DETAILS-Karte, die durch den Schnitt in Satz 7 läuft.
-  const kam = gleitKamera(f, kamera6());
-  const karten = [
-    { wort: "HOOK", start: W6.hook, x: 150, y: 470, dreh: -5, von: -70 },
-    { wort: "GESCHICHTE", start: W6.geschichte, x: 180, y: 740, dreh: 4, von: 65 },
-    { wort: "DETAILS", start: W6.details, x: 140, y: 1010, dreh: -3, von: -60, aktiv: true },
+// ---------- Satz 6: Der Unterschied (Schreibmaschine tippt HOOK / GESCHICHTE / DETAILS, Karten werden aufs Korkbrett gepinnt) ----------
+// Schreibmaschine: Bild 1024 px, im Bild bei Breite 760 → Karte in der Walze bei ca. x 360–730, y 1150–1283.
+const SM = { x: 540, y: 1500, w: 760 };
+const WALZE = { x: 545, y: 1218 };
+export const tippPlan = () => {
+  const plan: { wort: string; start: number; proBuchstabe: number; fertig: number; flug?: number; ziel?: { x: number; y: number; dreh: number } }[] = [];
+  const woerter = [
+    { wort: "HOOK", f: W6.hook, ziel: { x: 160, y: 470, dreh: -4 } },
+    { wort: "GESCHICHTE", f: W6.geschichte, ziel: { x: 230, y: 730, dreh: 3 } },
+    { wort: "DETAILS", f: W6.details },
   ];
+  let frei = 0;
+  for (const w of woerter) {
+    const start = Math.max(w.f, frei);
+    const pro = w.wort.length > 6 ? 1.5 : 2;
+    const fertig = Math.round(start + w.wort.length * pro);
+    if (w.ziel) {
+      plan.push({ wort: w.wort, start, proBuchstabe: pro, fertig, flug: fertig + 1, ziel: w.ziel });
+      frei = fertig + 9;
+    } else plan.push({ wort: w.wort, start, proBuchstabe: pro, fertig });
+  }
+  return plan;
+};
+const Szene6: React.FC<{ f: number }> = ({ f }) => {
+  // Auf «Details» beginnt EINE Fahrt auf die Karte in der Walze, die durch den Schnitt in Satz 7 läuft.
+  const kam = gleitKamera(f, kamera6());
+  const plan = tippPlan();
   return (
     <AbsoluteFill style={{ background: "#3e2496" }}>
+      <SchreibmaschinenSchrift />
       <Ebene css={kam.css} blur={kam.blur}>
-        <Welt src="r04/welt-matte-b.png" breite={1100} />
-        {karten.map((k, i) => {
-          const fa = faecher(f, k.start, k.von);
-          if (!fa) return null;
+        <Welt src="r04/welt-kork-a.png" breite={1100} />
+        {/* Schreibmaschine mit der aktuellen Karte in der Walze */}
+        <Obj src="r04/obj-schreibmaschine-a.png" x={SM.x} y={SM.y} w={SM.w} h={1.1} />
+        {(() => {
+          const aktiv = [...plan].reverse().find((p) => f >= p.start);
+          if (!aktiv || (aktiv.flug !== undefined && f >= aktiv.flug)) return null;
+          const n = Math.min(aktiv.wort.length, Math.floor((f - aktiv.start) / aktiv.proBuchstabe) + 1);
+          const anschlag = (f - aktiv.start) % aktiv.proBuchstabe < 1 && n < aktiv.wort.length + 1 ? 1.5 : 0;
           return (
-            <div key={i} style={{ position: "absolute", left: k.x, top: k.y, transformOrigin: "50% -150%", transform: `rotate(${k.dreh + fa.dreh}deg) scale(${k.aktiv ? 1.06 : 1})`, filter: `blur(${fa.blur}px) ${Schatten(k.aktiv ? 1.5 : 1.1)}` }}>
-              <Karte wort={k.wort} aktiv={k.aktiv} strich={k.aktiv ? tw(f, k.start + 6, 8, 0, 1, kurve.land) : 0} />
+            <div style={{ position: "absolute", left: WALZE.x - 190, width: 380, top: WALZE.y - 30 - anschlag, textAlign: "center", fontFamily: "Special Elite", fontSize: aktiv.wort.length > 8 ? 46 : 58, color: "#1b1630", letterSpacing: "0.04em" }}>
+              {aktiv.wort.slice(0, n)}
+            </div>
+          );
+        })()}
+        {/* Karten: fliegen aus der Walze und werden angepinnt (über der Schreibmaschine gezeichnet) */}
+        {plan.filter((p) => p.ziel && p.flug !== undefined && f >= p.flug).map((p, i) => {
+          const t = Math.min(1, (f - (p.flug as number)) / 8);
+          const k = kurve.whip(t);
+          const z = p.ziel!;
+          const x = WALZE.x - 320 + (z.x - (WALZE.x - 320)) * k;
+          const y = WALZE.y - 125 + (z.y - (WALZE.y - 125)) * k - Math.sin(k * Math.PI) * 120;
+          const gepinnt = t >= 1;
+          return (
+            <div key={i} style={{ position: "absolute", left: x, top: y, transform: `rotate(${z.dreh * k}deg) scale(${1 + 0.08 * Math.sin(k * Math.PI)})`, filter: `blur(${(1 - t) * (t > 0 ? 4 : 0)}px) ${Schatten(gepinnt ? 0.8 : 1.6)}` }}>
+              <Karteikarte text={p.wort} />
+              {gepinnt && <Pin x={320} y={22} />}
             </div>
           );
         })}
       </Ebene>
       <TiltShift blur={10} fokus={50} />
       <Ebene css={halbeKamera(kam)} blur={kam.blur / 2}>
-        <Zeile3D text="DER UNTERSCHIED:" start={W6.unterschied} top={290} groesse={66} f={f} pA="#B9A6F5" pB="#2A1670" />
+        <Zeile3D text="DER UNTERSCHIED:" start={W6.unterschied} top={250} groesse={66} f={f} pA="#B9A6F5" pB="#2A1670" />
       </Ebene>
     </AbsoluteFill>
   );
 };
 
-// ---------- Satz 7: Heute bekommen das auch kleine Betriebe. (Laden hebt ab, Text dahinter) ----------
+// ---------- Satz 7: Heute bekommen das auch kleine Betriebe. (Terrazzo-Theke, Laden ist von Anfang an da und hebt ab) ----------
 const Szene7: React.FC<{ f: number }> = ({ f }) => {
-  const ende = V.s8;
   const kam = gleitKamera(f, kamera7());
   const hoch = f >= W7.kleine ? feder(f - W7.kleine, 7) : 0;
-  const da = f >= W7.kleine - 3;
   const licht = tw(f, W7.kleine, 10, 0, 1, kurve.land);
   return (
     <AbsoluteFill style={{ background: "#e9e2fb" }}>
       <Ebene css={kam.css} blur={kam.blur}>
-        <Welt src="r04/welt-lavendel-b.png" breite={1100} />
-        <AbsoluteFill style={{ opacity: licht, background: "radial-gradient(ellipse 34% 55% at 50% 22%, rgba(255,255,255,.85), rgba(255,255,255,.25) 55%, transparent 75%)", mixBlendMode: "screen" }} />
+        <Welt src="r04/welt-terrazzo-a.png" breite={1100} />
+        <AbsoluteFill style={{ opacity: licht * 0.8, background: "radial-gradient(ellipse 34% 55% at 50% 22%, rgba(255,250,240,.8), rgba(255,240,220,.2) 55%, transparent 75%)", mixBlendMode: "screen" }} />
       </Ebene>
       <TiltShift blur={9} fokus={52} />
       <Ebene css={halbeKamera(kam)} blur={kam.blur / 2}>
@@ -203,66 +233,93 @@ const Szene7: React.FC<{ f: number }> = ({ f }) => {
         <Zeile3D text="KLEINE" start={W7.kleine} top={370} groesse={140} f={f} farbe={farben.tinte} pA="#B9A6F5" pB="#6C3FD4" />
         <Zeile3D text="BETRIEBE" start={W7.betriebe} top={490} groesse={140} f={f} farbe={farben.tinte} pA="#B9A6F5" pB="#6C3FD4" />
       </Ebene>
-      {/* Laden liegt VOR dem Text (Tiefe wie «BAGS» hinter dem Koffer) */}
+      {/* Laden liegt VOR dem Text (Tiefe wie «BAGS» hinter dem Koffer); er steht schon auf der Theke und hebt auf «kleine» ab */}
       <Ebene css={kam.css} blur={kam.blur}>
-        {da && (
-          <>
-            <div style={{ position: "absolute", left: 540 - 230 + 40 * hoch, top: 1250 + 30 * hoch, width: 460, height: 90, borderRadius: "50%", background: "rgba(40,20,110,.38)", filter: `blur(${14 + 20 * hoch}px)`, opacity: 1 - 0.45 * hoch }} />
-            <Obj src="r04/obj-laden-a.png" x={540} y={1010 - 60 * hoch} w={540} s={0.8 + 0.25 * hoch} h={0.3} />
-          </>
-        )}
+        <div style={{ position: "absolute", left: 540 - 230 + 40 * hoch, top: 1250 + 30 * hoch, width: 460, height: 90, borderRadius: "50%", background: "rgba(40,20,110,.38)", filter: `blur(${14 + 20 * hoch}px)`, opacity: 1 - 0.45 * hoch }} />
+        <Obj src="r04/obj-laden-a.png" x={540} y={1010 - 60 * hoch} w={540} s={0.8 + 0.25 * hoch} h={0.3} />
       </Ebene>
     </AbsoluteFill>
   );
 };
 
-// ---------- Satz 8 (Signature): Dieses Video? Keine Filmcrew. Nur ich. → Rausfahrt auf den echten Tisch ----------
+// ---------- Satz 8 (Signature): Dieses Video? Keine Filmcrew. Nur ich. → Mini-Figur landet in der Mitte der Matte ----------
+// Figur: figur-a2-frei.png (1792×2400, Figur im Bild x 436–1261, y 289–2150). Höhe im Bild ca. 760 px, Füsse bei y 1330.
+const FIGUR = { breite: 731, links: 194, oben: 453, fussY: 1330 };
 const Szene8: React.FC<{ f: number }> = ({ f }) => {
-  const ende = V.s9;
+  // Kamera gleitet ruhig auf die Figur zu (Heavy, 100 → 108 % über die ganze Szene), kein Bounce.
   const kam = gleitKamera(f, kamera8());
-  const props = [
-    { src: "r04/obj-kamera-a.png", x: 650, y: 760, w: 210, d: -10 },
-    { src: "r04/obj-lampe-a.png", x: 700, y: 1000, w: 180, d: 12 },
-    { src: "r04/obj-filmrolle-a.png", x: 370, y: 1060, w: 180, d: -8 },
-    { src: "r04/obj-polaroid-a.png", x: 580, y: 1240, w: 150, d: 9 },
-    { src: "r04/obj-laden-a.png", x: 360, y: 1260, w: 160, d: 0 },
+  const kreis = [
+    { src: "r04/obj-kamera-a.png", x: 850, y: 640, w: 300, d: 10 },
+    { src: "r04/obj-lampe-a.png", x: 880, y: 1010, w: 250, d: 12 },
+    { src: "r04/obj-filmrolle-a.png", x: 200, y: 1010, w: 250, d: -8 },
+    { src: "r04/obj-polaroid-a.png", x: 250, y: 1360, w: 210, d: -9 },
+    { src: "r04/obj-laden-a.png", x: 830, y: 1370, w: 240, d: 0 },
   ];
+  // Figur fällt auf «Nur»: von oben (näher an der Kamera = grösser, unscharf), landet mit kleinem Hüpfer.
+  const t = f - W8.nur;
+  let fy = -900, fs = 1.25, fb = 10;
+  if (t >= 0) {
+    const p = Math.min(1, t / 8);
+    const k = kurve.whip(p);
+    fy = -900 * (1 - k);
+    fs = 1.25 - 0.25 * k;
+    fb = 10 * (1 - p);
+    if (t > 8) {
+      const h = t - 8; // kleiner Hüpfer nach der Landung
+      fy = -Math.max(0, Math.sin((h / 10) * Math.PI)) * 40 * Math.exp(-h / 12);
+      fs = 1 - 0.03 * Math.exp(-h / 3) * Math.cos(h / 1.4);
+    }
+  }
+  const hoehe = Math.min(1, Math.abs(fy) / 400);
+  const textWechsel = tw(f, W8.ich, 6, 0, 1, kurve.land);
   return (
     <AbsoluteFill style={{ background: "#2a1d14" }}>
-      <AbsoluteFill style={{ transform: kam.css, transformOrigin: "50% 50%", filter: kam.blur ? `blur(${kam.blur}px)` : undefined }}>
-        <Welt src="r04/welt-totale-a.png" breite={1080} />
-        {props.map((p, i) => <Obj key={i} src={p.src} x={p.x} y={p.y} w={p.w} dreh={p.d} h={0.6} />)}
-        <div style={{ position: "absolute", left: 330, top: 650, width: 240, height: 240, transform: "rotate(-7deg)", filter: Schatten(0.6) }}>
+      <Ebene css={kam.css} blur={kam.blur}>
+        <Welt src="r04/welt-matte-a.png" breite={1500} />
+        {kreis.map((o, i) => <Obj key={i} src={o.src} x={o.x} y={o.y} w={o.w} dreh={o.d} h={0.8} />)}
+        <div style={{ position: "absolute", left: 120, top: 520, width: 260, height: 260, transform: "rotate(-9deg)", filter: Schatten(0.8) }}>
           <Img src={staticFile("r04/obj-klappe-brett.png")} style={{ position: "absolute", width: "100%" }} />
           <Img src={staticFile("r04/obj-klappe-stab.png")} style={{ position: "absolute", width: "100%", transformOrigin: `${(90 / 1024) * 100}% ${(258 / 1024) * 100}%`, transform: "rotate(11.5deg)" }} />
         </div>
-      </AbsoluteFill>
-      <TiltShift blur={f >= W8.nur ? 4 : 8} fokus={f >= W8.nur ? 66 : 56} />
-      <AbsoluteFill>
-        <Zeile3D text="KEINE FILMCREW." start={W8.keine} top={250} groesse={74} f={f} pA="#C9B48F" pB="#2B170C" />
-        {f >= W8.ich && <Schreiben text="Nur ich." x={150} y={1170} groesse={170} p={tw(f, W8.ich, 12, 0, 1, kurve.linear)} dreh={-6} />}
-      </AbsoluteFill>
+        {t >= -2 && (
+          <>
+            {/* weicher Schatten am Boden: klein und dunkel bei Landung, gross und blass in der Luft */}
+            <div style={{ position: "absolute", left: 540 - 170 * (1 + hoehe), top: FIGUR.fussY - 40, width: 340 * (1 + hoehe), height: 80, borderRadius: "50%", background: "rgba(20,8,60,.5)", filter: `blur(${12 + 30 * hoehe}px)`, opacity: t < 0 ? 0 : 1 - 0.6 * hoehe }} />
+            <div style={{ position: "absolute", left: FIGUR.links, top: FIGUR.oben + fy, width: FIGUR.breite, transformOrigin: `50% ${FIGUR.fussY - FIGUR.oben}px`, transform: `scale(${fs})`, filter: `blur(${fb}px) ${Schatten(0.9)}`, opacity: t < 0 ? 0 : 1 }}>
+              <Img src={staticFile("r04/figur-a2-frei.png")} style={{ width: "100%" }} />
+            </div>
+          </>
+        )}
+      </Ebene>
+      <TiltShift blur={8} fokus={56} />
+      <Ebene css={halbeKamera(kam)} blur={kam.blur / 2}>
+        <div style={{ opacity: 1 - textWechsel }}>
+          <Zeile3D text="KEINE FILMCREW." start={W8.keine} top={250} groesse={74} f={f} pA="#B9A6F5" pB="#2A1670" />
+        </div>
+        <Zeile3D text="NUR ICH." start={W8.ich} top={230} groesse={150} f={f} pA="#C9B48F" pB="#2B170C" />
+      </Ebene>
     </AbsoluteFill>
   );
 };
 
-// ---------- Satz 9: CTA auf der Matte + Solleva-Endkarte ----------
+// ---------- Satz 9: CTA vor der violetten Hohlkehle + Solleva-Endkarte ----------
 const Szene9: React.FC<{ f: number }> = ({ f }) => {
   const kam = gleitKamera(f, kamera9());
   const btn = f >= W9.schreib ? feder(f - W9.schreib, 6) : 0;
   const k = f - W9.reel;
-  const druck = k >= 0 && k < 3 ? 0.93 : k >= 3 && k < 10 ? 0.93 + 0.07 * feder(k - 3, 3) : 1;
+  const druck = k >= 0 && k < 3 ? 0.95 : k >= 3 && k < 10 ? 0.95 + 0.05 * feder(k - 3, 3) : 1;
   const marke = tw(f, W9.reel + 4, 10, 0, 1, kurve.land);
   return (
-    <AbsoluteFill style={{ background: "#2a1d14" }}>
+    <AbsoluteFill style={{ background: "#160b3a" }}>
       <Ebene css={kam.css} blur={kam.blur}>
-        <Welt src="r04/welt-matte-a.png" breite={1380} />
+        <Welt src="r04/welt-hohlkehle-b.png" breite={1100} />
       </Ebene>
-      <TiltShift blur={10} fokus={50} />
+      <TiltShift blur={8} fokus={55} />
       <Ebene css={halbeKamera(kam)} blur={kam.blur / 2}>
         <div style={{ position: "absolute", top: 240, left: 70, right: 140, textAlign: "center", opacity: marke, transform: `translateY(${(1 - marke) * 20}px)`, fontFamily: "Barlow", fontWeight: 700, fontSize: 60, color: farben.papier, letterSpacing: "0.01em", textShadow: `4px 6px 10px ${r04.schatten}` }}>Solleva</div>
-        <Zeile3D text="WILLST DU" start={W9.willst} top={350} groesse={112} f={f} pA="#B9A6F5" pB="#2A1670" />
-        <Zeile3D text="DAS AUCH?" start={W9.auch} top={450} groesse={112} f={f} pA="#B9A6F5" pB="#2A1670" />
+        {CTA_ZEILEN.map((z, i) => (
+          <Zeile3D key={i} text={z} start={i === 0 ? W9.willst : W9.auch} top={350 + i * 100} groesse={CTA_ZEILEN[0].length > 12 ? 84 : 112} f={f} pA="#B9A6F5" pB="#2A1670" />
+        ))}
         {f >= W9.schreib && (
           <div style={{ position: "absolute", top: 700 + (1 - btn) * 500, left: 120, right: 180, height: 180, borderRadius: 90, background: farben.nacht, display: "flex", alignItems: "center", justifyContent: "center", transform: `scale(${druck}) rotate(${-2 * (1 - btn)}deg)`, boxShadow: `0 10px 0 #2A1670, 18px 36px 30px ${r04.schatten}` }}>
             <span style={{ fontFamily: schriftR04.display, fontWeight: 900, fontStretch: "112%", fontSize: 72, color: farben.papier, whiteSpace: "nowrap" }}>
@@ -336,9 +393,8 @@ export const R04Reel: React.FC<{ untertitel?: UntertitelStil }> = ({ untertitel 
       {/* Satz 1: Klappe in Frame 1 (Holz, trocken), Schlag 2 auf «Filmcrew» */}
       <Ton nr="neu-wooden-film-clapperb-2" bei={1} vol={0.95} />
       <Ton nr="neu-kick-drum-vintage-3" bei={1} vol={0.35} />
-      <Ton nr="neu-soft-zipper-like-rat-1" bei={T.brauchte + 4} vol={0.35} />
       <Ton nr="schreiben-01" bei={T.frueher + 2} vol={0.3} />
-      <Ton nr="neu-wooden-film-clapperb-2" bei={T.filmcrew} vol={0.95} />
+      <Ton nr="neu-heavy-cloth-swoosh-1" bei={T.filmcrew + 2} vol={0.3} />
       <Ton nr="neu-heavy-cloth-swoosh-1" bei={SCHNITT} vor={2} vol={0.5} />
       {/* Satz 2: Kamera rattert, schwerer Lichtschalter, Filmrolle, Kalender (Ratsche bleibt) */}
       <Ton nr="neu-quick-air-swoosh-li-1" bei={U.kamera + 5} vor={2} vol={0.35} />
@@ -350,45 +406,45 @@ export const R04Reel: React.FC<{ untertitel?: UntertitelStil }> = ({ untertitel 
       <Ton nr="neu-paper-page-flip-dry-1" bei={U.wochenlang + 3} vol={0.25} />
       <Ton nr="schreiben-01" bei={U.wochenlang + 6} vol={0.3} />
       <Ton nr="neu-heavy-cloth-swoosh-2" bei={V.s3} vor={2} vol={0.45} />
-      {/* Satz 3 */}
-      <Ton nr="papier-01" bei={W3.bezahlen + 5} vol={0.45} />
-      <Ton nr="papier-03" bei={W3.das + 3} vol={0.4} />
-      <Ton nr="schlag-07" bei={W3.nur} vol={0.9} />
-      <Ton nr="schlag-01" bei={W3.nur} vol={0.55} />
-      <Ton nr="swish-03" bei={W3.nur + 4} vol={0.35} />
-      <Ton nr="riser-01" bei={V.s4} vol={0.22} />
-      {/* Satz 4 */}
-      <Ton nr="glitch-03" bei={V.s4 + 1} vol={0.4} />
-      <Ton nr="klick-05" bei={W4.kam} vol={0.45} />
+      {/* Satz 3: Papier, dumpfer Stempel, Zettel fliegt weg */}
+      <Ton nr="neu-paper-page-flip-qui-4" bei={W3.bezahlen + 5} vol={0.5} />
+      <Ton nr="neu-paper-page-flip-qui-3" bei={W3.bezahlen + 10} vol={0.4} />
+      <Ton nr="neu-heavy-punching-bag-h-1" bei={W3.nur} vol={1.0} />
+      <Ton nr="neu-wooden-knock-on-a-ta-2" bei={W3.nur} vol={0.45} />
+      <Ton nr="neu-quick-air-swoosh-li-2" bei={W3.nur + 3} vol={0.35} />
+      <Ton nr="neu-riser-build-up-2" bei={V.s4} vol={0.3} />
+      {/* Satz 4 (KI-Moment: hier dürfen digitale Sounds) */}
+      <Ton nr="neu-rotary-knob-clicking-4" bei={V.s4 + 1} vol={1.0} />
+      <Ton nr="glitch-03" bei={V.s4 + 2} vol={0.3} />
+      <Ton nr="neu-tape-stop-effect-ca-1" bei={W4.kam} ab={0.02} max={0.5} vol={0.45} />
       <Ton nr="glitch-02" bei={W4.ai - 2} vol={0.3} max={0.6} />
-      <Ton nr="schlag-03" bei={W4.ai} vol={0.6} />
-      <Ton nr="whoosh-03" bei={V.s5} vol={0.5} />
-      {/* Satz 5 */}
-      <Ton nr="swish-02" bei={W5.ai} vor={2} vol={0.3} />
-      <Ton nr="schlag-07" bei={W5.ai + 1} vol={0.35} />
-      <Ton nr="schreiben-01" bei={W5.kein + 1} vol={0.4} />
-      <Ton nr="swish-04" bei={W5.video + 4} vol={0.4} />
-      {/* Satz 6 */}
-      <Ton nr="papier-02" bei={W6.hook + 3} vol={0.4} />
-      <Ton nr="papier-02" bei={W6.geschichte + 3} vol={0.4} />
-      <Ton nr="papier-02" bei={W6.details + 3} vol={0.45} />
-      <Ton nr="glitzer-04" bei={W6.details + 8} vol={0.35} />
-      <Ton nr="whoosh-01" bei={V.s7} vol={0.35} />
-      {/* Satz 7 */}
+      <Ton nr="neu-short-impact-hit-pu" bei={W4.ai} vol={0.45} />
+      <Ton nr="neu-slow-bass-woosh" bei={V.s5} vol={0.4} />
+      {/* Satz 5: Roboter-Polaroid (digital erlaubt), Stift-X, weg */}
+      <Ton nr="neu-quick-air-swoosh-li-1" bei={W5.ai} vor={2} vol={0.3} />
+      <Ton nr="neu-soft-pop-ui-click-1" bei={W5.ai + 1} vol={0.45} />
+      <Ton nr="schreiben-01" bei={W5.kein + 1} vol={0.45} />
+      <Ton nr="neu-double-swoosh-two-f-1" bei={W5.video + 4} vol={0.4} />
+      {/* Satz 6: Schreibmaschine (ein Klack pro Buchstabe), Karte fliegt, dumpfer Tap beim Anpinnen */}
+      {tippPlan().flatMap((p, i) => [
+        ...p.wort.split("").map((_, j) => <Ton key={`t${i}-${j}`} nr={j % 2 ? "neu-old-mechanical-typew-2" : "neu-old-mechanical-typew-1"} bei={Math.round(p.start + j * p.proBuchstabe)} vol={0.42 + ((j * 37) % 10) / 100} />),
+        ...(p.flug !== undefined ? [<Ton key={`f${i}`} nr="neu-paper-page-flip-qui-3" bei={p.flug + 1} vol={0.35} />, <Ton key={`p${i}`} nr="neu-wooden-knock-on-a-ta-1" bei={p.flug + 8} vol={0.6} />] : []),
+      ])}
+      <Ton nr="neu-heavy-cloth-swoosh-2" bei={V.s7} vor={2} vol={0.4} />
+      {/* Satz 7: Laden hebt ab (Ladenglocke fehlt noch: Platzhalter Korken) */}
       <Ton nr="schreiben-01" bei={W7.heute + 2} vol={0.3} />
-      <Ton nr="glitzer-01" bei={W7.kleine + 6} vol={0.35} />
-      <Ton nr="pop-05" bei={W7.betriebe} vol={0.3} />
-      {/* Satz 8 (Signature) */}
-      <Ton nr="swish-01" bei={V.s8} vol={0.35} />
-      <Ton nr="riser-01" bei={W8.nur} vol={0.3} />
-      <Ton nr="schlag-04" bei={W8.nur} vol={0.55} />
-      <Ton nr="schreiben-02" bei={W8.ich + 6} vol={0.35} />
-      <Ton nr="whoosh-03" bei={V.s9} vol={0.4} />
-      {/* Satz 9 */}
-      <Ton nr="swish-05" bei={W9.schreib + 3} vor={2} vol={0.3} />
-      <Ton nr="klick-02" bei={W9.reel} vol={0.6} />
-      <Ton nr="schlag-05" bei={W9.reel + 1} vol={0.45} />
-      <Ton nr="glitzer-04" bei={W9.reel + 5} vol={0.3} />
+      <Ton nr="neu-cork-popping-out-of-1" bei={W7.kleine + 2} vol={0.4} />
+      <Ton nr="neu-soft-wind-swoosh-lo-4" bei={V.s8} vor={2} vol={0.35} />
+      {/* Satz 8 (Signature): Figur landet mit dumpfem Tock */}
+      <Ton nr="neu-riser-build-up-1" bei={W8.nur + 8} vol={0.25} />
+      <Ton nr="neu-quick-air-swoosh-li-2" bei={W8.nur + 7} vor={2} vol={0.3} />
+      <Ton nr="neu-wooden-knock-on-a-ta-2" bei={W8.nur + 8} vol={0.9} />
+      <Ton nr="neu-kick-drum-vintage-4" bei={W8.nur + 8} vol={0.4} />
+      <Ton nr="neu-soft-wind-swoosh-lo-3" bei={V.s9} vor={2} vol={0.35} />
+      {/* Satz 9: Button-Klick (mechanisch), dumpfer Impact auf «Reel» */}
+      <Ton nr="neu-heavy-cloth-swoosh-1" bei={W9.schreib + 3} vor={2} vol={0.3} />
+      <Ton nr="neu-vintage-camera-shutt-1" bei={W9.reel} vol={0.6} />
+      <Ton nr="neu-deep-cinematic-boom" bei={W9.reel + 1} vol={0.55} />
     </AbsoluteFill>
   );
 };
