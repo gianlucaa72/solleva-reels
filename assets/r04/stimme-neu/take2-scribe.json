@@ -1,0 +1,374 @@
+[
+{
+"text": "Für",
+"type": "word",
+"start": 0.1,
+"end": 0.22
+},
+{
+"text": "so",
+"type": "word",
+"start": 0.3,
+"end": 0.42
+},
+{
+"text": "ein",
+"type": "word",
+"start": 0.5,
+"end": 0.64
+},
+{
+"text": "Video",
+"type": "word",
+"start": 0.7,
+"end": 1
+},
+{
+"text": "brauchte",
+"type": "word",
+"start": 1.08,
+"end": 1.4
+},
+{
+"text": "man",
+"type": "word",
+"start": 1.44,
+"end": 1.62
+},
+{
+"text": "früher",
+"type": "word",
+"start": 1.66,
+"end": 1.92
+},
+{
+"text": "eine",
+"type": "word",
+"start": 1.98,
+"end": 2.18
+},
+{
+"text": "Filmcrew.",
+"type": "word",
+"start": 2.24,
+"end": 2.8
+},
+{
+"text": "Kamera,",
+"type": "word",
+"start": 3.08,
+"end": 3.56
+},
+{
+"text": "Licht,",
+"type": "word",
+"start": 3.88,
+"end": 4.24
+},
+{
+"text": "Schnitt,",
+"type": "word",
+"start": 4.54,
+"end": 4.86
+},
+{
+"text": "wochenlang.",
+"type": "word",
+"start": 5.36,
+"end": 6.04
+},
+{
+"text": "Bezahlen",
+"type": "word",
+"start": 6.36,
+"end": 6.96
+},
+{
+"text": "konnten",
+"type": "word",
+"start": 7,
+"end": 7.26
+},
+{
+"text": "das",
+"type": "word",
+"start": 7.3,
+"end": 7.5
+},
+{
+"text": "nur",
+"type": "word",
+"start": 7.58,
+"end": 7.72
+},
+{
+"text": "die",
+"type": "word",
+"start": 7.76,
+"end": 7.84
+},
+{
+"text": "Großen.",
+"type": "word",
+"start": 7.88,
+"end": 8.32
+},
+{
+"text": "Dann",
+"type": "word",
+"start": 8.68,
+"end": 8.88
+},
+{
+"text": "kam",
+"type": "word",
+"start": 9.06,
+"end": 9.3
+},
+{
+"text": "KI.",
+"type": "word",
+"start": 9.42,
+"end": 9.96
+},
+{
+"text": "Aber",
+"type": "word",
+"start": 10.38,
+"end": 10.6
+},
+{
+"text": "KI",
+"type": "word",
+"start": 10.74,
+"end": 11.12
+},
+{
+"text": "allein",
+"type": "word",
+"start": 11.18,
+"end": 11.6
+},
+{
+"text": "macht",
+"type": "word",
+"start": 11.66,
+"end": 11.82
+},
+{
+"text": "noch",
+"type": "word",
+"start": 11.84,
+"end": 12.02
+},
+{
+"text": "kein",
+"type": "word",
+"start": 12.08,
+"end": 12.26
+},
+{
+"text": "gutes",
+"type": "word",
+"start": 12.34,
+"end": 12.64
+},
+{
+"text": "Video.",
+"type": "word",
+"start": 12.68,
+"end": 13
+},
+{
+"text": "Den",
+"type": "word",
+"start": 13.28,
+"end": 13.42
+},
+{
+"text": "Unterschied",
+"type": "word",
+"start": 13.48,
+"end": 13.94
+},
+{
+"text": "macht,",
+"type": "word",
+"start": 13.98,
+"end": 14.24
+},
+{
+"text": "dass",
+"type": "word",
+"start": 14.38,
+"end": 14.54
+},
+{
+"text": "Leute",
+"type": "word",
+"start": 14.58,
+"end": 14.82
+},
+{
+"text": "stehen",
+"type": "word",
+"start": 14.9,
+"end": 15.2
+},
+{
+"text": "bleiben,",
+"type": "word",
+"start": 15.24,
+"end": 15.56
+},
+{
+"text": "zuschauen",
+"type": "word",
+"start": 15.88,
+"end": 16.4
+},
+{
+"text": "und",
+"type": "word",
+"start": 16.72,
+"end": 16.9
+},
+{
+"text": "anrufen.",
+"type": "word",
+"start": 17.14,
+"end": 17.66
+},
+{
+"text": "Heute",
+"type": "word",
+"start": 17.96,
+"end": 18.24
+},
+{
+"text": "bekommen",
+"type": "word",
+"start": 18.32,
+"end": 18.64
+},
+{
+"text": "das",
+"type": "word",
+"start": 18.7,
+"end": 18.86
+},
+{
+"text": "auch",
+"type": "word",
+"start": 18.92,
+"end": 19.06
+},
+{
+"text": "kleine",
+"type": "word",
+"start": 19.12,
+"end": 19.42
+},
+{
+"text": "Betriebe.",
+"type": "word",
+"start": 19.44,
+"end": 19.86
+},
+{
+"text": "Dieses",
+"type": "word",
+"start": 20.2,
+"end": 20.5
+},
+{
+"text": "Video?",
+"type": "word",
+"start": 20.54,
+"end": 20.84
+},
+{
+"text": "Keine",
+"type": "word",
+"start": 21.18,
+"end": 21.4
+},
+{
+"text": "Filmcrew,",
+"type": "word",
+"start": 21.5,
+"end": 21.94
+},
+{
+"text": "nur",
+"type": "word",
+"start": 22.2,
+"end": 22.34
+},
+{
+"text": "ich.",
+"type": "word",
+"start": 22.44,
+"end": 22.62
+},
+{
+"text": "Willst",
+"type": "word",
+"start": 22.98,
+"end": 23.22
+},
+{
+"text": "du",
+"type": "word",
+"start": 23.26,
+"end": 23.38
+},
+{
+"text": "so",
+"type": "word",
+"start": 23.44,
+"end": 23.54
+},
+{
+"text": "ein",
+"type": "word",
+"start": 23.58,
+"end": 23.7
+},
+{
+"text": "Video",
+"type": "word",
+"start": 23.74,
+"end": 24.02
+},
+{
+"text": "für",
+"type": "word",
+"start": 24.06,
+"end": 24.18
+},
+{
+"text": "deinen",
+"type": "word",
+"start": 24.22,
+"end": 24.46
+},
+{
+"text": "Betrieb?",
+"type": "word",
+"start": 24.5,
+"end": 24.86
+},
+{
+"text": "Schreib",
+"type": "word",
+"start": 25.2,
+"end": 25.54
+},
+{
+"text": "Real.",
+"type": "word",
+"start": 25.8,
+"end": 26.12
+}
+]

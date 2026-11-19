@@ -7,7 +7,7 @@
 import { kurve } from "./bewegung";
 
 export type KamZustand = { zoom: number; x: number; y: number; dreh: number };
-export type Fahrt = { f: number; dauer: number; zoom?: number; x?: number; y?: number; dreh?: number; notiz?: string };
+export type Fahrt = { f: number; dauer: number; zoom?: number; x?: number; y?: number; dreh?: number; notiz?: string; optional?: boolean };
 export type Feder = { zeta: number; omega: number }; // Dämpfung (0,5–0,8) und Eigenfrequenz in rad/Frame
 
 /** Standard-Bounce: schwingt einmal weich nach (ca. 4–5 % des Wegs), ruhig nach ~20 Frames, kein zweites Pendeln. */
@@ -16,6 +16,20 @@ export const WEICH: Feder = { zeta: 0.7, omega: 0.32 };
 const MIN_DAUER = 15;
 const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
 const KEYS = ["zoom", "x", "y", "dreh"] as const;
+
+/** Passt Fahrten an ein anderes Sprechtempo an: Pflichtfahrten mindestens 15 Frames, optionale (Bounce) fallen weg, wenn kein Platz ist. */
+export const bereinige = (roh: Fahrt[]): Fahrt[] => {
+  let fs = [...roh].sort((a, b) => a.f - b.f).map((x) => ({ ...x, dauer: Math.max(MIN_DAUER, Math.round(x.dauer)) }));
+  for (let runde = 0; runde < 20; runde++) {
+    const i = fs.findIndex((a, k) => k < fs.length - 1 && fs[k + 1].f < a.f + a.dauer);
+    if (i < 0) break;
+    const a = fs[i], b = fs[i + 1];
+    if (b.optional) fs.splice(i + 1, 1);
+    else if (a.optional) fs.splice(i, 1);
+    else fs[i] = { ...a, dauer: Math.max(MIN_DAUER, b.f - a.f) }, (fs[i].f + fs[i].dauer > b.f) && (fs[i + 1] = { ...b, f: fs[i].f + fs[i].dauer });
+  }
+  return fs;
+};
 
 const pruefe = (fahrten: Fahrt[]) => {
   for (let i = 0; i < fahrten.length; i++) {
@@ -60,7 +74,7 @@ export const gleitKamera = (
   frame: number,
   o: { start: number; ende: number; von?: Partial<KamZustand>; fahrten: Fahrt[]; push?: number; maxBlur?: number; feder?: Feder },
 ) => {
-  const fahrten = [...o.fahrten].sort((a, b) => a.f - b.f);
+  const fahrten = bereinige(o.fahrten);
   pruefe(fahrten);
   const von: KamZustand = { zoom: 1, x: 0, y: 0, dreh: 0, ...o.von };
   const push = o.push ?? 0.03;

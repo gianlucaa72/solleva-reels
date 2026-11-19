@@ -14,7 +14,7 @@ import { fallen, faecher, Schatten, Schreiben, Staub, Szene1, Szene2, Untertitel
 import { REEL04_DAUER, S1, S2, SCHNITT, T, U, w1 } from "./timeline";
 
 export { REEL04_DAUER } from "./timeline";
-import { CTA_ZEILEN, V, W3, W4, W5, W6, W7, W8, W9 } from "./timeline";
+import { CTA_ZEILEN, NEUE_STIMME, STIMME_DATEI, STIMME_SEGMENTE, V, W3, W4, W5, W6, W7, W8, W9 } from "./timeline";
 
 const Ebene: React.FC<{ css: string; blur?: number; children: React.ReactNode }> = ({ css, blur = 0, children }) => (
   <AbsoluteFill style={{ transform: css, transformOrigin: "50% 40%", filter: blur ? `blur(${blur}px)` : undefined }}>{children}</AbsoluteFill>
@@ -382,10 +382,16 @@ export const R04Reel: React.FC<{ untertitel?: UntertitelStil }> = ({ untertitel 
       {szene}
       <Untertitel f={f} phrasen={PHRASEN} stil={untertitel} />
       <Koernung staerke={0.1} seed={Math.floor(f / 2) % 8} />
-      {/* Stimme */}
-      {[[S1, "s1"], [S2, "s2"], [V.s3, "s3"], [V.s4, "s4"], [V.s5, "s5"], [V.s6, "s6"], [V.s7, "s7"], [V.s8, "s8"], [V.s9, "s9"]].map(([from, n]) => (
-        <Sequence key={n as string} from={from as number} layout="none"><Audio src={staticFile(`r04/stimme/${n}.mp3`)} /></Sequence>
-      ))}
+      {/* Stimme: neue Datei in Segmenten pro Satz (erlaubt Extra-Pausen), sonst die 9 alten Einzeldateien */}
+      {NEUE_STIMME
+        ? STIMME_SEGMENTE.map((sg) => (
+            <Sequence key={`st${sg.satz}`} from={sg.reel} durationInFrames={Math.max(1, Math.round((sg.bis - sg.von) * 30))} layout="none">
+              <Audio src={staticFile(STIMME_DATEI)} startFrom={Math.round(sg.von * 30)} />
+            </Sequence>
+          ))
+        : [[S1, "s1"], [S2, "s2"], [V.s3, "s3"], [V.s4, "s4"], [V.s5, "s5"], [V.s6, "s6"], [V.s7, "s7"], [V.s8, "s8"], [V.s9, "s9"]].map(([from, n]) => (
+            <Sequence key={n as string} from={from as number} layout="none"><Audio src={staticFile(`r04/stimme/${n}.mp3`)} /></Sequence>
+          ))}
       {/* Musikbett aus «new sounds»: ca. 17 dB unter der Stimme, keine toten Löcher */}
       <Sequence from={0} durationInFrames={REEL04_DAUER} layout="none">
         <Audio src={staticFile("sounds-neu/neu-dark-cinematic-suspe.mp3")} volume={(fr) => 0.1 * Math.min(1, fr / 9) * Math.min(1, (REEL04_DAUER - fr) / 24)} />

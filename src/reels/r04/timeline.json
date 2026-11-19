@@ -1,0 +1,430 @@
+{
+ "quelle": "take2.mp3",
+ "fps": 30,
+ "methode": "scribe",
+ "segmente": [
+  {
+   "satz": 1,
+   "von": 0.0,
+   "bis": 2.96,
+   "reel": 1
+  },
+  {
+   "satz": 2,
+   "von": 2.96,
+   "bis": 6.24,
+   "reel": 90
+  },
+  {
+   "satz": 3,
+   "von": 6.24,
+   "bis": 8.56,
+   "reel": 188
+  },
+  {
+   "satz": 4,
+   "von": 8.56,
+   "bis": 10.26,
+   "reel": 258
+  },
+  {
+   "satz": 5,
+   "von": 10.26,
+   "bis": 13.16,
+   "reel": 309
+  },
+  {
+   "satz": 6,
+   "von": 13.16,
+   "bis": 17.84,
+   "reel": 396
+  },
+  {
+   "satz": 7,
+   "von": 17.84,
+   "bis": 20.08,
+   "reel": 536
+  },
+  {
+   "satz": 8,
+   "von": 20.08,
+   "bis": 22.86,
+   "reel": 603
+  },
+  {
+   "satz": 9,
+   "von": 22.86,
+   "bis": 26.27,
+   "reel": 705
+  }
+ ],
+ "woerter": [
+  {
+   "satz": 1,
+   "w": "Für",
+   "n": "fuer",
+   "f": 4
+  },
+  {
+   "satz": 1,
+   "w": "so",
+   "n": "so",
+   "f": 10
+  },
+  {
+   "satz": 1,
+   "w": "ein",
+   "n": "ein",
+   "f": 16
+  },
+  {
+   "satz": 1,
+   "w": "Video",
+   "n": "video",
+   "f": 22
+  },
+  {
+   "satz": 1,
+   "w": "brauchte",
+   "n": "brauchte",
+   "f": 33
+  },
+  {
+   "satz": 1,
+   "w": "man",
+   "n": "man",
+   "f": 44
+  },
+  {
+   "satz": 1,
+   "w": "früher",
+   "n": "frueher",
+   "f": 51
+  },
+  {
+   "satz": 1,
+   "w": "eine",
+   "n": "eine",
+   "f": 60
+  },
+  {
+   "satz": 1,
+   "w": "Filmcrew",
+   "n": "filmcrew",
+   "f": 68
+  },
+  {
+   "satz": 2,
+   "w": "Kamera",
+   "n": "kamera",
+   "f": 94
+  },
+  {
+   "satz": 2,
+   "w": "Licht",
+   "n": "licht",
+   "f": 118
+  },
+  {
+   "satz": 2,
+   "w": "Schnitt",
+   "n": "schnitt",
+   "f": 137
+  },
+  {
+   "satz": 2,
+   "w": "Wochenlang",
+   "n": "wochenlang",
+   "f": 162
+  },
+  {
+   "satz": 3,
+   "w": "Bezahlen",
+   "n": "bezahlen",
+   "f": 192
+  },
+  {
+   "satz": 3,
+   "w": "konnten",
+   "n": "konnten",
+   "f": 211
+  },
+  {
+   "satz": 3,
+   "w": "das",
+   "n": "das",
+   "f": 220
+  },
+  {
+   "satz": 3,
+   "w": "nur",
+   "n": "nur",
+   "f": 228
+  },
+  {
+   "satz": 3,
+   "w": "die",
+   "n": "die",
+   "f": 234
+  },
+  {
+   "satz": 3,
+   "w": "Grossen",
+   "n": "grossen",
+   "f": 237
+  },
+  {
+   "satz": 4,
+   "w": "Dann",
+   "n": "dann",
+   "f": 262
+  },
+  {
+   "satz": 4,
+   "w": "kam",
+   "n": "kam",
+   "f": 273
+  },
+  {
+   "satz": 4,
+   "w": "KI",
+   "n": "ki",
+   "f": 284
+  },
+  {
+   "satz": 5,
+   "w": "Aber",
+   "n": "aber",
+   "f": 313
+  },
+  {
+   "satz": 5,
+   "w": "KI",
+   "n": "ki",
+   "f": 323
+  },
+  {
+   "satz": 5,
+   "w": "allein",
+   "n": "allein",
+   "f": 337
+  },
+  {
+   "satz": 5,
+   "w": "macht",
+   "n": "macht",
+   "f": 351
+  },
+  {
+   "satz": 5,
+   "w": "noch",
+   "n": "noch",
+   "f": 356
+  },
+  {
+   "satz": 5,
+   "w": "kein",
+   "n": "kein",
+   "f": 364
+  },
+  {
+   "satz": 5,
+   "w": "gutes",
+   "n": "gutes",
+   "f": 371
+  },
+  {
+   "satz": 5,
+   "w": "Video",
+   "n": "video",
+   "f": 382
+  },
+  {
+   "satz": 6,
+   "w": "Den",
+   "n": "den",
+   "f": 400
+  },
+  {
+   "satz": 6,
+   "w": "Unterschied",
+   "n": "unterschied",
+   "f": 406
+  },
+  {
+   "satz": 6,
+   "w": "macht",
+   "n": "macht",
+   "f": 421
+  },
+  {
+   "satz": 6,
+   "w": "dass",
+   "n": "dass",
+   "f": 433
+  },
+  {
+   "satz": 6,
+   "w": "Leute",
+   "n": "leute",
+   "f": 439
+  },
+  {
+   "satz": 6,
+   "w": "stehenbleiben",
+   "n": "stehenbleiben",
+   "f": 448
+  },
+  {
+   "satz": 6,
+   "w": "zuschauen",
+   "n": "zuschauen",
+   "f": 478
+  },
+  {
+   "satz": 6,
+   "w": "und",
+   "n": "und",
+   "f": 503
+  },
+  {
+   "satz": 6,
+   "w": "anrufen",
+   "n": "anrufen",
+   "f": 515
+  },
+  {
+   "satz": 7,
+   "w": "Heute",
+   "n": "heute",
+   "f": 540
+  },
+  {
+   "satz": 7,
+   "w": "bekommen",
+   "n": "bekommen",
+   "f": 550
+  },
+  {
+   "satz": 7,
+   "w": "das",
+   "n": "das",
+   "f": 562
+  },
+  {
+   "satz": 7,
+   "w": "auch",
+   "n": "auch",
+   "f": 568
+  },
+  {
+   "satz": 7,
+   "w": "kleine",
+   "n": "kleine",
+   "f": 574
+  },
+  {
+   "satz": 7,
+   "w": "Betriebe",
+   "n": "betriebe",
+   "f": 584
+  },
+  {
+   "satz": 8,
+   "w": "Dieses",
+   "n": "dieses",
+   "f": 607
+  },
+  {
+   "satz": 8,
+   "w": "Video",
+   "n": "video",
+   "f": 617
+  },
+  {
+   "satz": 8,
+   "w": "Keine",
+   "n": "keine",
+   "f": 636
+  },
+  {
+   "satz": 8,
+   "w": "Filmcrew",
+   "n": "filmcrew",
+   "f": 646
+  },
+  {
+   "satz": 8,
+   "w": "Nur",
+   "n": "nur",
+   "f": 667
+  },
+  {
+   "satz": 8,
+   "w": "ich",
+   "n": "ich",
+   "f": 674
+  },
+  {
+   "satz": 9,
+   "w": "Willst",
+   "n": "willst",
+   "f": 709
+  },
+  {
+   "satz": 9,
+   "w": "du",
+   "n": "du",
+   "f": 717
+  },
+  {
+   "satz": 9,
+   "w": "so",
+   "n": "so",
+   "f": 722
+  },
+  {
+   "satz": 9,
+   "w": "ein",
+   "n": "ein",
+   "f": 727
+  },
+  {
+   "satz": 9,
+   "w": "Video",
+   "n": "video",
+   "f": 731
+  },
+  {
+   "satz": 9,
+   "w": "für",
+   "n": "fuer",
+   "f": 741
+  },
+  {
+   "satz": 9,
+   "w": "deinen",
+   "n": "deinen",
+   "f": 746
+  },
+  {
+   "satz": 9,
+   "w": "Betrieb",
+   "n": "betrieb",
+   "f": 754
+  },
+  {
+   "satz": 9,
+   "w": "Schreib",
+   "n": "schreib",
+   "f": 775
+  },
+  {
+   "satz": 9,
+   "w": "Reel",
+   "n": "reel",
+   "f": 793
+  }
+ ],
+ "dauer": 867
+}
