@@ -4,7 +4,8 @@ import { AbsoluteFill, Audio, Img, Sequence, staticFile, useCurrentFrame } from 
 import { farben } from "../../brand/solleva";
 import { Ton } from "../../lib/kamera";
 import { kurve, tw } from "../../lib/bewegung";
-import { feder, punchFeder } from "../../lib/punchFeder";
+import { feder } from "../../lib/punchFeder";
+import { gleitKamera, halbeKamera } from "../../lib/gleitKamera";
 import { Koernung, r04, schriftR04, SchriftenR04, TiltShift } from "./Look";
 
 // ---------- Timeline (Frames bei 30 fps, aus silencedetect + Energie-Hüllkurve) ----------
@@ -118,14 +119,12 @@ export const Blatt: React.FC<{ nr: number }> = ({ nr }) => (
 
 // ---------- Szene 1: Filmcrew ----------
 export const Szene1: React.FC<{ f: number }> = ({ f }) => {
-  const kam = punchFeder(f, [
-    { f: 8, zoom: 1.06, y: 10, dreh: -0.4, tau: 5 }, // Landung der Klappe
-    { f: T.brauchte, zoom: 1.03, y: -10, dreh: 0.3, tau: 9 }, // raus
-    { f: T.frueher, zoom: 1.08, x: 20, tau: 10 }, // leicht rein
-    { f: T.eine, zoom: 1.04, x: 0, tau: 6 }, // Ausholen vor dem Schlag
-    { f: T.filmcrew, zoom: 1.24, y: 60, dreh: -0.8, tau: 8 }, // PUNCH auf «Filmcrew»
-    { f: SCHNITT - 11, zoom: 0.78, y: 0, dreh: 2.5, art: "raus", dauer: 11 }, // Ausgang beschleunigt
-  ]);
+  // Kamera K03: nur eine Fahrt. Auf «Filmcrew» beginnt ein Push, der durch den Schnitt in Satz 2 weiterläuft (Mitte = Schnitt).
+  const kam = gleitKamera(f, {
+    start: 0,
+    ende: SCHNITT,
+    fahrten: [{ f: T.filmcrew, dauer: 2 * (SCHNITT - T.filmcrew), zoom: 1.6, y: 60, dreh: -1.2, notiz: "Push durch den Schnitt" }],
+  });
   const kl = fallen(f, 0, 8);
   // Stab: 0 = offen wie im Bild, +11,5 = zu, negativ = weiter offen
   let stab = 0;
@@ -135,11 +134,10 @@ export const Szene1: React.FC<{ f: number }> = ({ f }) => {
     const t = f - (T.filmcrew - 2);
     stab = t < 2 ? -24 + 35.5 * kurve.whip(t / 2) : 11.5 + Math.exp(-(t - 2) / 2) * Math.sin((t - 2) / 1.1) * -2.5;
   }
-  const exitBlur = f > SCHNITT - 6 ? (f - (SCHNITT - 6)) * 3 : 0;
   const KL_W = 640;
   return (
     <AbsoluteFill style={{ background: "#2a1d14" }}>
-      <AbsoluteFill style={{ transform: kam.css, transformOrigin: "50% 40%", filter: `blur(${exitBlur}px)` }}>
+      <AbsoluteFill style={{ transform: kam.css, transformOrigin: "50% 40%", filter: `blur(${kam.blur}px)` }}>
         <Welt src="r04/welt-matte-a.png" breite={1380} />
         {kl.sichtbar && (
           <div style={{ position: "absolute", left: 540 - KL_W / 2, top: 880 - KL_W / 2, width: KL_W, height: KL_W, transform: `scale(${kl.s}) rotate(${-6 + (1 - kl.k) * -18}deg)`, filter: `blur(${kl.blur}px) ${Schatten(kl.hoehe)}` }}>
@@ -150,7 +148,7 @@ export const Szene1: React.FC<{ f: number }> = ({ f }) => {
         <Staub f={f} start={T.filmcrew} x={760} y={690} />
       </AbsoluteFill>
       <TiltShift blur={10} fokus={50} />
-      <AbsoluteFill style={{ transform: halb(kam), transformOrigin: "50% 40%", filter: `blur(${exitBlur}px)` }}>
+      <AbsoluteFill style={{ transform: halbeKamera(kam), transformOrigin: "50% 40%", filter: `blur(${kam.blur / 2}px)` }}>
         {f >= T.frueher && (
           <Schreiben text="früher …" x={130} y={480} groesse={96} p={tw(f, T.frueher, 10, 0, 1, kurve.linear)} dreh={-7} />
         )}
@@ -162,16 +160,16 @@ export const Szene1: React.FC<{ f: number }> = ({ f }) => {
 
 // ---------- Szene 2: Kamera, Licht, Schnitt. Wochenlang. ----------
 export const Szene2: React.FC<{ f: number; ende?: number }> = ({ f, ende = STILTEST_DAUER }) => {
-  const kam = punchFeder(f, [
-    { f: SCHNITT, zoom: 1.12, tau: 1 }, // Einstieg nah …
-    { f: SCHNITT + 1, zoom: 1.0, tau: 10 }, // … zieht zurück (Gucci-Eintritt)
-    { f: U.kamera + 5, zoom: 1.07, x: 40, y: 30, dreh: -0.5, tau: 7 }, // rein
-    { f: U.licht + 5, zoom: 1.02, x: -30, y: 10, dreh: 0.4, tau: 7 }, // raus
-    { f: U.schnitt + 5, zoom: 1.1, x: 0, y: -20, dreh: -0.3, tau: 6 }, // rein (Schnitt)
-    { f: U.wochenlang, zoom: 0.96, x: 0, y: 40, dreh: 0.2, tau: 10 }, // raus: viele Wochen
-    { f: ende - 12, zoom: 1.45, y: -40, dreh: -2, art: "raus", dauer: 12 }, // Ausgang
-  ]);
-  const exitBlur = f > ende - 7 ? (f - (ende - 7)) * 3 : 0;
+  // Kamera K03: zweite Hälfte des Push aus Satz 1, ein Push auf «Schnitt», Übergang in Satz 3 (Push über den Schnitt).
+  const kam = gleitKamera(f, {
+    start: SCHNITT,
+    ende,
+    fahrten: [
+      { f: T.filmcrew, dauer: 2 * (SCHNITT - T.filmcrew), zoom: 1.1, notiz: "Eintritt (zweite Hälfte)" },
+      { f: U.schnitt, dauer: 18, zoom: 1.15, y: -20, notiz: "Push auf «Schnitt»" },
+      { f: ende - 9, dauer: 18, zoom: 1.5, y: -40, dreh: -1.5, notiz: "Übergang Satz 3 (erste Hälfte)" },
+    ],
+  });
   const objekte = [
     { src: "r04/obj-kamera-a.png", start: U.kamera, x: 290, y: 800, w: 560, dreh: -12, von: -75, pivot: "50% -60%" },
     { src: "r04/obj-lampe-a.png", start: U.licht, x: 790, y: 760, w: 470, dreh: 8, von: 70, pivot: "50% -70%" },
@@ -181,7 +179,7 @@ export const Szene2: React.FC<{ f: number; ende?: number }> = ({ f, ende = STILT
   const blaetter = [0, 1, 2, 3, 4, 5].map((i) => ({ nr: i + 1, start: U.wochenlang + 1 + i * 2, x: 90 + (i % 3) * 290 + (i > 2 ? 120 : 0), y: 900 + (i > 2 ? 120 : 0) + (i % 2) * 30, dreh: [-18, 9, -6, 15, -12, 7][i], von: [-60, 50, -70, 65, -55, 60][i] }));
   return (
     <AbsoluteFill style={{ background: "#2a1d14" }}>
-      <AbsoluteFill style={{ transform: kam.css, transformOrigin: "50% 40%", filter: `blur(${exitBlur}px)` }}>
+      <AbsoluteFill style={{ transform: kam.css, transformOrigin: "50% 40%", filter: `blur(${kam.blur}px)` }}>
         <Welt src="r04/welt-filmset-a.png" breite={1100} />
         {objekte.map((o, i) => {
           const fa = faecher(f, o.start, o.von);
@@ -206,7 +204,7 @@ export const Szene2: React.FC<{ f: number; ende?: number }> = ({ f, ende = STILT
         })}
       </AbsoluteFill>
       <TiltShift blur={10} fokus={50} />
-      <AbsoluteFill style={{ transform: halb(kam), transformOrigin: "50% 40%", filter: `blur(${exitBlur}px)` }}>
+      <AbsoluteFill style={{ transform: halbeKamera(kam), transformOrigin: "50% 40%", filter: `blur(${kam.blur / 2}px)` }}>
         <Zeile3D text="KAMERA." start={U.kamera} top={250} groesse={104} f={f} />
         <Zeile3D text="LICHT." start={U.licht} top={345} groesse={104} f={f} />
         <Zeile3D text="SCHNITT." start={U.schnitt} top={440} groesse={104} f={f} />

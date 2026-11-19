@@ -5,9 +5,10 @@ import { AbsoluteFill, Audio, Img, Sequence, staticFile, useCurrentFrame } from 
 import { farben } from "../../brand/solleva";
 import { Ton } from "../../lib/kamera";
 import { kurve, tw } from "../../lib/bewegung";
-import { feder, punchFeder } from "../../lib/punchFeder";
+import { feder } from "../../lib/punchFeder";
+import { gleitKamera, halbeKamera } from "../../lib/gleitKamera";
 import { Koernung, r04, schriftR04, SchriftenR04, TiltShift } from "./Look";
-import { fallen, faecher, halb, S1, S2, SCHNITT, Schatten, Schreiben, Staub, Szene1, Szene2, T, U, Untertitel, w1, w2, Welt, Zeile3D } from "./Stiltest";
+import { fallen, faecher, S1, S2, SCHNITT, Schatten, Schreiben, Staub, Szene1, Szene2, T, U, Untertitel, w1, w2, Welt, Zeile3D } from "./Stiltest";
 
 // ---------- Timeline: Startframe jeder Stimmdatei (0,22 s Pause, vor Satz 4 und 8 0,4 s) ----------
 const V = { s3: 204, s4: 275, s5: 317, s6: 416, s7: 514, s8: 585, s9: 712 }; // vor Satz 9: Halt für den Signature-Moment
@@ -24,7 +25,6 @@ const W9 = { willst: at(V.s9, 0.04), du: at(V.s9, 0.37), das: at(V.s9, 0.6), auc
 const Ebene: React.FC<{ css: string; blur?: number; children: React.ReactNode }> = ({ css, blur = 0, children }) => (
   <AbsoluteFill style={{ transform: css, transformOrigin: "50% 40%", filter: blur ? `blur(${blur}px)` : undefined }}>{children}</AbsoluteFill>
 );
-const ausBlur = (f: number, ende: number, n = 7) => (f > ende - n ? (f - (ende - n)) * 3 : 0);
 const Obj: React.FC<{ src: string; x: number; y: number; w: number; dreh?: number; s?: number; blur?: number; h?: number; extra?: string }> = ({ src, x, y, w, dreh = 0, s = 1, blur = 0, h = 1.2, extra = "" }) => (
   <div style={{ position: "absolute", left: x - w / 2, top: y - w / 2, width: w, height: w, transform: `${extra} rotate(${dreh}deg) scale(${s})`, filter: `${blur ? `blur(${blur}px) ` : ""}${Schatten(h)}` }}>
     <Img src={staticFile(src)} style={{ width: "100%" }} />
@@ -37,13 +37,15 @@ const Stempel: React.FC<{ text: string }> = ({ text }) => (
 );
 const Szene3: React.FC<{ f: number }> = ({ f }) => {
   const ende = V.s4;
-  const kam = punchFeder(f, [
-    { f: V.s3, zoom: 1.1, tau: 1 },
-    { f: V.s3 + 1, zoom: 1.0, tau: 9 },
-    { f: W3.nur + 1, zoom: 1.13, y: 30, dreh: -0.6, tau: 6 }, // Stempel-Punch
-    { f: W3.grossen, zoom: 1.05, y: 0, dreh: 0.4, tau: 8 }, // raus
-    { f: ende - 9, zoom: 1.5, art: "raus", dauer: 9 },
-  ]);
+  const kam = gleitKamera(f, {
+    start: V.s3,
+    ende,
+    fahrten: [
+      { f: V.s3 - 9, dauer: 18, zoom: 1.1, notiz: "Eintritt (zweite Hälfte des Übergangs)" },
+      { f: W3.nur, dauer: 15, zoom: 1.2, y: 30, notiz: "Push auf den Stempel" },
+      { f: ende - 9, dauer: 18, zoom: 1.6, y: 0, dreh: 1.5, notiz: "Übergang Satz 4 (erste Hälfte)" },
+    ],
+  });
   const um = Math.max(0, Math.min(1, (f - W3.bezahlen) / 8));
   const umP = f >= W3.bezahlen ? feder(f - W3.bezahlen, 4) : 0;
   const zettelIn = f >= W3.das ? feder(f - W3.das, 4) : 0;
@@ -52,7 +54,7 @@ const Szene3: React.FC<{ f: number }> = ({ f }) => {
   const stS = f >= W3.nur ? (f - W3.nur < 3 ? 1.9 - 0.9 * kurve.whip(st) : 1 - Math.exp(-(f - W3.nur - 3) / 3) * Math.sin((f - W3.nur - 3) / 1.3) * 0.04) : 0;
   return (
     <AbsoluteFill style={{ background: "#1b0f0a" }}>
-      <Ebene css={kam.css} blur={ausBlur(f, ende)}>
+      <Ebene css={kam.css} blur={kam.blur}>
         <Welt src="r04/welt-chef-b.png" breite={1100} />
         {f >= W3.bezahlen && <Obj src="r04/obj-umschlag-a.png" x={540 + (1 - umP) * 900} y={900} w={720} dreh={-5 + (1 - umP) * 25} blur={(1 - um) * 10} h={1.1} />}
         {f >= W3.das && weg < 1 && (
@@ -68,7 +70,7 @@ const Szene3: React.FC<{ f: number }> = ({ f }) => {
         <Staub f={f} start={W3.nur + 1} x={540} y={880} />
       </Ebene>
       <TiltShift blur={10} fokus={50} />
-      <Ebene css={halb(kam)} blur={ausBlur(f, ende)}>
+      <Ebene css={halbeKamera(kam)} blur={kam.blur / 2}>
         <Zeile3D text="NUR DIE" start={W3.nur} top={250} groesse={120} f={f} pA="#B9A6F5" pB="#2A1670" />
         <Zeile3D text="GROSSEN." start={W3.grossen} top={355} groesse={120} f={f} pA="#B9A6F5" pB="#2A1670" />
       </Ebene>
@@ -112,21 +114,24 @@ const Bildschirm: React.FC<{ f: number }> = ({ f }) => {
 };
 const Szene4: React.FC<{ f: number }> = ({ f }) => {
   const ende = V.s5;
-  const kam = punchFeder(f, [
-    { f: V.s4, zoom: 1.08, tau: 1 },
-    { f: V.s4 + 1, zoom: 1.0, tau: 7 },
-    { f: W4.kam, zoom: 0.96, tau: 5 }, // raus beim Abschalten
-    { f: W4.ai, zoom: 1.12, y: 20, tau: 5 }, // Punch auf «AI»
-    { f: ende - 10, zoom: 3.6, y: 0, art: "raus", dauer: 10 }, // Sprung durch den Bildschirm
-  ]);
+  // Auf «AI» beginnt EINE Fahrt in den Bildschirm hinein; der Schnitt liegt in ihrer Mitte.
+  const kam = gleitKamera(f, {
+    start: V.s4,
+    ende,
+    maxBlur: 8,
+    fahrten: [
+      { f: V.s4 - 9, dauer: 18, zoom: 1.06, notiz: "Eintritt (zweite Hälfte)" },
+      { f: W4.ai, dauer: 2 * (ende - W4.ai), zoom: 3.8, notiz: "Fahrt durch den Bildschirm" },
+    ],
+  });
   return (
     <AbsoluteFill style={{ background: "#0b0705" }}>
-      <AbsoluteFill style={{ transform: kam.css, transformOrigin: "548px 945px" }}>
+      <AbsoluteFill style={{ transform: kam.css, transformOrigin: "548px 945px", filter: kam.blur ? `blur(${kam.blur}px)` : undefined }}>
         <Welt src="r04/welt-tv-a.png" breite={1080} />
         <Bildschirm f={f} />
       </AbsoluteFill>
       <TiltShift blur={9} fokus={55} />
-      <AbsoluteFill style={{ transform: halb(kam), transformOrigin: "548px 945px", opacity: f > ende - 6 ? 0 : 1 }}>
+      <AbsoluteFill style={{ transform: halbeKamera(kam), transformOrigin: "548px 945px", opacity: tw(f, ende - 8, 6, 1, 0, kurve.fade), filter: kam.blur ? `blur(${kam.blur / 2}px)` : undefined }}>
         <Zeile3D text="DANN KAM" start={W4.dann} top={290} groesse={110} f={f} pA="#C9B48F" pB="#2B170C" />
       </AbsoluteFill>
     </AbsoluteFill>
@@ -136,19 +141,21 @@ const Szene4: React.FC<{ f: number }> = ({ f }) => {
 // ---------- Satz 5: Aber AI allein macht noch kein gutes Video. ----------
 const Szene5: React.FC<{ f: number }> = ({ f }) => {
   const ende = V.s6;
-  const kam = punchFeder(f, [
-    { f: V.s5, zoom: 1.35, tau: 1 },
-    { f: V.s5 + 1, zoom: 1.0, tau: 8 }, // aus dem Bildschirm heraus
-    { f: W5.allein, zoom: 1.09, y: 20, dreh: -0.5, tau: 7 },
-    { f: W5.kein, zoom: 1.03, y: 0, dreh: 0.3, tau: 8 },
-    { f: W5.video, zoom: 1.1, x: -60, tau: 6 },
-  ]);
+  const kam = gleitKamera(f, {
+    start: V.s5,
+    ende,
+    fahrten: [
+      { f: W4.ai, dauer: 2 * (V.s5 - W4.ai), zoom: 1.12, notiz: "Eintritt (zweite Hälfte der Bildschirm-Fahrt)" },
+      { f: W5.allein, dauer: 18, zoom: 1.18, y: 20, notiz: "Push auf «allein»" },
+      { f: ende - 9, dauer: 18, zoom: 1.55, y: 0, dreh: -1.5, notiz: "Übergang Satz 6 (erste Hälfte)" },
+    ],
+  });
   const po = fallen(f, W5.ai - 6, 7);
   const weg = f >= W5.video + 2 ? kurve.raus(Math.min(1, (f - W5.video - 2) / 8)) : 0;
   const strich = (start: number) => Math.max(0, Math.min(1, (f - start) / 7));
   return (
     <AbsoluteFill style={{ background: "#cfc4f2" }}>
-      <Ebene css={kam.css}>
+      <Ebene css={kam.css} blur={kam.blur}>
         <Welt src="r04/welt-lavendel-a.png" breite={1100} />
         {po.sichtbar && (
           <div style={{ position: "absolute", left: 560 - 300, top: 880 - 300, width: 600, height: 600, transform: `translateX(${weg * 1200}px) rotate(${6 + (1 - po.k) * 14 + weg * 35}deg) scale(${po.s})`, filter: `blur(${po.blur + weg * 12}px) ${Schatten(po.hoehe)}` }}>
@@ -161,7 +168,7 @@ const Szene5: React.FC<{ f: number }> = ({ f }) => {
         )}
       </Ebene>
       <TiltShift blur={9} fokus={52} />
-      <Ebene css={halb(kam)}>
+      <Ebene css={halbeKamera(kam)} blur={kam.blur / 2}>
         <Zeile3D text="AI ALLEIN" start={W5.allein} top={270} groesse={124} f={f} farbe={farben.tinte} pA="#B9A6F5" pB="#6C3FD4" />
         {f >= W5.kein && <Schreiben text="reicht nicht." x={300} y={1190} groesse={104} p={tw(f, W5.kein, 14, 0, 1, kurve.linear)} dreh={-5} farbe={farben.violett} />}
       </Ebene>
@@ -179,14 +186,15 @@ const Karte: React.FC<{ wort: string; aktiv?: boolean; strich?: number }> = ({ w
 );
 const Szene6: React.FC<{ f: number }> = ({ f }) => {
   const ende = V.s7;
-  const kam = punchFeder(f, [
-    { f: V.s6, zoom: 1.1, tau: 1 },
-    { f: V.s6 + 1, zoom: 1.0, tau: 9 },
-    { f: W6.hook + 4, zoom: 1.05, y: 20, tau: 7 },
-    { f: W6.geschichte + 4, zoom: 0.98, y: 0, dreh: 0.4, tau: 7 },
-    { f: W6.details + 4, zoom: 1.2, y: -230, dreh: -0.6, tau: 7 }, // Punch auf DETAILS
-    { f: ende - 9, zoom: 0.75, y: 0, dreh: 2, art: "raus", dauer: 9 },
-  ]);
+  // Auf «Details» beginnt EINE Fahrt auf die DETAILS-Karte, die durch den Schnitt in Satz 7 läuft.
+  const kam = gleitKamera(f, {
+    start: V.s6,
+    ende,
+    fahrten: [
+      { f: V.s6 - 9, dauer: 18, zoom: 1.08, notiz: "Eintritt (zweite Hälfte)" },
+      { f: ende - 19, dauer: 38, zoom: 1.7, x: 136, y: -483, notiz: "Fahrt auf DETAILS, Schnitt in der Mitte" },
+    ],
+  });
   const karten = [
     { wort: "HOOK", start: W6.hook, x: 150, y: 470, dreh: -5, von: -70 },
     { wort: "GESCHICHTE", start: W6.geschichte, x: 180, y: 740, dreh: 4, von: 65 },
@@ -194,7 +202,7 @@ const Szene6: React.FC<{ f: number }> = ({ f }) => {
   ];
   return (
     <AbsoluteFill style={{ background: "#3e2496" }}>
-      <Ebene css={kam.css} blur={ausBlur(f, ende)}>
+      <Ebene css={kam.css} blur={kam.blur}>
         <Welt src="r04/welt-matte-b.png" breite={1100} />
         {karten.map((k, i) => {
           const fa = faecher(f, k.start, k.von);
@@ -207,7 +215,7 @@ const Szene6: React.FC<{ f: number }> = ({ f }) => {
         })}
       </Ebene>
       <TiltShift blur={10} fokus={50} />
-      <Ebene css={halb(kam)} blur={ausBlur(f, ende)}>
+      <Ebene css={halbeKamera(kam)} blur={kam.blur / 2}>
         <Zeile3D text="DER UNTERSCHIED:" start={W6.unterschied} top={290} groesse={66} f={f} pA="#B9A6F5" pB="#2A1670" />
       </Ebene>
     </AbsoluteFill>
@@ -217,30 +225,32 @@ const Szene6: React.FC<{ f: number }> = ({ f }) => {
 // ---------- Satz 7: Heute bekommen das auch kleine Betriebe. (Laden hebt ab, Text dahinter) ----------
 const Szene7: React.FC<{ f: number }> = ({ f }) => {
   const ende = V.s8;
-  const kam = punchFeder(f, [
-    { f: V.s7, zoom: 0.9, tau: 1 },
-    { f: V.s7 + 1, zoom: 1.0, tau: 9 },
-    { f: W7.kleine, zoom: 1.08, y: 20, tau: 8 },
-    { f: W7.betriebe, zoom: 1.03, y: 0, tau: 8 },
-    { f: ende - 8, zoom: 1.6, art: "raus", dauer: 8 },
-  ]);
+  const kam = gleitKamera(f, {
+    start: V.s7,
+    ende,
+    fahrten: [
+      { f: V.s7 - 19, dauer: 38, zoom: 1.1, notiz: "Eintritt (zweite Hälfte der DETAILS-Fahrt)" },
+      { f: W7.kleine, dauer: 18, zoom: 1.16, y: 20, notiz: "Push auf «kleine Betriebe»" },
+      { f: ende - 9, dauer: 18, zoom: 1.5, y: 0, notiz: "Übergang Satz 8 (erste Hälfte)" },
+    ],
+  });
   const hoch = f >= W7.kleine ? feder(f - W7.kleine, 7) : 0;
   const da = f >= W7.kleine - 3;
   const licht = tw(f, W7.kleine, 10, 0, 1, kurve.land);
   return (
     <AbsoluteFill style={{ background: "#e9e2fb" }}>
-      <Ebene css={kam.css} blur={ausBlur(f, ende)}>
+      <Ebene css={kam.css} blur={kam.blur}>
         <Welt src="r04/welt-lavendel-b.png" breite={1100} />
         <AbsoluteFill style={{ opacity: licht, background: "radial-gradient(ellipse 34% 55% at 50% 22%, rgba(255,255,255,.85), rgba(255,255,255,.25) 55%, transparent 75%)", mixBlendMode: "screen" }} />
       </Ebene>
       <TiltShift blur={9} fokus={52} />
-      <Ebene css={halb(kam)} blur={ausBlur(f, ende)}>
+      <Ebene css={halbeKamera(kam)} blur={kam.blur / 2}>
         {f >= W7.heute && <Schreiben text="Heute …" x={110} y={215} groesse={92} p={tw(f, W7.heute, 10, 0, 1, kurve.linear)} dreh={-6} farbe={farben.violett} />}
         <Zeile3D text="KLEINE" start={W7.kleine} top={370} groesse={140} f={f} farbe={farben.tinte} pA="#B9A6F5" pB="#6C3FD4" />
         <Zeile3D text="BETRIEBE" start={W7.betriebe} top={490} groesse={140} f={f} farbe={farben.tinte} pA="#B9A6F5" pB="#6C3FD4" />
       </Ebene>
       {/* Laden liegt VOR dem Text (Tiefe wie «BAGS» hinter dem Koffer) */}
-      <Ebene css={kam.css} blur={ausBlur(f, ende)}>
+      <Ebene css={kam.css} blur={kam.blur}>
         {da && (
           <>
             <div style={{ position: "absolute", left: 540 - 230 + 40 * hoch, top: 1250 + 30 * hoch, width: 460, height: 90, borderRadius: "50%", background: "rgba(40,20,110,.38)", filter: `blur(${14 + 20 * hoch}px)`, opacity: 1 - 0.45 * hoch }} />
@@ -255,14 +265,17 @@ const Szene7: React.FC<{ f: number }> = ({ f }) => {
 // ---------- Satz 8 (Signature): Dieses Video? Keine Filmcrew. Nur ich. → Rausfahrt auf den echten Tisch ----------
 const Szene8: React.FC<{ f: number }> = ({ f }) => {
   const ende = V.s9;
-  const nah = { zoom: 1.75, x: 28, y: -44 };
-  const kam = punchFeder(f, [
-    { f: V.s8, zoom: nah.zoom + 0.15, x: nah.x, y: nah.y, tau: 1 },
-    { f: V.s8 + 1, zoom: nah.zoom, x: nah.x, y: nah.y, tau: 8 },
-    { f: W8.keine, zoom: nah.zoom + 0.08, x: nah.x, y: nah.y - 10, tau: 7 },
-    { f: W8.nur, zoom: 1.0, x: 0, y: 0, dreh: -1, tau: 9 }, // RAUSFAHRT
-    { f: ende - 7, zoom: 1.75, x: nah.x, y: nah.y, dreh: 0, art: "raus", dauer: 7 }, // zurück auf die Matte
-  ]);
+  // Matte in der Bildmitte halten: Verschiebung = Zoom × Abstand der Mattenmitte (524/985) zur Bildmitte.
+  const nah = (z: number) => ({ zoom: z, x: 16 * z, y: -25 * z });
+  const kam = gleitKamera(f, {
+    start: V.s8,
+    ende,
+    von: nah(1.55),
+    fahrten: [
+      { f: V.s8 - 9, dauer: 18, ...nah(1.75), notiz: "Eintritt (zweite Hälfte)" },
+      { f: W8.nur, dauer: 24, zoom: 1.0, x: 0, y: 0, dreh: -1, notiz: "RAUSFAHRT auf den echten Tisch" },
+    ],
+  });
   const props = [
     { src: "r04/obj-kamera-a.png", x: 650, y: 760, w: 210, d: -10 },
     { src: "r04/obj-lampe-a.png", x: 700, y: 1000, w: 180, d: 12 },
@@ -272,7 +285,7 @@ const Szene8: React.FC<{ f: number }> = ({ f }) => {
   ];
   return (
     <AbsoluteFill style={{ background: "#2a1d14" }}>
-      <AbsoluteFill style={{ transform: kam.css, transformOrigin: "50% 50%", filter: ausBlur(f, ende) ? `blur(${ausBlur(f, ende)}px)` : undefined }}>
+      <AbsoluteFill style={{ transform: kam.css, transformOrigin: "50% 50%", filter: kam.blur ? `blur(${kam.blur}px)` : undefined }}>
         <Welt src="r04/welt-totale-a.png" breite={1080} />
         {props.map((p, i) => <Obj key={i} src={p.src} x={p.x} y={p.y} w={p.w} dreh={p.d} h={0.6} />)}
         <div style={{ position: "absolute", left: 330, top: 650, width: 240, height: 240, transform: "rotate(-7deg)", filter: Schatten(0.6) }}>
@@ -291,23 +304,26 @@ const Szene8: React.FC<{ f: number }> = ({ f }) => {
 
 // ---------- Satz 9: CTA auf der Matte + Solleva-Endkarte ----------
 const Szene9: React.FC<{ f: number }> = ({ f }) => {
-  const kam = punchFeder(f, [
-    { f: V.s9, zoom: 1.25, tau: 1 },
-    { f: V.s9 + 1, zoom: 1.0, tau: 9 },
-    { f: W9.schreib, zoom: 1.04, y: -10, tau: 8 },
-    { f: W9.reel, zoom: 1.08, y: -20, tau: 6 },
-  ], 0.004 / 30);
+  const kam = gleitKamera(f, {
+    start: V.s9,
+    ende: REEL04_DAUER,
+    von: { zoom: 1.08 },
+    fahrten: [
+      { f: V.s9, dauer: 18, zoom: 1.0, notiz: "Eintritt: sanft zurück" },
+      { f: W9.reel, dauer: 24, zoom: 1.05, y: -15, notiz: "Push auf «Reel»" },
+    ],
+  });
   const btn = f >= W9.schreib ? feder(f - W9.schreib, 6) : 0;
   const k = f - W9.reel;
   const druck = k >= 0 && k < 3 ? 0.93 : k >= 3 && k < 10 ? 0.93 + 0.07 * feder(k - 3, 3) : 1;
   const marke = tw(f, W9.reel + 4, 10, 0, 1, kurve.land);
   return (
     <AbsoluteFill style={{ background: "#2a1d14" }}>
-      <Ebene css={kam.css}>
+      <Ebene css={kam.css} blur={kam.blur}>
         <Welt src="r04/welt-matte-a.png" breite={1380} />
       </Ebene>
       <TiltShift blur={10} fokus={50} />
-      <Ebene css={halb(kam)}>
+      <Ebene css={halbeKamera(kam)} blur={kam.blur / 2}>
         <div style={{ position: "absolute", top: 240, left: 70, right: 140, textAlign: "center", opacity: marke, transform: `translateY(${(1 - marke) * 20}px)`, fontFamily: "Barlow", fontWeight: 700, fontSize: 60, color: farben.papier, letterSpacing: "0.01em", textShadow: `4px 6px 10px ${r04.schatten}` }}>Solleva</div>
         <Zeile3D text="WILLST DU" start={W9.willst} top={350} groesse={112} f={f} pA="#B9A6F5" pB="#2A1670" />
         <Zeile3D text="DAS AUCH?" start={W9.auch} top={450} groesse={112} f={f} pA="#B9A6F5" pB="#2A1670" />
