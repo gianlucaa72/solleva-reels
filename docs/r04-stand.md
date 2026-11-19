@@ -1,3 +1,5 @@
+> **Erledigt (19.11.):** v6 abgegeben, siehe `docs/r04-abgabe.md`. Die Punkte unten sind historisch.
+
 # Reel 04 «Keine Filmcrew»: Stand für die nächste Sitzung (19.11.2026)
 
 Branch: `reel-04-keine-filmcrew`. Assets: `npm run r04:assets` (kopiert nach `public/r04`), dazu `public/r04/stimme-neu.mp3` = `assets/r04/stimme-neu/take2.mp3`.

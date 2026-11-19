@@ -3,6 +3,14 @@
 Dateien (lokal, nicht im Repo): `out/r04/reel04-keine-filmcrew-v6.mp4` und `out/r04/reel04-keine-filmcrew-v6-ohne-musik.mp4`.
 Neu rendern: `npm run r04:assets`, Stimme nach `public/r04/stimme-neu.mp3` kopieren, `npx remotion render R04Reel …`, dann `tools/r04_mix.sh roh.mp4 ziel.mp4`.
 
+## Messwerte (gemessen, nicht geschätzt)
+- 1080×1920, 30 fps, H.264 yuv420p TV-Range, AAC 48 kHz 256 kbit/s, 29,0 s
+- Lautheit −14,0 LUFS, True Peak −1,5 dBFS, LRA 3,1 LU (beide Fassungen)
+- Keine stillen Löcher (> 0,15 s unter −50 dB) in der Fassung mit Musik
+- Szenenwechsel: 3,1 · 6,3 · 8,6 · 10,3 · 13,2 · 17,9 · 20,1 · 23,5 s (9 Welten), dazwischen ein Ereignis alle 0,3–0,6 s
+- Kamera: keine Richtungswechsel innerhalb von 10 Frames (`npm run r04:kurve`)
+- Credits Higgsfield für Reel 04 gesamt: 94,2 (137,3 → 43,2); ElevenLabs Scribe ca. 290 Credits
+
 ## Sounds (alle aus «new sounds», ausser markiert)
 Musikbett: `neu-dark-cinematic-suspe` durchgehend, ca. 17 dB unter der Stimme (in der Fassung «ohne Musik» weg).
 Übergänge: Stoff-/Luft-Swooshes (`neu-heavy-cloth-swoosh`, `neu-soft-wind-swoosh`, `neu-quick-air-swoosh`) 1–2 Frames vor dem Schnitt.
