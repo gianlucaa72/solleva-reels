@@ -46,3 +46,9 @@ Quelle: Bildschirmaufnahme des Pinterest-Players (Reel effektiv ~360×640 px, 24
 ## Offen / vom Nutzer gebraucht
 - **Ton fehlt** in der Aufnahme → Sound der Lupe beschreiben oder Clip mit Ton aufnehmen.
 - Auflösung nur ~360×640 → beim nächsten Mal Player auf Vollbild stellen.
+
+## Nachtrag (Nov. 2026): Aufnahme mit Ton → Lupen-Kamera K02 umgesetzt
+- Ring rollt in **6 Frames** (whip) von rechts ein, Radius ~820 px (grösser als die Bildbreite, oben/unten bleibt Aussenbild sichtbar), innen **1,6–2× vergrössert**, aussen leicht abgedunkelt; Ring bleibt als Vignette.
+- Text «WENT UP»: kommt aus Unschärfe mit **Farbversatz rot/blau**, gleitet leicht nach; «80» rot, riesig, schiesst mit Bewegungsunschärfe von rechts herein, «%» schiebt nach.
+- Ton: **rauschender Swoosh ~0,25 s**, setzt 0–2 Frames vor dem Ring ein, endet wenn der Ring steht (bei uns: swish-06, Hit auf Landung).
+- Umgesetzt in Reel «Spielautomat» v3, Szene 3 (Dopamin): Lupe über dem Gehirn, «DOPAMIN» wie «WENT UP», «MEHR» + «!» wie «80%» (`src/reels/spielautomat/v3/Voll3.tsx`: `LUPE`, `LinsenText`, `Welt`).

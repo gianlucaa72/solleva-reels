@@ -1,0 +1,44 @@
+# Ref. 08: Vintage-Collage / Papiertheater (EarnEdits, Bildschirmaufnahme, 13,5 s, 60 fps)
+
+Stilname: **Vintage-Collage im Papiertheater-Stil** (engl. «vintage collage animation», «paper/toy theatre», «2.5D parallax collage»).
+Nutzer-Wunsch: Hintergründe nicht eintönig, Kreativität im Bild. Passend für Reel «Spielautomat».
+
+| Zeit | Bild / Übergang |
+|---|---|
+| 0,0–1,3 | Strahlen-Spirale (grau/creme), Kupferstich-Sonne mit Gesicht, Wolken, Joker-Spielkarte pendelt |
+| 1,3–2,0 | **Kulissen-Klappe**: gerahmte Harlekin-Rauten-Tafel mit rotem Vorhang schwenkt 3D von links ein, Kamera fährt hinein |
+| 2,0–3,5 | Harlekin-Bühne, Taschenuhr + Mondsichel hängen an Fäden, Karte fliegt ein |
+| 3,5–5,6 | Zirkus: Ticket-Häuschen, Vorhänge, Boden mit schwarz-weissen Strahlen, Sterne; Kamera kreist |
+| 5,6–6,6 | **Karten-Stapel**: Tarotkarten (MONEY, POWER, RESPECT) fliegen ein, überlappen, Kamera schwenkt |
+| 6,6–8,6 | **Bild im Bild**: Zoom aus Rahmen heraus → Wand mit Bilderrahmen auf Van-Gogh-Wirbel-Tapete; Text «BY HIS PAST» weiss mit rotem Handkreis |
+| 8,8–9,4 | **Objekt-Wischer**: dunkler Umhang wischt durchs Bild → Nahaufnahme Porträt (gemalt) |
+| 9,4–10,4 | Zoom raus: Porträt im ovalen Goldrahmen, Ketten schwingen ein, grauer Grund |
+| 10,4–13,5 | Nachthimmel + Papierwellen (Schichten), Text «HE STILL BELIEVES» Holzschnitt-Serif Buchstabe für Buchstabe, Stern pendelt, Erde (Papier) steigt aus den Wellen |
+
+Messwerte: keine harten Schnitte (Szenenerkennung 0,12 und 0,3: 0 Treffer), Welt-Wechsel alle 1,5–2,5 s, Kamera nie still.
+
+## Rezept (für den Skill)
+- Jede Szene = Bühne aus 3–5 Ebenen (Hintergrund-Muster, Kulisse/Vorhang, Hauptobjekt, Vordergrund-Objekt, Papiertextur + Vignette); Parallaxe durch Kamerafahrt.
+- Bildquelle: Higgsfield-Illustrationen im Kupferstich-/Holzschnitt-/Gemälde-Look, freigestellt; Code legt Ebenen, Kamera, Text, Sounds.
+- Übergänge: Kulissen-Klappe (3D-Schwenk), Bild-im-Bild-Zoom (Rahmen), Objekt-Wischer, Karten-Stapel.
+- Text sparsam, Holzschnitt-/Antiqua-Serif in Versalien, Buchstabe für Buchstabe oder mit Handkreis markiert.
+- Wörter werden zu Symbolen (Tarot-/Spielkarten mit Begriff).
+
+## Pinterest-Bilder des Nutzers (Nov. 2026) → Stil R01 «Halbton-Collage»
+- Halbton-Gehirn, Sanduhr, Buch, Laptop, Büste, Geldsack: s/w, grobes Punktraster, weisser ausgerissener Papierrand.
+- Collagen: gelbe Sprechblase, blauer/gelber Zackenstern, rote Blitze, Megafon, Lupe, Hände, Zeitungsstücke, rote Strahlen-Fläche, Schallplatte, Frau mit Fernglas.
+- «RansomLab» (Creative Market, kostenpflichtig): Erpresserbrief-Buchstaben, schwarzes zerkratztes Papier, Klebeband.
+- Entscheid Nutzer: Halbton-Collage, Objekte via Higgsfield, übersichtlich, Hooks mit Lesezeit, Hintergründe wie Batman-Video (immer anders, bewegt).
+
+## Hinweis des Nutzers: Bildquelle der Referenz
+Der glatte, gemalte Tarot-Look (Batman) ist ein typisches **Midjourney-/Flux-Motiv**, keine offiziellen Artworks. Erkennbar an: leicht verwaschenen Details, nicht ganz konsistenten Kartenrahmen.
+→ Für uns heisst das: dieser Look ist mit Higgsfield machbar. Damit unser Ergebnis **nicht** nach «KI-Brei» aussieht:
+- **Rahmen, Karten, Etiketten, Text immer im Code** (exakt gleich in jeder Szene), nie generieren.
+- **Ein Prompt-Kern für alle Objekte** + das erste freigegebene Objekt als Stil-Referenz (image_references) für alle weiteren → einheitlicher Look.
+- **Halbton-Filter + weisser Papierrand im Code** über jedes generierte Bild: vereinheitlicht und kaschiert verwaschene Details.
+- Objekte einzeln generieren (ein Motiv pro Bild, weisser Grund), freistellen, dann komponieren; keine ganzen Szenen generieren.
+- Jedes generierte Bild prüfen: Hände/Finger, Ränder, kein KI-Text.
+
+## Weitere Hintergrund-Referenzen des Nutzers (Nov. 2026)
+- **Strahlen mit Textur** (Pinterest): unregelmässige, wie gemalte Strahlen, Samt-Rot auf fleckigem Papier → «sieht teuer aus». Umgesetzt als Higgsfield-Textur `assets/spielautomat/strahlen-rot-a.png` (2k, 1 Credit), im Code langsam gedreht. Regel: **Hintergründe mit echter Textur generieren, nicht flach im Code** (Code nur für Bewegung/Geometrie).
+- **Rote Wellen** (japanisches Muster, rot/creme), **Rahmen aus gerissener Zeitung** (weisses Feld in der Mitte), **Halbton-Wolkenhimmel** (blau, Riso-Raster) «zur Abwechslung».

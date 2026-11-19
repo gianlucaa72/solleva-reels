@@ -1,3 +1,6 @@
 node_modules/
 out/
 .DS_Store
+
+# Rohvarianten von Higgsfield (nicht gewählt, online gespeichert)
+assets/*/roh/
