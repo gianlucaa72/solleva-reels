@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, Audio, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { kurve, tw } from "./bewegung";
 import soundsJson from "../../sounds/sounds.json";
+import soundsNeuJson from "../../sounds/neu/sounds-neu.json";
 
 // ---------- Kamera: nichts steht je still (Regel aus Ref. 02/04) ----------
 // Jede Szene liegt in einer Kamera: langsamer Push, leichter Drift, minimale Rotation.
@@ -30,29 +31,43 @@ export const Kamera: React.FC<{
 
 // ---------- Ton: Sound so legen, dass sein Hit exakt auf einem Frame sitzt ----------
 type SoundInfo = { datei: string; hit: number; dauer: number; kategorie: string };
-const sounds = soundsJson as SoundInfo[];
+// Mixkit-Kit + «new sounds» (ElevenLabs, Ordner sounds/neu, Namen beginnen mit «neu-»)
+const sounds = [...(soundsJson as SoundInfo[]), ...(soundsNeuJson as SoundInfo[])];
+/** public/sounds → sounds/mixkit, public/sounds-neu → sounds/neu */
+const pfad = (datei: string) => (datei.startsWith("neu/") ? `sounds-neu/${datei.slice(4)}` : `sounds/${datei}`);
+
 export const soundNr = (nr: string) => {
-  const s = sounds.find((x) => x.datei.startsWith(nr));
+  const s = sounds.find((x) => x.datei.replace(/^neu\//, "").startsWith(nr));
   if (!s) throw new Error(`Sound ${nr} nicht gefunden`);
   return s;
 };
 
 /** nr z. B. "swish-02"; bei = Frame, auf dem der Hit liegen soll; vor = Frames, die der Hit VOR dem Ereignis liegt (Swish 1–3). */
-export const Ton: React.FC<{ nr: string; bei: number; vol?: number; vor?: number; max?: number }> = ({
+export const Ton: React.FC<{ nr: string; bei: number; vol?: number; vor?: number; max?: number; ab?: number }> = ({
   nr,
   bei,
   vol = 0.6,
   vor = 0,
   max,
+  ab,
 }) => {
   const s = soundNr(nr);
+  if (ab !== undefined) {
+    // Datei ab Sekunde «ab» abspielen, dieser Punkt liegt auf Frame «bei» (für Geräusche ohne klaren Hit)
+    const len = Math.round((max ?? s.dauer - ab) * 30);
+    return (
+      <Sequence from={Math.max(0, bei - vor)} durationInFrames={Math.max(1, len)} layout="none">
+        <Audio src={staticFile(pfad(s.datei))} startFrom={Math.round(ab * 30)} volume={vol} />
+      </Sequence>
+    );
+  }
   const hitF = Math.round(s.hit * 30);
   const from = bei - vor - hitF;
   const start = Math.max(0, -from);
   const len = Math.round((max ?? s.dauer) * 30);
   return (
     <Sequence from={Math.max(0, from)} durationInFrames={Math.max(1, len - start)} layout="none">
-      <Audio src={staticFile(`sounds/${s.datei}`)} startFrom={start} volume={vol} />
+      <Audio src={staticFile(pfad(s.datei))} startFrom={start} volume={vol} />
     </Sequence>
   );
 };

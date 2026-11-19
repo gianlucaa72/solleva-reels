@@ -117,10 +117,11 @@ export const Szene1: React.FC<{ f: number }> = ({ f }) => {
   // Kamera K04 «Weicher Bounce»: pro Moment eine Richtung (rein, raus, rein), Feder ohne Ruck.
   // Auf «Filmcrew» beginnt der Push, der durch den Schnitt in Satz 2 weiterläuft (Mitte = Schnitt).
   const kam = gleitKamera(f, kamera1());
-  const kl = fallen(f, 0, 8);
+  // Hook: Die Klappe liegt schon da und schlägt in Frame 1 zu (Aufprall: 104 → 100 %).
+  const kl = { sichtbar: true, s: 1 + 0.04 * Math.exp(-f / 3) * Math.cos(f / 1.5), blur: 0, hoehe: 1, k: 1 };
   // Stab: 0 = offen wie im Bild, +11,5 = zu, negativ = weiter offen
-  let stab = 0;
-  if (f >= T.brauchte) stab = -16 * feder(f - T.brauchte, 6);
+  let stab = f < 1 ? -14 : 11.5 + Math.exp(-(f - 1) / 2) * Math.sin((f - 1) / 1.1) * -2.5;
+  if (f >= T.brauchte) stab = 11.5 - 27.5 * kurve.heavy(Math.min(1, (f - T.brauchte) / 15));
   if (f >= T.eine) stab = -16 - 8 * feder(f - T.eine, 5);
   if (f >= T.filmcrew - 2) {
     const t = f - (T.filmcrew - 2);
@@ -130,13 +131,21 @@ export const Szene1: React.FC<{ f: number }> = ({ f }) => {
   return (
     <AbsoluteFill style={{ background: "#2a1d14" }}>
       <AbsoluteFill style={{ transform: kam.css, transformOrigin: "50% 40%", filter: `blur(${kam.blur}px)` }}>
-        <Welt src="r04/welt-matte-a.png" breite={1380} />
+        <Welt src="r04/welt-samt-b.png" breite={1100} />
+        {/* Anker: die violette Matte ist nur angedeutet (Ecke unten links im Halbdunkel) */}
+        <div style={{ position: "absolute", left: -420, top: 1290, width: 900, height: 900, transform: "rotate(-12deg)", filter: "drop-shadow(18px 26px 22px rgba(8,2,30,.75))" }}>
+          <div style={{ width: "100%", height: "100%", overflow: "hidden", borderRadius: 18, filter: "brightness(.5) saturate(.9)" }}>
+            <Img src={staticFile("r04/welt-matte-a.png")} style={{ width: 1300, marginLeft: -200, marginTop: -400 }} />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(35deg, rgba(10,4,30,.75) 10%, transparent 70%)" }} />
+          </div>
+        </div>
         {kl.sichtbar && (
           <div style={{ position: "absolute", left: 540 - KL_W / 2, top: 880 - KL_W / 2, width: KL_W, height: KL_W, transform: `scale(${kl.s}) rotate(${-6 + (1 - kl.k) * -18}deg)`, filter: `blur(${kl.blur}px) ${Schatten(kl.hoehe)}` }}>
             <Img src={staticFile("r04/obj-klappe-brett.png")} style={{ position: "absolute", width: "100%" }} />
             <Img src={staticFile("r04/obj-klappe-stab.png")} style={{ position: "absolute", width: "100%", transformOrigin: `${(90 / 1024) * 100}% ${(258 / 1024) * 100}%`, transform: `rotate(${stab}deg)` }} />
           </div>
         )}
+        <Staub f={f} start={1} x={760} y={690} />
         <Staub f={f} start={T.filmcrew} x={760} y={690} />
       </AbsoluteFill>
       <TiltShift blur={10} fokus={50} />
@@ -144,7 +153,7 @@ export const Szene1: React.FC<{ f: number }> = ({ f }) => {
         {f >= T.frueher && (
           <Schreiben text="früher …" x={130} y={480} groesse={96} p={tw(f, T.frueher, 10, 0, 1, kurve.linear)} dreh={-7} />
         )}
-        <Zeile3D text="FILMCREW" start={T.filmcrew} top={290} groesse={116} f={f} pA="#B9A6F5" pB="#2A1670" />
+        <Zeile3D text="FILMCREW" start={1} top={290} groesse={116} f={f} pA="#B9A6F5" pB="#2A1670" />
       </AbsoluteFill>
     </AbsoluteFill>
   );

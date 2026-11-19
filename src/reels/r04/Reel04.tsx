@@ -308,7 +308,7 @@ const PHRASEN = [
   P(W9.schreib, W9.reel + 24, [["Schreib", W9.schreib], ["«Reel».", W9.reel, true]]),
 ];
 
-export const R04Reel: React.FC<{ untertitel?: UntertitelStil }> = ({ untertitel = "klein" }) => {
+export const R04Reel: React.FC<{ untertitel?: UntertitelStil }> = ({ untertitel = "aus" }) => {
   const f = useCurrentFrame();
   const szene =
     f < SCHNITT ? <Szene1 f={f} /> :
@@ -329,24 +329,27 @@ export const R04Reel: React.FC<{ untertitel?: UntertitelStil }> = ({ untertitel 
       {[[S1, "s1"], [S2, "s2"], [V.s3, "s3"], [V.s4, "s4"], [V.s5, "s5"], [V.s6, "s6"], [V.s7, "s7"], [V.s8, "s8"], [V.s9, "s9"]].map(([from, n]) => (
         <Sequence key={n as string} from={from as number} layout="none"><Audio src={staticFile(`r04/stimme/${n}.mp3`)} /></Sequence>
       ))}
-      {/* Satz 1–2 (wie Stiltest) */}
-      <Ton nr="swish-02" bei={7} vor={2} vol={0.35} />
-      <Ton nr="schlag-07" bei={8} vol={0.4} />
-      <Ton nr="klick-04" bei={T.brauchte + 2} vol={0.35} />
+      {/* Musikbett aus «new sounds»: ca. 17 dB unter der Stimme, keine toten Löcher */}
+      <Sequence from={0} durationInFrames={REEL04_DAUER} layout="none">
+        <Audio src={staticFile("sounds-neu/neu-dark-cinematic-suspe.mp3")} volume={(fr) => 0.1 * Math.min(1, fr / 9) * Math.min(1, (REEL04_DAUER - fr) / 24)} />
+      </Sequence>
+      {/* Satz 1: Klappe in Frame 1 (Holz, trocken), Schlag 2 auf «Filmcrew» */}
+      <Ton nr="neu-wooden-film-clapperb-2" bei={1} vol={0.95} />
+      <Ton nr="neu-kick-drum-vintage-3" bei={1} vol={0.35} />
+      <Ton nr="neu-soft-zipper-like-rat-1" bei={T.brauchte + 4} vol={0.35} />
       <Ton nr="schreiben-01" bei={T.frueher + 2} vol={0.3} />
-      <Ton nr="schlag-07" bei={T.filmcrew} vol={0.95} />
-      <Ton nr="schlag-01" bei={T.filmcrew} vol={0.5} />
-      <Ton nr="whoosh-03" bei={SCHNITT} vol={0.45} />
-      <Ton nr="swish-01" bei={U.kamera + 5} vor={2} vol={0.3} />
-      <Ton nr="schlag-01" bei={U.kamera + 6} vol={0.22} />
-      <Ton nr="swish-05" bei={U.licht + 5} vor={2} vol={0.3} />
-      <Ton nr="klick-01" bei={U.licht + 6} vol={0.4} />
-      <Ton nr="swish-06" bei={U.schnitt + 5} vor={2} vol={0.3} />
-      <Ton nr="papier-04" bei={U.schnitt + 6} vol={0.55} />
-      <Ton nr="papier-05" bei={U.wochenlang + 3} vol={0.4} />
+      <Ton nr="neu-wooden-film-clapperb-2" bei={T.filmcrew} vol={0.95} />
+      <Ton nr="neu-heavy-cloth-swoosh-1" bei={SCHNITT} vor={2} vol={0.5} />
+      {/* Satz 2: Kamera rattert, schwerer Lichtschalter, Filmrolle, Kalender (Ratsche bleibt) */}
+      <Ton nr="neu-quick-air-swoosh-li-1" bei={U.kamera + 5} vor={2} vol={0.35} />
+      <Ton nr="neu-vintage-16mm-film-ca-2" bei={U.kamera + 5} ab={0.18} max={1.1} vol={0.55} />
+      <Ton nr="neu-quick-air-swoosh-li-2" bei={U.licht + 5} vor={2} vol={0.3} />
+      <Ton nr="neu-heavy-studio-light-s-4" bei={U.licht + 6} max={1.6} vol={0.6} />
+      <Ton nr="neu-film-reel-spinning-4" bei={U.schnitt + 5} ab={0.03} max={1.0} vol={0.8} />
       <Ton nr="ratsche-19" bei={U.wochenlang + 2} vol={0.28} max={1.2} />
+      <Ton nr="neu-paper-page-flip-dry-1" bei={U.wochenlang + 3} vol={0.25} />
       <Ton nr="schreiben-01" bei={U.wochenlang + 6} vol={0.3} />
-      <Ton nr="whoosh-02" bei={V.s3} vol={0.4} />
+      <Ton nr="neu-heavy-cloth-swoosh-2" bei={V.s3} vor={2} vol={0.45} />
       {/* Satz 3 */}
       <Ton nr="papier-01" bei={W3.bezahlen + 5} vol={0.45} />
       <Ton nr="papier-03" bei={W3.das + 3} vol={0.4} />

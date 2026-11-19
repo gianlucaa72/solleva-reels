@@ -1,0 +1,713 @@
+[
+ {
+  "datei": "neu/neu-a-cinematic-tension.mp3",
+  "original": "A_cinematic_tension_-1795067661386.mp3",
+  "dauer": 2.0,
+  "einsatz": 0.09,
+  "hit": 1.24,
+  "lufs": -11.2,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-dark-cinematic-suspe.mp3",
+  "original": "Dark_cinematic_suspe-1795067661387.mp3",
+  "dauer": 30.0,
+  "einsatz": 0.0,
+  "hit": 0.08,
+  "lufs": -13.9,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-deep-bass-doom-or.mp3",
+  "original": "Deep_bass_“doom”_or_-1795067661388.mp3",
+  "dauer": 3.0,
+  "einsatz": 1.48,
+  "hit": 1.51,
+  "lufs": -14.1,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-epic-heroic-deity-en.mp3",
+  "original": "Epic_heroic_deity_en-1795067661387.mp3",
+  "dauer": 3.76,
+  "einsatz": 0.06,
+  "hit": 1.2,
+  "lufs": -10.2,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-mood-serious-tense.mp3",
+  "original": "Mood_Serious._Tense.-1795067661388.mp3",
+  "dauer": 10.16,
+  "einsatz": 0.14,
+  "hit": 0.42,
+  "lufs": -12.0,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-subtle-cinematic-ten.mp3",
+  "original": "Subtle_cinematic_ten-1795067661387.mp3",
+  "dauer": 12.0,
+  "einsatz": 1.93,
+  "hit": 3.02,
+  "lufs": -23.1,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-body-check-into-wood-1.mp3",
+  "original": "body_check_into_wood_#1-1795066670578.mp3",
+  "dauer": 1.0,
+  "einsatz": 0.24,
+  "hit": 0.26,
+  "lufs": -20.9,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-body-check-into-wood-3.mp3",
+  "original": "body_check_into_wood_#3-1795066670579.mp3",
+  "dauer": 1.0,
+  "einsatz": 0.0,
+  "hit": 0.05,
+  "lufs": -25.2,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-cinematic-intro-soun.mp3",
+  "original": "cinematic_intro_soun-1795067661388.mp3",
+  "dauer": 2.0,
+  "einsatz": 0.1,
+  "hit": 0.2,
+  "lufs": -10.3,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-cloth-swish-jacket-2.mp3",
+  "original": "cloth_swish,_jacket__#2-1795066496060.mp3",
+  "dauer": 0.686,
+  "einsatz": 0.1,
+  "hit": 0.21,
+  "lufs": -29.9,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-cloth-swish-jacket-3.mp3",
+  "original": "cloth_swish,_jacket__#3-1795066496060.mp3",
+  "dauer": 0.686,
+  "einsatz": 0.11,
+  "hit": 0.25,
+  "lufs": -25.7,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-cork-popping-out-of-1.mp3",
+  "original": "cork_popping_out_of__#1-1795066385145.mp3",
+  "dauer": 0.686,
+  "einsatz": 0.11,
+  "hit": 0.2,
+  "lufs": -18.9,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-cork-popping-out-of-2.mp3",
+  "original": "cork_popping_out_of__#2-1795066385146.mp3",
+  "dauer": 0.686,
+  "einsatz": 0.1,
+  "hit": 0.11,
+  "lufs": -21.3,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-crumpling-paper-into-1.mp3",
+  "original": "crumpling_paper_into_#1-1795067635198.mp3",
+  "dauer": 1.48,
+  "einsatz": 0.08,
+  "hit": 0.26,
+  "lufs": -31.5,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-crumpling-paper-into-3.mp3",
+  "original": "crumpling_paper_into_#3-1795067635199.mp3",
+  "dauer": 1.48,
+  "einsatz": 0.06,
+  "hit": 0.27,
+  "lufs": -30.6,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-deep-cinematic-boom.mp3",
+  "original": "deep_cinematic_boom.mp3",
+  "dauer": 2.48,
+  "einsatz": 0.01,
+  "hit": 0.15,
+  "lufs": -15.9,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-deep-cinematic-impac-3.mp3",
+  "original": "deep_cinematic_impac_#3-1795068729264.mp3",
+  "dauer": 3.48,
+  "einsatz": 0.15,
+  "hit": 0.17,
+  "lufs": -24.9,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-deep-orchestral-hit-2.mp3",
+  "original": "deep_orchestral_hit__#2-1795067170137.mp3",
+  "dauer": 3.0,
+  "einsatz": 0.02,
+  "hit": 0.08,
+  "lufs": -19.9,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-deep-orchestral-hit-4.mp3",
+  "original": "deep_orchestral_hit__#4-1795067170138.mp3",
+  "dauer": 3.0,
+  "einsatz": 0.02,
+  "hit": 0.09,
+  "lufs": -20.9,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-double-swoosh-two-f-1.mp3",
+  "original": "double_swoosh,_two_f_#1-1795067494645.mp3",
+  "dauer": 1.0,
+  "einsatz": 0.35,
+  "hit": 0.39,
+  "lufs": -22.7,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-double-swoosh-two-f-2.mp3",
+  "original": "double_swoosh,_two_f_#2-1795067494646.mp3",
+  "dauer": 1.0,
+  "einsatz": 0.26,
+  "hit": 0.31,
+  "lufs": -24.6,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-double-swoosh-two-f-3.mp3",
+  "original": "double_swoosh,_two_f_#3-1795067516741.mp3",
+  "dauer": 1.0,
+  "einsatz": 0.2,
+  "hit": 0.24,
+  "lufs": -22.7,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-fast-tiny-clicks-acc-1.mp3",
+  "original": "fast_tiny_clicks_acc_#1-1795068161027.mp3",
+  "dauer": 1.48,
+  "einsatz": 0.12,
+  "hit": 1.37,
+  "lufs": -30.7,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-fast-tiny-clicks-acc-3.mp3",
+  "original": "fast_tiny_clicks_acc_#3-1795068161029.mp3",
+  "dauer": 1.48,
+  "einsatz": 0.1,
+  "hit": 1.38,
+  "lufs": -30.3,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-fast-whoosh-transition.mp3",
+  "original": "fast_whoosh_transition.mp3",
+  "dauer": 1.0,
+  "einsatz": 0.11,
+  "hit": 0.19,
+  "lufs": -18.6,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-film-reel-spinning-4.mp3",
+  "original": "film_reel_spinning,__#4-1795068548904.mp3",
+  "dauer": 4.0,
+  "einsatz": 0.03,
+  "hit": 3.15,
+  "lufs": -36.1,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-heavy-cloth-swoosh-1.mp3",
+  "original": "heavy_cloth_swoosh,__#1-1795067291522.mp3",
+  "dauer": 0.806,
+  "einsatz": 0.13,
+  "hit": 0.2,
+  "lufs": -21.1,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-heavy-cloth-swoosh-2.mp3",
+  "original": "heavy_cloth_swoosh,__#2-1795067291523.mp3",
+  "dauer": 0.806,
+  "einsatz": 0.1,
+  "hit": 0.18,
+  "lufs": -22.0,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-heavy-punching-bag-h-1.mp3",
+  "original": "heavy_punching_bag_h_#1-1795066636905.mp3",
+  "dauer": 0.686,
+  "einsatz": 0.12,
+  "hit": 0.13,
+  "lufs": -33.9,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-heavy-studio-light-s-4.mp3",
+  "original": "heavy_studio_light_s_#4-1795068509770.mp3",
+  "dauer": 4.0,
+  "einsatz": 0.12,
+  "hit": 0.3,
+  "lufs": -20.8,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-heavy-wooden-door-sl-2.mp3",
+  "original": "heavy_wooden_door_sl_#2-1795066710699.mp3",
+  "dauer": 1.0,
+  "einsatz": 0.02,
+  "hit": 0.1,
+  "lufs": -19.2,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-heavy-wooden-door-sl-3.mp3",
+  "original": "heavy_wooden_door_sl_#3-1795066710699.mp3",
+  "dauer": 1.0,
+  "einsatz": 0.01,
+  "hit": 0.06,
+  "lufs": -22.8,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-hockey-stick-swingin-4.mp3",
+  "original": "hockey_stick_swingin_#4-1795067254371.mp3",
+  "dauer": 0.686,
+  "einsatz": 0.11,
+  "hit": 0.13,
+  "lufs": -29.7,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-kick-drum-vintage-3.mp3",
+  "original": "kick_drum,_vintage,__#3-1795066755674.mp3",
+  "dauer": 0.686,
+  "einsatz": 0.0,
+  "hit": 0.0,
+  "lufs": -20.3,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-kick-drum-vintage-4.mp3",
+  "original": "kick_drum,_vintage,__#4-1795066755675.mp3",
+  "dauer": 0.686,
+  "einsatz": 0.0,
+  "hit": 0.01,
+  "lufs": -20.5,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-low-brass-hit-orche-1.mp3",
+  "original": "low_brass_hit,_orche_#1-1795067116156.mp3",
+  "dauer": 2.0,
+  "einsatz": 0.02,
+  "hit": 0.17,
+  "lufs": -17.8,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-low-brass-hit-orche-3.mp3",
+  "original": "low_brass_hit,_orche_#3-1795067116157.mp3",
+  "dauer": 2.0,
+  "einsatz": 0.03,
+  "hit": 0.26,
+  "lufs": -19.2,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-old-film-projector-r-1.mp3",
+  "original": "old_film_projector_r_#1-1795066557216.mp3",
+  "dauer": 1.48,
+  "einsatz": 0.09,
+  "hit": 0.1,
+  "lufs": -38.4,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-old-mechanical-typew-1.mp3",
+  "original": "old_mechanical_typew_#1-1795066285104.mp3",
+  "dauer": 0.486,
+  "einsatz": 0.0,
+  "hit": 0.03,
+  "lufs": -25.6,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-old-mechanical-typew-2.mp3",
+  "original": "old_mechanical_typew_#2-1795066285104.mp3",
+  "dauer": 0.486,
+  "einsatz": 0.0,
+  "hit": 0.03,
+  "lufs": -23.5,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-paper-page-flip-qui-3.mp3",
+  "original": "paper_page_flip,_qui_#3-1795066422256.mp3",
+  "dauer": 0.686,
+  "einsatz": 0.04,
+  "hit": 0.24,
+  "lufs": -28.0,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-paper-page-flip-qui-4.mp3",
+  "original": "paper_page_flip,_qui_#4-1795066422256.mp3",
+  "dauer": 0.686,
+  "einsatz": 0.03,
+  "hit": 0.31,
+  "lufs": -29.4,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-paper-page-flip-dry-1.mp3",
+  "original": "paper_page_flip,dry_#1-1795066456035.mp3",
+  "dauer": 1.2,
+  "einsatz": 0.08,
+  "hit": 0.76,
+  "lufs": -24.4,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-paper-tearing-quickl-2.mp3",
+  "original": "paper_tearing_quickl_#2-1795067550355.mp3",
+  "dauer": 1.0,
+  "einsatz": 0.2,
+  "hit": 0.28,
+  "lufs": -15.5,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-paper-tearing-quickl-3.mp3",
+  "original": "paper_tearing_quickl_#3-1795067550356.mp3",
+  "dauer": 1.0,
+  "einsatz": 0.19,
+  "hit": 0.35,
+  "lufs": -19.5,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-quick-air-swoosh-li-1.mp3",
+  "original": "quick_air_swoosh,_li_#1-1795067212593.mp3",
+  "dauer": 0.486,
+  "einsatz": 0.1,
+  "hit": 0.12,
+  "lufs": -22.4,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-quick-air-swoosh-li-2.mp3",
+  "original": "quick_air_swoosh,_li_#2-1795067212593.mp3",
+  "dauer": 0.486,
+  "einsatz": 0.09,
+  "hit": 0.12,
+  "lufs": -21.9,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-record-scratch-vinyl.mp3",
+  "original": "record_scratch_vinyl.mp3",
+  "dauer": 1.0,
+  "einsatz": 0.02,
+  "hit": 0.83,
+  "lufs": -12.6,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-riser-build-up-1.mp3",
+  "original": "riser_build-up_1.mp3",
+  "dauer": 2.0,
+  "einsatz": 0.85,
+  "hit": 1.61,
+  "lufs": -18.9,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-riser-build-up-2.mp3",
+  "original": "riser_build-up_2.mp3",
+  "dauer": 2.0,
+  "einsatz": 0.64,
+  "hit": 1.29,
+  "lufs": -15.5,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-rotary-knob-clicking-4.mp3",
+  "original": "rotary_knob_clicking_#4-1795068214298.mp3",
+  "dauer": 0.686,
+  "einsatz": 0.03,
+  "hit": 0.3,
+  "lufs": -48.8,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-short-impact-hit-pu.mp3",
+  "original": "short_impact_hit,_pu-1795067661386.mp3",
+  "dauer": 1.86,
+  "einsatz": 0.52,
+  "hit": 0.68,
+  "lufs": -11.1,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-slow-bass-woosh.mp3",
+  "original": "slow_bass_woosh-1795067661389.mp3",
+  "dauer": 4.0,
+  "einsatz": 0.5,
+  "hit": 1.13,
+  "lufs": -11.8,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-slow-paper-tear-thi-2.mp3",
+  "original": "slow_paper_tear,_thi_#2-1795067594348.mp3",
+  "dauer": 2.0,
+  "einsatz": 0.11,
+  "hit": 1.3,
+  "lufs": -33.4,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-slow-paper-tear-thi-4.mp3",
+  "original": "slow_paper_tear,_thi_#4-1795067594348.mp3",
+  "dauer": 2.0,
+  "einsatz": 0.04,
+  "hit": 1.11,
+  "lufs": -29.8,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-soft-cinematic-boom-1.mp3",
+  "original": "soft_cinematic_boom,_#1-1795067072332.mp3",
+  "dauer": 2.48,
+  "einsatz": 0.1,
+  "hit": 0.13,
+  "lufs": -17.1,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-soft-cinematic-boom-2.mp3",
+  "original": "soft_cinematic_boom,_#2-1795067072332.mp3",
+  "dauer": 2.48,
+  "einsatz": 0.03,
+  "hit": 0.04,
+  "lufs": -19.4,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-soft-close-air-movem.mp3",
+  "original": "soft_close_air_movem-1795067661388.mp3",
+  "dauer": 2.0,
+  "einsatz": 0.0,
+  "hit": 0.31,
+  "lufs": -23.4,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-soft-pop-ui-click-2.mp3",
+  "original": "soft_pop,_UI_click_#2-1795067661386.mp3",
+  "dauer": 0.686,
+  "einsatz": 0.03,
+  "hit": 0.03,
+  "lufs": -18.8,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-soft-pop-ui-click-4.mp3",
+  "original": "soft_pop,_UI_click_#4-1795067661386.mp3",
+  "dauer": 0.686,
+  "einsatz": 0.03,
+  "hit": 0.12,
+  "lufs": -19.0,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-soft-pop-ui-click-1.mp3",
+  "original": "soft_pop_UI_click_1.mp3",
+  "dauer": 0.686,
+  "einsatz": 0.03,
+  "hit": 0.03,
+  "lufs": -18.8,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-soft-pop-ui-click-2-b.mp3",
+  "original": "soft_pop_UI_click_2.mp3",
+  "dauer": 0.686,
+  "einsatz": 0.03,
+  "hit": 0.12,
+  "lufs": -19.0,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-soft-rolling-tick-so-1.mp3",
+  "original": "soft_rolling_tick_so_#1-1795068127466.mp3",
+  "dauer": 1.0,
+  "einsatz": 0.13,
+  "hit": 0.15,
+  "lufs": -35.3,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-soft-wind-swoosh-lo-3.mp3",
+  "original": "soft_wind_swoosh,_lo_#3-1795067434349.mp3",
+  "dauer": 1.0,
+  "einsatz": 0.15,
+  "hit": 0.31,
+  "lufs": -25.9,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-soft-wind-swoosh-lo-4.mp3",
+  "original": "soft_wind_swoosh,_lo_#4-1795067434349.mp3",
+  "dauer": 1.0,
+  "einsatz": 0.1,
+  "hit": 0.27,
+  "lufs": -22.6,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-soft-zipper-like-rat-1.mp3",
+  "original": "soft_zipper-like_rat_#1-1795068257132.mp3",
+  "dauer": 0.806,
+  "einsatz": 0.18,
+  "hit": 0.38,
+  "lufs": -33.5,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-subtle-epic-impact-1.mp3",
+  "original": "subtle_epic_impact,__#1-1795067024491.mp3",
+  "dauer": 2.0,
+  "einsatz": 0.01,
+  "hit": 0.02,
+  "lufs": -20.7,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-subtle-mechanical-ra-3.mp3",
+  "original": "subtle_mechanical_ra_#3-1795068092383.mp3",
+  "dauer": 1.0,
+  "einsatz": 0.09,
+  "hit": 0.72,
+  "lufs": -33.6,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-tape-stop-effect-ca-1.mp3",
+  "original": "tape_stop_effect,_ca_#1-1795066600735.mp3",
+  "dauer": 1.0,
+  "einsatz": 0.0,
+  "hit": 0.02,
+  "lufs": -14.8,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-tape-stop-effect-ca-4.mp3",
+  "original": "tape_stop_effect,_ca_#4-1795066600736.mp3",
+  "dauer": 1.0,
+  "einsatz": 0.01,
+  "hit": 0.05,
+  "lufs": -14.3,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-typing-on-a-laptop-k.mp3",
+  "original": "typing_on_a_laptop_k-1795067661387.mp3",
+  "dauer": 4.0,
+  "einsatz": 0.0,
+  "hit": 1.04,
+  "lufs": -26.8,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-vintage-16mm-film-ca-2.mp3",
+  "original": "vintage_16mm_film_ca_#2-1795068445548.mp3",
+  "dauer": 3.48,
+  "einsatz": 0.18,
+  "hit": 3.06,
+  "lufs": -24.0,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-vintage-camera-shutt-1.mp3",
+  "original": "vintage_camera_shutt_#1-1795066328794.mp3",
+  "dauer": 0.686,
+  "einsatz": 0.03,
+  "hit": 0.25,
+  "lufs": -23.4,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-vintage-camera-shutt-2.mp3",
+  "original": "vintage_camera_shutt_#2-1795066345401.mp3",
+  "dauer": 0.686,
+  "einsatz": 0.04,
+  "hit": 0.26,
+  "lufs": -21.3,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-wooden-fan-ratchet-n-3.mp3",
+  "original": "wooden_fan_ratchet_n_#3-1795067997467.mp3",
+  "dauer": 1.0,
+  "einsatz": 0.05,
+  "hit": 0.55,
+  "lufs": -28.4,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-wooden-film-clapperb-2.mp3",
+  "original": "wooden_film_clapperb_#2-1795068402735.mp3",
+  "dauer": 0.486,
+  "einsatz": 0.0,
+  "hit": 0.02,
+  "lufs": -22.6,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-wooden-knock-on-a-ta-1.mp3",
+  "original": "wooden_knock_on_a_ta_#1-1795066213859.mp3",
+  "dauer": 0.486,
+  "einsatz": 0.09,
+  "hit": 0.11,
+  "lufs": -26.4,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-wooden-knock-on-a-ta-2.mp3",
+  "original": "wooden_knock_on_a_ta_#2-1795066248072.mp3",
+  "dauer": 0.486,
+  "einsatz": 0.0,
+  "hit": 0.0,
+  "lufs": -22.1,
+  "kategorie": "neu"
+ },
+ {
+  "datei": "neu/neu-cinematic-trailer.mp3",
+  "original": "“Cinematic_trailer_+-1795067661389.mp3",
+  "dauer": 20.76,
+  "einsatz": 0.35,
+  "hit": 12.86,
+  "lufs": -9.2,
+  "kategorie": "neu"
+ }
+]

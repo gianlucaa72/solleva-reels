@@ -8,7 +8,7 @@ export const kamera1 = () => ({
     von: { zoom: 1.04 },
     feder: WEICH,
     fahrten: [
-      { f: 6, dauer: 15, zoom: 1.09, y: 10, notiz: "rein: Klappe landet" },
+      { f: 1, dauer: 15, zoom: 1.09, y: 10, notiz: "rein: Klappe schlägt zu (Frame 1)" },
       { f: T.brauchte, dauer: 15, zoom: 1.05, y: -10, notiz: "raus: Klappe öffnet" },
       { f: T.frueher, dauer: 15, zoom: 1.1, x: 15, notiz: "rein: «früher»" },
       { f: T.filmcrew, dauer: 2 * (SCHNITT - T.filmcrew), zoom: 1.6, x: 0, y: 60, dreh: -1.2, notiz: "Push durch den Schnitt" },
