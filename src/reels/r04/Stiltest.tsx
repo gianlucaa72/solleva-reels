@@ -6,19 +6,11 @@ import { Ton } from "../../lib/kamera";
 import { kurve, tw } from "../../lib/bewegung";
 import { feder } from "../../lib/punchFeder";
 import { gleitKamera, halbeKamera } from "../../lib/gleitKamera";
+import { kamera1, kamera2 } from "./kamera";
 import { Koernung, r04, schriftR04, SchriftenR04, TiltShift } from "./Look";
 
-// ---------- Timeline (Frames bei 30 fps, aus silencedetect + Energie-Hüllkurve) ----------
-export const S1 = 4; // Stimme Satz 1 startet
-export const w1 = (s: number) => S1 + Math.round(s * 30);
-export const T = {
-  fuer: w1(0.04), video: w1(0.5), brauchte: w1(1.04), man: w1(1.31), frueher: w1(1.64), eine: w1(2.01), filmcrew: w1(2.28),
-};
-export const SCHNITT = 97; // harter Schnitt Szene 1 → 2
-export const S2 = 96; // Stimme Satz 2 (0,06 s Vorlauf in der Datei)
-export const w2 = (s: number) => S2 + Math.round(s * 30);
-export const U = { kamera: w2(0.06), licht: w2(0.8), schnitt: w2(1.45), wochenlang: w2(2.26), ende: w2(3.47) };
-export const STILTEST_DAUER = 232;
+export { S1, w1, T, SCHNITT, S2, w2, U, STILTEST_DAUER } from "./timeline";
+import { S1, w1, T, SCHNITT, S2, U, STILTEST_DAUER } from "./timeline";
 
 // ---------- Helfer ----------
 export const Welt: React.FC<{ src: string; breite: number }> = ({ src, breite }) => (
@@ -69,13 +61,16 @@ export const Zeile3D: React.FC<{ text: string; start: number; top: number; groes
 
 /** Wort-für-Wort-Untertitel in Box (Referenz: Phrasen à 2–4 Wörter). */
 export type Wort = { w: string; f: number; key?: boolean };
-export const Untertitel: React.FC<{ f: number; phrasen: { von: number; bis: number; woerter: Wort[] }[] }> = ({ f, phrasen }) => {
+export type UntertitelStil = "klein" | "gross" | "aus";
+export const Untertitel: React.FC<{ f: number; phrasen: { von: number; bis: number; woerter: Wort[] }[]; stil?: UntertitelStil }> = ({ f, phrasen, stil = "klein" }) => {
   const ph = phrasen.find((p) => f >= p.von && f < p.bis);
-  if (!ph) return null;
+  if (!ph || stil === "aus") return null;
   const pop = tw(f, ph.von, 4, 0.92, 1, kurve.land);
+  const gross = stil === "gross";
   return (
-    <div style={{ position: "absolute", top: 1400, left: 70, right: 140, display: "flex", justifyContent: "center" }}>
-      <div style={{ background: "rgba(14,10,40,.8)", borderRadius: 12, padding: "10px 22px", transform: `scale(${pop})`, fontFamily: "Barlow", fontWeight: 700, fontSize: 44, lineHeight: 1.15 }}>
+    // gross: Unterkante der Pille spätestens bei y 1540 (Safe Zone)
+    <div style={{ position: "absolute", ...(gross ? { bottom: 1920 - 1540 } : { top: 1400 }), left: 70, right: 140, display: "flex", justifyContent: "center" }}>
+      <div style={{ background: "rgba(14,10,40,.82)", borderRadius: gross ? 22 : 12, padding: gross ? "18px 34px" : "10px 22px", transform: `scale(${pop})`, fontFamily: "Barlow", fontWeight: 700, fontSize: gross ? 66 : 44, lineHeight: 1.12, textAlign: "center", maxWidth: 860 }}>
         {ph.woerter.map((w, i) => (
           <span key={i} style={{ color: w.key ? farben.lavendelAkzent : farben.papier, opacity: f >= w.f ? 1 : 0.35 }}>
             {w.w}{i < ph.woerter.length - 1 ? " " : ""}
@@ -119,12 +114,9 @@ export const Blatt: React.FC<{ nr: number }> = ({ nr }) => (
 
 // ---------- Szene 1: Filmcrew ----------
 export const Szene1: React.FC<{ f: number }> = ({ f }) => {
-  // Kamera K03: nur eine Fahrt. Auf «Filmcrew» beginnt ein Push, der durch den Schnitt in Satz 2 weiterläuft (Mitte = Schnitt).
-  const kam = gleitKamera(f, {
-    start: 0,
-    ende: SCHNITT,
-    fahrten: [{ f: T.filmcrew, dauer: 2 * (SCHNITT - T.filmcrew), zoom: 1.6, y: 60, dreh: -1.2, notiz: "Push durch den Schnitt" }],
-  });
+  // Kamera K04 «Weicher Bounce»: pro Moment eine Richtung (rein, raus, rein), Feder ohne Ruck.
+  // Auf «Filmcrew» beginnt der Push, der durch den Schnitt in Satz 2 weiterläuft (Mitte = Schnitt).
+  const kam = gleitKamera(f, kamera1());
   const kl = fallen(f, 0, 8);
   // Stab: 0 = offen wie im Bild, +11,5 = zu, negativ = weiter offen
   let stab = 0;
@@ -160,16 +152,8 @@ export const Szene1: React.FC<{ f: number }> = ({ f }) => {
 
 // ---------- Szene 2: Kamera, Licht, Schnitt. Wochenlang. ----------
 export const Szene2: React.FC<{ f: number; ende?: number }> = ({ f, ende = STILTEST_DAUER }) => {
-  // Kamera K03: zweite Hälfte des Push aus Satz 1, ein Push auf «Schnitt», Übergang in Satz 3 (Push über den Schnitt).
-  const kam = gleitKamera(f, {
-    start: SCHNITT,
-    ende,
-    fahrten: [
-      { f: T.filmcrew, dauer: 2 * (SCHNITT - T.filmcrew), zoom: 1.1, notiz: "Eintritt (zweite Hälfte)" },
-      { f: U.schnitt, dauer: 18, zoom: 1.15, y: -20, notiz: "Push auf «Schnitt»" },
-      { f: ende - 9, dauer: 18, zoom: 1.5, y: -40, dreh: -1.5, notiz: "Übergang Satz 3 (erste Hälfte)" },
-    ],
-  });
+  // Kamera K04: Eintritt (zweite Hälfte des Push aus Satz 1), dann Bounce pro Wort, Übergang in Satz 3.
+  const kam = gleitKamera(f, kamera2(ende));
   const objekte = [
     { src: "r04/obj-kamera-a.png", start: U.kamera, x: 290, y: 800, w: 560, dreh: -12, von: -75, pivot: "50% -60%" },
     { src: "r04/obj-lampe-a.png", start: U.licht, x: 790, y: 760, w: 470, dreh: 8, von: 70, pivot: "50% -70%" },

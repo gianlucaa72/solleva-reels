@@ -1,18 +1,21 @@
-// K03 Kamera «Gleiten» (Feedback Reel 04 v1: «gleiten statt springen»), ersetzt K02 «Punch + Feder» an der Kamera.
-// Regeln (werden beim Rendern geprüft):
-// - Jede Fahrt läuft auf der Heavy-Kurve (In-out), ohne Overshoot und ohne Feder.
-// - Eine Fahrt dauert mindestens 15 Frames; Fahrten überlappen nie (pro Moment genau eine Kamerabewegung).
-// - Dazwischen läuft ein langsamer, durchgehender Push über die ganze Szene (Standard 100 → 103 %).
-// - Bewegungsunschärfe proportional zur Geschwindigkeit (leicht, gedeckelt).
-// - Übergänge: Die Fahrt läuft über den Schnitt; Szene A zeigt die erste (beschleunigende) Hälfte,
-//   Szene B übernimmt mit eigener Fahrt ab demselben Startframe und zeigt die zweite (abbremsende) Hälfte.
+// K03 Kamera «Gleiten» + K04 «Weicher Bounce» (Feedback Reel 04: Bounce behalten, aber smooth).
+// Ziel-Kurve: Jede Fahrt verschiebt das ZIEL der Kamera auf der Heavy-Kurve (mindestens 15 Frames,
+// Fahrten überlappen nie: pro Moment genau eine Bewegung; Richtung darf pro Moment wechseln = Bounce).
+// Mit `feder` folgt die Kamera diesem Ziel wie an einer weichen Feder: Geschwindigkeit ändert sich nie
+// sprunghaft (kein Ruck), beim Ankommen schwingt sie leicht nach (Bounce). Ohne `feder` = reines Gleiten (K03).
+// Dazu: durchgehender Push 100 → 103 % pro Szene und Bewegungsunschärfe aus der Geschwindigkeit.
 import { kurve } from "./bewegung";
 
 export type KamZustand = { zoom: number; x: number; y: number; dreh: number };
 export type Fahrt = { f: number; dauer: number; zoom?: number; x?: number; y?: number; dreh?: number; notiz?: string };
+export type Feder = { zeta: number; omega: number }; // Dämpfung (0,5–0,8) und Eigenfrequenz in rad/Frame
+
+/** Standard-Bounce: schwingt einmal weich nach (ca. 4–5 % des Wegs), ruhig nach ~20 Frames, kein zweites Pendeln. */
+export const WEICH: Feder = { zeta: 0.7, omega: 0.32 };
 
 const MIN_DAUER = 15;
 const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
+const KEYS = ["zoom", "x", "y", "dreh"] as const;
 
 const pruefe = (fahrten: Fahrt[]) => {
   for (let i = 0; i < fahrten.length; i++) {
@@ -23,29 +26,47 @@ const pruefe = (fahrten: Fahrt[]) => {
   }
 };
 
-const zustand = (t: number, von: KamZustand, fahrten: Fahrt[]): KamZustand => {
+/** Ziel der Kamera zum Zeitpunkt t (Heavy-Kurve zwischen den Fahrten). */
+const ziel = (t: number, von: KamZustand, fahrten: Fahrt[]): KamZustand => {
   const z = { ...von };
   for (const fa of fahrten) {
     if (t <= fa.f) break;
     const p = kurve.heavy(clamp01((t - fa.f) / fa.dauer));
-    if (fa.zoom !== undefined) z.zoom = z.zoom + (fa.zoom - z.zoom) * p;
-    if (fa.x !== undefined) z.x = z.x + (fa.x - z.x) * p;
-    if (fa.y !== undefined) z.y = z.y + (fa.y - z.y) * p;
-    if (fa.dreh !== undefined) z.dreh = z.dreh + (fa.dreh - z.dreh) * p;
+    for (const k of KEYS) if (fa[k] !== undefined) z[k] = z[k] + ((fa[k] as number) - z[k]) * p;
   }
   return z;
 };
 
+/** Feder-Folger (gedämpfter Oszillator), deterministisch vom Startframe an integriert. */
+const folge = (t: number, t0: number, von: KamZustand, fahrten: Fahrt[], fe: Feder): KamZustand => {
+  const pos = { ...von };
+  const vel = { zoom: 0, x: 0, y: 0, dreh: 0 };
+  const SUB = 4;
+  const dt = 1 / SUB;
+  const w2 = fe.omega * fe.omega;
+  const d = 2 * fe.zeta * fe.omega;
+  for (let s = t0; s < t; s += dt) {
+    const zi = ziel(Math.min(s + dt, t), von, fahrten);
+    for (const k of KEYS) {
+      const a = w2 * (zi[k] - pos[k]) - d * vel[k];
+      vel[k] += a * dt;
+      pos[k] += vel[k] * dt;
+    }
+  }
+  return pos;
+};
+
 export const gleitKamera = (
   frame: number,
-  o: { start: number; ende: number; von?: Partial<KamZustand>; fahrten: Fahrt[]; push?: number; maxBlur?: number },
+  o: { start: number; ende: number; von?: Partial<KamZustand>; fahrten: Fahrt[]; push?: number; maxBlur?: number; feder?: Feder },
 ) => {
   const fahrten = [...o.fahrten].sort((a, b) => a.f - b.f);
   pruefe(fahrten);
   const von: KamZustand = { zoom: 1, x: 0, y: 0, dreh: 0, ...o.von };
   const push = o.push ?? 0.03;
+  const t0 = Math.min(o.start, fahrten[0]?.f ?? o.start);
   const bei = (t: number) => {
-    const z = zustand(t, von, fahrten);
+    const z = o.feder ? folge(t, t0, von, fahrten, o.feder) : ziel(t, von, fahrten);
     z.zoom *= 1 + push * clamp01((t - o.start) / Math.max(1, o.ende - o.start));
     return z;
   };

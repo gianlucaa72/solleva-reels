@@ -7,20 +7,13 @@ import { Ton } from "../../lib/kamera";
 import { kurve, tw } from "../../lib/bewegung";
 import { feder } from "../../lib/punchFeder";
 import { gleitKamera, halbeKamera } from "../../lib/gleitKamera";
+import { kamera3, kamera4, kamera5, kamera6, kamera7, kamera8, kamera9 } from "./kamera";
 import { Koernung, r04, schriftR04, SchriftenR04, TiltShift } from "./Look";
-import { fallen, faecher, S1, S2, SCHNITT, Schatten, Schreiben, Staub, Szene1, Szene2, T, U, Untertitel, w1, w2, Welt, Zeile3D } from "./Stiltest";
+import { fallen, faecher, Schatten, Schreiben, Staub, Szene1, Szene2, Untertitel, UntertitelStil, Welt, Zeile3D } from "./Stiltest";
+import { REEL04_DAUER, S1, S2, SCHNITT, T, U, w1 } from "./timeline";
 
-// ---------- Timeline: Startframe jeder Stimmdatei (0,22 s Pause, vor Satz 4 und 8 0,4 s) ----------
-const V = { s3: 204, s4: 275, s5: 317, s6: 416, s7: 514, s8: 585, s9: 712 }; // vor Satz 9: Halt für den Signature-Moment
-export const REEL04_DAUER = 847; // Satz 9 endet bei 25,6 s + 2 s Halt
-const at = (start: number, s: number) => start + Math.round(s * 30);
-const W3 = { bezahlen: at(V.s3, 0.1), konnten: at(V.s3, 0.63), das: at(V.s3, 0.86), nur: at(V.s3, 1.05), die: at(V.s3, 1.3), grossen: at(V.s3, 1.54) };
-const W4 = { dann: at(V.s4, 0.06), kam: at(V.s4, 0.38), ai: at(V.s4, 0.75) };
-const W5 = { aber: at(V.s5, 0.08), ai: at(V.s5, 0.42), allein: at(V.s5, 0.85), macht: at(V.s5, 1.6), noch: at(V.s5, 1.78), kein: at(V.s5, 1.98), gutes: at(V.s5, 2.3), video: at(V.s5, 2.67) };
-const W6 = { den: at(V.s6, 0.08), unterschied: at(V.s6, 0.28), machen: at(V.s6, 0.8), hook: at(V.s6, 1.15), geschichte: at(V.s6, 1.6), und: at(V.s6, 2.35), details: at(V.s6, 2.55) };
-const W7 = { heute: at(V.s7, 0.11), bekommen: at(V.s7, 0.3), das: at(V.s7, 0.8), auch: at(V.s7, 0.95), kleine: at(V.s7, 1.2), betriebe: at(V.s7, 1.64) };
-const W8 = { dieses: at(V.s8, 0.08), video: at(V.s8, 0.48), keine: at(V.s8, 1.34), filmcrew: at(V.s8, 1.81), nur: at(V.s8, 2.74), ich: at(V.s8, 3.07) };
-const W9 = { willst: at(V.s9, 0.04), du: at(V.s9, 0.37), das: at(V.s9, 0.6), auch: at(V.s9, 0.93), schreib: at(V.s9, 1.31), reel: at(V.s9, 2.0) };
+export { REEL04_DAUER } from "./timeline";
+import { V, W3, W4, W5, W6, W7, W8, W9 } from "./timeline";
 
 const Ebene: React.FC<{ css: string; blur?: number; children: React.ReactNode }> = ({ css, blur = 0, children }) => (
   <AbsoluteFill style={{ transform: css, transformOrigin: "50% 40%", filter: blur ? `blur(${blur}px)` : undefined }}>{children}</AbsoluteFill>
@@ -37,15 +30,7 @@ const Stempel: React.FC<{ text: string }> = ({ text }) => (
 );
 const Szene3: React.FC<{ f: number }> = ({ f }) => {
   const ende = V.s4;
-  const kam = gleitKamera(f, {
-    start: V.s3,
-    ende,
-    fahrten: [
-      { f: V.s3 - 9, dauer: 18, zoom: 1.1, notiz: "Eintritt (zweite Hälfte des Übergangs)" },
-      { f: W3.nur, dauer: 15, zoom: 1.2, y: 30, notiz: "Push auf den Stempel" },
-      { f: ende - 9, dauer: 18, zoom: 1.6, y: 0, dreh: 1.5, notiz: "Übergang Satz 4 (erste Hälfte)" },
-    ],
-  });
+  const kam = gleitKamera(f, kamera3());
   const um = Math.max(0, Math.min(1, (f - W3.bezahlen) / 8));
   const umP = f >= W3.bezahlen ? feder(f - W3.bezahlen, 4) : 0;
   const zettelIn = f >= W3.das ? feder(f - W3.das, 4) : 0;
@@ -115,15 +100,7 @@ const Bildschirm: React.FC<{ f: number }> = ({ f }) => {
 const Szene4: React.FC<{ f: number }> = ({ f }) => {
   const ende = V.s5;
   // Auf «AI» beginnt EINE Fahrt in den Bildschirm hinein; der Schnitt liegt in ihrer Mitte.
-  const kam = gleitKamera(f, {
-    start: V.s4,
-    ende,
-    maxBlur: 8,
-    fahrten: [
-      { f: V.s4 - 9, dauer: 18, zoom: 1.06, notiz: "Eintritt (zweite Hälfte)" },
-      { f: W4.ai, dauer: 2 * (ende - W4.ai), zoom: 3.8, notiz: "Fahrt durch den Bildschirm" },
-    ],
-  });
+  const kam = gleitKamera(f, kamera4());
   return (
     <AbsoluteFill style={{ background: "#0b0705" }}>
       <AbsoluteFill style={{ transform: kam.css, transformOrigin: "548px 945px", filter: kam.blur ? `blur(${kam.blur}px)` : undefined }}>
@@ -141,15 +118,7 @@ const Szene4: React.FC<{ f: number }> = ({ f }) => {
 // ---------- Satz 5: Aber AI allein macht noch kein gutes Video. ----------
 const Szene5: React.FC<{ f: number }> = ({ f }) => {
   const ende = V.s6;
-  const kam = gleitKamera(f, {
-    start: V.s5,
-    ende,
-    fahrten: [
-      { f: W4.ai, dauer: 2 * (V.s5 - W4.ai), zoom: 1.12, notiz: "Eintritt (zweite Hälfte der Bildschirm-Fahrt)" },
-      { f: W5.allein, dauer: 18, zoom: 1.18, y: 20, notiz: "Push auf «allein»" },
-      { f: ende - 9, dauer: 18, zoom: 1.55, y: 0, dreh: -1.5, notiz: "Übergang Satz 6 (erste Hälfte)" },
-    ],
-  });
+  const kam = gleitKamera(f, kamera5());
   const po = fallen(f, W5.ai - 6, 7);
   const weg = f >= W5.video + 2 ? kurve.raus(Math.min(1, (f - W5.video - 2) / 8)) : 0;
   const strich = (start: number) => Math.max(0, Math.min(1, (f - start) / 7));
@@ -187,14 +156,7 @@ const Karte: React.FC<{ wort: string; aktiv?: boolean; strich?: number }> = ({ w
 const Szene6: React.FC<{ f: number }> = ({ f }) => {
   const ende = V.s7;
   // Auf «Details» beginnt EINE Fahrt auf die DETAILS-Karte, die durch den Schnitt in Satz 7 läuft.
-  const kam = gleitKamera(f, {
-    start: V.s6,
-    ende,
-    fahrten: [
-      { f: V.s6 - 9, dauer: 18, zoom: 1.08, notiz: "Eintritt (zweite Hälfte)" },
-      { f: ende - 19, dauer: 38, zoom: 1.7, x: 136, y: -483, notiz: "Fahrt auf DETAILS, Schnitt in der Mitte" },
-    ],
-  });
+  const kam = gleitKamera(f, kamera6());
   const karten = [
     { wort: "HOOK", start: W6.hook, x: 150, y: 470, dreh: -5, von: -70 },
     { wort: "GESCHICHTE", start: W6.geschichte, x: 180, y: 740, dreh: 4, von: 65 },
@@ -225,15 +187,7 @@ const Szene6: React.FC<{ f: number }> = ({ f }) => {
 // ---------- Satz 7: Heute bekommen das auch kleine Betriebe. (Laden hebt ab, Text dahinter) ----------
 const Szene7: React.FC<{ f: number }> = ({ f }) => {
   const ende = V.s8;
-  const kam = gleitKamera(f, {
-    start: V.s7,
-    ende,
-    fahrten: [
-      { f: V.s7 - 19, dauer: 38, zoom: 1.1, notiz: "Eintritt (zweite Hälfte der DETAILS-Fahrt)" },
-      { f: W7.kleine, dauer: 18, zoom: 1.16, y: 20, notiz: "Push auf «kleine Betriebe»" },
-      { f: ende - 9, dauer: 18, zoom: 1.5, y: 0, notiz: "Übergang Satz 8 (erste Hälfte)" },
-    ],
-  });
+  const kam = gleitKamera(f, kamera7());
   const hoch = f >= W7.kleine ? feder(f - W7.kleine, 7) : 0;
   const da = f >= W7.kleine - 3;
   const licht = tw(f, W7.kleine, 10, 0, 1, kurve.land);
@@ -265,17 +219,7 @@ const Szene7: React.FC<{ f: number }> = ({ f }) => {
 // ---------- Satz 8 (Signature): Dieses Video? Keine Filmcrew. Nur ich. → Rausfahrt auf den echten Tisch ----------
 const Szene8: React.FC<{ f: number }> = ({ f }) => {
   const ende = V.s9;
-  // Matte in der Bildmitte halten: Verschiebung = Zoom × Abstand der Mattenmitte (524/985) zur Bildmitte.
-  const nah = (z: number) => ({ zoom: z, x: 16 * z, y: -25 * z });
-  const kam = gleitKamera(f, {
-    start: V.s8,
-    ende,
-    von: nah(1.55),
-    fahrten: [
-      { f: V.s8 - 9, dauer: 18, ...nah(1.75), notiz: "Eintritt (zweite Hälfte)" },
-      { f: W8.nur, dauer: 24, zoom: 1.0, x: 0, y: 0, dreh: -1, notiz: "RAUSFAHRT auf den echten Tisch" },
-    ],
-  });
+  const kam = gleitKamera(f, kamera8());
   const props = [
     { src: "r04/obj-kamera-a.png", x: 650, y: 760, w: 210, d: -10 },
     { src: "r04/obj-lampe-a.png", x: 700, y: 1000, w: 180, d: 12 },
@@ -304,15 +248,7 @@ const Szene8: React.FC<{ f: number }> = ({ f }) => {
 
 // ---------- Satz 9: CTA auf der Matte + Solleva-Endkarte ----------
 const Szene9: React.FC<{ f: number }> = ({ f }) => {
-  const kam = gleitKamera(f, {
-    start: V.s9,
-    ende: REEL04_DAUER,
-    von: { zoom: 1.08 },
-    fahrten: [
-      { f: V.s9, dauer: 18, zoom: 1.0, notiz: "Eintritt: sanft zurück" },
-      { f: W9.reel, dauer: 24, zoom: 1.05, y: -15, notiz: "Push auf «Reel»" },
-    ],
-  });
+  const kam = gleitKamera(f, kamera9());
   const btn = f >= W9.schreib ? feder(f - W9.schreib, 6) : 0;
   const k = f - W9.reel;
   const druck = k >= 0 && k < 3 ? 0.93 : k >= 3 && k < 10 ? 0.93 + 0.07 * feder(k - 3, 3) : 1;
@@ -372,7 +308,7 @@ const PHRASEN = [
   P(W9.schreib, W9.reel + 24, [["Schreib", W9.schreib], ["«Reel».", W9.reel, true]]),
 ];
 
-export const R04Reel: React.FC = () => {
+export const R04Reel: React.FC<{ untertitel?: UntertitelStil }> = ({ untertitel = "klein" }) => {
   const f = useCurrentFrame();
   const szene =
     f < SCHNITT ? <Szene1 f={f} /> :
@@ -387,7 +323,7 @@ export const R04Reel: React.FC = () => {
     <AbsoluteFill style={{ background: "#000" }}>
       <SchriftenR04 />
       {szene}
-      <Untertitel f={f} phrasen={PHRASEN} />
+      <Untertitel f={f} phrasen={PHRASEN} stil={untertitel} />
       <Koernung staerke={0.1} seed={Math.floor(f / 2) % 8} />
       {/* Stimme */}
       {[[S1, "s1"], [S2, "s2"], [V.s3, "s3"], [V.s4, "s4"], [V.s5, "s5"], [V.s6, "s6"], [V.s7, "s7"], [V.s8, "s8"], [V.s9, "s9"]].map(([from, n]) => (
