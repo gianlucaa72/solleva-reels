@@ -12,3 +12,4 @@ if (fs.existsSync(base)) {
 Config.setVideoImageFormat("jpeg");
 Config.setJpegQuality(92);
 Config.setOverwriteOutput(true);
+Config.setDelayRenderTimeoutInMilliseconds(240000); // schwere Szenen (Scherben, Bewegungsunschärfe)
