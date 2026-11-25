@@ -1,5 +1,7 @@
 # Solleva Motion-System (Baukasten für Reels)
 
+> **Aktuell in Arbeit: Reel 05 «50 Millisekunden»** → zuerst `docs/r05/UEBERGABE.md` lesen (Konzept freigegeben, Assets generiert, Storyboard und Stiltest offen).
+
 Status: **v0.2: Bausteine aus 7 Referenzen gebaut, wartet auf Freigabe des Nutzers** (Katalog-Video). Was der Nutzer im Katalog verwirft, wird entfernt; Freigegebenes gilt als Solleva-Stil.
 
 ## Regeln
