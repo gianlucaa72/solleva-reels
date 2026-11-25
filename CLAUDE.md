@@ -39,6 +39,15 @@ Status: **v0.2: Bausteine aus 7 Referenzen gebaut, wartet auf Freigabe des Nutze
 - Figuren/Objekte/Foto-Hintergründe mit Higgsfield **nur nach Freigabe**, danach in `assets/` speichern und wiederverwenden.
 - Hintergründe: Nutzer findet sie noch zu schlicht → pro Reel 1–3 Foto/Textur-Hintergründe vorschlagen.
 
+## Schrift (Wunsch des Nutzers, Reel 05)
+- Headlines **modern und fett**: Archivo 900, breit (wdth 112 %), Versalien, Prägung in Solleva-Violett (`titelStil`/`schluesselStil` in `src/reels/r05/Look.tsx`, wie Reel 04 «Filmcrew»). Instrument Serif nur noch für die Wortmarke «Solleva».
+
+## Reel 05 «50 Millisekunden»
+- `src/reels/r05/`: `Reel05.tsx` (ganzes Reel), `Look.tsx` (LCD-Stoppuhr, alte Muster-Praxis-Seite, Voronoi-Scherben mit Vorder-/Rückseite, Handy, Schrift), `Stiltest.tsx`, `Storyboard.tsx`
+- Timing: `python3 -I tools/r05_timing.py assets/r05/stimme/take1.mp3 --woerter assets/r05/stimme/take1-scribe.json --pause-vor 3=0.5,4=0.6,5=1.0,6=1.2,7=0.3,8=2.0,9=1.5,10=1.0` (schneidet in der Wortlücke)
+- Abgabe: Render `R05Reel` (Props `musik`/`stimme`/`effekte`), dann `bash tools/r05_mix.sh vN`
+- Sounds neu: `glas-01` (Mixkit 759), `glas-02-zeitlupe-tief`
+
 ## Offen
 - Ratsche erledigt: Favoriten ratsche-18 (rollt aus) und ratsche-19 (gleichmässig).
 - Musik (basslastiger Beat ohne Gesang) noch nicht gewählt.

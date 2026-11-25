@@ -19,7 +19,7 @@ G2=$(gain out/r05/ton-ohne-musik.wav)
 echo "Verstärkung mit Musik: ${G} dB, ohne Musik: ${G2} dB"
 
 # Limiter nur als Sicherheitsnetz für True Peak ≤ −1 dBTP (greift bei normalem Pegel nicht)
-lim="alimiter=limit=0.85:attack=5:release=50:level=false"
+lim="alimiter=limit=0.75:attack=5:release=50:level=false"
 ffmpeg -v error -y -i out/r05/ton-mit-musik.wav -af "volume=${G}dB,$lim" -ar 48000 out/r05/mix-mit-musik.wav
 ffmpeg -v error -y -i out/r05/ton-ohne-musik.wav -af "volume=${G2}dB,$lim" -ar 48000 out/r05/mix-ohne-musik.wav
 # Effekt-Spur: gleiche Verstärkung wie der Mix mit Musik, volle Länge ab 0:00
