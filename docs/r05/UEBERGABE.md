@@ -62,7 +62,7 @@ Alle Higgsfield-Bilder sind generiert und müssen nur heruntergeladen werden. **
 | Asset | Job-ID | Datei-URL |
 |---|---|---|
 | Auge (gewählt, «perfekt») | – | `assets/r05/auge-original-752x1344.png` (Original), `assets/r05/auge.png` (1080×1920) |
-| Auge Kling-Blinzeln (3 s, pro, ohne Ton) | f842d246-e2a4-4f5b-8014-119602363b62 | siehe unten bzw. Higgsfield-Verlauf |
+| Auge Kling-Blinzeln (3 s, pro, ohne Ton) | f842d246-e2a4-4f5b-8014-119602363b62 | https://d8j0ntlcm91z4.cloudfront.net/user_3Io1qyRUgihFHN2NQlkPA7F5SxY/hf_20261125_155849_f842d246-e2a4-4f5b-8014-119602363b62.mp4 |
 | Nebel A | 933ce458-5b38-43df-9c0c-eef94a4ada58 | https://d8j0ntlcm91z4.cloudfront.net/user_3Io1qyRUgihFHN2NQlkPA7F5SxY/hf_20261125_155711_933ce458-5b38-43df-9c0c-eef94a4ada58.png |
 | Nebel B | b9b01842-836e-41fb-81c2-fb3da7b17fb1 | https://d8j0ntlcm91z4.cloudfront.net/user_3Io1qyRUgihFHN2NQlkPA7F5SxY/hf_20261125_155711_b9b01842-836e-41fb-81c2-fb3da7b17fb1.png |
 | Planet A | 86ceb943-7da0-4b35-b2e2-ccba8e0aff6b | https://d8j0ntlcm91z4.cloudfront.net/user_3Io1qyRUgihFHN2NQlkPA7F5SxY/hf_20261125_155716_86ceb943-7da0-4b35-b2e2-ccba8e0aff6b.png |
