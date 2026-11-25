@@ -1,0 +1,376 @@
+{
+ "quelle": "take1.mp3",
+ "fps": 30,
+ "methode": "scribe",
+ "segmente": [
+  {
+   "satz": 1,
+   "von": 0.0,
+   "bis": 1.74,
+   "reel": 4
+  },
+  {
+   "satz": 2,
+   "von": 1.74,
+   "bis": 3.74,
+   "reel": 56
+  },
+  {
+   "satz": 3,
+   "von": 3.74,
+   "bis": 6.26,
+   "reel": 131
+  },
+  {
+   "satz": 4,
+   "von": 6.26,
+   "bis": 8.36,
+   "reel": 225
+  },
+  {
+   "satz": 5,
+   "von": 8.36,
+   "bis": 10.36,
+   "reel": 318
+  },
+  {
+   "satz": 6,
+   "von": 10.36,
+   "bis": 12.02,
+   "reel": 414
+  },
+  {
+   "satz": 7,
+   "von": 12.02,
+   "bis": 13.36,
+   "reel": 473
+  },
+  {
+   "satz": 8,
+   "von": 13.36,
+   "bis": 15.62,
+   "reel": 573
+  },
+  {
+   "satz": 9,
+   "von": 15.62,
+   "bis": 18.02,
+   "reel": 686
+  },
+  {
+   "satz": 10,
+   "von": 18.02,
+   "bis": 19.35,
+   "reel": 788
+  }
+ ],
+ "woerter": [
+  {
+   "satz": 1,
+   "w": "Fünfzig",
+   "n": "fuenfzig",
+   "f": 4
+  },
+  {
+   "satz": 1,
+   "w": "Millisekunden",
+   "n": "millisekunden",
+   "f": 23
+  },
+  {
+   "satz": 2,
+   "w": "Schneller",
+   "n": "schneller",
+   "f": 59
+  },
+  {
+   "satz": 2,
+   "w": "als",
+   "n": "als",
+   "f": 73
+  },
+  {
+   "satz": 2,
+   "w": "ein",
+   "n": "ein",
+   "f": 81
+  },
+  {
+   "satz": 2,
+   "w": "Wimpernschlag",
+   "n": "wimpernschlag",
+   "f": 85
+  },
+  {
+   "satz": 3,
+   "w": "So",
+   "n": "so",
+   "f": 134
+  },
+  {
+   "satz": 3,
+   "w": "schnell",
+   "n": "schnell",
+   "f": 139
+  },
+  {
+   "satz": 3,
+   "w": "weisst",
+   "n": "weisst",
+   "f": 148
+  },
+  {
+   "satz": 3,
+   "w": "du",
+   "n": "du",
+   "f": 158
+  },
+  {
+   "satz": 3,
+   "w": "ob",
+   "n": "ob",
+   "f": 165
+  },
+  {
+   "satz": 3,
+   "w": "dir",
+   "n": "dir",
+   "f": 169
+  },
+  {
+   "satz": 3,
+   "w": "eine",
+   "n": "eine",
+   "f": 172
+  },
+  {
+   "satz": 3,
+   "w": "Seite",
+   "n": "seite",
+   "f": 180
+  },
+  {
+   "satz": 3,
+   "w": "gefällt",
+   "n": "gefaellt",
+   "f": 189
+  },
+  {
+   "satz": 4,
+   "w": "Noch",
+   "n": "noch",
+   "f": 227
+  },
+  {
+   "satz": 4,
+   "w": "bevor",
+   "n": "bevor",
+   "f": 232
+  },
+  {
+   "satz": 4,
+   "w": "du",
+   "n": "du",
+   "f": 244
+  },
+  {
+   "satz": 4,
+   "w": "ein",
+   "n": "ein",
+   "f": 248
+  },
+  {
+   "satz": 4,
+   "w": "Wort",
+   "n": "wort",
+   "f": 256
+  },
+  {
+   "satz": 4,
+   "w": "gelesen",
+   "n": "gelesen",
+   "f": 263
+  },
+  {
+   "satz": 4,
+   "w": "hast",
+   "n": "hast",
+   "f": 275
+  },
+  {
+   "satz": 5,
+   "w": "Gefällt",
+   "n": "gefaellt",
+   "f": 322
+  },
+  {
+   "satz": 5,
+   "w": "sie",
+   "n": "sie",
+   "f": 334
+  },
+  {
+   "satz": 5,
+   "w": "nicht",
+   "n": "nicht",
+   "f": 339
+  },
+  {
+   "satz": 5,
+   "w": "ist",
+   "n": "ist",
+   "f": 358
+  },
+  {
+   "satz": 5,
+   "w": "sie",
+   "n": "sie",
+   "f": 362
+  },
+  {
+   "satz": 5,
+   "w": "weg",
+   "n": "weg",
+   "f": 368
+  },
+  {
+   "satz": 6,
+   "w": "Und",
+   "n": "und",
+   "f": 418
+  },
+  {
+   "satz": 6,
+   "w": "dieser",
+   "n": "dieser",
+   "f": 424
+  },
+  {
+   "satz": 6,
+   "w": "Eindruck",
+   "n": "eindruck",
+   "f": 434
+  },
+  {
+   "satz": 6,
+   "w": "bleibt",
+   "n": "bleibt",
+   "f": 446
+  },
+  {
+   "satz": 7,
+   "w": "Auch",
+   "n": "auch",
+   "f": 475
+  },
+  {
+   "satz": 7,
+   "w": "nach",
+   "n": "nach",
+   "f": 484
+  },
+  {
+   "satz": 7,
+   "w": "dem",
+   "n": "dem",
+   "f": 492
+  },
+  {
+   "satz": 7,
+   "w": "Lesen",
+   "n": "lesen",
+   "f": 496
+  },
+  {
+   "satz": 8,
+   "w": "Darum",
+   "n": "darum",
+   "f": 575
+  },
+  {
+   "satz": 8,
+   "w": "habe",
+   "n": "habe",
+   "f": 586
+  },
+  {
+   "satz": 8,
+   "w": "ich",
+   "n": "ich",
+   "f": 592
+  },
+  {
+   "satz": 8,
+   "w": "meine",
+   "n": "meine",
+   "f": 596
+  },
+  {
+   "satz": 8,
+   "w": "Seite",
+   "n": "seite",
+   "f": 604
+  },
+  {
+   "satz": 8,
+   "w": "neu",
+   "n": "neu",
+   "f": 614
+  },
+  {
+   "satz": 8,
+   "w": "gebaut",
+   "n": "gebaut",
+   "f": 621
+  },
+  {
+   "satz": 9,
+   "w": "Für",
+   "n": "fuer",
+   "f": 687
+  },
+  {
+   "satz": 9,
+   "w": "die",
+   "n": "die",
+   "f": 690
+  },
+  {
+   "satz": 9,
+   "w": "ersten",
+   "n": "ersten",
+   "f": 696
+  },
+  {
+   "satz": 9,
+   "w": "fünfzig",
+   "n": "fuenfzig",
+   "f": 709
+  },
+  {
+   "satz": 9,
+   "w": "Millisekunden",
+   "n": "millisekunden",
+   "f": 726
+  },
+  {
+   "satz": 10,
+   "w": "Folge",
+   "n": "folge",
+   "f": 789
+  },
+  {
+   "satz": 10,
+   "w": "für",
+   "n": "fuer",
+   "f": 802
+  },
+  {
+   "satz": 10,
+   "w": "mehr",
+   "n": "mehr",
+   "f": 808
+  }
+ ],
+ "dauer": 903
+}
