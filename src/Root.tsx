@@ -7,6 +7,7 @@ import { R04Stiltest, STILTEST_DAUER } from "./reels/r04/Stiltest";
 import { R04Reel, REEL04_DAUER } from "./reels/r04/Reel04";
 import { R04ReelV7, REEL04_V7_DAUER } from "./reels/r04/V7";
 import { R04Freigabe } from "./reels/r04/Freigabe";
+import { R05Storyboard } from "./reels/r05/Storyboard";
 
 export const Root: React.FC = () => (
   <>
@@ -16,6 +17,7 @@ export const Root: React.FC = () => (
     <Composition id="R04ReelV7" component={R04ReelV7} durationInFrames={REEL04_V7_DAUER} fps={FPS} width={BREITE} height={HOEHE} />
     <Composition id="R04Stiltest" component={R04Stiltest} durationInFrames={STILTEST_DAUER} fps={FPS} width={BREITE} height={HOEHE} />
     <Composition id="R04Storyboard" component={R04Storyboard} durationInFrames={9} fps={FPS} width={BREITE} height={HOEHE} />
+    <Composition id="R05Storyboard" component={R05Storyboard} durationInFrames={8} fps={FPS} width={BREITE} height={HOEHE} />
     <Composition id="Katalog" component={Katalog} durationInFrames={KATALOG_DAUER} fps={FPS} width={BREITE} height={HOEHE} />
   </>
 );

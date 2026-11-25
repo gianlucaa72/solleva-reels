@@ -1,80 +1,133 @@
 ---
 name: reel-produktion
-description: Fester Ablauf für hochwertige Kurzvideos (Instagram-Reels, YouTube Shorts, TikTok) für Solleva, giani.hockey, Lieblingsfund und Kunden. Verwenden bei jedem Reel, Short, Promo- oder Erklärvideo mit KI-Stimme und Motion Graphics, auch wenn nur «mach ein Reel/Video über …» oder «heute machen wir ein Reel» gesagt wird. Legt Referenz-Intake (Pinterest-Bilder, kurze Clips, vier Fragen), Referenz-Analyse, Stil-Steckbrief mit Storyboard zur Freigabe, 5-Sekunden-Stiltest vor jedem Credit-Verbrauch, Skript, KI-Voiceover, zwei Versionen mit Best-of-Schnitt, Sound, Musik und Abgabe verbindlich fest, damit das erste Ergebnis schon stimmt.
+description: "Fester Ablauf für hochwertige Kurzvideos (Instagram-Reels, YouTube Shorts, TikTok) für Solleva, giani.hockey, Lieblingsfund und Kunden, inkl. Sound-Design-Regeln."
 ---
 
 # Reel-Produktion: so machen wir unsere Videos
 
-Ziel: Jedes Video erzeugt beim Nutzer und bei den Zuschauern einen WOW-Effekt, und zwar mit **höchstens einer Korrekturrunde**. Der Nutzer gibt sich nicht mit 60 % zufrieden. Grundlage sind Referenzen, die wirklich funktionieren (Zane Hoyer «ChatGPT vs Claude Motion Graphics» inkl. seiner Original-Prompts, City Chicken, Amazon) und die Referenzen, die der Nutzer pro Reel mitbringt. Das Rezept:
+Ziel: Jedes Video erzeugt beim Nutzer und bei den Zuschauern einen WOW-Effekt, und zwar mit **höchstens einer Korrekturrunde**. Der Nutzer gibt sich nicht mit 60 % zufrieden. Grundlage sind Referenzen, die wirklich funktionieren (Zane Hoyer «ChatGPT vs Claude Motion Graphics», City Chicken, Amazon, EarnEdits «Buffett»/«Batman») und die Referenzen, die der Nutzer pro Reel mitbringt. Das Rezept:
 
-> **Erst verstehen, dann bauen. Die Referenzen werden zerlegt und als Steckbrief bestätigt, bevor etwas animiert wird. Die Stimme gibt den Takt vor. Jeder Satz ist ein klarer Moment. Ein einziger, streng definierter Look. Credits fliessen erst, wenn ein 5-Sekunden-Stiltest überzeugt.**
+> **Erst verstehen, dann bauen. Die Referenzen werden zerlegt und als Steckbrief bestätigt, bevor etwas animiert wird. Die Stimme gibt den Takt vor. Jeder Satz ist ein klarer Moment mit einem echten Bild. Eine Kamera, ein Look. Credits fliessen erst, wenn ein 5-Sekunden-Stiltest überzeugt.**
 
-Warum dieser Ablauf: Beim ersten Solleva-Reel wurden Referenzen geliefert, aber nur teilweise umgesetzt. Ergebnis «gut, aber nicht überragend». Ursache war nicht das Werkzeug, sondern dass ohne bestätigte Analyse direkt das ganze Reel gebaut wurde. Claude sieht Videos nur als Einzelbilder und hört keinen Ton. Was der Nutzer an einer Referenz liebt, muss deshalb **ausgesprochen, zerlegt und bestätigt** werden.
+Warum dieser Ablauf: Beim ersten Solleva-Reel wurden Referenzen geliefert, aber nur teilweise umgesetzt. Ergebnis «gut, aber nicht überragend». Ursache war nicht das Werkzeug, sondern dass ohne bestätigte Analyse direkt das ganze Reel gebaut wurde. Claude sieht Videos nur als Einzelbilder und hört keinen Ton. Was der Nutzer an einer Referenz liebt, muss deshalb **ausgesprochen, zerlegt und bestätigt** werden; jedes Klangurteil holt Claude beim Nutzer ab.
 
-Was wir NICHT mehr machen (hat sich als «cool, aber nicht überzeugend» erwiesen): direkt das ganze Reel bauen, ohne dass Steckbrief und Stiltest freigegeben sind; Referenzen nur «ungefähr» umsetzen; ein durchgehender Film ohne Stimme; eine Einstellung über 5+ s; 15 s dieselbe dunkle Farbe; Effekt-Sammlungen (Lens Flares, Lichtfasern, Glow überall); generierte Musik, die niemand ausgewählt hat.
+Was wir NICHT mehr machen (hat sich als «cool, aber nicht überzeugend» erwiesen): direkt das ganze Reel bauen, ohne dass Steckbrief und Stiltest freigegeben sind; Referenzen nur «ungefähr» umsetzen; ein Film ohne Stimme; eine Einstellung über 5 s; 15 s dieselbe dunkle Farbe; Effekt-Sammlungen (Lens Flares, Lichtfasern, Glow überall); Musik, die niemand ausgewählt hat; Folien mit Text statt Bildern; Smiley-Emojis als Bildersatz; futuristische/synthetische Soundeffekte; 14 Szenen in 47 s («am Ende kommt man nicht mehr nach»).
 
 **Arbeitsteilung (Hybrid):**
-- **Code (Remotion/React, TypeScript) baut Claude:** Typografie, UI- und Website-Demos, Übergänge, Icons, Captions, exaktes Timing, Markenfarben. Wirkt besser als Animationen in DaVinci Fusion und ist schneller änderbar.
-- **Higgsfield (inkl. Katana/Video-Modelle) liefert:** filmische Hintergründe, Licht, Kamerafahrten, Atmosphäre, Produkt- und Personenszenen, also alles, was Code nicht fotorealistisch kann. Nie für exakten Text oder UI verwenden; Text kommt immer als Code-Ebene darüber.
-- **Echtes Material vor generiertem:** eigene Aufnahmen (z. B. Hockey-Clips für giani.hockey, echte Screenshots von Solleva) haben Vorrang.
+- **Code (Remotion/React, TypeScript) baut Claude:** Kamera, Ebenen, Typografie, UI- und Website-Demos, Übergänge, Captions, exaktes Timing, Markenfarben.
+- **Higgsfield liefert:** freigestellte Objekte und Figuren, Textur-Hintergründe, Animationen von Figuren/Karten (Kling), Stimme, Musik-Varianten, Soundeffekte. Nie für exakten Text oder UI; Text kommt immer als Code-Ebene darüber.
+- **Echtes Material vor generiertem:** eigene Aufnahmen und Illustrationen des Nutzers (z. B. Hockey-Clips, Screenshots, eigene Karten-Illustrationen) haben Vorrang.
 - Ein Schnittprogramm (DaVinci Resolve oder CapCut) braucht es nur, wenn der Nutzer selbst feinjustieren will.
 
 ## Baukasten: Repository `gianlucaa72/solleva-reels` (zuerst laden!)
 Jede Reel-Sitzung beginnt mit: Repo anhängen (`add_repo`), klonen, `npm install`, `CLAUDE.md`, `LOGBUCH.md` und `docs/referenzen/` lesen. Dort liegen:
-- **Marken-Kern** `src/brand/solleva.ts` (Farben, Stimmungen S1–S4, Schriften), **Kurven** `src/lib/bewegung.ts`, **Kamera + Ton** `src/lib/kamera.tsx`
-- **Welten** W01–W07 (`src/welten`), **Übergänge** U01–U17 (`src/transitions`), **Texteffekte** X01–X20 (`src/text`), **Bausteine** B01/B06/B07/E02/U13/P01 (`src/bausteine`), Cursor C01, Endkarte E01
-- **Sound-Kit** `sounds/` (Mixkit + selbst erzeugt) mit Hit-Zeiten in `sounds.json`, Hörprobe `sounds/hoerprobe.html`; Sounds immer mit `<Ton nr="swish-02" bei={frame} />` setzen
+- **Marken-Kern** `src/brand/solleva.ts` (Farben, Stimmungen S1–S4, Schriften), **Kurven** `src/lib/bewegung.ts` (`landung()` für Landungen, `overshoot()` nur für Pop-Eingänge), **Ton** `src/lib/kamera.tsx` (`<Ton nr=… bei=… />`)
+- **Kamera K01** `src/kamera/welt.tsx` (Ebenen mit Tiefe, Zoom-Through, Bewegungsunschärfe, Filmlook), **Lupe K02** (Reel «Spielautomat» v3–v5)
+- **Stil-Rezepte**: R01 Halbton-Collage `src/stil/halbton.tsx` (Hintergründe H1–H8, Typografie T01–T13), R02 Papiertheater (Entwurf)
+- **Welten** W01–W07, **Übergänge** U01–U21, **Texteffekte** X01–X20, **Bausteine** B01/B06/B07/B08 Walze/E02/U13/P01, Cursor C01, Endkarte E01
+- **Karten** `assets/cards/` (2:3, austauschbare Walzen-Symbole), **Assets** pro Reel in `assets/<reel>/`
+- **Sound-Kit** `sounds/` (Mixkit + selbst erzeugt) mit Hit-Zeiten in `sounds.json`, Hörprobe `sounds/hoerprobe.html`
 - **Katalog** `src/katalog/Katalog.tsx` (alle Bausteine mit Nummer und Ton)
-Erst Bausteine aus dem Baukasten nehmen; Neues nur ergänzen und mit Nummer in Katalog + Bibliothek aufnehmen.
+- Vorlage für ein ganzes Reel mit K01: `src/reels/spielautomat/v5/Voll5.tsx`
+
+Erst Bausteine und Assets aus dem Baukasten nehmen; Neues nur ergänzen und mit Nummer in Katalog + `CLAUDE.md` aufnehmen.
 
 ## Content-Strategie (Vorgabe des Nutzers, gilt für jedes Reel)
 **Ausgangslage:** Bisherige Reels 100–250 Aufrufe, weil sie wie Werbung wirkten («Ich mache Websites»). Ziel: **zuerst Reichweite durch Unterhaltung/Neugier, dann Vertrauen, erst dann Verkauf.**
-1. **Themen breit**: Websites, Social Media, Marketing, Psychologie des Klickens, digitaler Erfolg von Firmen. Website ist **ein** Thema unter vielen, nicht jedes Mal das Hauptthema.
-2. **Formate wechseln** (Content-Säulen):
-   - **Fallgeschichte**: wie bekannte Firmen Social Media/Traffic geknackt haben (Story wie Buffett-Reel)
-   - **Vergleich**: A gegen B, früher gegen heute, Mythos gegen Wahrheit
-   - **Tipp/Hack**: sofort umsetzbar, bildlich erklärt
-   - **Hinter den Kulissen**: z. B. wie ein Reel mit Claude entsteht, der ganze Ablauf
-   - **Psychologie/Wissen**: warum Menschen klicken, scrollen, vertrauen, kaufen
-   - **Lokal/KMU**: Alltagsszenen von Schweizer KMU (Kunde sucht, findet nicht …)
+1. **Themen breit**: Websites, Social Media, Marketing, Psychologie des Klickens, digitaler Erfolg von Firmen. Website ist **ein** Thema unter vielen.
+2. **Formate wechseln** (Content-Säulen): Fallgeschichte · Vergleich (A gegen B, Mythos gegen Wahrheit) · Tipp/Hack · Hinter den Kulissen · **Psychologie/Wissen** (z. B. «Dein Daumen ist an einem Spielautomaten» – Dopamin) · Lokal/KMU.
 3. **Die Story trägt alles**: Hook in Sekunde 1, Spannung, Twist, Auflösung (Story-Bauplan). Erst die Story, dann Bilder und Effekte.
-4. **Bildlich denken**: Ideen so entwickeln, dass jeder Satz ein starkes Bild hat (Gehirn, griechische Statue, fallender PC, Cartoon-Figur …), nicht Listen auf Folien.
-5. **Nichts von der Stange**: jedes Reel anders in Format, Stimmung, Erzählweise (Logbuch prüfen).
-6. **Solleva dezent als Absender**: weicher CTA am Ende («Folge für mehr», «Schreib ‹Analyse›»), kein Verkaufsgespräch.
+4. **Bildlich denken**: Jeder Satz hat ein starkes, wörtliches Bild (Gehirn, Marmorbüste, Zirkuskanone, Joker-Karte …), keine Listen auf Folien.
+5. **Nichts von der Stange**: jedes Reel anders in Format, Stil-Rezept, Erzählweise (Logbuch prüfen).
+6. **Solleva dezent als Absender**: Standard-CTA **«Folge für mehr»**, kein Verkaufsgespräch.
 7. **Erzähler**: Ich-Form (Gianluca) **oder neutraler Erzähler** (wie Buffett-/Batman-Reels), je nach Thema.
-8. **Fakten**: Fallgeschichten und Zahlen vorher recherchieren, Quellen im Freigabe-Paket nennen; nichts Unbelegtes behaupten. Keine Markenlogos/Marken-Assets nachbauen; Firmen nur im Text/Ton nennen.
+8. **Fakten**: recherchieren, Quellen im Freigabe-Paket nennen; nichts Unbelegtes behaupten, keine erfundenen Zahlen. Zuspitzungen als solche kennzeichnen. Keine Markenlogos/Marken-Assets nachbauen; Firmen nur im Text/Ton nennen. Referenzen werden im **Stil** nachgebaut, nie 1:1 (keine fremden Figuren wie Batman).
 
-## Stil-DNA aus den Referenzen (gilt für jedes Reel)
-1. **Nichts steht still**: jede Szene in `<Kamera>` (Push 2–5 %, Drift, ±0,6° Rotation), Objekte driften/pendeln.
-2. **Alle 0,3–0,6 s ein Ereignis** (Wort, Zahl, Objekt, Zoom). Gleiche Szene max. 2,5 s.
-3. **Pro Satz eine neue Welt** (Hintergrund wechselt), Hauptfigur/-objekt darf als Anker bleiben.
-4. **Tiefe**: Text kommt aus der Unschärfe, Vordergrund unscharf, Schatten am Boden.
-5. **Wörtliche Bilder**: jedes Bild illustriert das gesprochene Wort, nicht das Thema allgemein.
-6. **Zahlen werden inszeniert** (aufbauen, zählen, überkleben, Kacheln), nie nur geschrieben.
-7. Hauptlook hell = Ref. 05 «2-D Motion Reel» (Lavendel, Raster, schmale kursive Serif, Licht-Bloom). Dunkel = Nacht/Violett mit Leuchten.
-8. **Bildsprache statt Folien (wichtig für den Nutzer)**: Jede Szene braucht ein **Bild zur Veranschaulichung**, nicht nur Text auf Fläche. **Hauptbilder sind echte, generierte Objekte und Figuren** (Higgsfield, fotorealistisch oder im Collage-/Cartoon-Stil, freigestellt), z. B. ein **realistisches Gehirn**, **griechische Männer/Marmor-Statuen** (Denker, Philosoph am Laptop), Cartoon-/Ausschnitt-Figuren (wie das Buffett-Männchen), ein PC, der vom Himmel fällt, Hände, Geld, Lupe, Uhr. **Emojis (`assets/emoji/`, Fluent 3D, MIT) sind nur kleine Akzente** (Reaktionen, Aufzählungen), **nie Ersatz** für ein generiertes Hauptbild. Ablauf: zuerst in `assets/` nach bereits generierten Objekten suchen und wiederverwenden; Neues mit Higgsfield **nur nach Freigabe** (Kosten nennen), danach in `assets/objekte/` bzw. `assets/figuren/` speichern. Im Freigabe-Paket pro Szene das Bild nennen.
-9. **Hintergründe aufwerten**: Der Nutzer findet die Code-Hintergründe noch zu schlicht. Pro Reel prüfen, ob 1–3 Hintergründe als Foto/Textur mit Higgsfield erstellt werden sollen (Himmel, Marmor, Filz, Papier, Vorhang … in Solleva-Farben getönt); nach Freigabe generieren und in `assets/hintergrund/` für spätere Reels speichern.
+## Stil-DNA (gilt für jedes Reel)
+1. **Eine durchgehende Kamera (K01)**: alle Szenen liegen in einer Welt; die Kamera ist eine einzige Scale/Translate-Animation über die ganze Timeline. Ebenen mit Tiefe: Hintergrund 0,3 · Hauptobjekt 1,0 · Text 1,1 · Vordergrund 1,6 → Parallax.
+2. **Übergänge als Zoom-Through**: die nächste Szene liegt verkleinert in einem 9:16-Fenster eines Schlüsselobjekts der aktuellen Szene (Handy-Bildschirm, Münze, Tropfen, Rauchwolke, Laptop, Pokal …). Fahrt **0,7 s, cubic-bezier(0.65,0,0.15,1)**, Bewegungsunschärfe, danach unsichtbarer Wechsel. Höchstens **ein** bewusster harter Schnitt pro Reel (Bruch-Moment).
+3. **Nichts steht still, aber nichts schiesst Text aus dem Bild**: Drift 100 → 104 %, 2–4 px seitlich; **Kamera-Stoss (3 %) auf jedes Schlüsselwort**; 1–2 kleine Schwenks pro Szene; Objekte mit Idle (Schweben, Wackeln, rieselnder Sand). Idle vor jeder Fahrt auf 0 ausblenden (sonst trifft die Kamera das Fenster nicht).
+4. **Alle 0,3–0,6 s ein Ereignis** (Wort, Objekt, Stoss), gleiche Szene max. ~2,5–3 s.
+5. **Pro Satz eine neue Welt**: anderer Hintergrund-Typ, jeder Hintergrund bewegt sich (Strahlen drehen, Tapete schwenkt, Punkte atmen, Spirale dreht). Hintergründe mit **echter Textur** (Higgsfield), nicht flach im Code.
+6. **Wörtliche Bilder**: jedes Bild illustriert das gesprochene Wort. **Hauptbilder sind echte, generierte Objekte/Figuren** (freigestellt, im Stil des Rezepts). Emojis nur als kleine Akzente; **keine Smiley-Gesichter**, auch nicht als Platzhalter – Gefühle über echte Motive (gähnende Marmorbüste statt schlafender Smiley).
+7. **Typografie nie kopieren**: jede Szene eine eigene Schrift-Idee (z. B. Erpresser, Etikett, Lotterie-Los, Riso, Raster-Wort, Sprechblase, Stempel, Handschrift, Prägeband, Schlagzeile, Kreistext, Wiederholungs-Stapel, Karteikarte). Dieselbe Idee höchstens zweimal (Hook und CTA als Klammer).
+8. **Filmlook als feste Ebene über allem** (nicht von der Kamera bewegt): Korn, Vignette, 1–2 % Flackern.
+9. **Stil-Rezepte sind Optionen, kein Standard** (Entscheid Nutzer): pro Reel eines wählen (R01 Halbton-Collage, R02 Papiertheater, Solleva hell «Ref. 05» …) oder ein neues aus Referenzen ableiten. Fest für alle Reels gelten nur Kamera, Tempo/Länge, Sounds, Lesezeit, Safe Zone, CTA.
 
-## Story-Bauplan (Vorlage, aus Ref. 01/03)
-1. **Hook** mit konkreter Zahl oder Szene (0–2 s) · 2. **Vergleich**, der sie fühlbar macht · 3. **Twist** («Aber …») · 4. **Spannung über Zeit** · 5. **Rätsel** («Warum?») · 6. **Beweis/Muster** · 7. **offene Schleife oder CTA**. Zahlen nur, wenn echt (eigene Projekte mit Erlaubnis).
+## Lesbarkeit, Safe Zone, Loop (gilt immer, Feedback «Spielautomat» v4)
+- **Instagram-Safe-Zone**: alles Wichtige in **x 60–940, y 250–1550** (rechts Buttons, unten Caption). Weil die Kamera zoomt, Text mit Reserve setzen: **x 95–900, y ≥ 300**. Kein wichtiges Element unter die rechten Buttons.
+- **Hook**: das Schlüsselwort steht **bis spätestens 0,8 s gross im Bild** (nicht erst, wenn es gesprochen wird; dann nur noch ein Puls). Hook-Etiketten ≥ 58 px.
+- **Lesezeit**: Text baut sich synchron zur Stimme auf und bleibt ≥ 1,5 s ganz stehen (≥ 0,3 s pro Wort). Pro Bild höchstens ca. 8 Wörter.
+- **Übersicht**: oben Text, Mitte EIN Hauptobjekt, höchstens 2–3 Akzente.
+- **Keine leeren Papierflächen > 0,2 s**: Papier/Label wächst mit dem Text oder ist von Anfang an gefüllt; noch nicht gesprochene Wörter als Kontur vorzeigen.
+- **Kontrast**: auf hellen Hintergründen dunkle Schrift auf hellem Label; nie hellgraue Schrift auf hellem Grund.
+- **Keine halb angeschnittenen, unscharfen Deko-Elemente am Rand**: ganz ins Bild und scharf, oder weg.
+- **Loop-Ende**: Endkarte geht raus, der erste Hintergrund blendet deckungsgleich ein (letzter ≈ erster Frame, messen).
+
+## Länge und Tempo (Feedback «Spielautomat» v2 → v3)
+- **Zielmass 30–35 s, höchstens 8–9 Szenen.** Lieber Sätze zusammenlegen als Szenen stapeln.
+- Gleiche Motive nicht in mehreren Szenen hintereinander → zusammenlegen und innerhalb der Szene mit Kamera-Schwenk weiterführen.
+- Stimme darf 3–5 % schneller laufen (`atempo`), wenn das Reel sonst zu lang wird.
+
+## Story-Bauplan (Vorlage)
+1. **Hook** mit konkreter Szene oder Widerspruch (0–1 s) · 2. **Vergleich**, der sie fühlbar macht · 3. **Twist** («Aber …») · 4. **Erklärung/Spannung** · 5. **Rätsel** («Warum?») · 6. **Beweis/Muster** · 7. **Übertrag auf den Zuschauer** · 8. **CTA**. Pro Reel ein **Humor-/Bruch-Moment** und ein **Signature-Moment** (z. B. Joker knallt aus der Walze, lacht, Kamera fährt durch die Münze).
 
 ## Abwechslung (damit es nach 3–4 Reels nicht langweilig wird)
-- Fester Kern: Farben, Schriften, Endkarte, Stimme, Signatur-Sounds, Qualität.
-- Wechselt pro Reel: **Format** (UI-Demo, Vorher/Nachher, Typo, Collage/filmisch, «3 Fehler», Person mit Overlays), **Stimmung** S1–S4, **Übergangs-Set** (3–4), **Welten**, **Tempo**, **Hook-Typ**.
+- Fester Kern: Kamera K01, Stimme, Endkarte/CTA, Safe Zone, Sound-Haltung, Qualität.
+- Wechselt pro Reel: **Format**, **Stil-Rezept/Farbwelt**, **Schlüsselobjekte für die Zoom-Throughs**, **Hintergrund-Typen**, **Typografie-Ideen**, **Hook-Typ**, **Musik-Richtung**.
 - Vor jedem Reel `LOGBUCH.md` lesen: Kombination der letzten 3 Reels nicht wiederholen; **pro Reel mindestens ein neues Element**. Nach Abgabe Logbuch-Zeile ergänzen.
 
-## Sound-Regeln (aus Sound-Analyse der Referenzen)
-- Drei Schichten: Stimme klar oben, basslastiger Beat durchgehend darunter, kurze Effekte (0,1–0,3 s) auf fast jedem Bildereignis.
-- **Swish/Whoosh 1–3 Frames VOR** der Bewegung, **Klick/Schlag exakt** auf Landung/Einrasten.
-- Tonhöhe folgt Bewegung: Einflug/Fall → fallender Swish; Spannung → Riser; Stakkato/Bruch → Downlifter; Enthüllung → Glitzer; Linie/Zähler/Ausrollen → Ratsche.
-- Favoriten des Nutzers in `sounds/README.md` nachführen. Nutzer hört selbst und ergänzt Sounds.
+## Sound-Haltung (Feedback «Spielautomat» v2)
+- **Minimal und teuer, nichts Futuristisches**: nur natürliche Geräusche (Papier, Schreibmaschine, Holz, Mechanik, Luft, Favoriten ratsche-18/19), wenige Ereignisse, leise unter der Stimme.
+- Gemessen synthetisch/tonal und darum meiden: ratsche-09/10 (Arcade), klick-01/02 (UI), pop-*, glitzer-*, glitch-*, riser-02/04, downlifter-02, schlag-01/03/04/06 (Sinus/Synth).
+- **Swish/Whoosh 1–3 Frames VOR** der Bewegung, **Klick/Schlag exakt** auf Landung/Einrasten; Zoom-Through → Luft-Whoosh; Lupe → swish-06 auf die Landung.
+- Charakter-Sounds (z. B. «dreckiges Joker-Lachen») gezielt einsetzen: generieren (Higgsfield Mirelo, ~0,75 Credits) oder Mixkit; **zentral und laut genug** (etwa so laut wie die Stimme), Einsatz genau auf den sichtbaren Moment, unter der Stimme nur leicht leiser.
+- Neue Favoriten oder Ausschlüsse des Nutzers in `sounds/README.md` und `CLAUDE.md` nachführen.
 
 Zusätzlich gilt immer der Skill **motion-design** (Kurven Land/Heavy/Whip, ein Anführer pro Moment, Ausgänge schneller als Eingänge, Standbilder leben weiter).
+
+## Aus Zanes «Premium Animations» übernommen (Nov. 2026)
+Original-Prompts unverändert im Repo: `docs/referenzen/zane-premium-animations-prompts.md`. Von dort gilt bei uns nur, was zu Remotion + Higgsfield + 1080×1920 passt:
+
+**Motion-Zahlen (ergänzen `motion-design`)**
+- **Springs**: schwere Objekte f 0,9–1,2 Hz, Dämpfung 0,55–0,8; UI-Pops f 2,0–2,6 Hz, Dämpfung 0,38–0,5 (sichtbarer Overshoot). Pop-in: Scale 0,3–0,6 → 1, Opacity in 0,2 s, Blur 10 → 0 px, kleine Setz-Rotation.
+- **Text**: pro Wort/Buchstabe 0,4–0,6 em aufsteigen, Blur 8–22 px → 0, ease-out-expo ca. 0,9 s, Staffelung 30–90 ms. Ausgänge spiegelverkehrt mit Blur, kürzer als Eingänge. Dieselbe Text-Bewegung nie zweimal hintereinander.
+- **Interaktion**: bei UI-/Website-/CTA-Szenen mindestens eine Berührung pro Szene: Cursor oder Touch-Kreis drückt (Squish), Ripple-Ring, UI antwortet sichtbar (Button-Zustand, Schalter, Herz mit Partikeln, Karte wischt weg). Endkarte: «Folgen» → «Folge ich ✓».
+- **Lebendige UI**: Zähler zählen hoch, Balken füllen sich mit wanderndem Glanz, Wellenformen laufen.
+- **Nichts tot**: Idle als Summe langsamer Sinus statt gleichmässigem Wackeln; Filmkorn pro Frame versetzen; Laufschrift-Hintergründe.
+- **Takt pro Szene**: Das Wichtigste landet in den ersten 0,2–0,6 s, Zweitdetails folgen gestaffelt. Nie ein leeres Bild abwarten.
+- **Signature-Detail** pro Szene erfinden (Licht läuft durch Glas, Muster pulsiert vom Einschlag aus, Teile sortieren sich selbst, Material wechselt die Farbe beim Drehen).
+- **Übergänge als Match-Cuts, nie Crossfade zwischen Unverwandtem**: Iris durch das Loch eines Rings, Push in den Handy-Bildschirm, Whip-Pan mit waagrechter Unschärfe (Spitze am Schnitt), Tap-Ripple flutet zu Schwarz, Bloom zu Weiss. Jeder Wechsel übernimmt die Bewegungsrichtung der letzten Szene.
+- **Bewegungsunschärfe nach Tempo**: 1 Probe bei langsamen Szenen, bis 6–7 bei schnellen (spart Renderzeit; die 6 Proben nur dort, wo es zählt).
+
+**Sound-Design (gilt für unsere Reels und für fremde Videos, die der Nutzer hochlädt)**
+- **Zuerst ansehen, dann wählen.** Das ganze Video mit Original-Ton prüfen, jeden Effekt anhören (Hit-Zeit aus `sounds.json`), nicht nach Dateinamen raten. Effekte sind eine Bibliothek, keine Checkliste. Was der Originalton schon trägt, bleibt unberührt.
+- **Geste einmal vertonen**: bewegen sich mehrere Elemente als eine Bewegung, gibt es einen Sound, nicht einen pro Element.
+- **Nach dem Bild synchronisieren, nicht nach Dateianfang**: Klick auf dem Frame, auf dem der Knopf einrastet; Whoosh schwillt durch die schnellste Phase; Schlag dort, wo die Bewegung stoppt oder trifft. Gleitet ein Titel rein, überschiesst und setzt sich: ein weicher Swish durch die Fahrt, ein kleiner Tick beim Setzen nur, wenn die Landung dadurch besser wirkt. Links/rechts nur, wenn die Bewegung im Bild es hergibt.
+- **Pegel einzeln und leise starten**: Stimme/Musik sind die Lautstärke-Referenz; jeden Effekt erst so weit anheben, bis die Bewegung lesbar ist. Ein heller Klick kann die Stimme durchschneiden, auch wenn der Pegel klein wirkt. Maskiert ein Effekt ein Wort: Effekt kürzen, weicher machen oder streichen, nie die Stimme absenken. Den ganzen Ton nie nur für einen Deko-Effekt absenken. Der stärkste Akzent gehört dem wichtigsten Moment, ruhige Stellen bleiben ruhig.
+- **Kontrolle**: Mix mit dem Original bei gleicher Lautstärke vergleichen («lauter» ist nicht «besser»); bei leiser Wiedergabe muss die Sprache gut verständlich sein; prüfen auf Clipping, doppelte Hits, abrupte Tails, Versatz. **True Peak ≤ −1 dBTP**, nicht komprimieren, nur um lauter zu werden.
+- **Zusatzdatei**: neben dem Video eine **Effekt-Spur als WAV** in voller Länge, ab 0:00 ausgerichtet, Stille zwischen den Cues bleibt (`<name>-effekte.wav`).
+- **Erfolgstest**: Effekte stumm → die Bewegung verliert Gewicht oder Klarheit; Effekte an → man bemerkt die Bewegung mehr als die Sounds.
+
+**Variante «Talking-Head-Reel» (nur für Kunden mit eigenem Gesprächsvideo, nicht Standard)**
+- Zuerst Datei prüfen (Auflösung, fps, Länge, Tonspuren, statische Kamera), Frames ansehen. **Transkript mit Wortzeiten**; fehlt ein Sprach-Tool, Transkript/SRT beim Nutzer holen, Wörter nie raten. Aus dem Transkript Hook, Kernpunkte, Zahlen, Schnittstellen (Satzenden) bestimmen und den Schnittplan schreiben: welches gesprochene Wort löst welchen grossen Moment aus.
+- **Shot-Typen im Wechsel, 2–3 s, Schnitt auf Satzenden**: (A) riesiges Schlüsselwort **hinter** der Person (nur ein Teil eines Buchstabens verdeckt, weiches Rim-Licht in Markenfarbe); (B) 3D-Ring/Band im Orbit, hinten und vorne an der Person vorbei (Objekt in Vorder-/Hinterhälfte teilen), kleiner Chip fährt mit; (C) Punch-In auf ausserzentrale Position, Wort im freien Raum daneben, leicht hinter dem Haar; (D) Vollbild-3D-B-Roll, Ton läuft weiter, ein Objekt steht für die Aussage (Sanduhr = Zeit, Knoten = Automatisierung, Schloss = Sicherheit); (E) Endkarte mit Cursor-Klick.
+- **Ebenenreihenfolge**: Plate → Elemente dahinter (Wort, Glow, 3D-Rückseite) → Freisteller → 3D-Vorderseite → Overlays → Captions.
+- **Freisteller**: Personen-Segmentierung, falls verfügbar; sonst GrabCut mit Lage-Vorgaben, Maske vom Vorbild-Frame, grösste Fläche, Löcher füllen, Kante leicht nach innen, zeitliche Glättung, Guided Filter für Haare. Kante über mehrere Frames hineingezoomt prüfen: kein Flackern, kein dunkler Saum.
+- **Captions**: eine Zeile, klein, weiss, fett, harter Schlagschatten (kein Weichzeichner-Kasten), immer an derselben Stelle über der Bedienzone, Wort für Wort auf den Wortzeiten.
+- Das **Original-Audio des Kunden kommt unverändert zurück** ins fertige Video. Kein Klang wird ersetzt.
+
+**Zusätzliche Kontrolle vor dem Voll-Render**
+- Jede Szene in Viertelauflösung alle ca. 0,4 s als Kontaktbogen prüfen (Timing, Bildaufbau, Wechsel). Danach Ausschnitte in voller Auflösung für Kanten, Textschärfe und Material.
+- Clip erst unter Temp-Namen schreiben und nach Erfolg umbenennen (wieder aufsetzbar). Danach mit `ffprobe` und Frames rund um jeden Übergang prüfen.
+
+**Bewusst nicht übernommen**: 3840×2160 als Standard (wir liefern 1080×1920), die Playwright/Software-WebGL-Pipeline und 3D-Objekte aus eigenem Code (wir bauen mit Remotion, Objekte kommen von Higgsfield), vier Phasen mit sechs 4K-Frames (wir haben Steckbrief + Stiltest), Szenen von 5–6,5 s (bei uns 2,5–3 s). Als optionales Stil-Rezept für Produkt-/Software-Themen (z. B. Solleva-Website-Promo) bleibt der **3D-Glas-SaaS-Look** von Zane möglich: Near-Black mit einer Markenfarbe, Glas-UI-Karten, ein 3D-Held pro Szene, ein Satz Titel, kein Fliesstext.
 
 **Pflicht-Freigaben (sonst ohne Rückfrage durcharbeiten):**
 1. Freigabe-Paket (Steckbrief + Skript + Storyboard), Schritt 3
 2. Stimmwahl beim ersten Video eines Kanals, Schritt 4
 3. 5-Sekunden-Stiltest, Schritt 5
+4. **Jede Higgsfield-Generierung mit Kosten** (Bilder, Videos, Musik, Sounds): Kosten vorher mit `estimate_*` nennen, Freigabe abwarten.
 
 ---
 
@@ -83,163 +136,123 @@ Zusätzlich gilt immer der Skill **motion-design** (Kurven Land/Heavy/Whip, ein 
 ### 1. Brief und Referenz-Intake (eine Nachricht, nur nachfragen, was fehlt)
 Typischer Start: «Heute machen wir ein Reel über X.» Dann gemeinsam klären:
 - **Kanal:** Solleva, giani.hockey, Lieblingsfund oder Kunde → bestimmt den Basis-Steckbrief (unten).
-- **Eine Botschaft** in einem Satz, **Zielgruppe**, **CTA** (z. B. «Schreib «Analyse»»).
-- **Länge:** Standard 20–30 s. Nie über 35 s ohne Grund.
+- **Eine Botschaft** in einem Satz, **Zielgruppe**, **CTA** (Standard Solleva: «Folge für mehr»).
+- **Länge:** 30–35 s, höchstens 8–9 Szenen.
+- Hat der Nutzer kein Thema: 3–5 Ideen aus verschiedenen Content-Säulen vorschlagen (mit Hook-Satz und Signature-Moment), eine empfehlen.
 
 **Referenzen: drei Bausteine** (Upload-Limit des Nutzers: 30 MB pro Datei)
-1. **Pinterest-Bilder für den Look** (5–10 Stück): Hintergründe, Farben, Schriften, Licht, Icon-/Emoji-Stil.
-2. **2–3 kurze Clips für die Bewegung:** 5–15 s, nur der Teil, der packt (nicht das ganze Reel), **1080p, mit Ton, MP4**, jeder Clip einzeln hochladen (15 s in 1080p ≈ 15–25 MB). **Keine 480p-Aufnahmen**: Darin gehen Schriften, Körnung, Unschärfe-Übergänge, Glow und feine Bewegungen verloren.
-3. **Sound als Titel oder Link:** Tempo und Energie (ruhig, treibend, mit Drop). Musikdatei nur, wenn sie im Video landen soll.
+1. **Pinterest-Bilder für den Look** (5–10 Stück): Hintergründe, Farben, Schriften, Licht, Objekte.
+2. **2–3 kurze Clips für die Bewegung:** 5–15 s, nur der Teil, der packt, **1080p, mit Ton, MP4**, jeder Clip einzeln. **Keine 480p-Aufnahmen.**
+3. **Sound als Titel, Link oder Clip:** Tempo und Energie. Musik kann Claude auch als Varianten generieren (Schritt 8).
 
-**Die vier Fragen pro Clip** (Stichworte reichen, Fachwörter unnötig; dem Nutzer bei Bedarf genau so vorlegen):
+**Die vier Fragen pro Clip** (Stichworte reichen):
 1. **Was genau?** Zeitangabe + Stelle, z. B. «0:04, wie der Text reinkommt».
-2. **Wie fühlt es sich an?** z. B. edel, verspielt, hart, ruhig, schnell, teuer. Vergleiche sind willkommen («wie Apple-Werbung, aber wärmer»).
+2. **Wie fühlt es sich an?** z. B. edel, verspielt, hart, ruhig, schnell, teuer.
 3. **Was übernehmen?** nur die Übergänge / den ganzen Look / nur die Schrift / den Rhythmus.
 4. **Was NICHT übernehmen?** z. B. «zu hektisch», «Farben passen nicht zu uns».
 
-Fehlen Referenzen: mit dem Basis-Steckbrief des Kanals arbeiten und das im Freigabe-Paket klar sagen.
+Fehlen Referenzen: mit dem Basis-Steckbrief und den bereits analysierten Referenzen (`docs/referenzen/`) arbeiten und das im Freigabe-Paket klar sagen. Kann der Nutzer einen Stil nicht benennen: Stil benennen und Suchbegriffe für Pinterest vorschlagen (z. B. «halftone collage», «vintage collage animation»).
 
 ### 2. Referenz-Analyse (Claude, ohne Rückfrage)
-Jede Referenz wirklich zerlegen, nicht nur anschauen:
-- **Einzelbilder:** mit ffmpeg rund um jede genannte Zeitangabe **15–30 Bilder pro Sekunde** extrahieren (`ffmpeg -ss T-0.5 -t 1.5 -i clip.mp4 -vf fps=24,scale=540:-1 f_%03d.png`), dazu ein Kontaktbogen des ganzen Clips mit 4 fps (`tile`). Alle Bilder ansehen.
-- **Szenenwechsel messen:** `select='gt(scene,0.3)',showinfo` → Liste der Schnitte, durchschnittliche Einstellungslänge.
-- **Übergänge bestimmen:** Art (Push, Zoom-Durchflug, Match-Cut, Maske, Blur-Whip, Glitch), **Dauer in Frames**, Easing (wie schnell rein, wo es abbremst, Overshoot ja/nein), was sich in welcher Reihenfolge bewegt (Anführer + Nachzügler mit Verzögerung).
-- **Look:** Farbpalette aus den Bildern ziehen (dominante Farben als Hex), Hintergrund-Aufbau (Verlauf, Textur, Körnung, Tiefe/Ebenen, Licht), Formsprache (Radius, Schatten, Rahmen).
-- **Schrift:** Klasse und Merkmale bestimmen (Grotesk/Serif/Condensed, Strichstärke, Laufweite, Versalien) und die **nächste freie Entsprechung** von Fontshare oder Google Fonts wählen. Nicht behaupten, die Originalschrift sicher zu kennen.
-- **Icons/Emojis:** Stil bestimmen (flach, 3D, Outline, animiert). Freie Quellen: Microsoft Fluent 3D Emoji (MIT), Lucide/Phosphor Icons, Lottie.
-- **Ton (Claude hört nicht):** Hüllkurve und Beats per ffmpeg/numpy messen (`astats`, Energie pro 50 ms, Onsets) und gegen die Schnittliste legen: Schneidet die Referenz auf den Beat? Wo liegen Impacts, Whooshes, Stille? Den Klangcharakter aus der Beschreibung des Nutzers übernehmen, nie erfinden.
-- Pinterest-Bilder genauso auf Farben, Schrift, Textur, Komposition auswerten.
+- **Einzelbilder:** rund um jede genannte Stelle 15–30 Bilder pro Sekunde (`ffmpeg -ss T-0.5 -t 1.5 -i clip.mp4 -vf fps=24,scale=540:-1 f_%03d.png`), dazu ein Kontaktbogen des ganzen Clips (4 fps, `tile`). Alle Bilder ansehen.
+- **Szenenwechsel messen:** `select='gt(scene,0.3)',showinfo` (findet nichts → die Referenz verbindet alles über Bewegung).
+- **Übergänge bestimmen:** Art (Zoom-Through, Push, Match-Cut, Maske, Lupe, Objekt-Wischer), **Dauer in Frames**, Easing, Reihenfolge der Bewegungen.
+- **Look:** Farbpalette als Hex, Hintergrund-Aufbau (Textur, Ebenen, Licht), Formsprache.
+- **Schrift:** Klasse und Merkmale bestimmen, nächste freie Entsprechung (Google Fonts/Fontshare) wählen. Nicht behaupten, die Originalschrift sicher zu kennen.
+- **Ton (Claude hört nicht):** Tempo (BPM), Tonart, Energieverlauf, harmonisch/perkussiv, Lautheit messen (librosa/ffmpeg) und gegen die Schnittliste legen. Klangcharakter aus der Beschreibung des Nutzers übernehmen, nie erfinden.
+- **Bildquelle erkennen**: Sieht eine Referenz nach KI-Bild aus (glatt, verwaschene Details, inkonsistente Rahmen), dann Rahmen/Text/Etiketten im Code bauen, einen Prompt-Kern für alle Objekte verwenden und jedes Bild prüfen (Hände, Ränder, kein KI-Text).
+- Analyse als `docs/referenzen/refNN-<name>.md` speichern (Tabelle «Zeit → Bild/Übergang» + «Gesehen → so setze ich es um»).
 
 ### 3. Freigabe-Paket: Steckbrief + Skript + Storyboard (Pflicht-Freigabe)
-Alles in **einer** Nachricht, damit es nur eine Runde braucht.
+Alles in **einer** Nachricht.
 
-**a) Stil-Steckbrief für dieses Reel**
-- Basis = Steckbrief des Kanals (unten), **darüber** die Erkenntnisse aus den Referenzen. Widerspricht eine Referenz dem Kanal-Steckbrief (z. B. andere Farben), ausdrücklich nachfragen statt still entscheiden.
-- Inhalt: Farben (Hex), Hintergründe, Textur, Formsprache, Schriften, Icon-Stil, Übergangs-Typen mit Dauer in Frames und Kurve, Rhythmus (Ø Einstellungslänge, Schnitt auf Beat ja/nein), Sound-Momente, Herkunft jeder Szene (Code / Higgsfield / echtes Material).
-- **Pro Referenz-Notiz des Nutzers eine Zeile «Gesehen → so setze ich es um»**, damit überprüfbar ist, dass nichts untergeht. Jede vom Nutzer genannte Stelle muss im Reel vorkommen oder begründet weggelassen werden.
+**a) Stil-Steckbrief**: Stil-Rezept, Farben (Hex), Hintergrund-Typ pro Szene, Typografie-Idee pro Szene, Schlüsselobjekt pro Zoom-Through, Sound-Momente, Herkunft jeder Szene (Code / Higgsfield / Material des Nutzers). **Pro Referenz-Notiz eine Zeile «Gesehen → so setze ich es um».** Widerspricht eine Referenz dem Kanal-Steckbrief: ausdrücklich nachfragen.
 
-**b) Skript** (Format: eine Zeile = ein Moment)
+**b) Skript** (eine Zeile = ein Moment)
 
 ```
-#  | Kapitel-Label    | Gesprochener Satz                     | Schlüsselwort | Bild-Moment / Übergang          | Quelle
-1  | // 01 GESUCHT    | Deine Kunden googeln dich. Jeden Tag. | googeln       | Suchleiste tippt, Zoom-Push     | Code
-2  | // 02 UNSICHTBAR | Nur … du tauchst nicht auf.           | nicht         | Liste scrollt, findet nichts    | Code
+#  | Satz                                         | Schlüsselwort | Bild / Typografie        | Zoom-Through in …   | Quelle
+1  | Dein Daumen zieht gerade an einem Spielautomaten. | Spielautomaten | Hand zieht Handy-Hebel, Erpresserbrief | Handy-Bildschirm | Higgsfield + Code
 ```
 
 Regeln:
-- **6–10 Sätze**, je 4–9 Wörter, gesprochen 1,5–3 s.
-- **Satz 1 = Hook** (Problem, Widerspruch oder Neugier) in der ersten Sekunde. Kein Logo am Anfang.
-- **Pro Satz genau ein Schlüsselwort.**
-- **Ein Humor- oder Bruch-Moment** pro Video (Wort durchgestrichen, Cursor dreht ab, Fenster friert ein).
-- **Ein Signature-Moment:** die eine Stelle, über die man redet (meist aus der Lieblings-Referenz des Nutzers). Im Skript markieren.
-- **Letzter Satz = CTA**, das Bild endet auf dem grossen CTA.
-- Erzähler: Ich-Form als Gianluca (Solleva: «ich», nie «wir») oder neutraler Erzähler (siehe Content-Strategie). Du-Form zum Zuschauer. Schweizer Schreibung «ss». Keine erfundenen Zahlen, Bewertungen, Rankings oder Kundennamen. Fremdwörter und Markennamen vorher prüfen (z. B. «Solleva» = it. «heb an!/hebt an», von «sollevare» = anheben).
+- **8–11 Sätze in höchstens 8–9 Szenen**, je 4–9 Wörter.
+- **Satz 1 = Hook** in der ersten Sekunde, Schlüsselwort bis 0,8 s im Bild. Kein Logo am Anfang.
+- **Pro Satz genau ein Schlüsselwort.** Ein Humor-/Bruch-Moment, ein Signature-Moment (markieren).
+- **Letzter Satz = CTA** «Folge für mehr», Endkarte ≥ 1,5 s, danach Loop zum ersten Bild.
+- Du-Form zum Zuschauer, Schweizer «ss», keine erfundenen Zahlen/Rankings/Kundennamen. Fakten mit Quelle (z. B. Dopamin = Erwartung/«wanting», Vorhersagefehler, Ungewissheit).
 
-**c) Storyboard als Standbilder**
-- Pro Moment ein gerendertes Schlüsselbild (Remotion `still`, ohne Credits) im Steckbrief-Stil, als Kontaktbogen in einem Bild. Higgsfield-Szenen dabei als Platzhalter mit Beschreibung und Prompt-Entwurf darstellen, noch **nicht** generieren.
-- Kosten-Schätzung für alle geplanten Higgsfield-Generierungen nennen.
+**c) Storyboard als Standbilder**: pro Szene ein gerendertes Schlüsselbild (Remotion `still`, ohne Credits) als Kontaktbogen, mit Safe-Zone-Rahmen. Higgsfield-Objekte als neutrale Platzhalter-Silhouetten (keine Smileys) mit Prompt-Entwurf. **Kosten-Schätzung** für alle geplanten Generierungen.
 
-**Erst nach Freigabe weiter.** Korrekturen hier einarbeiten; sie kosten nichts.
+**Erst nach Freigabe weiter.** Korrekturen hier kosten nichts.
 
 ### 4. KI-Voiceover (Higgsfield)
-- Engine `text2speech_v2`, Variante `elevenlabs`. **Solleva-Stimme: «Andre»** (voice_id `f1e8226e-2248-4d5f-b43c-0a79e9949dbf`, preset). Bei neuen Kanälen 3 Proben zur Wahl, gewählte Stimme hier eintragen.
-- Kosten vorher nennen (`get_cost`; ca. 0,15 Credits pro Satz).
-- **Jeder Satz als eigene Datei** (Batch). Bei Fehler 429 (Rate-Limit) die fehlenden einzeln nachsenden.
-- Download-Host `d8j0ntlcm91z4.cloudfront.net` muss in der Umgebung erlaubt sein.
-- Timing: mit ffmpeg `silencedetect=n=-40dB:d=0.1` jede Sprechpause auf 10 ms genau messen, Phrasen und Wörter daraus ableiten. Sätze ohne Anfangs-/Endstille mit **0,22 s Pause** aneinanderreihen, am Schluss **2 s Halt** für den CTA. Alle Zeiten in **einer** `timeline.json` (Frames bei 30 fps). Jeder visuelle Beat sitzt auf einem bestimmten gesprochenen Wort.
-- Stimme vor dem Mix auf −16 LUFS normalisieren.
+- Engine `text2speech_v2`, Variante `elevenlabs`. **Solleva-Stimme: «Andre»** (voice_id `f1e8226e-2248-4d5f-b43c-0a79e9949dbf`, preset). Bei neuen Kanälen 3 Proben zur Wahl.
+- Kosten vorher nennen (ca. 0,15 Credits pro Satz). **Jeder Satz als eigene Datei** (Batch).
+- Stille vorne/hinten wegschneiden, auf −16 LUFS normalisieren; Wortgrenzen per Hüllkurve (10 ms) messen. Pausen ~0,2–0,3 s, nach dem Hook eine kurze Lesepause, am Schluss ~1,6–2 s Halt.
+- Alle Zeiten in **einer** Zeitleiste (Frames bei 30 fps, Wortmarken pro Satz). Jeder visuelle Beat sitzt auf einem gesprochenen Wort.
 
 ### 5. 5-Sekunden-Stiltest (Pflicht-Freigabe, erst hier fliessen Credits)
-- Nur **eine** Szene fertig bauen: den Signature-Moment bzw. die Szene, die die Lieblings-Referenz am stärksten verkörpert, inkl. Hintergrund, Typografie, Übergang rein und raus, Stimme, Sounds und (falls vorhanden) Musik.
-- Higgsfield **nur für diese Szene** generieren; Kosten vorher nennen. Prompts aus dem Steckbrief ableiten (Licht, Kamerabewegung, Farbwelt, Format 9:16), lieber 2 Varianten einer Szene als 1 Szene blind.
-- Als MP4 abgeben, daneben ein Vergleichsbild «Referenz-Frame | unser Frame» an der genannten Stelle.
-- Frage an den Nutzer: «Hat das den WOW-Effekt? Was fehlt noch?» Nur bei Ja das ganze Reel bauen. Bei Nein: Steckbrief anpassen, Test wiederholen; nie mit einem halb überzeugenden Stil weiterbauen.
+- Nur den Hook bzw. Signature-Moment fertig bauen: Kamera, Hintergrund, Objekt, Typografie, erster Zoom-Through, Stimme, Sounds.
+- Higgsfield **nur für diese Szene**; lieber 2 Varianten als 1 blind.
+- Als MP4 abgeben + Kontrollbilder. Frage: «Hat das den WOW-Effekt? Was fehlt noch?» Nur bei Ja das ganze Reel bauen.
 
-### 6. Zwei Versionen bauen (gleiche Timeline, gleicher Steckbrief)
+### 6. Ganzes Reel bauen
+- Bei Collage/filmisch mit durchgehender Kamera **eine Version** (der Stiltest ersetzt den A/B-Vergleich). Bei UI-/Website-Themen bleibt **A «Interaktive UI im ganzen Bild»** (Cursor treibt die Story, durchgehende Arbeitsfläche, Ende im grossen CTA-Button) gegen **B «Text oben + Karte»** mit Best-of-Schnitt Standard.
+- Objekte und Hintergründe für alle Szenen in **einem** Durchgang generieren (höchstens 8 Higgsfield-Aufträge gleichzeitig, sonst 429), Objekte freistellen, in `assets/<reel>/` speichern.
+- **Zoom-Through bauen**: Fenster (9:16) vollständig innerhalb des sichtbaren Portal-Ausschnitts (bei runden Portalen: Ecken im Kreis); freie Formen (Herz, Tropfen) als SVG-Maske, nicht CSS `path()`; Hintergründe der eingebetteten Szene gross genug (Rand mit gespiegelter Textur), damit nie Leerfläche aufblitzt. Bildabweichung am Wechsel messen (≈ letzter Zoom-Schritt).
+- **Animierte Figuren/Karten** (z. B. Joker lacht, flippt Münze): Startbild auf 9:16-Fläche setzen (Kling kann nur 16:9/9:16/1:1), 2 Varianten generieren, beste wählen, Kartenbereich ausschneiden, Tempo anpassen und als **Bildfolge** einbauen (läuft so auch in Portalen und mit Bewegungsunschärfe synchron). Endbild = Quellframe, der dem letzten Clip-Frame entspricht; Zielobjekt im Endbild neu vermessen.
+- **Karten-Walzen**: Symbole sind Bilder in `assets/cards/` (2:3); Walzenfeld im Format 2:3.
 
-Gilt als Standard. **Definieren die Referenzen ein anderes Format** (z. B. filmisch mit Higgsfield-Szenen statt UI mit Mauszeiger), dann sind A und B **zwei Auslegungen der Referenz** (z. B. A = näher an der Referenz, B = ruhiger/markentreuer). Der freigegebene Steckbrief und der Stiltest haben immer Vorrang.
-
-**Gemeinsame Regeln für beide:**
-- Ein klarer Moment pro Satz, **eine Hauptaktion zur Zeit**, Federn mit leichtem Overshoot, nichts überladen, nichts flackert.
-- 2–4 Mikro-Details reagieren auf die Hauptaktion (ungleiche Verzögerungen): Zähler zählt, Häkchen zeichnet sich, Badge ploppt, kleine Partikel in Akzentfarbe beim Klick.
-- Safe Zones 1080×1920: Wichtiges zwischen y 220 und y 1540, rechts 140 px frei, CTA nie im unteren Fünftel.
-- Jede Haltephase lebt weiter (Drift 1–3 px, Zoom 100→102 %).
-- Higgsfield-Clips als Hintergrund-Ebene: auf 1080×1920 bringen, Farben an den Steckbrief angleichen (leichte Farbkorrektur/Tönung), Text-Ebene aus Code darüber, Schnitt auf Satzgrenzen bzw. Beat.
-
-**Version A: «Interaktive UI im ganzen Bild»** (bei UI-/Website-Themen meist die stärkere)
-- **Keine Text-Box.** Das ganze Bild ist **eine lange, durchgehende Arbeitsfläche** (z. B. 1080 × 6000 px), auf der alle Momente untereinander bzw. nebeneinander liegen. Die **Kamera scrollt** mit weichen Heavy-Kurven von Moment zu Moment, mitten in der Bewegung leicht herausgezoomt (95 %), dann wieder 100 %. Keine harten Szenenwechsel.
-- **Ein Mauszeiger treibt die Story:** bewegt sich in weichen Bögen (nicht geradlinig), klickt (kleiner Ripple in Akzentfarbe + Klick-Sound), zieht Dinge, tippt. Er darf sich verwandeln: Schere zum Schneiden, Sanduhr beim Warten/Einfrieren, Hand beim Ziehen, Pfeil-hoch beim Anheben.
-- Jeder Satz = ein UI-Moment, den der Cursor auslöst. Bausteine: Suchleiste tippt, Ergebnisliste scrollt, Fenster friert ein («KEINE ANTWORT», hängender Ladebalken), Dateien in eine Drop-Zone ziehen, Checkliste abhaken, Grafik zeichnet sich mit %-Zähler und Stempel, Chatfenster tippt synchron zur Stimme, Versionsbaum mit Render-Button, Mind-Map wächst aus einem Knoten, Eintrag wird nach oben gezogen.
-- Text nur sparsam: das Schlüsselwort darf gross im Raum stehen, sonst erzählt die UI.
-- **Ende:** alles fällt in **einen grossen CTA-Button** zusammen, den der Cursor auf dem letzten Wort klickt.
-
-**Version B: «Text oben + Karte»**
-- **Captions oben** (y 290–700): der ganze Satz steht von Anfang an **hellgrau** (Opacity ~25 %), jedes Wort wird beim Sprechen **schwarz/hell** (Land-Kurve, kleiner Hub). Schlüsselwort kursiv in Serif und Akzentfarbe, mit kleinem Puls.
-- **Kopfzeile:** Kapitel-Label links, rechts ein kleiner Zähler (z. B. «SICHTBARKEIT 12 %» → steigt mit der Story; nur symbolisch, keine erfundenen Fakten im Sinn von Statistiken).
-- **Mitte:** eine Karte/Konsole im Steckbrief-Stil, in der die Illustration des Satzes spielt (gleiche Momente wie A, kompakter). Übergänge: Push mit Whip-Kurve oder Match-Cut.
-- HUD-Texte immer auf kleinen umrandeten Panels, nie über der Szene.
-
-### 7. Best-of-Schnitt
-- Beide Versionen als Stills an jedem Beat rendern (Kontaktbogen A neben B, Zeile pro Satz) und **selbst vergleichen**, immer auch gegen die Referenz-Frames.
-- Pro Satz die Version wählen, die ihn klarer erklärt. Liste führen: `Satz → A/B → Grund`.
-- Finale Komposition schneidet entlang der Satzgrenzen zwischen A und B. Bei ähnlichem Inhalt an der Naht **6-Frame-Überblendung** (Opacity), sonst harter Schnitt auf das Wort.
-- Jede Naht als Standbild prüfen (kein Sprung im Layout, kein doppeltes Element).
+### 7. Kontrolle während des Baus
+- Kontrollbilder an jeder Szene, jedem Wechsel und jedem Textaufbau rendern (`REMOTION_UNSCHAERFE=1` für schnelle Stills ohne Dateiänderung), **mit Safe-Zone-Rahmen** überlagern, als Kontaktbogen ansehen.
+- Prüfen: Text in der Zone, keine leeren Flächen, Kontrast, keine Lücken/Sprünge beim Wechsel, kein Objekt verschwindet für einen Frame (`landung()` statt `overshoot()`).
 
 ### 8. Sound und Musik
-Bibliotheken: `sfx-library/` (Mixkit: whoosh, transition, click, pop, notification, typing, interface, impact) und `user-sounds-pixabay/`. Hat der Nutzer eine Lizenz (z. B. Artlist, Epidemic Sound), deren Dateien bevorzugen.
+**Effekte:** jeden Sound auf seinen Hit vermessen (`sounds.json`) und exakt platzieren; nie zwei wichtige gleichzeitig; Lautstärken deutlich unter der Stimme (ausser bewusste Charakter-Sounds). Dazu die Regeln «Sound-Design» im Abschnitt «Aus Zanes Premium Animations übernommen» (Geste einmal vertonen, Pegel einzeln, Kontrolle).
 
-**Effekte:**
-- Jeden Sound zuerst analysieren (Hüllkurve mit ffmpeg/numpy): **wo liegt der Hit**, Stille am Anfang wegschneiden, damit der Hit exakt auf dem visuellen Ereignis landet (z. B. Riser `riser-hit-01`: Hit bei 5,38 s).
-- Sound-Momente aus der Referenz-Analyse (Schritt 2) übernehmen: gleiche Art Sound an der gleichen Art Moment.
-- Zuordnung: **Klicks** auf Cursor-Klicks und Tippen, **Pops** auf Erscheinen, **Whooshes** auf Kamerafahrten und Nähte, **Glitch/Ticks** auf Einfrieren und laufende Zähler, **Impacts** auf grosse Enthüllungen und den CTA.
-- **Viele Sounds, aber nie zwei wichtige gleichzeitig.**
-- **Drei Spuren:** (1) Klicks/Pops, (2) Whooshes, (3) Impacts. Jeder Clip mit eigener Lautstärke und sprechendem Namen (z. B. `klick-suchleiste`, `whoosh-kamera-03`).
-- Lautstärken unter der Stimme: Klicks/Pops −14 bis −10 dB, Whooshes −12 bis −8 dB, Impacts −8 bis −5 dB.
+**Musik:**
+- Hat der Nutzer einen Song/eine Lizenz: diesen verwenden. Sonst **3 Varianten** generieren (Higgsfield ElevenLabs Music, instrumental, ~5 Credits pro 36 s), Richtung aus einer Referenz ableiten (Tempo, Tonart, Energieverlauf messen), z. B. «Jahrmarkt-Hip-Hop», «Noir-Jazz», «Kino-Puls». Jede Variante unter das fertige Reel mischen und dem Nutzer zur Wahl schicken. Gewählte Richtung in `CLAUDE.md` festhalten (Spielautomat: «Kino-Puls», 103 BPM, d-Moll, Streicher/Klavier, kein klassischer Beat).
+- Musik ~10 dB unter der Stimme, **Sidechain-Ducking** auf die Stimme, kurzes Fade-in, 0,8 s Fade-out. Immer auch eine Fassung **ohne Musik** abgeben.
+- Claude hört nicht: Klangurteil immer beim Nutzer abholen.
 
-**Musik (nur mit echtem Song vom Nutzer oder lizenzfreier, ausgewählter Datei):**
-- Song **10–15 s in den Track hinein** starten, den Startpunkt so wählen, dass **Drop oder grösster Energiewechsel auf einen Kapitelwechsel** fällt (Energie-Hüllkurve analysieren). Schnitte möglichst auf Beats legen, wenn die Referenz das tut.
-- Am Drop teilen: ruhiger Teil **~10 dB unter der Stimme**, lauter Teil **~6 dB unter der Stimme**. Kurzes Fade-in, **0,8 s Fade-out**.
-- Kein Song vorhanden: ohne Musik abgeben (Nutzer legt in Instagram einen Trend-Song drüber).
-- Claude hört nicht: Klangurteil immer beim Nutzer abholen (beim Stiltest).
-
-**Mix:** Stimme klar oben, Gesamt **−14 LUFS**, Peak ≤ −1 dBFS, lokal nachmessen (ebur128). Keine ungewollte Stille.
+**Mix:** Stimme klar oben, Gesamt **−14 LUFS**, Peak ≤ −1 dBFS, nachmessen (ebur128). Keine ungewollte Stille.
 
 ### 9. Rendern und abgeben
-- **Video:** 1080×1920, 30 fps, H.264, **yuv420p TV-Range** (Remotion rendert oft `yuvj420p` → danach `scale=in_range=full:out_range=tv,format=yuv420p`), CRF 18–20, AAC 48 kHz, Lautheit normalisiert.
-- **Fassungen:** `<name>-vN.mp4` (fertig) und, falls Musik drin ist, `<name>-vN-ohne-musik.mp4`.
-- **Für DaVinci auf Wunsch:** Version A und B als getrennte Videos ohne Ton, Stimme als WAV, Sounds als drei Spuren (WAV) – so kann der Nutzer selbst schneiden.
-- **Bericht an den Nutzer:** Abgleich mit jeder Referenz-Notiz (umgesetzt / bewusst weggelassen + Grund), welche Version pro Satz gewählt wurde, wo die wichtigsten Sounds liegen, Musik-Startpunkt (falls Musik), verbrauchte Credits, Messwerte (Lautheit, Szenenwechsel), was nur als Standbild geprüft wurde. Projekt zusätzlich als ZIP sichern (Cloud-Umgebung kann neu starten).
+- **Video:** 1080×1920, 30 fps, H.264, **yuv420p TV-Range** (Remotion liefert oft `yuvj420p`/Full-Range → `scale=in_range=full:out_range=tv,format=yuv420p`; auch nach Ton-Austausch mit `-c:v copy` prüfen!), CRF 18–20, AAC 48 kHz.
+- **Fassungen** in `out/abgabe/`: `<name>-vN.mp4` (mit Musik), `-klein.mp4` (zum Verschicken), `-ohne-musik.mp4`, `-effekte.wav` (nur Effekte, volle Länge ab 0:00, Stille dazwischen), dazu **Übersicht mit einem Frame pro Sekunde und Safe-Zone-Rahmen** (`-uebersicht.png`).
+- Nur Ton geändert: Ton-Spur mit `--codec=wav` rendern und unter das bestehende Bild legen, statt das Bild neu zu rendern.
+- **Bericht an den Nutzer**: was umgesetzt wurde (pro Feedback-Punkt), was bewusst anders/weggelassen wurde und warum, verbrauchte Credits (mit `transactions` gegenprüfen), Messwerte (Lautheit, Peak, Loop-Abweichung), was nur als Standbild geprüft und was nicht gehört wurde.
+- Code, Assets und Logbuch auf den Reel-Branch committen und pushen; am Schluss auf Wunsch Pull Request nach `main`.
 
 ### 10. Selbstprüfung vor jeder Abgabe (messen, nicht schätzen)
-- Jede Referenz-Notiz des Nutzers ist umgesetzt oder begründet weggelassen.
-- Übergänge haben die im Steckbrief gemessene Dauer und Kurve (Frames zählen, gegen Referenz-Frames vergleichen).
-- Jeder Satz hat genau einen Moment, ausgelöst auf einem bestimmten Wort.
-- Neues Bild oder neue Hauptaktion **mindestens alle 2 s** (Szenenliste/Timeline zählen).
-- Nur Farben aus dem Steckbrief; ≥ 2 Hintergrund-Wechsel; nicht durchgehend dunkel.
-- Text in Safe Zones (Pixel-Ausdehnung rechts ≤ 940 px), Captions lesbar, kein KI-Text in Higgsfield-Clips sichtbar.
-- Ton: −14 LUFS ±1, Peak ≤ −1 dBFS, nie zwei wichtige Sounds gleichzeitig.
-- Hook in Sekunde 1, Signature-Moment vorhanden, CTA auf dem letzten Wort und ≥ 1,5 s stehend, keine erfundenen Fakten.
+- Jede Referenz-Notiz und jeder Feedback-Punkt umgesetzt oder begründet weggelassen.
+- Länge 30–35 s, höchstens 8–9 Szenen; Hook-Wort bis 0,8 s; CTA ≥ 1,5 s; Loop letzter ≈ erster Frame.
+- Jeder Satz hat genau einen Moment auf einem bestimmten Wort; neues Ereignis mindestens alle 2 s.
+- Alle Texte in x 95–900 / y ≥ 300 (Safe-Zone-Übersicht), keine leere Papierfläche > 0,2 s, Kontrast ok, keine halb angeschnittenen Deko-Elemente.
+- Jeder Zoom-Through ohne Aufblitzen des Objektrands, Wechsel-Abweichung ≈ letzter Zoom-Schritt.
+- Keine Smileys, kein KI-Text in generierten Bildern, keine erfundenen Fakten.
+- Ton: −14 LUFS ±1, Peak ≤ −1 dBTP, nur natürliche Effekte, nie zwei wichtige Sounds gleichzeitig.
 - motion-design-Prüfliste abgehakt.
 
 ### 11. Feedback-Runden
-- Feedback als nummerierte Liste übernehmen, nur das Genannte ändern, Stimm-Timing bleibt fix.
-- Ziel: **höchstens 1 Runde** (dank Freigabe-Paket und Stiltest). Bei Geschmacksfragen 2 Varianten rendern statt raten.
-- Was der Nutzer in einer Runde korrigiert, als dauerhafte Regel in diesen Skill bzw. den Kanal-Steckbrief zurückschreiben (Nutzer bietet das an), damit derselbe Fehler nie zweimal passiert.
+- Feedback als nummerierte Liste übernehmen, nur das Genannte ändern, Stimm-Timing bleibt fix (Ausnahme: Kürzen auf Wunsch).
+- Ziel: **höchstens 1 Runde**. Bei Geschmacksfragen 2 Varianten zeigen statt raten.
+- Was der Nutzer korrigiert, als dauerhafte Regel in `CLAUDE.md` und in die Skill-Kopie `skill/reel-produktion/SKILL.md` zurückschreiben; im Logbuch vermerken.
 
 ---
 
 ## Stil-Steckbriefe (Basis pro Kanal)
 
-**Solleva** (Webdesign, Olten/Aarau) – «hell, ruhig, violett»
-- Farben (nur diese): Papier #F6F5FC, Lavendel #ECE6FF, Staubgrau #EEEDF3, Nacht #070A24 (nur Kontrast/CTA), Tinte #14123A, Grau #6E6C92 / #D5D1E9 / #E4E1F3, Akzent Violett #6C3FD4 (auf hell), Lavendel-Akzent #A98BFF, Cyan #8FE3FF (nur auf Nacht), Gold #F2C46D (nur Bewertungssterne).
-- Formen: weisse Karten, Radius 34, Rand 1,5 px #E1DDF5, weicher Schatten (0 30 70 rgba(44,30,120,.14)). Cursor weiss mit Tinten-Rand.
-- Schrift: Barlow 800 (Text), Instrument Serif kursiv (Schlüsselwörter), Barlow 700 Versalien mit Sperrung 0,14 em (Labels).
-- Motive: Suche (neutral, ohne Google-Logo; «Google» nur gesprochen), Ergebnisliste, Website-Karte, Google-Profil-Karte, Checkliste, Termin/Anfrage, «anheben»-Motiv (Dinge heben sich, Schatten wird kleiner).
-- Endkarte: Logo + «Solleva» oben, Claim «Heb dich von der *Masse* ab.», CTA-Button «Schreib «Analyse»», Instagram-Karte @solleva.ch / solleva.ch mit «Folgen».
-- Stimme: Andre (siehe Schritt 4). Ich-Form.
+**Solleva** (Webdesign, Olten/Aarau)
+- Basis-Look «hell, ruhig, violett»: Papier #F6F5FC, Lavendel #ECE6FF, Staubgrau #EEEDF3, Nacht #070A24 (Kontrast/CTA), Tinte #14123A, Grau #6E6C92 / #D5D1E9 / #E4E1F3, Akzent Violett #6C3FD4, Lavendel-Akzent #A98BFF, Cyan #8FE3FF (nur auf Nacht), Gold #F2C46D (Sterne).
+- Stil-Rezepte für Abwechslung: **R01 Halbton-Collage** (Papier #ECE9E2, Schwarz #121212, Rot #D7232B, Gelb #FFD21F, Violett #6C3FD4; Halbton-Ausschnitte mit weissem Papierrand, gerissenes Papier, Textur-Hintergründe; vom Nutzer gut befunden), **R02 Papiertheater** (Entwurf). Violett bleibt als Verbindung zur Marke.
+- Schrift: Barlow 800, Instrument Serif kursiv (Schlüsselwörter), JetBrains Mono (Etiketten); in Rezepten zusätzlich Rye, IM Fell, Caveat.
+- Endkarte: Solleva-Logo, «@solleva.ch», CTA **«Folge für mehr»**, Claim «Heb dich von der Masse ab.»
+- Stimme: Andre. Ich-Form oder neutraler Erzähler.
 
 **giani.hockey** (Hockey, persönlich)
-- Noch festzulegen (Pinterest-Referenzen). Vorschlag: Eis-Weiss + eine Teamfarbe + Schwarz, sportliche Condensed-Sans, Motive Scoreboard, Taktiktafel, Puck, Statistik. Echte Hockey-Aufnahmen haben Vorrang vor generierten Szenen.
+- Noch festzulegen (Pinterest-Referenzen). Vorschlag: Eis-Weiss + eine Teamfarbe + Schwarz, sportliche Condensed-Sans, Motive Scoreboard, Taktiktafel, Puck, Statistik. Echte Hockey-Aufnahmen haben Vorrang.
 
 **Lieblingsfund** (Geschenkideen, Pinterest/Amazon)
 - Creme #FBF3EA, Sand #F6EDE3, Terracotta #C2694B/#A4523A, Gold #F2C46D, Salbei #8C9A7E, Tinte #3A2A22; Fraunces italic + DM Sans.
@@ -248,11 +261,10 @@ Bibliotheken: `sfx-library/` (Mixkit: whoosh, transition, click, pop, notificati
 ---
 
 ## Technik-Notizen (Cloud-Umgebung)
-- Remotion: `npm i remotion @remotion/cli react react-dom`, eigene Dateien, kein Wizard. Browser `/opt/pw-browsers/chromium_headless_shell-*/chrome-headless-shell-linux64/chrome-headless-shell` in `remotion.config.ts`. Schriften lokal als woff2 in `public/fonts/` (Google-Fonts-CDN ist im Headless-Chromium blockiert).
-- Durchgehender Raum (Version A): eine grosse Bühne, Kamera = `translate/scale` der Bühne, Kamera-Keyframes aus der timeline.json.
-- Sounds direkt in Remotion per `<Sequence from><Audio startFrom volume/></Sequence>` mischen, danach mit ffmpeg `loudnorm=I=-14:TP=-1.5` normalisieren.
-- Higgsfield-Clips in Remotion per `<OffthreadVideo>` als unterste Ebene einbinden.
-- Referenz-Analyse: ffmpeg für Frames (`fps`, `tile`), Szenenwechsel (`select=gt(scene\,0.3),showinfo`), Ton (`astats`, `ebur128`); Paletten mit Python/Pillow (Quantisierung) ziehen. Uploads des Nutzers in eigenem Ordner ablegen, nur lesen.
-- Rendern mit `--concurrency=4`; Standbilder mit `npx remotion still … --frame=N`.
-- Netzwerk-Hosts, die erlaubt sein müssen: Higgsfield-Downloads (`d8j0ntlcm91z4.cloudfront.net`), Mixkit (`mixkit.co`, `assets.mixkit.co`).
-- Subagenten (stärkeres Modell) nur auf Wunsch des Nutzers; dann diesen Skill vollständig in den Auftrag kopieren.
+- Remotion: eigene Dateien, kein Wizard. Browser `/opt/pw-browsers/chromium_headless_shell-*/…/chrome-headless-shell` in `remotion.config.ts`, `setDelayRenderTimeoutInMilliseconds(240000)`. Schriften lokal als woff2 in `public/fonts/` (`@fontsource/*` via npm; Google-Fonts-CDN ist blockiert).
+- Bewegungsunschärfe = Sub-Frame-Mittelung (6 Proben); ganzes Reel rendert ca. 30 min. Schnelle Stills: `REMOTION_UNSCHAERFE=1`. Bei starkem Zoom teure Filter (weisser Papierrand) vereinfachen; dritte Portal-Ebene erst rendern, wenn die Fahrt in die zweite läuft.
+- Lange Renders im Hintergrund starten (`run_in_background`) und erst danach weiterarbeiten; Status in einer Log-Datei.
+- Higgsfield: Downloads von `d8j0ntlcm91z4.cloudfront.net`. **`upload.higgsfield.ai` ist gesperrt** → eigene Bilder ins (öffentliche) Repo pushen und per `media_import_url` mit `raw.githubusercontent.com/<owner>/<repo>/<commit>/<pfad>` importieren (Nutzer darauf hinweisen, dass das Repo öffentlich ist). Höchstens 8 Aufträge gleichzeitig. Bilder: `gpt_image_2_6` (Objekte 0,25–0,5, Texturen 2k ~1 Credit), Freistellen `remove_background`, Video `kling3_0` (5 s pro ~8,75), Musik `elevenlabs_music_v2_5`, Sounds `mirelo_text_to_audio`, Stimme `text2speech_v2`.
+- Mixkit-Sounds: Suchseiten unter `mixkit.co/free-sound-effects/<begriff>/`, Dateien unter `assets.mixkit.co/active_storage/sfx/<id>/<id>-preview.mp3`.
+- Analyse: ffmpeg (Frames, `tile`, Szenen, `ebur128`, `silencedetect`), Python/Pillow/numpy, librosa (Tempo, Tonart, Grundton). Uploads des Nutzers in eigenem Ordner ablegen, nur lesen.
+- Subagenten nur auf Wunsch des Nutzers; dann diesen Skill vollständig in den Auftrag kopieren.

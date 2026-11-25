@@ -95,3 +95,10 @@ Bisher in dieser Sache: 1,5 (Auge) + 4,5 (Nebel/Planet/Kristalle) + 5,25 (Kling)
 4. Stimme: ein Take, Wortzeiten.
 5. **5-Sekunden-Stiltest:** Szene 1 komplett (Blinzeln, Zähler, Pupillen-Zoom-Through bis Szene 2) → Freigabe.
 6. Ganzes Reel, Kontrolle, Mix (−14 LUFS, Peak ≤ −1 dBFS), Abgabe nach Skill Schritt 9, Logbuch-Zeile «05».
+
+## Stand 25.11.2026 (Claude Code)
+- Assets geladen nach `assets/r05/higgsfield/`. **Gewählt: Nebel A, Planet B, Kristalle A** (Vergleich: `docs/r05/varianten-wahl.jpg`).
+- Kristalle A lokal freigestellt (Helligkeits-Alpha, ohne rembg): `assets/r05/kristalle/kristall-1..3.png`.
+- Screenshots solleva.ch (390 px @2x): `assets/r05/solleva/hero.png`, `abschnitt-anschaut.png`, `ganz.png`.
+- Storyboard v1 (Remotion `R05Storyboard`, Frames 0–7): `docs/r05/storyboard-v1.jpg` → wartet auf Freigabe.
+- Bausteine neu in `src/reels/r05/Look.tsx`: LCD-Stoppuhr (7 Segmente, Komma), alte Muster-Praxis-Seite, Voronoi-Scherben mit Vorder-/Rückseite, Handy-Rahmen, Chrom-Schrift.
