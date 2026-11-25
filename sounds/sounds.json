@@ -637,5 +637,23 @@
   "dauer": 3.0,
   "einsatz": 0.03,
   "hit": 0.03
+ },
+ {
+  "datei": "glas-01-glass-break-hammer.mp3",
+  "kategorie": "glas",
+  "titel": "Glass break with hammer thud (Mixkit 759)",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/759/759-preview.mp3",
+  "dauer": 1.44,
+  "einsatz": 0.01,
+  "hit": 0.02
+ },
+ {
+  "datei": "glas-02-zeitlupe-tief.mp3",
+  "kategorie": "glas",
+  "titel": "Glass break, 0,72× tiefer/langsamer (aus glas-01)",
+  "quelle": "https://assets.mixkit.co/active_storage/sfx/759/759-preview.mp3",
+  "dauer": 2.0,
+  "einsatz": 0.02,
+  "hit": 0.02
  }
 ]

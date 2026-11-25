@@ -181,8 +181,8 @@ export const Kristall: React.FC<{ nr: 1 | 2 | 3; x: number; y: number; h: number
 );
 
 // ---------- Handy-Rahmen ----------
-export const Handy: React.FC<{ w: number; children: React.ReactNode }> = ({ w, children }) => {
-  const h = w * (1688 / 780);
+export const Handy: React.FC<{ w: number; h?: number; children: React.ReactNode }> = ({ w, h: hoehe, children }) => {
+  const h = hoehe ?? w * (1688 / 780);
   return (
     <div style={{ width: w + 24, height: h + 24, padding: 12, borderRadius: w * 0.16, background: "linear-gradient(160deg,#dfe5f1,#5c6378 40%,#e8ecf5 60%,#8a93ab)", boxShadow: "0 40px 90px rgba(108,63,212,.45), 0 0 0 2px rgba(255,255,255,.15)" }}>
       <div style={{ width: w, height: h, borderRadius: w * 0.13, overflow: "hidden", position: "relative", background: web.ink }}>
@@ -205,3 +205,42 @@ export const SafeZone: React.FC = () => (
     <div style={{ position: "absolute", left: 95, top: 300, width: 805, height: 1250, border: "2px dotted rgba(255,226,122,.45)" }} />
   </AbsoluteFill>
 );
+
+// ---------- Schrift Reel 05 (Wunsch Gianluca: modern und fett wie Reel 04 «Filmcrew») ----------
+// Archivo 900, breit (wdth 112 %), Versalien, Prägung in Solleva-Violett.
+export const ARCHIVO = "Archivo R04"; // geladen über SchriftenR04 (src/reels/r04/Look.tsx)
+export const praegung = (tiefe: number, a: string, b: string) => {
+  const hex = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
+  const [ca, cb] = [hex(a), hex(b)];
+  const s: string[] = [];
+  for (let i = 1; i <= tiefe; i++) {
+    const t = i / tiefe;
+    const c = ca.map((v, k) => Math.round(v + (cb[k] - v) * t));
+    s.push(`${(i * 0.6).toFixed(1)}px ${i}px 0 rgb(${c.join(",")})`);
+  }
+  return s;
+};
+export const titelStil = (size: number, tiefe = 6): React.CSSProperties => ({
+  fontFamily: ARCHIVO,
+  fontWeight: 900,
+  fontStretch: "112%",
+  fontSize: size,
+  lineHeight: 0.98,
+  letterSpacing: "-0.005em",
+  textTransform: "uppercase",
+  color: web.text,
+  textShadow: [...praegung(tiefe, "#7b62d6", "#1c1550"), `0 ${tiefe + 10}px 28px rgba(4,5,12,.75)`].join(","),
+});
+export const schluesselStil = (tiefe = 6): React.CSSProperties => ({
+  color: web.lilac,
+  textShadow: [...praegung(tiefe, "#5a3bc4", "#1c1550"), `0 ${tiefe + 10}px 28px rgba(4,5,12,.75)`, `0 0 40px rgba(169,139,255,.35)`].join(","),
+});
+export const textStil = (size: number): React.CSSProperties => ({
+  fontFamily: ARCHIVO,
+  fontWeight: 600,
+  fontStretch: "100%",
+  fontSize: size,
+  lineHeight: 1.15,
+  color: web.muted,
+  textShadow: "0 4px 18px rgba(4,5,12,.85)",
+});
