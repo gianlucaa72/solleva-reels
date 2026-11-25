@@ -102,3 +102,11 @@ Bisher in dieser Sache: 1,5 (Auge) + 4,5 (Nebel/Planet/Kristalle) + 5,25 (Kling)
 - Screenshots solleva.ch (390 px @2x): `assets/r05/solleva/hero.png`, `abschnitt-anschaut.png`, `ganz.png`.
 - Storyboard v1 (Remotion `R05Storyboard`, Frames 0–7): `docs/r05/storyboard-v1.jpg` → wartet auf Freigabe.
 - Bausteine neu in `src/reels/r05/Look.tsx`: LCD-Stoppuhr (7 Segmente, Komma), alte Muster-Praxis-Seite, Voronoi-Scherben mit Vorder-/Rückseite, Handy-Rahmen, Chrom-Schrift.
+
+## Stand 25.11.2026 abends: v1 nicht gut (Feedback Gianluca)
+- v1 (30,1 s) abgegeben, Urteil: «fast das schlechteste Reel». Gründe: **Scherben sehen billig aus, nicht wie Glas**; **es passiert zu wenig**, spätestens nach 10 s weg; nach dem Blinzeln sieht der Hintergrund gut aus, aber es passiert nichts ausser Wippen.
+- Eigene Analyse: 8,3 s Extra-Pausen, Szenen 2–4 ≈ 8 s dieselbe Einstellung, 30 s fast nur Dunkelviolett, Hauptbild nur Code (nachgebaute Seite, Papier-Polygone), Signature-Moment nie im Stiltest geprüft.
+- **Idee Gianluca:** komplett umbauen zu einem coolen Video mit Musik, das die neue Website präsentiert («wie im letzten»), mit Scrollen o. Ä.
+- **Offen für morgen:** (1) Welches Video ist mit «wie im letzten» gemeint? (Reel «4 Schichten», Reel 01 oder extern) (2) Hook (Auge, Blinzeln, Stoppuhr) behalten? (3) Stimme + Musik oder nur Musik?
+- Vorschlag Claude: echte Bildschirmaufnahme von solleva.ch (Playwright, 390 px @2x: Scrollen, Antippen, Vorher/Nachher-Regler) als Hauptmaterial, Schnitte im Takt der Musik, alle 0,3–0,6 s ein Ereignis, ca. 20–25 s. Erst Freigabe-Paket, dann Stiltest der ersten 10 s.
+- Higgsfield-Guthaben: 14,68 Credits (Kling 5 s ≈ 10, Bilder 2 Var. ≈ 1,5).
