@@ -20,8 +20,6 @@ const mj = (t: number) => {
 };
 const schritte = (f: number, start: number, wege: { f: number; d: number; v: number }[]) => wege.reduce((v, w) => v + (w.v - v) * mj((f - w.f) / w.d), start);
 
-const BEAT = 18;
-const b = (n: number) => n * BEAT;
 
 // ============================ Welt 1: Laptop + Handy ============================
 const DT = { x: 540, y: 900, w: 940, bar: 36 };
@@ -39,19 +37,26 @@ const KRISTALL_DREH = 16;
 const KRISTALL_PNG = { w: 280, h: 661, len: 661 };
 
 // ============================ Zeiten ============================
+// Takt: «two faced» (purc) ab 0:51. Akzent (Snare/Hi-Hat) alle 1,625 s (≈ 147,7 BPM), erster bei 1,65 s
+// (gemessen aus der Instagram-Aufnahme, Musikbeginn = Frame 0). Bewegungen LANDEN auf dem Akzent.
+const AKZENT = (k: number) => Math.round((1.65 + 1.625 * k) * 30); // 50, 98, 147, 196, 245, 293, 342, 391, 440, 489
+const HALB = (k: number) => Math.round((1.65 + 1.625 * k + 0.8125) * 30);
 const F_UEBERBLEND = 40; // Ausschnitt → Kristall im Standbild (12 Frames)
 const F_FILM = 58; // ab hier läuft der Hero-Film, ab 2,0 s (= Standbild)
-const F_LAPTOP = b(6); // Kamera ist im Laptop, Startseite beginnt
-const F_REGLER = F_LAPTOP; // Scroll zum Regler
-const F_REELS = b(9); // Scroll zu «Reels»
-const F_TAUCH = b(10); // Tauchfahrt durch das Reel-Bild
-const F_S1 = b(13); // Social: Scroll 1
-const F_S2 = b(15);
-const F_S3 = b(17);
-const F_ENDE_TAUCH = b(18) + 6; // Fahrt in den Handy-Bildschirm
-const F_TIPP = b(21) + 6; // «Folgen» wird getippt
-const F_KRISTALL = b(23) + 10; // Fahrt in den Kristall der Endkarte
-export const SHOW2_DAUER = b(25) + 10;
+const F_UEBERSICHT = AKZENT(0); // Zoom-out fertig: Laptop + Handy
+const F_LAPTOP = AKZENT(1); // Kamera ist im Laptop
+const F_REGLER = HALB(1) - 13; // Scroll zum Regler landet auf dem halben Takt
+const F_VORHER = AKZENT(2); // Regler auf «Vorher»
+const F_NACHHER = HALB(2); // Regler auf «Nachher»
+const F_REELS = AKZENT(3) - 13; // Scroll zu «Reels» landet auf dem Akzent
+const F_TAUCH = AKZENT(3) + 8; // Tauchfahrt durch das Reel-Bild, kommt auf AKZENT(4) durch
+const F_S1 = AKZENT(5) - 14; // Social: Scroll 1 landet auf dem Akzent
+const F_S2 = HALB(5) - 14;
+const F_S3 = AKZENT(6) - 14;
+const F_ENDE_TAUCH = AKZENT(6) + 8; // Fahrt in den Handy-Bildschirm, Endkarte füllt das Bild auf AKZENT(7)
+const F_TIPP = HALB(7); // «Folgen» wird getippt
+const F_KRISTALL = HALB(8) - 2; // Fahrt in den Kristall, landet auf AKZENT(9); Endkarte steht ≈ 2 s
+export const SHOW2_DAUER = AKZENT(9) + 24;
 
 // Scroll-Positionen (CSS)
 const SCROLL_REGLER = 832;
@@ -82,15 +87,15 @@ const KAM = flussKamera(
   [
     { ...W1(NAH_1), f: -30 },
     { ...W1(NAH_1), f: 8 },
-    { ...W1({ s: 0.9, cx: 580, cy: 1080 }), f: b(4) - 4 },
+    { ...W1({ s: 0.9, cx: 580, cy: 1080 }), f: F_UEBERSICHT },
     { ...W1({ s: 1080 / DT.w * 1.04, cx: DT.x, cy: DT0.y + DT_H / 2 - 10 }), f: F_LAPTOP },
     { ...W1({ s: 1080 / DT.w * 1.08, cx: DT.x, cy: DT0.y + DT_H / 2 }), f: F_TAUCH - 4 },
-    { ...W2({ s: 1.04, cx: 540, cy: 960 }), f: F_TAUCH + 40 },
+    { ...W2({ s: 1.04, cx: 540, cy: 960 }), f: AKZENT(4) + 2 },
     { ...W2({ s: 1.08, cx: 545, cy: 990 }), f: F_S1 + 10 },
     { ...W2({ s: 1.16, cx: 540, cy: 1000, rot: -1.5 }), f: F_S3 + 4 },
-    { ...W3({ s: 1.0, cx: 540, cy: 960 }), f: F_ENDE_TAUCH + 30 },
-    { ...W3({ s: 1.03, cx: 540, cy: 950 }), f: F_KRISTALL - 6 },
-    { ...W3(NAH_3), f: SHOW2_DAUER - 6 },
+    { ...W3({ s: 1.0, cx: 540, cy: 960 }), f: AKZENT(7) - 3 },
+    { ...W3({ s: 1.03, cx: 540, cy: 950 }), f: F_KRISTALL },
+    { ...W3(NAH_3), f: AKZENT(9) + 4 },
     { ...W3(NAH_3), f: SHOW2_DAUER + 40 },
   ],
   SHOW2_DAUER,
@@ -164,7 +169,7 @@ const Hintergrund: React.FC<{ src: string; f: number; hell?: number }> = ({ src,
 );
 
 // ============================ Inhalte ============================
-const reglerWert = (f: number) => schritte(f, 50, [{ f: F_REGLER + 16, d: 14, v: 100 }, { f: F_REGLER + 34, d: 18, v: 2 }]);
+const reglerWert = (f: number) => schritte(f, 50, [{ f: F_VORHER - 14, d: 14, v: 100 }, { f: F_NACHHER - 16, d: 16, v: 2 }]);
 const LaptopInhalt: React.FC<{ f: number }> = ({ f }) => {
   const scroll = schritte(f, 0, [{ f: F_REGLER, d: 13, v: SCROLL_REGLER }, { f: F_REELS, d: 13, v: SCROLL_REELS }]);
   const k = DT_S;
@@ -217,7 +222,7 @@ const Endkarte: React.FC<{ f: number }> = ({ f }) => {
   const druck = t >= 0 && t < 4 ? tw(t, 0, 4, 1, 0.95, kurve.whip) : t >= 4 && t < 14 ? tw(t, 4, 10, 0.95, 1, kurve.land) : 1;
   const gefolgt = t >= 3;
   const ripple = t >= 0 && t < 22 ? t / 22 : -1;
-  const raus = tw(f, F_KRISTALL - 18, 10, 1, 0, kurve.raus); // Text geht, bevor die Kamera in den Kristall fährt
+  const raus = tw(f, F_KRISTALL - 6, 8, 1, 0, kurve.raus); // Text geht, bevor die Kamera in den Kristall fährt
   return (
     <AbsoluteFill>
       <AbsoluteFill style={{ filter: "brightness(.5)" }}>
@@ -246,7 +251,7 @@ const Endkarte: React.FC<{ f: number }> = ({ f }) => {
 
 // ============================ Welten ============================
 const Welt1: React.FC<{ f: number }> = ({ f }) => {
-  const laptopPose = mj((f - 14) / 44) * (1 - mj((f - b(4)) / 40)); // gerade in der Nahaufnahme, neigt sich beim Zoom-out, wieder gerade im Laptop
+  const laptopPose = mj((f - 14) / 36) * (1 - mj((f - (F_UEBERSICHT + 6)) / (F_LAPTOP - F_UEBERSICHT - 6))); // gerade in der Nahaufnahme, neigt sich beim Zoom-out, wieder gerade im Laptop
   const phonePose = 1;
   const ausschnitt = 1 - clamp01((f - F_UEBERBLEND) / 12); // Ausschnitt-Kristall → Film-Kristall
   const sicht2 = f >= F_TAUCH ? tw(f, F_TAUCH + 6, 18, 0, 1, kurve.fade) : 0;
