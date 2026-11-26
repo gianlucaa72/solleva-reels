@@ -1,0 +1,118 @@
+{
+ "fix": [
+  [
+   "HEADER",
+   "hdr",
+   76
+  ],
+  [
+   "DIV",
+   "cc",
+   0
+  ],
+  [
+   "LI",
+   "pkg glass glass--lit ",
+   340.28125
+  ],
+  [
+   "LI",
+   "pkg glass glass--lit pkg--featured",
+   340.28125
+  ],
+  [
+   "LI",
+   "pkg glass glass--lit ",
+   340.28125
+  ]
+ ],
+ "hoehe": 5327,
+ "titel": [
+  [
+   174,
+   "Reels und Posts, die nach dir aussehen."
+  ],
+  [
+   1028,
+   "Vom Drehtag bis zum Post."
+  ],
+  [
+   1148,
+   "Planen"
+  ],
+  [
+   1298,
+   "Drehen"
+  ],
+  [
+   1423,
+   "Schneiden"
+  ],
+  [
+   1572,
+   "Posten"
+  ],
+  [
+   1800,
+   "Kanäle, die ich betreue."
+  ],
+  [
+   1883,
+   "fitness-365"
+  ],
+  [
+   1883,
+   "Gisela Tüscher"
+  ],
+  [
+   1883,
+   "Giani.Hockey"
+  ],
+  [
+   2871,
+   "Posts in deinen Farben."
+  ],
+  [
+   3340,
+   "Drei Pakete, monatlich."
+  ],
+  [
+   3530,
+   "Start"
+  ],
+  [
+   3888,
+   "Wachstum"
+  ],
+  [
+   4247,
+   "Plus"
+  ],
+  [
+   4710,
+   "Lass uns reden."
+  ]
+ ],
+ "videos": [
+  [
+   "https://solleva.ch/assets/video/myren-goalie-1.mp4",
+   455
+  ],
+  [
+   "",
+   455
+  ],
+  [
+   "https://solleva.ch/assets/video/fitness365-reel.mp4",
+   1998
+  ],
+  [
+   "https://solleva.ch/assets/video/gisela-reel.mp4",
+   2017
+  ],
+  [
+   "https://solleva.ch/assets/video/giani-before-ice.mp4",
+   1998
+  ]
+ ]
+}

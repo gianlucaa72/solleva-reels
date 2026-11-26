@@ -178,3 +178,11 @@ export const deckt = (st: Stellung, r: { x: number; y: number; w: number; h: num
 /** CSS für ein Kind-Fenster in der Eltern-Welt (Inhalt 1080 × 1920, Mitte auf (x, y), gedreht, skaliert). */
 export const fensterCss = (fe: Fenster) =>
   `translate(${fe.x}px, ${fe.y}px) rotate(${fe.rot ?? 0}deg) scale(${fe.w / 1080}) translate(-540px, -960px)`;
+/** Umkehrung von inKind: Stellung in Kind-Koordinaten → Stellung in Eltern-Koordinaten. */
+export const ausKind = (st: Stellung, fe: Fenster): Stellung => {
+  const kf = fe.w / 1080;
+  const rot = ((fe.rot ?? 0) * Math.PI) / 180;
+  const rel = k((st.cx - 540) * kf, (st.cy - 960) * kf);
+  const vor = mul(rel, k(Math.cos(rot), Math.sin(rot)));
+  return { s: st.s / kf, cx: fe.x + vor.re, cy: fe.y + vor.im, rot: (st.rot ?? 0) - (fe.rot ?? 0) };
+};
