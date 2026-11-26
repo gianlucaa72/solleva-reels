@@ -1,0 +1,582 @@
+{
+ "solleva-start-mobil": {
+  "hoehe": 5429,
+  "titel": [
+   {
+    "text": "Websites, die deinen Betrieb anheben.",
+    "t": 244,
+    "l": 66,
+    "w": 258,
+    "h": 132
+   },
+   {
+    "text": "Websites, die man gern anschaut.",
+    "t": 878,
+    "l": 16,
+    "w": 334,
+    "h": 33
+   },
+   {
+    "text": "Reels, die ich gedreht habe.",
+    "t": 1906,
+    "l": 16,
+    "w": 272,
+    "h": 33
+   },
+   {
+    "text": "Ich bin Gianluca.",
+    "t": 3376,
+    "l": 16,
+    "w": 171,
+    "h": 33
+   },
+   {
+    "text": "So läuft es ab.",
+    "t": 3610,
+    "l": 24,
+    "w": 136,
+    "h": 33
+   },
+   {
+    "text": "Bevor du fragst.",
+    "t": 4261,
+    "l": 16,
+    "w": 158,
+    "h": 33
+   },
+   {
+    "text": "Lass uns reden.",
+    "t": 4812,
+    "l": 16,
+    "w": 208,
+    "h": 41
+   }
+  ],
+  "bilder": [
+   {
+    "src": "physio-muster-alt-mobile.webp",
+    "t": 1229,
+    "l": 65,
+    "w": 260,
+    "h": 564
+   },
+   {
+    "src": "physio-muster-mobile.webp",
+    "t": 1229,
+    "l": 65,
+    "w": 260,
+    "h": 564
+   },
+   {
+    "src": "avatar-fitness365.webp",
+    "t": 2228,
+    "l": 30,
+    "w": 33,
+    "h": 42
+   },
+   {
+    "src": "fitness365-reel-poster.webp",
+    "t": 2341,
+    "l": 30,
+    "w": 258,
+    "h": 459
+   }
+  ],
+  "regler": [
+   {
+    "t": 1229,
+    "l": 65,
+    "w": 260,
+    "h": 564
+   }
+  ]
+ },
+ "solleva-start-desktop": {
+  "hoehe": 4804,
+  "titel": [
+   {
+    "text": "Websites, die deinen Betrieb anheben.",
+    "t": 270,
+    "l": 316,
+    "w": 808,
+    "h": 194
+   },
+   {
+    "text": "Websites, die man gern anschaut.",
+    "t": 1175,
+    "l": 40,
+    "w": 533,
+    "h": 53
+   },
+   {
+    "text": "Reels, die ich gedreht habe.",
+    "t": 2018,
+    "l": 705,
+    "w": 434,
+    "h": 53
+   },
+   {
+    "text": "Ich bin Gianluca.",
+    "t": 2743,
+    "l": 180,
+    "w": 272,
+    "h": 53
+   },
+   {
+    "text": "So läuft es ab.",
+    "t": 3180,
+    "l": 52,
+    "w": 217,
+    "h": 53
+   },
+   {
+    "text": "Bevor du fragst.",
+    "t": 3637,
+    "l": 40,
+    "w": 252,
+    "h": 53
+   },
+   {
+    "text": "Lass uns reden.",
+    "t": 4161,
+    "l": 40,
+    "w": 373,
+    "h": 74
+   }
+  ],
+  "bilder": [
+   {
+    "src": "physio-muster-alt-mobile-s.webp",
+    "t": 972,
+    "l": 962,
+    "w": 298,
+    "h": 644
+   },
+   {
+    "src": "physio-muster-mobile-s.webp",
+    "t": 972,
+    "l": 962,
+    "w": 298,
+    "h": 644
+   },
+   {
+    "src": "avatar-fitness365.webp",
+    "t": 1807,
+    "l": 189,
+    "w": 42,
+    "h": 42
+   },
+   {
+    "src": "fitness365-reel-poster.webp",
+    "t": 1933,
+    "l": 189,
+    "w": 280,
+    "h": 498
+   }
+  ],
+  "regler": [
+   {
+    "t": 972,
+    "l": 962,
+    "w": 298,
+    "h": 644
+   }
+  ]
+ },
+ "solleva-websites-mobil": {
+  "hoehe": 4714,
+  "titel": [
+   {
+    "text": "Website erstellen lassen, die gefunden wird.",
+    "t": 174,
+    "l": 16,
+    "w": 306,
+    "h": 79
+   },
+   {
+    "text": "Was deine Website können muss.",
+    "t": 997,
+    "l": 16,
+    "w": 210,
+    "h": 66
+   },
+   {
+    "text": "Live im Netz und als Entwurf.",
+    "t": 1814,
+    "l": 16,
+    "w": 358,
+    "h": 33
+   },
+   {
+    "text": "Drei Pakete, eine feste Offerte.",
+    "t": 2514,
+    "l": 24,
+    "w": 342,
+    "h": 33
+   },
+   {
+    "text": "Lass uns reden.",
+    "t": 4097,
+    "l": 16,
+    "w": 208,
+    "h": 41
+   }
+  ],
+  "bilder": [
+   {
+    "src": "lieblingsfund-mobile.webp",
+    "t": 483,
+    "l": 23,
+    "w": 186,
+    "h": 403
+   },
+   {
+    "src": "lieblingsfund-desktop-s.webp",
+    "t": 2000,
+    "l": 23,
+    "w": 245,
+    "h": 153
+   },
+   {
+    "src": "lieblingsfund-mobile.webp",
+    "t": 2023,
+    "l": 238,
+    "w": 76,
+    "h": 163
+   },
+   {
+    "src": "physio-muster-desktop-s.webp",
+    "t": 2000,
+    "l": 338,
+    "w": 245,
+    "h": 153
+   },
+   {
+    "src": "physio-muster-mobile-xs.webp",
+    "t": 2023,
+    "l": 553,
+    "w": 76,
+    "h": 163
+   },
+   {
+    "src": "fitness-muster-desktop-s.webp",
+    "t": 2000,
+    "l": 652,
+    "w": 245,
+    "h": 153
+   },
+   {
+    "src": "fitness-muster-mobile-xs.webp",
+    "t": 2023,
+    "l": 868,
+    "w": 76,
+    "h": 163
+   }
+  ],
+  "regler": []
+ },
+ "solleva-websites-desktop": {
+  "hoehe": 4142,
+  "titel": [
+   {
+    "text": "Website erstellen lassen, die gefunden wird.",
+    "t": 250,
+    "l": 40,
+    "w": 683,
+    "h": 176
+   },
+   {
+    "text": "Was deine Website können muss.",
+    "t": 960,
+    "l": 40,
+    "w": 335,
+    "h": 106
+   },
+   {
+    "text": "Live im Netz und als Entwurf.",
+    "t": 1704,
+    "l": 40,
+    "w": 760,
+    "h": 53
+   },
+   {
+    "text": "Drei Pakete, eine feste Offerte.",
+    "t": 2643,
+    "l": 52,
+    "w": 652,
+    "h": 53
+   },
+   {
+    "text": "Lass uns reden.",
+    "t": 3498,
+    "l": 40,
+    "w": 373,
+    "h": 74
+   }
+  ],
+  "bilder": [
+   {
+    "src": "lieblingsfund-mobile-s.webp",
+    "t": 191,
+    "l": 1110,
+    "w": 299,
+    "h": 580
+   },
+   {
+    "src": "lieblingsfund-desktop-xs.webp",
+    "t": 1945,
+    "l": 47,
+    "w": 358,
+    "h": 223
+   },
+   {
+    "src": "lieblingsfund-mobile-s.webp",
+    "t": 1979,
+    "l": 359,
+    "w": 108,
+    "h": 235
+   },
+   {
+    "src": "physio-muster-desktop-xs.webp",
+    "t": 1945,
+    "l": 511,
+    "w": 358,
+    "h": 223
+   },
+   {
+    "src": "physio-muster-mobile-xs.webp",
+    "t": 1979,
+    "l": 823,
+    "w": 108,
+    "h": 235
+   },
+   {
+    "src": "fitness-muster-desktop-xs.webp",
+    "t": 1945,
+    "l": 975,
+    "w": 358,
+    "h": 223
+   },
+   {
+    "src": "fitness-muster-mobile-xs.webp",
+    "t": 1979,
+    "l": 1287,
+    "w": 108,
+    "h": 235
+   }
+  ],
+  "regler": []
+ },
+ "lieblingsfund-mobil": {
+  "hoehe": 9156,
+  "titel": [
+   {
+    "text": "Das passende Geschenk für deine Lieblings­menschen",
+    "t": 88,
+    "l": 20,
+    "w": 350,
+    "h": 115
+   },
+   {
+    "text": "Zwei Fragen, ein Geschenk",
+    "t": 956,
+    "l": 20,
+    "w": 247,
+    "h": 71
+   },
+   {
+    "text": "Gemütlich",
+    "t": 2089,
+    "l": 20,
+    "w": 350,
+    "h": 47
+   },
+   {
+    "text": "Überraschend",
+    "t": 3315,
+    "l": 20,
+    "w": 350,
+    "h": 47
+   },
+   {
+    "text": "Praktisch",
+    "t": 4895,
+    "l": 20,
+    "w": 350,
+    "h": 47
+   },
+   {
+    "text": "Der erste Advent ist am 29. November",
+    "t": 6003,
+    "l": 20,
+    "w": 350,
+    "h": 75
+   },
+   {
+    "text": "So wähle ich aus",
+    "t": 7390,
+    "l": 20,
+    "w": 350,
+    "h": 35
+   },
+   {
+    "text": "Ehrlich über Geld",
+    "t": 7949,
+    "l": 20,
+    "w": 350,
+    "h": 32
+   }
+  ],
+  "bilder": [
+   {
+    "src": "symbol-hero.jpg",
+    "t": 466,
+    "l": -4,
+    "w": 399,
+    "h": 299
+   },
+   {
+    "src": "symbol-gemuetlich.jpg",
+    "t": 1792,
+    "l": -4,
+    "w": 399,
+    "h": 299
+   },
+   {
+    "src": "symbol-ueberraschen.jpg",
+    "t": 3018,
+    "l": -4,
+    "w": 399,
+    "h": 299
+   },
+   {
+    "src": "symbol-kueche.jpg",
+    "t": 4598,
+    "l": -4,
+    "w": 399,
+    "h": 299
+   },
+   {
+    "src": "advent.jpg",
+    "t": 6302,
+    "l": -4,
+    "w": 399,
+    "h": 499
+   },
+   {
+    "src": "wohnzimmer.jpg",
+    "t": 6916,
+    "l": -4,
+    "w": 399,
+    "h": 499
+   }
+  ],
+  "regler": []
+ },
+ "lieblingsfund-desktop": {
+  "hoehe": 9065,
+  "titel": [
+   {
+    "text": "Das passende Geschenk für deine Lieblings­menschen",
+    "t": 206,
+    "l": 100,
+    "w": 691,
+    "h": 229
+   },
+   {
+    "text": "Zwei Fragen, ein Geschenk",
+    "t": 1097,
+    "l": 100,
+    "w": 395,
+    "h": 214
+   },
+   {
+    "text": "Gemütlich",
+    "t": 1921,
+    "l": 707,
+    "w": 633,
+    "h": 87
+   },
+   {
+    "text": "Überraschend",
+    "t": 3085,
+    "l": 100,
+    "w": 633,
+    "h": 87
+   },
+   {
+    "text": "Praktisch",
+    "t": 5224,
+    "l": 100,
+    "w": 483,
+    "h": 87
+   },
+   {
+    "text": "Der erste Advent ist am 29. November",
+    "t": 6500,
+    "l": 100,
+    "w": 677,
+    "h": 247
+   },
+   {
+    "text": "So wähle ich aus",
+    "t": 7419,
+    "l": 716,
+    "w": 624,
+    "h": 71
+   },
+   {
+    "text": "Ehrlich über Geld",
+    "t": 8176,
+    "l": 100,
+    "w": 483,
+    "h": 50
+   }
+  ],
+  "bilder": [
+   {
+    "src": "symbol-hero.jpg",
+    "t": 63,
+    "l": 812,
+    "w": 562,
+    "h": 703
+   },
+   {
+    "src": "symbol-gemuetlich.jpg",
+    "t": 2015,
+    "l": 63,
+    "w": 601,
+    "h": 751
+   },
+   {
+    "src": "symbol-ueberraschen.jpg",
+    "t": 3377,
+    "l": 776,
+    "w": 601,
+    "h": 751
+   },
+   {
+    "src": "symbol-kueche.jpg",
+    "t": 4640,
+    "l": 13,
+    "w": 1414,
+    "h": 606
+   },
+   {
+    "src": "advent.jpg",
+    "t": 6388,
+    "l": 823,
+    "w": 551,
+    "h": 689
+   },
+   {
+    "src": "wohnzimmer.jpg",
+    "t": 7295,
+    "l": 64,
+    "w": 593,
+    "h": 741
+   }
+  ],
+  "regler": []
+ }
+}

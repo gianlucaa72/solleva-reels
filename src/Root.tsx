@@ -10,6 +10,7 @@ import { R04Freigabe } from "./reels/r04/Freigabe";
 import { R05Storyboard } from "./reels/r05/Storyboard";
 import { R05Stiltest, STILTEST_R05_DAUER } from "./reels/r05/Stiltest";
 import { R05Reel, REEL05_DAUER } from "./reels/r05/Reel05";
+import { R05Showcase, SHOWCASE_DAUER } from "./reels/r05/Showcase";
 
 export const Root: React.FC = () => (
   <>
@@ -22,6 +23,7 @@ export const Root: React.FC = () => (
     <Composition id="R05Storyboard" component={R05Storyboard} durationInFrames={8} fps={FPS} width={BREITE} height={HOEHE} />
     <Composition id="R05Stiltest" component={R05Stiltest} durationInFrames={STILTEST_R05_DAUER} fps={FPS} width={BREITE} height={HOEHE} />
     <Composition id="R05Reel" component={R05Reel} durationInFrames={REEL05_DAUER} fps={FPS} width={BREITE} height={HOEHE} defaultProps={{ musik: true, stimme: true, effekte: true }} />
+    <Composition id="R05Showcase" component={R05Showcase} durationInFrames={SHOWCASE_DAUER} fps={FPS} width={BREITE} height={HOEHE} />
     <Composition id="Katalog" component={Katalog} durationInFrames={KATALOG_DAUER} fps={FPS} width={BREITE} height={HOEHE} />
   </>
 );
