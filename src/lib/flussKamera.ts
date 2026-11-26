@@ -90,17 +90,16 @@ export const flussKamera = (wege: Wegpunkt[], dauer: number, o: { glaettung?: nu
   // Abtasten mit Rand (Glättung braucht Werte vor 0 und nach dem Ende)
   const rand = Math.ceil(sigma * 4);
   const n = (dauer + 2 * rand) * SUB + 1;
-  const la_re = new Float64Array(n), la_im = new Float64Array(n), b_re = new Float64Array(n), b_im = new Float64Array(n);
+  // Kanäle: log-Zoom, Drehung und der Weltpunkt in der Bildmitte (nicht die Bildverschiebung b: deren Mittelwert
+  // verzerrt die Bahn, sobald sich der Zoom im Glättungsfenster stark ändert → Kamera schwingt aus).
+  const la_re = new Float64Array(n), la_im = new Float64Array(n), c_re = new Float64Array(n), c_im = new Float64Array(n);
   for (let j = 0; j < n; j++) {
     const f = j / SUB - rand;
-    const x = roh(f);
-    la_re[j] = x.la.re + (drift / 30) * f; // Drift als langsamer Push
-    la_im[j] = x.la.im;
-    // b mitverschieben, damit der Drift um die Bildmitte zoomt
-    const st = zuStellung(x);
-    const xa = zuAffin({ ...st, s: st.s * Math.exp((drift / 30) * f) });
-    b_re[j] = xa.b.re;
-    b_im[j] = xa.b.im;
+    const st = zuStellung(roh(f));
+    la_re[j] = Math.log(st.s) + (drift / 30) * f; // Drift als langsamer Push um die Bildmitte
+    la_im[j] = ((st.rot ?? 0) * Math.PI) / 180;
+    c_re[j] = st.cx;
+    c_im[j] = st.cy;
   }
   // Gauss-Glättung (getrennt pro Kanal; im log-Zoom-Raum, damit Zoom gleichmässig wirkt)
   const r = Math.ceil(sigma * 3 * SUB);
@@ -115,13 +114,13 @@ export const flussKamera = (wege: Wegpunkt[], dauer: number, o: { glaettung?: nu
     }
     return out;
   };
-  const G = [glatt(la_re), glatt(la_im), glatt(b_re), glatt(b_im)];
+  const G = [glatt(la_re), glatt(la_im), glatt(c_re), glatt(c_im)];
   const affinBei = (f: number): Affin => {
     const x = (f + rand) * SUB;
     const j = Math.max(0, Math.min(n - 2, Math.floor(x)));
     const t = Math.max(0, Math.min(1, x - j));
     const v = G.map((a) => a[j] + (a[j + 1] - a[j]) * t);
-    return { la: k(v[0], v[1]), b: k(v[2], v[3]) };
+    return zuAffin({ s: Math.exp(v[0]), rot: (v[1] * 180) / Math.PI, cx: v[2], cy: v[3] });
   };
   const bei = (f: number) => zuStellung(affinBei(f));
   // Bild-Tempo: wie schnell bewegt sich ein Punkt in der Bildmitte bzw. am Rand (px pro Frame)

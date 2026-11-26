@@ -217,7 +217,7 @@ const Endkarte: React.FC<{ f: number }> = ({ f }) => {
   const druck = t >= 0 && t < 4 ? tw(t, 0, 4, 1, 0.95, kurve.whip) : t >= 4 && t < 14 ? tw(t, 4, 10, 0.95, 1, kurve.land) : 1;
   const gefolgt = t >= 3;
   const ripple = t >= 0 && t < 22 ? t / 22 : -1;
-  const raus = tw(f, F_KRISTALL, 16, 1, 0, kurve.raus); // Text geht, bevor die Kamera in den Kristall fährt
+  const raus = tw(f, F_KRISTALL - 18, 10, 1, 0, kurve.raus); // Text geht, bevor die Kamera in den Kristall fährt
   return (
     <AbsoluteFill>
       <AbsoluteFill style={{ filter: "brightness(.5)" }}>
@@ -246,7 +246,7 @@ const Endkarte: React.FC<{ f: number }> = ({ f }) => {
 
 // ============================ Welten ============================
 const Welt1: React.FC<{ f: number }> = ({ f }) => {
-  const laptopPose = 1 - mj((f - b(4)) / 40); // dreht sich gerade, wenn die Kamera hineinfährt
+  const laptopPose = mj((f - 14) / 44) * (1 - mj((f - b(4)) / 40)); // gerade in der Nahaufnahme, neigt sich beim Zoom-out, wieder gerade im Laptop
   const phonePose = 1;
   const ausschnitt = 1 - clamp01((f - F_UEBERBLEND) / 12); // Ausschnitt-Kristall → Film-Kristall
   const sicht2 = f >= F_TAUCH ? tw(f, F_TAUCH + 6, 18, 0, 1, kurve.fade) : 0;
@@ -256,8 +256,10 @@ const Welt1: React.FC<{ f: number }> = ({ f }) => {
       <Telefon ph={PH1} pose={phonePose} f={f}>
         <Seite src={A("seiten/solleva-start-mobil.png")} css={390} w={PH1.w} scrollY={0} />
       </Telefon>
-      <Laptop pose={laptopPose} f={f}><LaptopInhalt f={f} /></Laptop>
-      {ausschnitt > 0 && <div style={{ opacity: ausschnitt }}><Kristall x={KRISTALL_W.x} y={KRISTALL_W.y} len={KRISTALL_W.len} f={f} dreh={KRISTALL_DREH} /></div>}
+      <Laptop pose={laptopPose} f={f}>
+        <LaptopInhalt f={f} />
+        {ausschnitt > 0 && <div style={{ opacity: ausschnitt }}><Kristall x={KRISTALL_CSS.x * DT_S} y={KRISTALL_CSS.y * DT_S} len={KRISTALL_W.len} f={f} dreh={KRISTALL_DREH} /></div>}
+      </Laptop>
       {/* Welt 2 erscheint im Reel-Bild (Zoom-Through) */}
       {sicht2 > 0 && (
         <div style={{ position: "absolute", left: POSTER.x - POSTER.w / 2, top: POSTER.y - POSTER_H / 2, width: POSTER.w, height: POSTER_H, overflow: "hidden", opacity: sicht2 }}>
