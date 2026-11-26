@@ -110,3 +110,9 @@ Bisher in dieser Sache: 1,5 (Auge) + 4,5 (Nebel/Planet/Kristalle) + 5,25 (Kling)
 - **Offen für morgen:** (1) Welches Video ist mit «wie im letzten» gemeint? (Reel «4 Schichten», Reel 01 oder extern) (2) Hook (Auge, Blinzeln, Stoppuhr) behalten? (3) Stimme + Musik oder nur Musik?
 - Vorschlag Claude: echte Bildschirmaufnahme von solleva.ch (Playwright, 390 px @2x: Scrollen, Antippen, Vorher/Nachher-Regler) als Hauptmaterial, Schnitte im Takt der Musik, alle 0,3–0,6 s ein Ereignis, ca. 20–25 s. Erst Freigabe-Paket, dann Stiltest der ersten 10 s.
 - Higgsfield-Guthaben: 14,68 Credits (Kling 5 s ≈ 10, Bilder 2 Var. ≈ 1,5).
+
+## Stand 26.11.2026: neues Konzept «solleva.ch vorstellen»
+- Gianluca: Referenz 08 (Webdesigner-Showcase), nur solleva.ch, nur Bild + Musik aus Instagram, Kamera muss fliessen.
+- Gebaut: `src/reels/r05/Showcase2.tsx` (Komposition `R05Solleva`), Kamera `src/lib/flussKamera.ts` (K06).
+- Abgabe: `out/abgabe/r05-solleva-v1.mp4` (ohne Ton, 15,3 s). Takt-Raster 100 BPM (18 Frames); bei bekanntem Song auf dessen Beat legen.
+- Verworfen: «50 Millisekunden» v1 (Scherben billig, zu wenig los) und der Stiltest mit Lieblingsfund (nur solleva.ch gewünscht).
