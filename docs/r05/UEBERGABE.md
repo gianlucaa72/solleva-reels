@@ -116,3 +116,4 @@ Bisher in dieser Sache: 1,5 (Auge) + 4,5 (Nebel/Planet/Kristalle) + 5,25 (Kling)
 - Gebaut: `src/reels/r05/Showcase2.tsx` (Komposition `R05Solleva`), Kamera `src/lib/flussKamera.ts` (K06).
 - Abgabe: `out/abgabe/r05-solleva-v1.mp4` (ohne Ton, 15,3 s). Takt-Raster 100 BPM (18 Frames); bei bekanntem Song auf dessen Beat legen.
 - Verworfen: «50 Millisekunden» v1 (Scherben billig, zu wenig los) und der Stiltest mit Lieblingsfund (nur solleva.ch gewünscht).
+- **v2 (26.11.):** Schnitt auf «two faced» (purc) ab 0:51: Akzent alle 1,625 s (≈ 147,7 BPM), erster bei 1,65 s; 17,1 s, Endkarte ≈ 2 s. Dateien: `out/abgabe/r05-solleva-v2.mp4` (ohne Ton) und `-vorschau-mit-song.mp4`.
