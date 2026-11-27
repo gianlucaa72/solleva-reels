@@ -1,7 +1,7 @@
 // Reel 04 «Keine Filmcrew»: ganzes Reel (Satz 1–9). Satz 1–2 = freigegebener Stiltest.
 // Welten + Objekte: Higgsfield (assets/r04/higgsfield). Code: Schrift, Kamera K02, Tiefe, Animation, Stempel, Ton.
 import React from "react";
-import { AbsoluteFill, Audio, Img, OffthreadVideo, Sequence, staticFile, useCurrentFrame } from "remotion";
+import { AbsoluteFill, Audio, Img, Sequence, staticFile, useCurrentFrame } from "remotion";
 import { farben } from "../../brand/solleva";
 import { Ton } from "../../lib/kamera";
 import { kurve, tw } from "../../lib/bewegung";
@@ -246,28 +246,26 @@ const Szene7: React.FC<{ f: number }> = ({ f }) => {
 // ---------- Satz 8 (Signature): Dieses Video? Keine Filmcrew. Nur ich. → Mini-Figur landet in der Mitte der Matte ----------
 // Figur: figur-b-frei.png (Karikatur mit grossem Kopf wie Buffett, 835×1842, freigestellt). Höhe im Bild ca. 860 px (≈ 45 %), Füsse bei y 1330.
 const FIGUR = { breite: 390, links: 345, oben: 470, fussY: 1330 };
-// Sprechende Figur (Higgsfield Wan 2.7, Grün herausgerechnet → WebM mit Alpha). Danach hält das letzte Bild.
-// Startbild-Geometrie: Figur 1560 px hoch, Füsse bei y 1760, Mitte x 540 im 1080×1920-Video.
-const FIGUR_CLIP = { hoehe: 1560, fussY: 1760, mitteX: 540 };
-export const FIGUR_VIDEO = { satz8: "r04/figur-satz8.webm", satz8Ende: "r04/figur-satz8-ende.png", satz9: "r04/figur-satz9.webm", satz9Ende: "r04/figur-satz9-ende.png" };
-const SprechendeFigur: React.FC<{ f: number; start: number; dauerF: number; video: string; ende: string; hoehe: number; fussX: number; fussY: number; style?: React.CSSProperties }> = ({ f, start, dauerF, video, ende, hoehe, fussX, fussY, style }) => {
-  const k = hoehe / FIGUR_CLIP.hoehe;
-  const box: React.CSSProperties = { position: "absolute", width: 1080 * k, height: 1920 * k, left: fussX - FIGUR_CLIP.mitteX * k, top: fussY - FIGUR_CLIP.fussY * k, ...style };
+// v7: Figur spricht nicht mehr lippensynchron (Wunsch des Nutzers). Sie steht still, nur der Kopf wackelt leicht
+// und nickt einmal auf «Nur ich.». Kopf und Körper aus figur-b-frei.png zerlegt (tools/r04_figur_kopf.py), keine Credits.
+// Drehpunkt = Hals (x 450, y 900 im 835×1842-Bild).
+const KOPF_DREHPUNKT = `${(450 / 835) * 100}% ${(900 / 1842) * 100}%`;
+export const kopfWackeln = (t: number, nick: number) => {
+  const tt = Math.max(0, t);
+  const ein = Math.min(1, tt / 12);
+  const dreh = ein * (2.2 * Math.sin(tt / 6) + 0.7 * Math.sin(tt / 2.7 + 1));
+  const n = nick >= 0 && nick < 16 ? Math.sin((nick / 16) * Math.PI) : 0;
+  return { dreh: dreh - 1.5 * n, y: 14 * n };
+};
+const StehendeFigur: React.FC<{ f: number; start: number; nickBei: number }> = ({ f, start, nickBei }) => {
+  const w = kopfWackeln(f - start, f - nickBei);
   return (
-    <div style={box}>
-      {f < start + dauerF ? (
-        <Sequence from={start} durationInFrames={dauerF} layout="none">
-          <OffthreadVideo src={staticFile(video)} transparent muted style={{ width: "100%", height: "100%" }} />
-        </Sequence>
-      ) : (
-        <Img src={staticFile(ende)} style={{ width: "100%", height: "100%" }} />
-      )}
+    <div style={{ position: "absolute", left: FIGUR.links, top: FIGUR.oben, width: FIGUR.breite }}>
+      <Img src={staticFile("r04/figur-koerper.png")} style={{ width: "100%", display: "block" }} />
+      <Img src={staticFile("r04/figur-kopf.png")} style={{ position: "absolute", left: 0, top: 0, width: "100%", transformOrigin: KOPF_DREHPUNKT, transform: `translateY(${w.y}px) rotate(${w.dreh}deg)` }} />
     </div>
   );
 };
-const CLIP8_START = STIMME_SEGMENTE.length ? Math.round(STIMME_SEGMENTE[7].reel + (20.1 - STIMME_SEGMENTE[7].von) * 30) : V.s8;
-const CLIP9_START = STIMME_SEGMENTE.length ? Math.round(STIMME_SEGMENTE[8].reel + (22.9 - STIMME_SEGMENTE[8].von) * 30) : V.s9;
-export const CLIPS = { c8: { start: CLIP8_START, dauer: 90 }, c9: { start: CLIP9_START, dauer: 120 } };
 
 const Szene8: React.FC<{ f: number }> = ({ f }) => {
   // Kamera gleitet ruhig auf die Figur zu (Heavy, 100 → 108 % über die ganze Szene), kein Bounce.
@@ -279,7 +277,7 @@ const Szene8: React.FC<{ f: number }> = ({ f }) => {
     { src: "r04/obj-polaroid-a.png", x: 250, y: 1360, w: 210, d: -9 },
     { src: "r04/obj-laden-a.png", x: 830, y: 1370, w: 240, d: 0 },
   ];
-  // Figur landet zu Beginn der Szene (sie spricht den ganzen Satz selbst), mit kleinem Hüpfer.
+  // Figur landet zu Beginn der Szene mit kleinem Hüpfer, danach steht sie und wackelt nur mit dem Kopf.
   const t = f - V.s8;
   let fy = -900, fs = 1.25, fb = 10;
   if (t >= 0) {
@@ -310,7 +308,7 @@ const Szene8: React.FC<{ f: number }> = ({ f }) => {
             {/* weicher Schatten am Boden: klein und dunkel bei Landung, gross und blass in der Luft */}
             <div style={{ position: "absolute", left: 540 - 170 * (1 + hoehe), top: FIGUR.fussY - 40, width: 340 * (1 + hoehe), height: 80, borderRadius: "50%", background: "rgba(20,8,60,.5)", filter: `blur(${12 + 30 * hoehe}px)`, opacity: t < 0 ? 0 : 1 - 0.6 * hoehe }} />
             <div style={{ position: "absolute", inset: 0, transformOrigin: `540px ${FIGUR.fussY}px`, transform: `translateY(${fy}px) scale(${fs})`, filter: `blur(${fb}px) ${Schatten(0.9)}`, opacity: t < 0 ? 0 : 1 }}>
-              <SprechendeFigur f={f} start={CLIPS.c8.start} dauerF={CLIPS.c8.dauer} video={FIGUR_VIDEO.satz8} ende={FIGUR_VIDEO.satz8Ende} hoehe={FIGUR.fussY - FIGUR.oben} fussX={540} fussY={FIGUR.fussY} />
+              <StehendeFigur f={f} start={V.s8 + 10} nickBei={W8.ich} />
             </div>
           </>
         )}

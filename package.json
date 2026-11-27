@@ -7,7 +7,7 @@
     "studio": "remotion studio",
     "katalog": "remotion render Katalog out/katalog.mp4 --concurrency=4",
     "still": "remotion still",
-    "r04:assets": "mkdir -p public/r04 && cp assets/r04/higgsfield/welt-*.png assets/r04/higgsfield/obj-*.png public/r04/ && cp -r assets/r04/stimme public/r04/ && cp assets/r04/hook/*.mp3 public/r04/",
+    "r04:assets": "mkdir -p public/r04 && cp assets/r04/higgsfield/figur-b-frei.png assets/r04/figur-kopf/*.png public/r04/ && cp assets/r04/stimme-neu/take2.mp3 public/r04/stimme-neu.mp3 && cp assets/r04/higgsfield/welt-*.png assets/r04/higgsfield/obj-*.png public/r04/ && cp -r assets/r04/stimme public/r04/ && cp assets/r04/hook/*.mp3 public/r04/",
     "r04:stiltest": "remotion render R04Stiltest out/r04/stiltest-roh.mp4 --concurrency=4",
     "r04:reel": "remotion render R04Reel out/r04/reel04-roh.mp4 --concurrency=4",
     "r04:kurve": "esbuild tools/r04_kamerakurve.ts --bundle --platform=node --outfile=out/r04/kurve.cjs --log-level=warning && node out/r04/kurve.cjs > out/r04/kamerakurve.csv && python3 tools/r04_kamerapruefung.py out/r04/kamerakurve.csv --png out/r04/kamerakurve.png"

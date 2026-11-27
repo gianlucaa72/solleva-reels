@@ -14,6 +14,11 @@ Neu rendern: `npm run r04:assets`, `npx remotion render R04ReelV7 out/r04/roh-v7
 - **Timing**: alles ab Szene 2 ist v6, um 28 Frames (0,93 s) nach vorne gerückt (`<Sequence from={-28}>`): Bild, Stimme, Sounds, Musik und Figur-Clips
   bleiben untereinander exakt synchron (geprüft: v7-Frame 200 = v6-Frame 228, Abweichung 0). Satz 1 der Stimme und die Sounds der alten Szene 1 fallen weg.
 
+- **Figur in Satz 8 ohne Lippensynchronisation** (Nachtrag 27.11., Wunsch des Nutzers): Statt des Higgsfield-Clips steht die Figur still,
+  nur der Kopf wackelt leicht (±2–3°) und nickt einmal auf «Nur ich.». Kopf und Körper aus `figur-b-frei.png` zerlegt
+  (`tools/r04_figur_kopf.py` → `assets/r04/figur-kopf/`), Drehpunkt am Hals. Keine Credits. Landung mit Hüpfer, Stimme und Timing unverändert.
+  Endkarte: Figur bleibt wie in v6 (ruhig, ohne Lippen).
+
 ## Messwerte v7
 - 1080×1920, 30 fps, H.264 High yuv420p TV-Range, AAC 48 kHz, 839 Frames = 28,0 s (v6: 28,9 s)
 - Lautheit −13,9 LUFS, Peak −1,8 dBFS
