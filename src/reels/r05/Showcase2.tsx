@@ -89,10 +89,10 @@ const KAM = flussKamera(
     { ...W1(NAH_1), f: 8 },
     { ...W1({ s: 0.9, cx: 580, cy: 1080 }), f: F_UEBERSICHT },
     { ...W1({ s: 1080 / DT.w * 1.04, cx: DT.x, cy: DT0.y + DT_H / 2 - 10 }), f: F_LAPTOP },
-    { ...W1({ s: 1080 / DT.w * 1.08, cx: DT.x, cy: DT0.y + DT_H / 2 }), f: F_TAUCH - 4 },
+    { ...W1({ s: 1080 / DT.w * 1.06, cx: DT.x, cy: DT0.y + DT_H / 2 }), f: F_TAUCH - 4 },
     { ...W2({ s: 1.04, cx: 540, cy: 960 }), f: AKZENT(4) + 2 },
-    { ...W2({ s: 1.08, cx: 545, cy: 990 }), f: F_S1 + 10 },
-    { ...W2({ s: 1.16, cx: 540, cy: 1000, rot: -1.5 }), f: F_S3 + 4 },
+    { ...W2({ s: 1.28, cx: 545, cy: 995 }), f: F_S1 + 10 },
+    { ...W2({ s: 1.4, cx: 540, cy: 1000, rot: -1.5 }), f: F_S3 + 4 },
     { ...W3({ s: 1.0, cx: 540, cy: 960 }), f: AKZENT(7) - 3 },
     { ...W3({ s: 1.03, cx: 540, cy: 950 }), f: F_KRISTALL },
     { ...W3(NAH_3), f: AKZENT(9) + 4 },
@@ -215,6 +215,30 @@ const SocialInhalt: React.FC<{ f: number }> = ({ f }) => {
 };
 
 // ============================ Endkarte (wie v1) + Kristall ============================
+/**
+ * Loop: Stück des Laptop-Heros (Standbild 2,0 s + Textebene, wie in Frame 0), so skaliert und verschoben, dass sein
+ * Kristall genau auf dem Endkarten-Kristall liegt. Blendet weich ein, während die Kamera in den Kristall fährt →
+ * letzter Frame ≈ erster Frame.
+ */
+const HeroNachbau: React.FC<{ sicht: number }> = ({ sicht }) => {
+  const m = KR3.len / KRISTALL_W.len; // Welt-1 → Welt-3
+  const k = DT_S;
+  const kx = KRISTALL_CSS.x * k, ky = KRISTALL_CSS.y * k; // Kristall im Laptop-Inhalt
+  // weicher Rand: deckt den Bildausschnitt des letzten Frames (≈ 292 × 519 Welt-3-px) ganz, zeigt aber keinen Hero-Text
+  const rx = 310 / m, ry = 500 / m;
+  const maske = `radial-gradient(ellipse ${rx}px ${ry}px at ${kx}px ${ky}px, #000 75%, transparent 100%)`;
+  const textMaske = `radial-gradient(ellipse ${132 * k}px ${235 * k}px at ${kx}px ${ky}px, #000 82%, transparent 100%)`;
+  return (
+    <div style={{ position: "absolute", left: KR3.x - kx * m, top: KR3.y - ky * m, width: DT.w, height: DT_H, transformOrigin: "0 0", transform: `scale(${m})`, opacity: sicht, WebkitMaskImage: maske, maskImage: maske, background: "#04050c" }}>
+      <div style={{ position: "absolute", left: 0, top: 259 * k, width: DT.w, height: 810 * k, overflow: "hidden" }}>
+        <Img src={A("hero/hero-t2.png")} style={{ position: "absolute", left: 0, top: 0, width: DT.w, height: 810 * k }} />
+      </div>
+      {/* Textebene (Verlauf) nur im Ausschnitt von Frame 0 (± 118 × 210 CSS um den Kristall): kein Hero-Text */}
+      <Img src={A("seiten/hero-text-desktop.png")} style={{ position: "absolute", left: 0, top: 0, width: DT.w, WebkitMaskImage: textMaske, maskImage: textMaske }} />
+    </div>
+  );
+};
+
 const Endkarte: React.FC<{ f: number }> = ({ f }) => {
   const F_END = F_W3;
   const ein = (d: number) => ({ opacity: tw(f, F_END - 10 + d, 10, 0, 1, kurve.fade), transform: `translateY(${tw(f, F_END - 10 + d, 18, 30, 0, kurve.land)}px)` });
@@ -230,6 +254,7 @@ const Endkarte: React.FC<{ f: number }> = ({ f }) => {
           <Img key={`${ix}${iy}`} src={A("higgsfield/planet-b.png")} style={{ position: "absolute", left: ix * 1080, top: iy * 1920, width: 1080, height: 1920, transform: `scale(${ix ? -1 : 1}, ${iy ? -1 : 1})` }} />
         )))}
       </AbsoluteFill>
+      {f > F_KRISTALL + 4 && <HeroNachbau sicht={tw(f, F_KRISTALL + 6, 18, 0, 1, kurve.fade)} />}
       <div style={{ opacity: raus }}>
         <div style={{ position: "absolute", top: 320, left: 0, right: 0, textAlign: "center", fontFamily: "Instrument Serif", fontSize: 76, color: web.text, ...ein(0) }}>Solleva</div>
         <div style={{ position: "absolute", top: 480, left: 95, width: 805, textAlign: "center", ...titelStil(104, 8), ...ein(4) }}>
