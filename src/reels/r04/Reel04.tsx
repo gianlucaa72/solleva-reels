@@ -336,13 +336,7 @@ const Szene9: React.FC<{ f: number }> = ({ f }) => {
       <Ebene css={kam.css} blur={kam.blur}>
         <Welt src="r04/welt-hohlkehle-b.png" breite={1100} />
       </Ebene>
-      {/* Figur ohne Lippensynchronisation (Wunsch des Nutzers): ruhig unter der Solleva-Karte, atmet leicht */}
-      <Ebene css={kam.css} blur={kam.blur}>
-        <div style={{ position: "absolute", left: 510 - 120, top: 1515, width: 240, height: 46, borderRadius: "50%", background: "rgba(8,2,30,.55)", filter: "blur(12px)" }} />
-        <div style={{ position: "absolute", left: 510 - 107, top: 1540 - 470, width: 213, transformOrigin: "50% 100%", transform: `scale(${1 + 0.008 * Math.sin((f - V.s9) / 14)})`, filter: Schatten(0.7) }}>
-          <Img src={staticFile("r04/figur-b-frei.png")} style={{ width: "100%" }} />
-        </div>
-      </Ebene>
+      {/* v7: Figur auf der Schlussseite entfernt (Wunsch des Nutzers) */}
       <TiltShift blur={8} fokus={55} />
       <Ebene css={halbeKamera(kam)} blur={kam.blur / 2}>
         <div style={{ position: "absolute", top: 230, left: 70, right: 140, textAlign: "center", opacity: marke, transform: `translateY(${(1 - marke) * 20}px)`, fontFamily: "Barlow", fontWeight: 700, fontSize: 60, color: farben.papier, letterSpacing: "0.01em", textShadow: `4px 6px 10px ${r04.schatten}` }}>Solleva</div>

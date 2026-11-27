@@ -17,7 +17,7 @@ Neu rendern: `npm run r04:assets`, `npx remotion render R04ReelV7 out/r04/roh-v7
 - **Figur in Satz 8 ohne Lippensynchronisation** (Nachtrag 27.11., Wunsch des Nutzers): Statt des Higgsfield-Clips steht die Figur still,
   nur der Kopf wackelt leicht (±2–3°) und nickt einmal auf «Nur ich.». Kopf und Körper aus `figur-b-frei.png` zerlegt
   (`tools/r04_figur_kopf.py` → `assets/r04/figur-kopf/`), Drehpunkt am Hals. Keine Credits. Landung mit Hüpfer, Stimme und Timing unverändert.
-  Endkarte: Figur bleibt wie in v6 (ruhig, ohne Lippen).
+  Endkarte (Szene 9): Figur entfernt (Wunsch des Nutzers), Rest der Endkarte unverändert.
 
 ## Messwerte v7
 - 1080×1920, 30 fps, H.264 High yuv420p TV-Range, AAC 48 kHz, 839 Frames = 28,0 s (v6: 28,9 s)
