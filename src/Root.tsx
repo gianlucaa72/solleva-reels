@@ -12,6 +12,7 @@ import { R05Stiltest, STILTEST_R05_DAUER } from "./reels/r05/Stiltest";
 import { R05Reel, REEL05_DAUER } from "./reels/r05/Reel05";
 import { R05Showcase, SHOWCASE_DAUER } from "./reels/r05/Showcase";
 import { R05Showcase2, SHOW2_DAUER } from "./reels/r05/Showcase2";
+import { R05Cover } from "./reels/r05/Cover";
 
 export const Root: React.FC = () => (
   <>
@@ -26,6 +27,7 @@ export const Root: React.FC = () => (
     <Composition id="R05Reel" component={R05Reel} durationInFrames={REEL05_DAUER} fps={FPS} width={BREITE} height={HOEHE} defaultProps={{ musik: true, stimme: true, effekte: true }} />
     <Composition id="R05Showcase" component={R05Showcase} durationInFrames={SHOWCASE_DAUER} fps={FPS} width={BREITE} height={HOEHE} />
     <Composition id="R05Solleva" component={R05Showcase2} durationInFrames={SHOW2_DAUER} fps={FPS} width={BREITE} height={HOEHE} />
+    <Composition id="R05Cover" component={R05Cover} durationInFrames={1} fps={FPS} width={BREITE} height={HOEHE} defaultProps={{ raster: false }} />
     <Composition id="Katalog" component={Katalog} durationInFrames={KATALOG_DAUER} fps={FPS} width={BREITE} height={HOEHE} />
   </>
 );
