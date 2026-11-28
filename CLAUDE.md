@@ -48,6 +48,13 @@ Status: **v0.2: Bausteine aus 7 Referenzen gebaut, wartet auf Freigabe des Nutze
 - Abgabe: Render `R05Reel` (Props `musik`/`stimme`/`effekte`), dann `bash tools/r05_mix.sh vN`
 - Sounds neu: `glas-01` (Mixkit 759), `glas-02-zeitlupe-tief`
 
+## Gelernt aus Reel 05 (Feedback Gianluca, gilt ab jetzt)
+- **Kamera muss fliessen:** K06 Fluss-Kamera (`src/lib/flussKamera.ts`): eine Bahn über das ganze Reel, Wegpunkte + Minimum-Jerk, Spiral-Zoom um den Fixpunkt, Gauss-Glättung des Bildmittelpunkts (nicht der Bildverschiebung). Keine Kamera-Stösse auf Wörter, keine 0,7-s-Zooms aufs 15-Fache. Tempo/Beschleunigung messen (`kurvenWerte()`).
+- **Billig wirkende Code-Objekte vermeiden** (Scherben aus Polygonen, nachgebaute Seiten): lieber echtes Material (Bildschirmaufnahmen der echten Seite, Hero-Film).
+- **Website-Showcase-Format** (Ref. 08) funktioniert: Laptop + Handy, echte Seite scrollt im Takt, Zoom-Through durch ein 9:16-Element der Seite, nur Musik.
+- **Musik wählt Gianluca in Instagram:** Video ohne Ton liefern; Takt aus einer Bildschirmaufnahme des Instagram-Musik-Editors messen (Spektrogramm, Akzente), Bewegungen auf den Akzenten landen lassen; Vorschau mit Song zum Prüfen.
+- Nicht Kunden-Projekte zeigen, wenn es um solleva.ch geht (nachfragen, was gezeigt werden soll).
+
 ## Offen
 - Ratsche erledigt: Favoriten ratsche-18 (rollt aus) und ratsche-19 (gleichmässig).
 - Musik (basslastiger Beat ohne Gesang) noch nicht gewählt.
