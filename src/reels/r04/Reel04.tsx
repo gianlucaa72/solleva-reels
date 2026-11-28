@@ -325,6 +325,7 @@ const Szene8: React.FC<{ f: number }> = ({ f }) => {
 };
 
 // ---------- Satz 9: CTA vor der violetten Hohlkehle + Solleva-Endkarte ----------
+const ENDKARTE_TIEFER = 300;
 const Szene9: React.FC<{ f: number }> = ({ f }) => {
   const kam = gleitKamera(f, kamera9());
   const btn = f >= W9.schreib ? feder(f - W9.schreib, 6) : 0;
@@ -339,6 +340,8 @@ const Szene9: React.FC<{ f: number }> = ({ f }) => {
       {/* v7: Figur auf der Schlussseite entfernt (Wunsch des Nutzers) */}
       <TiltShift blur={8} fokus={55} />
       <Ebene css={halbeKamera(kam)} blur={kam.blur / 2}>
+        {/* v7: ohne Figur rückt die Endkarte tiefer in die Mitte */}
+        <div style={{ position: "absolute", inset: 0, transform: `translateY(${ENDKARTE_TIEFER}px)` }}>
         <div style={{ position: "absolute", top: 230, left: 70, right: 140, textAlign: "center", opacity: marke, transform: `translateY(${(1 - marke) * 20}px)`, fontFamily: "Barlow", fontWeight: 700, fontSize: 60, color: farben.papier, letterSpacing: "0.01em", textShadow: `4px 6px 10px ${r04.schatten}` }}>Solleva</div>
         {CTA_ZEILEN.map((z, i) => (
           <Zeile3D key={i} text={z} start={i === 0 ? W9.willst : W9.auch} top={335 + i * 92} groesse={CTA_ZEILEN[0].length >= 12 ? 90 : 112} f={f} pA="#B9A6F5" pB="#2A1670" />
@@ -356,6 +359,7 @@ const Szene9: React.FC<{ f: number }> = ({ f }) => {
         <div style={{ position: "absolute", top: 960, left: 240, right: 300, height: 96, borderRadius: 48, background: "rgba(246,245,252,.94)", display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 14px 0 30px", opacity: marke, boxShadow: `10px 18px 22px ${r04.schatten}` }}>
           <span style={{ fontFamily: "Barlow", fontWeight: 700, fontSize: 34, color: farben.tinte }}>@solleva.ch</span>
           <span style={{ fontFamily: "Barlow", fontWeight: 700, fontSize: 30, color: farben.papier, background: farben.violett, borderRadius: 34, padding: "12px 24px" }}>Folgen</span>
+        </div>
         </div>
       </Ebene>
     </AbsoluteFill>
